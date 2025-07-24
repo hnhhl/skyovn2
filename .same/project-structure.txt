@@ -1,0 +1,87 @@
+Wego Clone VinaJet - Project Structure
+=====================================
+
+Core Components:
+- src/components/PriceTrendBar.tsx - Enhanced price trend bar with Switch toggle for tax/fee display
+- src/components/FlightResults.tsx - Flight search results with integrated PriceTrendBar and Price Comparison Modal
+- src/components/SearchForm.tsx - Flight search form with enhanced calendar UI
+- src/components/ui/calendar.tsx - Enhanced calendar component with gradients and animations
+- src/components/ui/switch.tsx - Switch component for toggle controls
+
+API Integration:
+- src/lib/vinajet-api.ts - VinaJet API client with token caching and progressive search
+
+Main Pages:
+- src/app/search-results/page.tsx - Search results page with round-trip support and date selection
+- src/app/page.tsx - Homepage with flight search form
+
+Enhanced Features (Latest Version 264):
+- NEW: Loading spinner for baggage info in 4-column price comparison layout
+- NEW: Color-coded baggage status indicators (red/gray/green) for better visual feedback
+- NEW: Real API data integration for baggage recommendations instead of fake data
+- NEW: String parsing logic for baggage info from API responses
+- IMPROVED: Recommendations now use actual baggageInfoMap data for accurate comparisons
+- FIXED: Removed redundant hand baggage logic using outdated fake data
+- ENHANCED: Professional loading states with "Đang tải..." text and Loader2 icon
+
+Enhanced Features (Previous Version 263):
+- NEW: Enhanced price comparison recommendations with detailed baggage logic
+- NEW: Emoji-based benefits display (🎁📦👜⭐🎯✈️🏆) for better UX
+- NEW: Colorful time period chart with icon indicators (Sunrise, Sun, Sunset, Moon)
+- NEW: Gradient backgrounds and hover effects for visual appeal
+- NEW: Detailed time ranges display (05:00-10:59, 11:00-13:59, etc.)
+- IMPROVED: More intelligent cross-airline value comparison
+- ENHANCED: Animated "Rẻ nhất" badges with better visual hierarchy
+
+Enhanced Features (Previous Version 262):
+- NEW: 4-column price comparison layout instead of tabs in "So sánh" modal
+- NEW: Side-by-side comparison of all 4 airlines (VJ, VN, QH, VU) for easier viewing
+- NEW: Responsive grid: 1 column on mobile, 2 on tablet, 4 on desktop
+- NEW: Compact flight display with color-coded airline headers
+- IMPROVED: More intuitive price comparison UX with all airlines visible at once
+
+Enhanced Features (Previous Version 261):
+- FIXED: Removed duplicate getCrossAirlineRecommendations function in FlightResults.tsx
+- FIXED: Resolved undefined flightsForComparison variable references
+- FIXED: TypeScript destructuring error in airline tab rendering
+- IMPROVED: Better code maintainability and reduced redundancy
+
+Enhanced Features (Previous Version 256):
+- NEW: Advanced Price Comparison Modal with 4-column airline comparison
+- NEW: Interactive price chart and recommendations for similar-priced flights
+- NEW: Smart flight recommendations based on price ranges (±100k VND)
+- UPDATED: Removed BL airline from all searches (now VJ, VN, QH, VU only)
+- FIXED: PriceTrendBar navigation arrows with proper date range shifting
+- ENHANCED: Airline-specific API calls for nearby date pricing
+- OPTIMIZED: Current date price from FlightResults (no redundant API calls)
+- IMPROVED: Code architecture with better date range management
+
+Price Comparison Modal Features:
+- 4-column layout for VJ, VN, QH, VU airlines
+- Price sorting (low to high) within each airline
+- Baggage information display (hand carry & checked)
+- Visual price comparison chart
+- Smart recommendations for similar-priced flights
+- Benefits highlighting (checked baggage, direct flights)
+
+Previous Features (Version 249-255):
+- FIXED: Timezone issues with Vietnam timezone helpers (UTC+7) to prevent date mismatch
+- FIXED: Removed hardcoded SGN-HAN fallback values causing incorrect route display
+- FIXED: Proper date highlighting to show selected date in Vietnam timezone
+- Relocated Switch control from PriceTrendBar to main toolbar (next to Sort/Compare)
+- Modern Switch component labeled "Gồm thuế & phí" (default ON)
+- Shared state between PriceTrendBar and flight list for consistent pricing
+- Tax and fee display (tax + fee) instead of service fee in flight list
+- Compact PriceTrendBar design with green theme matching site colors
+- Removed subtitle "Chọn ngày khác để so sánh giá vé" for cleaner look
+- Proper date highlighting and past date disabling with Vietnam timezone
+- Flight list shows "Đã bao gồm thuế & phí" or "+ xxxđ Thuế & phí" messages
+- In-place date search without page refresh
+- Token caching for API optimization
+- Comprehensive debug logging for timezone and route tracking
+
+Key Files Modified:
+- FlightResults.tsx: Added Price Comparison Modal, airline organization, recommendations logic
+- PriceTrendBar.tsx: Added Vietnam timezone helpers, compact design, green theme
+- vinajet-api.ts: Removed BL airline, optimized API calls
+- search-results/page.tsx: Enhanced date selection handling with progressive search
