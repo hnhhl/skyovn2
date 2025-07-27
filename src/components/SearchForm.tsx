@@ -1,247 +1,378 @@
+
 'use client'
 
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Plane, Hotel, MapPin, Calendar, Users, Search } from 'lucide-react'
+import { Plane, MapPin, Calendar, Users, Hotel, Car, Phone } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Calendar as CalendarComponent } from '@/components/ui/calendar'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { format } from 'date-fns'
+import { vi } from 'date-fns/locale'
 
 const SearchForm = () => {
-  const [activeTab, setActiveTab] = useState<'flight' | 'hotel'>('flight')
-  const [tripType, setTripType] = useState<'roundtrip' | 'oneway' | 'multicity'>('roundtrip')
+  const [activeTab, setActiveTab] = useState('flight')
+  const [departureDate, setDepartureDate] = useState<Date>()
+  const [returnDate, setReturnDate] = useState<Date>()
+  const [tripType, setTripType] = useState('round-trip')
 
-  const popularDestinations = [
-    { code: 'SGN', name: 'TP.HCM', price: '2,500,000' },
-    { code: 'HAN', name: 'Hà Nội', price: '2,800,000' },
-    { code: 'DAD', name: 'Đà Nẵng', price: '2,200,000' },
-    { code: 'PQC', name: 'Phú Quốc', price: '3,200,000' },
-    { code: 'DLI', name: 'Đà Lạt', price: '2,100,000' },
-    { code: 'VDO', name: 'Vân Đồn', price: '2,900,000' },
+  const popularRoutes = [
+    { from: 'Hồ Chí Minh', to: 'Hà Nội', price: '1,200,000 VNĐ' },
+    { from: 'Hà Nội', to: 'Đà Nẵng', price: '800,000 VNĐ' },
+    { from: 'Hồ Chí Minh', to: 'Đà Lạt', price: '600,000 VNĐ' },
+    { from: 'Hà Nội', to: 'Phú Quốc', price: '1,500,000 VNĐ' }
   ]
 
   const popularHotels = [
-    { name: 'Vinpearl Resort', location: 'Phú Quốc', price: '2,500,000', image: 'hotel1' },
-    { name: 'JW Marriott', location: 'Hà Nội', price: '3,200,000', image: 'hotel2' },
-    { name: 'InterContinental', location: 'Đà Nẵng', price: '2,800,000', image: 'hotel3' },
-    { name: 'Park Hyatt', location: 'TP.HCM', price: '4,500,000', image: 'hotel4' },
+    { city: 'Hà Nội', hotel: 'Lotte Hotel Hanoi', price: '2,500,000 VNĐ/đêm' },
+    { city: 'Hồ Chí Minh', hotel: 'Park Hyatt Saigon', price: '4,500,000 VNĐ/đêm' },
+    { city: 'Đà Nẵng', hotel: 'InterContinental Danang', price: '3,200,000 VNĐ/đêm' },
+    { city: 'Phú Quốc', hotel: 'JW Marriott Phu Quoc', price: '5,800,000 VNĐ/đêm' }
   ]
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full max-w-6xl mx-auto px-4"
-    >
-      <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0">
-        <CardContent className="p-6">
-          {/* Tab Navigation */}
-          <div className="flex space-x-1 bg-blue-50 rounded-lg p-1 mb-6">
-            <button
-              onClick={() => setActiveTab('flight')}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-md transition-all duration-200 ${
-                activeTab === 'flight'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-blue-600 hover:bg-blue-100'
-              }`}
-            >
-              <Plane className="w-4 h-4" />
-              <span className="font-medium">Vé máy bay</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('hotel')}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-md transition-all duration-200 ${
-                activeTab === 'hotel'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-blue-600 hover:bg-blue-100'
-              }`}
-            >
-              <Hotel className="w-4 h-4" />
-              <span className="font-medium">Khách sạn</span>
-            </button>
-          </div>
+    <div className="relative z-10 max-w-6xl mx-auto px-4">
+      {/* Tab Navigation */}
+      <div className="flex space-x-2 mb-6">
+        <Button
+          variant={activeTab === 'flight' ? 'default' : 'outline'}
+          onClick={() => setActiveTab('flight')}
+          className={`flex items-center space-x-2 ${
+            activeTab === 'flight' 
+              ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+              : 'bg-white/90 hover:bg-white text-blue-600 border-blue-200'
+          }`}
+        >
+          <Plane className="w-4 h-4" />
+          <span>Vé máy bay</span>
+        </Button>
+        <Button
+          variant={activeTab === 'hotel' ? 'default' : 'outline'}
+          onClick={() => setActiveTab('hotel')}
+          className={`flex items-center space-x-2 ${
+            activeTab === 'hotel' 
+              ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+              : 'bg-white/90 hover:bg-white text-blue-600 border-blue-200'
+          }`}
+        >
+          <Hotel className="w-4 h-4" />
+          <span>Khách sạn</span>
+        </Button>
+      </div>
 
-          {/* Flight Search Form */}
-          {activeTab === 'flight' && (
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Trip Type Selection */}
-              <div className="flex space-x-1 bg-gray-50 rounded-lg p-1 mb-6 w-fit">
-                {[
-                  { value: 'roundtrip', label: 'Khứ hồi' },
-                  { value: 'oneway', label: 'Một chiều' },
-                  { value: 'multicity', label: 'Nhiều thành phố' }
-                ].map((type) => (
-                  <button
-                    key={type.value}
-                    onClick={() => setTripType(type.value as any)}
-                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                      tripType === type.value
-                        ? 'bg-blue-600 text-white'
-                        : 'text-gray-600 hover:bg-gray-100'
-                    }`}
-                  >
-                    {type.label}
-                  </button>
-                ))}
+      {/* Flight Search Form */}
+      {activeTab === 'flight' && (
+        <Card className="bg-white/95 backdrop-blur-md shadow-xl border-0">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-blue-800">Tìm vé máy bay</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* Trip Type */}
+            <div className="flex space-x-4">
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="tripType"
+                  value="round-trip"
+                  checked={tripType === 'round-trip'}
+                  onChange={(e) => setTripType(e.target.value)}
+                  className="text-blue-600"
+                />
+                <span className="text-blue-700">Khứ hồi</span>
+              </label>
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="tripType"
+                  value="one-way"
+                  checked={tripType === 'one-way'}
+                  onChange={(e) => setTripType(e.target.value)}
+                  className="text-blue-600"
+                />
+                <span className="text-blue-700">Một chiều</span>
+              </label>
+            </div>
+
+            {/* Search Fields */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="space-y-2">
+                <Label className="text-blue-700">Điểm đi</Label>
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-3 h-4 w-4 text-blue-500" />
+                  <Input 
+                    placeholder="Thành phố hoặc sân bay" 
+                    className="pl-10 border-blue-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
               </div>
-
-              {/* Search Fields */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              
+              <div className="space-y-2">
+                <Label className="text-blue-700">Điểm đến</Label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
-                  <Input
-                    placeholder="Điểm đi"
-                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
-                  <Input
-                    placeholder="Điểm đến"
-                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
-                  <Input
-                    type="date"
-                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="relative">
-                  <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
-                  <Input
-                    placeholder="1 hành khách"
-                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  <MapPin className="absolute left-3 top-3 h-4 w-4 text-blue-500" />
+                  <Input 
+                    placeholder="Thành phố hoặc sân bay" 
+                    className="pl-10 border-blue-200 focus:border-blue-500 focus:ring-blue-500"
                   />
                 </div>
               </div>
 
-              {/* Search Button */}
-              <Button className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold">
-                <Search className="w-4 h-4 mr-2" />
-                Tìm chuyến bay
-              </Button>
-
-              {/* Popular Destinations */}
-              <div className="mt-8">
-                <h3 className="text-lg font-semibold mb-4 text-gray-800">Tuyến phổ biến</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-                  {popularDestinations.map((dest) => (
-                    <motion.div
-                      key={dest.code}
-                      whileHover={{ scale: 1.02, y: -2 }}
-                      className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 cursor-pointer border border-blue-200 hover:border-blue-300 transition-all duration-200"
+              <div className="space-y-2">
+                <Label className="text-blue-700">Ngày đi</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-start text-left border-blue-200 hover:border-blue-500"
                     >
-                      <div className="text-blue-800 font-semibold text-sm">{dest.name}</div>
-                      <div className="text-blue-600 text-xs mt-1">từ {dest.price}đ</div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* Hotel Search Form */}
-          {activeTab === 'hotel' && (
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Search Fields */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
-                  <Input
-                    placeholder="Thành phố, khách sạn"
-                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
-                  <Input
-                    type="date"
-                    placeholder="Ngày nhận phòng"
-                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
-                  <Input
-                    type="date"
-                    placeholder="Ngày trả phòng"
-                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="relative">
-                  <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
-                  <Input
-                    placeholder="2 khách, 1 phòng"
-                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
+                      <Calendar className="mr-2 h-4 w-4 text-blue-500" />
+                      {departureDate ? format(departureDate, 'dd/MM/yyyy', { locale: vi }) : 'Chọn ngày'}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <CalendarComponent
+                      mode="single"
+                      selected={departureDate}
+                      onSelect={setDepartureDate}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
               </div>
 
-              {/* Search Button */}
-              <Button className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold">
-                <Search className="w-4 h-4 mr-2" />
+              {tripType === 'round-trip' && (
+                <div className="space-y-2">
+                  <Label className="text-blue-700">Ngày về</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full justify-start text-left border-blue-200 hover:border-blue-500"
+                      >
+                        <Calendar className="mr-2 h-4 w-4 text-blue-500" />
+                        {returnDate ? format(returnDate, 'dd/MM/yyyy', { locale: vi }) : 'Chọn ngày'}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <CalendarComponent
+                        mode="single"
+                        selected={returnDate}
+                        onSelect={setReturnDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              )}
+            </div>
+
+            {/* Passengers */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label className="text-blue-700">Hành khách</Label>
+                <Select defaultValue="1">
+                  <SelectTrigger className="border-blue-200 focus:border-blue-500">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">1 người lớn</SelectItem>
+                    <SelectItem value="2">2 người lớn</SelectItem>
+                    <SelectItem value="3">3 người lớn</SelectItem>
+                    <SelectItem value="4">4 người lớn</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-blue-700">Hạng ghế</Label>
+                <Select defaultValue="economy">
+                  <SelectTrigger className="border-blue-200 focus:border-blue-500">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="economy">Phổ thông</SelectItem>
+                    <SelectItem value="premium">Phổ thông đặc biệt</SelectItem>
+                    <SelectItem value="business">Thương gia</SelectItem>
+                    <SelectItem value="first">Hạng nhất</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex items-end">
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                  <Plane className="mr-2 h-4 w-4" />
+                  Tìm chuyến bay
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Hotel Search Form */}
+      {activeTab === 'hotel' && (
+        <Card className="bg-white/95 backdrop-blur-md shadow-xl border-0">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-blue-800">Tìm khách sạn</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="space-y-2">
+                <Label className="text-blue-700">Điểm đến</Label>
+                <div className="relative">
+                  <Hotel className="absolute left-3 top-3 h-4 w-4 text-blue-500" />
+                  <Input 
+                    placeholder="Thành phố, địa danh" 
+                    className="pl-10 border-blue-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-blue-700">Ngày nhận phòng</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-start text-left border-blue-200 hover:border-blue-500"
+                    >
+                      <Calendar className="mr-2 h-4 w-4 text-blue-500" />
+                      {departureDate ? format(departureDate, 'dd/MM/yyyy', { locale: vi }) : 'Chọn ngày'}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <CalendarComponent
+                      mode="single"
+                      selected={departureDate}
+                      onSelect={setDepartureDate}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-blue-700">Ngày trả phòng</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-start text-left border-blue-200 hover:border-blue-500"
+                    >
+                      <Calendar className="mr-2 h-4 w-4 text-blue-500" />
+                      {returnDate ? format(returnDate, 'dd/MM/yyyy', { locale: vi }) : 'Chọn ngày'}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <CalendarComponent
+                      mode="single"
+                      selected={returnDate}
+                      onSelect={setReturnDate}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-blue-700">Số khách</Label>
+                <Select defaultValue="2">
+                  <SelectTrigger className="border-blue-200 focus:border-blue-500">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">1 khách</SelectItem>
+                    <SelectItem value="2">2 khách</SelectItem>
+                    <SelectItem value="3">3 khách</SelectItem>
+                    <SelectItem value="4">4 khách</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8">
+                <Hotel className="mr-2 h-4 w-4" />
                 Tìm khách sạn
               </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
-              {/* Popular Hotels */}
-              <div className="mt-8">
-                <h3 className="text-lg font-semibold mb-4 text-gray-800">Khách sạn phổ biến</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {popularHotels.map((hotel, index) => (
-                    <motion.div
-                      key={index}
-                      whileHover={{ scale: 1.02, y: -2 }}
-                      className="bg-white rounded-lg overflow-hidden shadow-md border cursor-pointer hover:shadow-lg transition-all duration-200"
-                    >
-                      <div className="h-32 bg-gradient-to-br from-blue-100 to-blue-200"></div>
-                      <div className="p-4">
-                        <h4 className="font-semibold text-gray-900 mb-1">{hotel.name}</h4>
-                        <p className="text-blue-600 text-sm mb-2">{hotel.location}</p>
-                        <div className="text-orange-600 font-semibold">từ {hotel.price}đ/đêm</div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+      {/* Popular Routes/Hotels */}
+      <div className="mt-8">
+        {activeTab === 'flight' && (
+          <Card className="bg-white/90 backdrop-blur-md border-0">
+            <CardHeader>
+              <CardTitle className="text-blue-800">Tuyến phổ biến</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {popularRoutes.map((route, index) => (
+                  <motion.div
+                    key={index}
+                    className="p-4 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-300 cursor-pointer transition-all"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="text-blue-800 font-medium">{route.from} → {route.to}</div>
+                    <div className="text-blue-600 text-sm mt-1">Từ {route.price}</div>
+                  </motion.div>
+                ))}
               </div>
-            </motion.div>
-          )}
+            </CardContent>
+          </Card>
+        )}
 
-          {/* Support Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-100">
-            <div className="flex items-center space-x-3 text-blue-600">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-blue-600 text-sm font-bold">✓</span>
+        {activeTab === 'hotel' && (
+          <Card className="bg-white/90 backdrop-blur-md border-0">
+            <CardHeader>
+              <CardTitle className="text-blue-800">Khách sạn phổ biến</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {popularHotels.map((hotel, index) => (
+                  <motion.div
+                    key={index}
+                    className="p-4 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-300 cursor-pointer transition-all"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="text-blue-800 font-medium">{hotel.hotel}</div>
+                    <div className="text-blue-600 text-sm">{hotel.city}</div>
+                    <div className="text-blue-600 text-sm mt-1">Từ {hotel.price}</div>
+                  </motion.div>
+                ))}
               </div>
-              <span>Giá tốt nhất</span>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      {/* Support Card */}
+      <Card className="mt-6 bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+        <CardContent className="p-6">
+          <motion.div 
+            className="flex items-center justify-center space-x-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            <div className="flex items-center space-x-2">
+              <Phone className="w-5 h-5 text-blue-600" />
+              <span className="text-blue-800">Hotline: 1900-1234</span>
             </div>
-            <div className="flex items-center space-x-3 text-blue-600">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-blue-600 text-sm font-bold">⚡</span>
-              </div>
-              <span>Đặt nhanh chóng</span>
+            <div className="flex items-center space-x-2">
+              <Users className="w-5 h-5 text-blue-600" />
+              <span className="text-blue-800">Hỗ trợ 24/7</span>
             </div>
-            <div className="flex items-center space-x-3 text-blue-600">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-blue-600 text-sm font-bold">24</span>
-              </div>
-              <span>Hỗ trợ 24/7</span>
-            </div>
-          </div>
+          </motion.div>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   )
 }
 
