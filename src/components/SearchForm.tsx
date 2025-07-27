@@ -649,43 +649,44 @@ export function SearchForm({
             </div>
           </motion.div>
 
-          {/* Main Search Form - Fixed layout with better responsive handling */}
+          {/* Main Search Form - Redesigned with balanced single row layout */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
             className="space-y-4"
           >
-            {/* First Row: From, Swap, To, Passengers */}
-            <div className="grid grid-cols-1 lg:grid-cols-8 gap-3">
+            {/* Single Row Layout - All fields balanced */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
               {/* From Field */}
               <div className="lg:col-span-3">
+                <div className="text-xs font-medium text-gray-600 mb-1 px-1">ĐIỂM ĐI</div>
                 <Button
                   variant="outline"
-                  className={`relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border transition-all duration-200 hover:shadow-sm group ${
+                  className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md group ${
                     errors.from || errors.sameDestination
                       ? 'border-red-300 hover:border-red-400'
                       : 'border-gray-200 hover:border-blue-300'
                   }`}
                   onClick={openFromModal}
                 >
-                  <div className="flex items-center gap-2.5 w-full">
-                    <div className={`flex-shrink-0 p-1.5 rounded-md ${
+                  <div className="flex items-center gap-3 w-full">
+                    <div className={`flex-shrink-0 p-2 rounded-lg ${
                       errors.from || errors.sameDestination
                         ? 'bg-red-50 text-red-600'
                         : 'bg-blue-50 text-blue-600'
                     }`}>
-                      <Plane className="w-3.5 h-3.5" />
+                      <Plane className="w-4 h-4" />
                     </div>
                     <div className="flex-1 min-w-0">
                       {from && getAirportByCode(from) ? (
                         <div>
-                          <div className="font-medium text-sm text-gray-800">{from}</div>
+                          <div className="font-semibold text-base text-gray-800">{from}</div>
                           <div className="text-xs text-gray-500 truncate">{getAirportByCode(from)?.city}</div>
                         </div>
                       ) : (
-                        <div className={`text-sm ${errors.from || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
-                          Điểm đi
+                        <div className={`text-sm font-medium ${errors.from || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
+                          Chọn điểm đi
                         </div>
                       )}
                     </div>
@@ -694,45 +695,46 @@ export function SearchForm({
               </div>
 
               {/* Swap Button */}
-              <div className="lg:col-span-1 flex items-center justify-center">
+              <div className="lg:col-span-1 flex items-end justify-center pb-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 bg-white border rounded-lg flex items-center justify-center group transition-all duration-200 hover:shadow-sm hover:border-blue-300"
+                  className="h-10 w-10 p-0 bg-white border-2 rounded-full flex items-center justify-center group transition-all duration-200 hover:shadow-md hover:border-blue-300 hover:bg-blue-50"
                   onClick={swapDestinations}
                 >
-                  <ArrowLeftRight className="w-3.5 h-3.5 text-gray-600 group-hover:text-blue-600 transition-colors duration-200" />
+                  <ArrowLeftRight className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transition-colors duration-200" />
                 </Button>
               </div>
 
               {/* To Field */}
               <div className="lg:col-span-3">
+                <div className="text-xs font-medium text-gray-600 mb-1 px-1">ĐIỂM ĐẾN</div>
                 <Button
                   variant="outline"
-                  className={`relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border transition-all duration-200 hover:shadow-sm group ${
+                  className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md group ${
                     errors.to || errors.sameDestination
                       ? 'border-red-300 hover:border-red-400'
                       : 'border-gray-200 hover:border-blue-300'
                   }`}
                   onClick={openToModal}
                 >
-                  <div className="flex items-center gap-2.5 w-full">
-                    <div className={`flex-shrink-0 p-1.5 rounded-md ${
+                  <div className="flex items-center gap-3 w-full">
+                    <div className={`flex-shrink-0 p-2 rounded-lg ${
                       errors.to || errors.sameDestination
                         ? 'bg-red-50 text-red-600'
                         : 'bg-green-50 text-green-600'
                     }`}>
-                      <MapPin className="w-3.5 h-3.5" />
+                      <MapPin className="w-4 h-4" />
                     </div>
                     <div className="flex-1 min-w-0">
                       {to && getAirportByCode(to) ? (
                         <div>
-                          <div className="font-medium text-sm text-gray-800">{to}</div>
+                          <div className="font-semibold text-base text-gray-800">{to}</div>
                           <div className="text-xs text-gray-500 truncate">{getAirportByCode(to)?.city}</div>
                         </div>
                       ) : (
-                        <div className={`text-sm ${errors.to || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
-                          Điểm đến
+                        <div className={`text-sm font-medium ${errors.to || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
+                          Chọn điểm đến
                         </div>
                       )}
                     </div>
@@ -740,61 +742,36 @@ export function SearchForm({
                 </Button>
               </div>
 
-              {/* Passengers - Always visible and fixed position */}
-              <div className="lg:col-span-1">
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-center text-center bg-white/90 backdrop-blur-sm rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-sm"
-                  onClick={() => setShowPassengerModal(true)}
-                >
-                  <div className="flex items-center gap-2 w-full justify-center">
-                    <div className="flex-shrink-0 p-1.5 bg-indigo-50 rounded-md">
-                      <Users className="w-3.5 h-3.5 text-indigo-600" />
-                    </div>
-                    <div className="flex-1 min-w-0 text-center">
-                      <div className="font-medium text-sm text-gray-800">
-                        {getTotalPassengers()}
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        khách
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-              </div>
-            </div>
-
-            {/* Second Row: Dates */}
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
               {/* Departure Date */}
               <div className="lg:col-span-2">
+                <div className="text-xs font-medium text-gray-600 mb-1 px-1">NGÀY ĐI</div>
                 <Popover open={departureCalendarOpen} onOpenChange={setDepartureCalendarOpen}>
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
-                      className={`relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border transition-all duration-200 hover:shadow-sm ${
+                      className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md ${
                         errors.departDate
                           ? 'border-red-300 hover:border-red-400'
                           : 'border-gray-200 hover:border-blue-300'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 w-full">
-                        <div className={`flex-shrink-0 p-1.5 rounded-md ${
+                      <div className="flex items-center gap-3 w-full">
+                        <div className={`flex-shrink-0 p-2 rounded-lg ${
                           errors.departDate
                             ? 'bg-red-50 text-red-600'
                             : 'bg-orange-50 text-orange-600'
                         }`}>
-                          <CalendarIcon className="w-3.5 h-3.5" />
+                          <CalendarIcon className="w-4 h-4" />
                         </div>
                         <div className="flex-1 min-w-0">
                           {departDate ? (
                             <div>
-                              <div className="font-medium text-sm text-gray-800">Ngày đi: {format(departDate, 'dd/MM/yyyy')}</div>
-                              <div className="text-xs text-gray-500">{format(departDate, 'EEEE', { locale: vi })}</div>
+                              <div className="font-semibold text-base text-gray-800">{format(departDate, 'dd/MM/yyyy')}</div>
+                              <div className="text-xs text-gray-500 truncate">{format(departDate, 'EEE', { locale: vi })}</div>
                             </div>
                           ) : (
-                            <div className={`text-sm ${errors.departDate ? 'text-red-500' : 'text-gray-500'}`}>
-                              Chọn ngày đi
+                            <div className={`text-sm font-medium ${errors.departDate ? 'text-red-500' : 'text-gray-500'}`}>
+                              Chọn ngày
                             </div>
                           )}
                         </div>
@@ -818,59 +795,47 @@ export function SearchForm({
                 </Popover>
               </div>
 
-              {/* Return Date - With smooth transition */}
-              <motion.div
-                layout
-                initial={false}
-                animate={{
-                  opacity: tripType === 'roundtrip' ? 1 : 0,
-                  scale: tripType === 'roundtrip' ? 1 : 0.95,
-                  pointerEvents: tripType === 'roundtrip' ? 'auto' : 'none'
-                }}
-                transition={{ 
-                  duration: 0.3,
-                  ease: "easeInOut"
-                }}
-                className="lg:col-span-2"
-              >
+              {/* Return Date - Fixed width, no layout shift */}
+              <div className="lg:col-span-2">
+                <div className="text-xs font-medium text-gray-600 mb-1 px-1">NGÀY VỀ</div>
                 <Popover open={returnCalendarOpen} onOpenChange={setReturnCalendarOpen}>
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
                       disabled={tripType === 'oneway'}
-                      className={`relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border transition-all duration-200 hover:shadow-sm ${
+                      className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md ${
                         tripType === 'oneway' 
-                          ? 'border-gray-100 bg-gray-50 cursor-not-allowed' 
+                          ? 'border-gray-100 bg-gray-50/50 cursor-not-allowed opacity-60' 
                           : errors.returnDate
                             ? 'border-red-300 hover:border-red-400'
                             : 'border-gray-200 hover:border-blue-300'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 w-full">
-                        <div className={`flex-shrink-0 p-1.5 rounded-md ${
+                      <div className="flex items-center gap-3 w-full">
+                        <div className={`flex-shrink-0 p-2 rounded-lg ${
                           tripType === 'oneway'
                             ? 'bg-gray-100 text-gray-400'
                             : errors.returnDate
                               ? 'bg-red-50 text-red-600'
                               : 'bg-purple-50 text-purple-600'
                         }`}>
-                          <CalendarIcon className="w-3.5 h-3.5" />
+                          <CalendarIcon className="w-4 h-4" />
                         </div>
                         <div className="flex-1 min-w-0">
                           {tripType === 'roundtrip' && returnDate ? (
                             <div>
-                              <div className="font-medium text-sm text-gray-800">Ngày về: {format(returnDate, 'dd/MM/yyyy')}</div>
-                              <div className="text-xs text-gray-500">{format(returnDate, 'EEEE', { locale: vi })}</div>
+                              <div className="font-semibold text-base text-gray-800">{format(returnDate, 'dd/MM/yyyy')}</div>
+                              <div className="text-xs text-gray-500 truncate">{format(returnDate, 'EEE', { locale: vi })}</div>
                             </div>
                           ) : (
-                            <div className={`text-sm ${
+                            <div className={`text-sm font-medium ${
                               tripType === 'oneway' 
                                 ? 'text-gray-400' 
                                 : errors.returnDate 
                                   ? 'text-red-500' 
                                   : 'text-gray-500'
                             }`}>
-                              {tripType === 'oneway' ? 'Một chiều' : 'Chọn ngày về'}
+                              {tripType === 'oneway' ? 'Chọn ngày' : 'Chọn ngày'}
                             </div>
                           )}
                         </div>
@@ -892,7 +857,51 @@ export function SearchForm({
                     />
                   </PopoverContent>
                 </Popover>
-              </motion.div>
+              </div>
+
+              {/* Passengers - Fixed width */}
+              <div className="lg:col-span-1">
+                <div className="text-xs font-medium text-gray-600 mb-1 px-1">HÀNH KHÁCH</div>
+                <Button
+                  variant="outline"
+                  className="relative w-full h-14 justify-center text-center bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-md"
+                  onClick={() => setShowPassengerModal(true)}
+                >
+                  <div className="flex flex-col items-center justify-center w-full">
+                    <div className="flex-shrink-0 p-1.5 bg-indigo-50 rounded-lg mb-1">
+                      <Users className="w-4 h-4 text-indigo-600" />
+                    </div>
+                    <div className="text-center">
+                      <div className="font-semibold text-base text-gray-800">
+                        {getTotalPassengers()}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        khách
+                      </div>
+                    </div>
+                  </div>
+                </Button>
+              </div>
+            </div>
+
+            {/* Toggle switch for cheap flights */}
+            <div className="flex items-center justify-end">
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-gray-600">Tìm vé rẻ nhất</span>
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    className="sr-only"
+                    id="cheap-flights"
+                  />
+                  <label htmlFor="cheap-flights" className="flex items-center cursor-pointer">
+                    <div className="relative">
+                      <div className="block bg-gray-300 w-10 h-6 rounded-full"></div>
+                      <div className="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform"></div>
+                    </div>
+                  </label>
+                </div>
+              </div>
             </div>
           </motion.div>
 
