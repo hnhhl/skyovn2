@@ -361,13 +361,13 @@ function HotelSearchForm() {
       <div className="bg-white/95 backdrop-blur-sm overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
 
-        <div className="relative z-10 p-6"></div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-          className="space-y-4"
-        >
+        <div className="relative z-10 p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="space-y-4"
+          >
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
               {/* Destination Field */}
