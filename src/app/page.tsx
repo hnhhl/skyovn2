@@ -632,7 +632,8 @@ function MobileAppSection() {
             {/* QR Code Card */}
             <div className="absolute top-8 -left-4 lg:left-8 bg-white rounded-3xl p-6 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center                  <QrCode className="w-16 h-16 textwhite" />
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center mb-3">
+                  <QrCode className="w-16 h-16 text-white" />
                 </div>
                 <div className="text-xs font-bold text-slate-800 mb-1">SCAN ĐỂ TẢI APP</div>
                 <div className="text-xs text-slate-500">Miễn phí 100%</div>
