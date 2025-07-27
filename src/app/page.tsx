@@ -632,8 +632,7 @@ function MobileAppSection() {
             {/* QR Code Card */}
             <div className="absolute top-8 -left-4 lg:left-8 bg-white rounded-3xl p-6 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center mb-4 mx-auto">
-                  <QrCode className="w-16 h-16 textwhite" />
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center                  <QrCode className="w-16 h-16 textwhite" />
                 </div>
                 <div className="text-xs font-bold text-slate-800 mb-1">SCAN ĐỂ TẢI APP</div>
                 <div className="text-xs text-slate-500">Miễn phí 100%</div>
@@ -808,37 +807,29 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Flight/Hotel Tabs - Moved closer to form */}
-          <div className="flex gap-2 mb-4 justify-center">
+          {/* Flight/Hotel Tabs - Simple design */}
+          <div className="flex gap-3 mb-6 justify-center">
             <button
               onClick={() => setActiveTab('flight')}
-              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 h-16 ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 ${
                 activeTab === 'flight'
-                  ? 'bg-gradient-to-r from-blue-600 to-sky-600 border-blue-400/30 border border-b-0'
-                  : 'bg-white/15 backdrop-blur-sm border-white/30 border border-b-0 hover:bg-white/25'
+                  ? 'bg-white text-blue-600 shadow-lg'
+                  : 'bg-white/20 backdrop-blur-sm text-white/80 hover:bg-white/30'
               }`}
             >
-              <div className={`flex items-center gap-3 font-bold text-lg h-full ${
-                activeTab === 'flight' ? 'text-white' : 'text-white/90'
-              }`}>
-                <Plane className="w-6 h-6" />
-                Chuyến bay
-              </div>
+              <Plane className="w-5 h-5" />
+              <span className="font-medium">Chuyến bay</span>
             </button>
             <button
               onClick={() => setActiveTab('hotel')}
-              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 h-16 ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 ${
                 activeTab === 'hotel'
-                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 border-green-400/30 border border-b-0'
-                  : 'bg-white/15 backdrop-blur-sm border-white/30 border border-b-0 hover:bg-white/25'
+                  ? 'bg-white text-blue-600 shadow-lg'
+                  : 'bg-white/20 backdrop-blur-sm text-white/80 hover:bg-white/30'
               }`}
             >
-              <div className={`flex items-center gap-3 font-bold text-lg h-full ${
-                activeTab === 'hotel' ? 'text-white' : 'text-white/90'
-              }`}>
-                <Hotel className="w-6 h-6" />
-                Khách sạn
-              </div>
+              <Hotel className="w-5 h-5" />
+              <span className="font-medium">Khách sạn</span>
             </button>
           </div>
 
