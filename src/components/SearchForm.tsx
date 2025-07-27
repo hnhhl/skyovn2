@@ -591,9 +591,9 @@ export function SearchForm({
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-emerald-50/80"></div>
 
         <CardContent className="relative z-10 p-6">
-          
 
-          
+
+
 
           {/* Main Search Form - Redesigned with balanced single row layout */}
           <motion.div
@@ -753,8 +753,7 @@ export function SearchForm({
                           setTripType(checked ? 'roundtrip' : 'oneway')
                           if (!checked) {
                             setReturnDate(undefined)
-                          }
-                        }}
+                          }                        }}
                         className="scale-75"
                       />
                       <span className="text-[9px] text-gray-400">
@@ -896,46 +895,23 @@ export function SearchForm({
             </div>
 
           </motion.div>
-
-          {/* Error Messages */}
-          {(errors.from || errors.to || errors.departDate || errors.returnDate || errors.sameDestination) && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              className="mb-4"
-            >
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <div className="text-sm text-red-700">
-                  {errors.sameDestination || errors.from || errors.to || errors.departDate || errors.returnDate}
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-
-
-          {/* Trust indicators */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600"
-          >
-            <div className="flex items-center gap-1">
-              <CheckCircle className="w-3 h-3 text-green-600" />
-              <span>Đặt vé nhanh</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <CheckCircle className="w-3 h-3 text-green-600" />
-              <span>Giá tốt nhất</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <CheckCircle className="w-3 h-3 text-green-600" />
-              <span>Hỗ trợ 24/7</span>
-            </div>
-          </motion.div>
         </CardContent>
       </Card>
+
+      {/* Error Messages */}
+      {(errors.from || errors.to || errors.departDate || errors.returnDate || errors.sameDestination) && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          className="mt-4 w-full max-w-5xl mx-auto"
+        >
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+            <div className="text-sm text-red-700">
+              {errors.sameDestination || errors.from || errors.to || errors.departDate || errors.returnDate}
+            </div>
+          </div>
+        </motion.div>
+      )}
 
       {/* Airport Selection Modal - Redesigned */}
       <Dialog open={showFromModal || showToModal} onOpenChange={closeModals}>
