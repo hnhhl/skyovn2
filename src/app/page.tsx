@@ -843,9 +843,6 @@ export default function HomePage() {
       {/* Mobile App Section */}
       <MobileAppSection />
 
-      {/* Popular Airlines */}
-      <PopularAirlines />
-
       {/* Footer */}
       <Footer />
 
