@@ -25,14 +25,7 @@ import {
   Hotel,
   CreditCard,
   Users2,
-  Badge,
-  Heart
-} from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import {
+  Heart,
   DollarSign,
   Headphones,
   Smartphone,
@@ -44,6 +37,10 @@ import {
   Bed,
   Building2
 } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 // Why Choose Skyo Section
 function WhyChooseSkyoSection() {
