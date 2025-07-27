@@ -384,7 +384,7 @@ function HotelSearchForm() {
               <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY NHẬN PHÒNG</div>
               <Button
                 variant="outline"
-                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200"
               >
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-shrink-0 p-1 bg-blue-50 rounded">
@@ -411,7 +411,7 @@ function HotelSearchForm() {
               <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY TRẢ PHÒNG</div>
               <Button
                 variant="outline"
-                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200"
               >
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-shrink-0 p-1 bg-purple-50 rounded">
@@ -438,7 +438,7 @@ function HotelSearchForm() {
               <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">PHÒNG & KHÁCH</div>
               <Button
                 variant="outline"
-                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200"
               >
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
@@ -461,7 +461,7 @@ function HotelSearchForm() {
               <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HẠNG SAO</div>
               <Button
                 variant="outline"
-                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200"
               >
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-shrink-0 p-1 bg-yellow-50 rounded">
@@ -629,8 +629,7 @@ function MobileAppSection() {
             <div className="absolute top-8 -left-4 lg:left-8 bg-white rounded-3xl p-6 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center mb-4 mx-auto">
-                  <QrCode className="w-8 h-8 text-white" />
-                </div>
+                  <QrCode className="w-8 h-8 text-white" />                </div>
                 <div className="text-xs font-bold text-slate-800 mb-1">SCAN ĐỂ TẢI APP</div>
                 <div className="text-xs text-slate-500">Miễn phí 100%</div>
               </div>
