@@ -1,4 +1,3 @@
-
 import { Header } from '@/components/Header'
 import SearchForm from '@/components/SearchForm'
 import { FeatureSection } from '@/components/FeatureSection'
@@ -110,9 +109,9 @@ function WhyChooseSkyoSection() {
 function TrustNumbersSection() {
   const numbers = [
     { number: '2M+', label: 'Khách hàng hài lòng', icon: Users, color: 'text-blue-600' },
-    { number: '50K+', label: 'Chuyến bay mỗi tháng', icon: Plane, color: 'text-emerald-600' },
-    { number: '200+', label: 'Quốc gia & vùng lãnh thổ', icon: Globe, color: 'text-orange-600' },
-    { number: '99.9%', label: 'Tỷ lệ đặt chỗ thành công', icon: CheckCircle, color: 'text-teal-600' }
+    { number: '50K+', label: 'Chuyến bay mỗi tháng', icon: Plane, color: 'text-sky-600' },
+    { number: '200+', label: 'Quốc gia & vùng lãnh thổ', icon: Globe, color: 'text-cyan-600' },
+    { number: '99.9%', label: 'Tỷ lệ đặt chỗ thành công', icon: CheckCircle, color: 'text-blue-600' }
   ]
 
   const partners = [
@@ -179,8 +178,8 @@ function TrustNumbersSection() {
           </div>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-8 border border-emerald-200">
+        {/* Partners */}
+        <div className="bg-gradient-to-r from-blue-50 to-sky-50 rounded-2xl p-8 border border-blue-200">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-slate-800 mb-4">Đối tác tin cậy</h3>
             <p className="text-slate-600">Hợp tác chính thức với các thương hiệu hàng đầu</p>

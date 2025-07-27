@@ -5,7 +5,7 @@ export function FeatureSection() {
       icon: '🚗',
       title: 'Thuê xe',
       description: 'Thuê xe ô tô với giá ưu đãi tại mọi điểm đến',
-      color: 'emerald'
+      color: 'blue'
     },
     {
       icon: '🏨',
@@ -17,7 +17,7 @@ export function FeatureSection() {
       icon: '📱',
       title: 'eSIM',
       description: 'Kết nối internet tức thì tại 200+ quốc gia',
-      color: 'orange'
+      color: 'blue'
     }
   ]
 
@@ -39,13 +39,13 @@ export function FeatureSection() {
               <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                 {feature.icon}
               </div>
-              <h3 className={`text-xl font-semibold mb-3 text-${feature.color}-600`}>
+              <h3 className="text-xl font-semibold mb-3 text-blue-600">
                 {feature.title}
               </h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
                 {feature.description}
               </p>
-              <button className={`bg-${feature.color}-600 text-white px-4 py-2 rounded-lg hover:bg-${feature.color}-700 transition-colors text-sm font-medium`}>
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
                 Khám phá ngay
               </button>
             </div>
