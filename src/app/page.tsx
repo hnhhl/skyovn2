@@ -756,7 +756,7 @@ export default function HomePage() {
 
       {/* Hero Section with Background */}
       <div
-        className="relative min-h-[800px] bg-cover bg-center bg-no-repeat overflow-hidden transition-all duration-1000"
+        className="relative min-h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden transition-all duration-1000"
         style={{
           backgroundImage: `linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%), url('${backgroundImages[currentImageIndex]}')`
         }}
@@ -776,36 +776,17 @@ export default function HomePage() {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 pt-12 pb-2">
           {/* Hero Text */}
-          <div className="text-center mb-16">
-            <div className="inline-block mb-4">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text text-sm font-semibold tracking-wider uppercase">
-                ✈️ Nền tảng du lịch hàng đầu Việt Nam
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+          <div className="text-center mb-8">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               Khám phá <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-300 text-transparent bg-clip-text">thế giới</span>
               <br />
               <span className="text-4xl md:text-6xl">với giá tốt nhất</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 mb-6 max-w-4xl mx-auto leading-relaxed">
               Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với 
               <span className="font-semibold text-blue-300"> hơn 1000+ chuyến bay mỗi ngày</span> 
               từ các đối tác uy tín
             </p>
-            <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>Giá rẻ nhất thị trường</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-blue-400" />
-                <span>Thanh toán an toàn</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Headphones className="w-5 h-5 text-purple-400" />
-                <span>Hỗ trợ 24/7</span>
-              </div>
-            </div>
           </div>
 
           {/* Flight/Hotel Tabs - Simple design */}
