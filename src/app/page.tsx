@@ -357,10 +357,11 @@ function HotelSearchForm() {
   }
 
   return (
-    <Card className="relative w-full max-w-5xl mx-auto overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-xl rounded-t-none">
-      <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
+    <div className="w-full max-w-5xl mx-auto">
+      <div className="bg-white/95 backdrop-blur-sm overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
 
-      <CardContent className="relative z-10 p-6">
+        <div className="relative z-10 p-6"></div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -542,8 +543,9 @@ function HotelSearchForm() {
             </motion.div>
           </div>
         </motion.div>
-      </CardContent>
-    </Card>
+        </div>
+      </div>
+    </div>
   )
 }
 
