@@ -467,11 +467,12 @@ function CalendarDayButton({
         )}
       </Button>
 
-      {/* Label for departure date */}
+      {/* Label for departure date - Improved positioning */}
       {isDepartureDate && isReturnCalendar && (
-        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 translate-y-full z-30">
-          <div className="bg-orange-500 text-white text-[10px] px-2 py-1 rounded-full font-bold whitespace-nowrap shadow-lg border border-orange-600">
-            Ngày đi
+        <div className="absolute -top-1 -right-1 z-20">
+          <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[8px] px-1.5 py-0.5 rounded-full font-bold whitespace-nowrap shadow-md border border-orange-700 flex items-center gap-1">
+            <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
+            <span>Đi</span>
           </div>
         </div>
       )}
