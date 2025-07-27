@@ -1,3 +1,4 @@
+
 export function StoriesSection() {
   const stories = [
     {
@@ -22,9 +23,9 @@ export function StoriesSection() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Stories</h2>
-          <a href="#" className="text-blue-600 hover:underline">
-            See all stories →
+          <h2 className="text-3xl font-bold text-slate-800">Tin tức & Cập nhật</h2>
+          <a href="#" className="text-emerald-600 hover:underline font-medium">
+            Xem tất cả tin tức →
           </a>
         </div>
 
@@ -39,7 +40,7 @@ export function StoriesSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
-              <h3 className="font-semibold text-gray-800 group-hover:text-green-600 transition-colors">
+              <h3 className="font-semibold text-slate-800 group-hover:text-emerald-600 transition-colors">
                 {story.title}
               </h3>
             </div>
