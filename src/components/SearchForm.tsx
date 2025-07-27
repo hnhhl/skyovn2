@@ -1242,6 +1242,3 @@ export function SearchForm({
 }
 
 export default SearchForm
-```
-
-This code updates the Calendar component's navigation buttons by replacing `month` prop with `defaultMonth` and improving return calendar logic.
