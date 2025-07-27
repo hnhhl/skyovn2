@@ -855,22 +855,7 @@ export function SearchForm({
                         disabled={(date) => date < (departDate || new Date())}
                         initialFocus
                         className="rounded-lg"
-                        defaultMonth={(() => {
-                          if (!departDate) return new Date()
-
-                          // If departure date is in the last 3 days of the month, show next month
-                          const year = departDate.getFullYear()
-                          const month = departDate.getMonth()
-                          const daysInMonth = new Date(year, month + 1, 0).getDate()
-                          const dayOfMonth = departDate.getDate()
-
-                          if (daysInMonth - dayOfMonth <= 2) {
-                            // Show next month if departure is in last 3 days
-                            return new Date(year, month + 1, 1)
-                          }
-
-                          return departDate
-                        })()}
+                        defaultMonth={departDate || new Date()}
                         destination={to}
                         isReturnCalendar={true}
                         departureDate={departDate}
