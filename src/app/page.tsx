@@ -840,13 +840,43 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Search Forms - Connected to tabs */}
+          {/* Search Forms - Connected to tabs with smooth transitions */}
           <div className="flex justify-center w-full">
-            {activeTab === 'flight' ? (
-              <SearchForm />
-            ) : (
-              <HotelSearchForm />
-            )}
+            <AnimatePresence mode="wait" initial={false}>
+              {activeTab === 'flight' ? (
+                <motion.div
+                  key="flight-search"
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    ease: [0.4, 0.0, 0.2, 1],
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  className="w-full"
+                >
+                  <SearchForm />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="hotel-search"
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    ease: [0.4, 0.0, 0.2, 1],
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  className="w-full"
+                >
+                  <HotelSearchForm />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
