@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { Header } from '@/components/Header'
 import SearchForm from '@/components/SearchForm'
 import { FeatureSection } from '@/components/FeatureSection'
@@ -10,6 +11,7 @@ import { DebugInfo } from '@/components/DebugInfo'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import {
   Shield,
   Zap,
@@ -33,7 +35,10 @@ import {
   MapPin,
   Calendar,
   DollarSign,
-  Bell
+  Bell,
+  Search,
+  Building2,
+  Bed
 } from 'lucide-react'
 
 // Why Choose Skyo Section
@@ -336,6 +341,198 @@ function TestimonialsSection() {
   )
 }
 
+// Hotel Search Form Component
+function HotelSearchForm() {
+  const [destination, setDestination] = useState('')
+  const [checkIn, setCheckIn] = useState<Date>()
+  const [checkOut, setCheckOut] = useState<Date>()
+  const [rooms, setRooms] = useState(1)
+  const [guests, setGuests] = useState(2)
+
+  const handleSearch = () => {
+    // Handle hotel search logic here
+    console.log('Hotel search:', { destination, checkIn, checkOut, rooms, guests })
+  }
+
+  return (
+    <Card className="relative w-full max-w-5xl mx-auto overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-xl">
+      <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
+      
+      <CardContent className="relative z-10 p-6">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
+            {/* Destination Field */}
+            <div className="lg:col-span-3">
+              <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
+              <div className="relative">
+                <div className="flex items-center gap-2 h-12 px-3 bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200">
+                  <div className="flex-shrink-0 p-1 bg-green-50 rounded">
+                    <MapPin className="w-3 h-3 text-green-600" />
+                  </div>
+                  <Input
+                    placeholder="Thành phố, khách sạn, khu vực..."
+                    value={destination}
+                    onChange={(e) => setDestination(e.target.value)}
+                    className="border-0 bg-transparent p-0 h-auto text-sm font-semibold text-gray-800 placeholder:text-gray-500 focus-visible:ring-0"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Check-in Date */}
+            <div className="lg:col-span-2">
+              <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY NHẬN PHÒNG</div>
+              <Button
+                variant="outline"
+                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+              >
+                <div className="flex items-center gap-2 w-full">
+                  <div className="flex-shrink-0 p-1 bg-blue-50 rounded">
+                    <Calendar className="w-3 h-3 text-blue-600" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    {checkIn ? (
+                      <div>
+                        <div className="font-semibold text-sm text-gray-800">{checkIn.toLocaleDateString('vi-VN')}</div>
+                        <div className="text-[10px] text-gray-500 truncate">Nhận phòng</div>
+                      </div>
+                    ) : (
+                      <div className="text-[11px] font-medium text-gray-500">
+                        Chọn ngày
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Button>
+            </div>
+
+            {/* Check-out Date */}
+            <div className="lg:col-span-2">
+              <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY TRẢ PHÒNG</div>
+              <Button
+                variant="outline"
+                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+              >
+                <div className="flex items-center gap-2 w-full">
+                  <div className="flex-shrink-0 p-1 bg-purple-50 rounded">
+                    <Calendar className="w-3 h-3 text-purple-600" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    {checkOut ? (
+                      <div>
+                        <div className="font-semibold text-sm text-gray-800">{checkOut.toLocaleDateString('vi-VN')}</div>
+                        <div className="text-[10px] text-gray-500 truncate">Trả phòng</div>
+                      </div>
+                    ) : (
+                      <div className="text-[11px] font-medium text-gray-500">
+                        Chọn ngày
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Button>
+            </div>
+
+            {/* Rooms */}
+            <div className="lg:col-span-2">
+              <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">PHÒNG & KHÁCH</div>
+              <Button
+                variant="outline"
+                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+              >
+                <div className="flex items-center gap-2 w-full">
+                  <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
+                    <Building2 className="w-3 h-3 text-indigo-600" />
+                  </div>
+                  <div className="flex-1 text-left min-w-0">
+                    <div className="font-semibold text-sm text-gray-800">
+                      {rooms} phòng
+                    </div>
+                    <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
+                      {guests} khách
+                    </div>
+                  </div>
+                </div>
+              </Button>
+            </div>
+
+            {/* Star Rating Filter */}
+            <div className="lg:col-span-2">
+              <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HẠNG SAO</div>
+              <Button
+                variant="outline"
+                className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+              >
+                <div className="flex items-center gap-2 w-full">
+                  <div className="flex-shrink-0 p-1 bg-yellow-50 rounded">
+                    <Star className="w-3 h-3 text-yellow-600" />
+                  </div>
+                  <div className="flex-1 text-left min-w-0">
+                    <div className="font-semibold text-sm text-gray-800">
+                      Tất cả
+                    </div>
+                    <div className="text-[9px] text-gray-500 truncate">
+                      1-5 sao
+                    </div>
+                  </div>
+                </div>
+              </Button>
+            </div>
+
+            {/* Search Button */}
+            <div className="lg:col-span-1 flex items-end">
+              <Button
+                className="w-full h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
+                onClick={handleSearch}
+              >
+                <Search className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Destinations */}
+        <div className="mt-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Star className="w-3 h-3 text-gray-500" />
+            <span className="text-xs font-medium text-gray-600">Điểm đến phổ biến</span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {['Hà Nội', 'TP.HCM', 'Đà Nẵng', 'Nha Trang', 'Phú Quốc', 'Hạ Long', 'Hội An', 'Đà Lạt'].map(city => (
+              <Button
+                key={city}
+                variant="outline"
+                size="sm"
+                className="text-xs px-2.5 py-1 border rounded-full hover:bg-green-50 hover:border-green-300 hover:text-green-700 transition-all duration-200"
+                onClick={() => setDestination(city)}
+              >
+                <Hotel className="w-2.5 h-2.5 mr-1 text-green-500" />
+                {city}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Trust indicators */}
+        <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600">
+          <div className="flex items-center gap-1">
+            <CheckCircle className="w-3 h-3 text-green-600" />
+            <span>2M+ khách sạn</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <CheckCircle className="w-3 h-3 text-green-600" />
+            <span>Giá tốt nhất</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <CheckCircle className="w-3 h-3 text-green-600" />
+            <span>Đặt phòng tức thì</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
 // Mobile App Section
 function MobileAppSection() {
   return (
@@ -528,6 +725,26 @@ function MobileAppSection() {
 }
 
 export default function HomePage() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [activeTab, setActiveTab] = useState<'flight' | 'hotel'>('flight')
+
+  const backgroundImages = [
+    'https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
+  ]
+
+  // Rotate background images on component mount
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * backgroundImages.length)
+    setCurrentImageIndex(randomIndex)
+  }, [])
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -535,9 +752,9 @@ export default function HomePage() {
 
       {/* Hero Section with Background */}
       <div
-        className="relative min-h-[800px] bg-cover bg-center bg-no-repeat overflow-hidden"
+        className="relative min-h-[800px] bg-cover bg-center bg-no-repeat overflow-hidden transition-all duration-1000"
         style={{
-          backgroundImage: "linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
+          backgroundImage: `linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%), url('${backgroundImages[currentImageIndex]}')`
         }}
       >
         {/* Enhanced Animated Overlay */}
@@ -589,23 +806,45 @@ export default function HomePage() {
 
           {/* Flight/Hotel Tabs */}
           <div className="flex gap-2 mb-12 justify-center">
-            <div className="bg-gradient-to-r from-blue-600 to-sky-600 backdrop-blur-sm rounded-2xl px-10 py-5 shadow-xl border border-blue-400/30 transform hover:scale-105 transition-all duration-300">
-              <div className="flex items-center gap-3 text-white font-bold text-lg">
+            <button
+              onClick={() => setActiveTab('flight')}
+              className={`rounded-2xl px-10 py-5 shadow-xl border transition-all duration-300 transform hover:scale-105 ${
+                activeTab === 'flight'
+                  ? 'bg-gradient-to-r from-blue-600 to-sky-600 border-blue-400/30'
+                  : 'bg-white/15 backdrop-blur-sm border-white/30 hover:bg-white/25'
+              }`}
+            >
+              <div className={`flex items-center gap-3 font-bold text-lg ${
+                activeTab === 'flight' ? 'text-white' : 'text-white/90'
+              }`}>
                 <Plane className="w-6 h-6" />
                 Chuyến bay
               </div>
-            </div>
-            <div className="bg-white/15 backdrop-blur-sm rounded-2xl px-10 py-5 border border-white/30 hover:bg-white/25 transition-all duration-300 cursor-pointer">
-              <div className="flex items-center gap-3 text-white/90 font-semibold text-lg">
+            </button>
+            <button
+              onClick={() => setActiveTab('hotel')}
+              className={`rounded-2xl px-10 py-5 shadow-xl border transition-all duration-300 transform hover:scale-105 ${
+                activeTab === 'hotel'
+                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 border-green-400/30'
+                  : 'bg-white/15 backdrop-blur-sm border-white/30 hover:bg-white/25'
+              }`}
+            >
+              <div className={`flex items-center gap-3 font-bold text-lg ${
+                activeTab === 'hotel' ? 'text-white' : 'text-white/90'
+              }`}>
                 <Hotel className="w-6 h-6" />
                 Khách sạn
               </div>
-            </div>
+            </button>
           </div>
 
-          {/* Search Form */}
+          {/* Search Forms */}
           <div className="flex justify-center w-full">
-            <SearchForm />
+            {activeTab === 'flight' ? (
+              <SearchForm />
+            ) : (
+              <HotelSearchForm />
+            )}
           </div>
         </div>
 
