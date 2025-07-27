@@ -97,12 +97,12 @@ export default function AgentRecruitmentPage() {
 
             <div className="text-xl md:text-2xl mb-8 leading-relaxed">
               <p className="mb-4">
-                Cơ hội kinh doanh vé máy bay với <strong>hoa hồng hấp dẫn</strong>, 
-                hệ thống công nghệ hiện đại, đào tạo miễn phí và hỗ trợ 24/7 từ Skyo Vietnam.
+                Trở thành đại lý vé máy bay cấp 2 với <strong>mô hình kinh doanh không cần vốn</strong>, 
+                được đào tạo nghiệp vụ chuyên sâu và hỗ trợ công nghệ hiện đại từ Skyo Vietnam.
               </p>
               <p>
-                Tham gia <strong>mạng lưới đại lý</strong> đang có thu nhập 
-                <strong> ổn định</strong> từ việc bán vé máy bay online.
+                Tham gia <strong>cộng đồng đại lý chuyên nghiệp</strong> với cơ hội phát triển bền vững 
+                trong ngành hàng không du lịch đang tăng trưởng mạnh.
               </p>
             </div>
 
@@ -136,10 +136,10 @@ export default function AgentRecruitmentPage() {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <PiggyBank className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">0 VND Ký Quỹ</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Không Ký Quỹ</h3>
                   <p className="text-gray-600">
-                    Khởi nghiệp ngay lập tức mà không cần đầu tư vốn ban đầu. 
-                    Chỉ cần máy tính/điện thoại và kết nối internet.
+                    Bắt đầu kinh doanh ngay lập tức mà không cần ký quỹ hay đầu tư vốn. 
+                    Chỉ cần thiết bị kết nối internet và tinh thần học hỏi.
                   </p>
                 </CardContent>
               </Card>
@@ -147,12 +147,12 @@ export default function AgentRecruitmentPage() {
               <Card className="border-2 border-blue-200 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 text-center">
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <DollarSign className="w-8 h-8 text-blue-600" />
+                    <GraduationCap className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">Hoa Hồng Hấp Dẫn</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Đào Tạo Chuyên Sâu</h3>
                   <p className="text-gray-600">
-                    Mức hoa hồng cạnh tranh trên mỗi vé bán thành công. 
-                    Đại lý xuất sắc được hưởng nhiều ưu đãi và thưởng thêm.
+                    Khóa học nghiệp vụ bán vé máy bay từ cơ bản đến nâng cao. 
+                    Hướng dẫn sử dụng hệ thống, quy trình đặt vé và xử lý sự cố.
                   </p>
                 </CardContent>
               </Card>
@@ -160,15 +160,181 @@ export default function AgentRecruitmentPage() {
               <Card className="border-2 border-purple-200 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 text-center">
                   <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Headphones className="w-8 h-8 text-purple-600" />
+                    <Globe className="w-8 h-8 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">Hỗ Trợ 24/7</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Hệ Thống Tự Động</h3>
                   <p className="text-gray-600">
-                    Đội ngũ support chuyên nghiệp sẵn sàng hỗ trợ qua hotline, 
-                    live chat, email để giải quyết mọi vấn đề phát sinh.
+                    Nền tảng công nghệ hiện đại, tự động hóa quy trình đặt vé. 
+                    Kết nối trực tiếp với các hãng hàng không trong và ngoài nước.
                   </p>
                 </CardContent>
               </Card>
+
+              <Card className="border-2 border-orange-200 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-orange-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Cộng Đồng Đại Lý</h3>
+                  <p className="text-gray-600">
+                    Tham gia nhóm đại lý để chia sẻ kinh nghiệm, học hỏi lẫn nhau. 
+                    Cơ hội networking và hợp tác kinh doanh rộng khắp.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-red-200 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Bảo Hành Vé</h3>
+                  <p className="text-gray-600">
+                    Cam kết bảo hành 100% các vé đã bán. Hỗ trợ xử lý đổi, hủy vé 
+                    và các tình huống đặc biệt theo quy định hãng bay.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-indigo-200 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp className="w-8 h-8 text-indigo-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Phát Triển Bền Vững</h3>
+                  <p className="text-gray-600">
+                    Ngành hàng không phục hồi mạnh mẽ sau đại dịch. 
+                    Cơ hội kinh doanh lâu dài với tiềm năng tăng trưởng cao.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Requirements Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Yêu Cầu Trở Thành Đại Lý
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Những điều kiện cơ bản để bắt đầu hành trình kinh doanh vé máy bay
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <Card className="border-l-4 border-l-blue-500">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                    <CheckCircle className="w-6 h-6 text-green-600 mr-3" />
+                    Yêu Cầu Cơ Bản
+                  </h3>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Từ 18 tuổi trở lên, có CMND/CCCD hợp lệ
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Có điện thoại thông minh hoặc máy tính kết nối internet
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Có tài khoản ngân hàng để nhận hoa hồng
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Cam kết tham gia khóa đào tạo nghiệp vụ
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-l-4 border-l-green-500">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                    <Star className="w-6 h-6 text-yellow-500 mr-3" />
+                    Ưu Tiên Tuyển
+                  </h3>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Có kinh nghiệm bán hàng, tư vấn khách hàng
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Có mạng lưới khách hàng sẵn có
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Từng làm trong ngành du lịch, hàng không
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Có khả năng sử dụng mạng xã hội, marketing online
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Training Process Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Quy Trình Đào Tạo & Hỗ Trợ
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {[
+                {
+                  step: "01",
+                  title: "Đăng Ký & Xét Duyệt",
+                  description: "Hoàn thiện hồ sơ đăng ký online. Phỏng vấn qua video call để tìm hiểu năng lực và định hướng.",
+                  icon: <UserCheck className="w-8 h-8" />
+                },
+                {
+                  step: "02", 
+                  title: "Đào Tạo Nghiệp Vụ",
+                  description: "Khóa học 3-7 ngày về quy trình đặt vé, giá vé, chính sách hãng bay và kỹ năng tư vấn khách hàng.",
+                  icon: <BookOpen className="w-8 h-8" />
+                },
+                {
+                  step: "03",
+                  title: "Thực Hành & Thi Cử",
+                  description: "Thực hành trên hệ thống thật, hoàn thành bài thi để được cấp chứng chỉ và quyền truy cập đầy đủ.",
+                  icon: <Award className="w-8 h-8" />
+                },
+                {
+                  step: "04",
+                  title: "Hoạt Động & Hỗ Trợ",
+                  description: "Bắt đầu bán vé chính thức với sự hỗ trợ 24/7 từ team support và cộng đồng đại lý.",
+                  icon: <Headphones className="w-8 h-8" />
+                }
+              ].map((item, index) => (
+                <div key={index} className="text-center">
+                  <div className="relative">
+                    <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                      {item.icon}
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      {item.step}
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-3">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
