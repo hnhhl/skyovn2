@@ -367,7 +367,7 @@ function HotelSearchForm() {
           transition={{ duration: 0.3, delay: 0.2 }}
           className="space-y-4"
         >
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg"></motion.div>
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
             {/* Destination Field */}
             <div className="lg:col-span-3">
@@ -541,6 +541,7 @@ function HotelSearchForm() {
             <span>Đặt phòng tức thì</span>
           </div>
         </motion.div>
+        </div>
         </motion.div>
       </CardContent>
     </Card>
