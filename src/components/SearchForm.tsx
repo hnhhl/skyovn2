@@ -39,7 +39,9 @@ import {
   CheckCircle,
   ChevronRight,
   Loader2,
-  X
+  X,
+  Star,
+  Globe
 } from 'lucide-react'
 
 interface Airport {
@@ -242,12 +244,12 @@ const PROVINCES_DATA: Record<string, ProvinceData> = {
 }
 
 const QUICK_ROUTES = [
-  { from: "HAN", to: "SGN", label: "Hà Nội - Sài Gòn" },
-  { from: "SGN", to: "DAD", label: "Sài Gòn - Đà Nẵng" },
-  { from: "HAN", to: "DAD", label: "Hà Nội - Đà Nẵng" },
-  { from: "SGN", to: "PQC", label: "Sài Gòn - Phú Quốc" },
-  { from: "HAN", to: "CXR", label: "Hà Nội - Nha Trang" },
-  { from: "SGN", to: "DLI", label: "Sài Gòn - Đà Lạt" }
+  { from: "HAN", to: "SGN", label: "Hà Nội - Sài Gòn", popular: true },
+  { from: "SGN", to: "DAD", label: "Sài Gòn - Đà Nẵng", popular: true },
+  { from: "HAN", to: "DAD", label: "Hà Nội - Đà Nẵng", popular: false },
+  { from: "SGN", to: "PQC", label: "Sài Gòn - Phú Quốc", popular: true },
+  { from: "HAN", to: "CXR", label: "Hà Nội - Nha Trang", popular: false },
+  { from: "SGN", to: "DLI", label: "Sài Gòn - Đà Lạt", popular: false }
 ]
 
 export function SearchForm({
@@ -583,205 +585,206 @@ export function SearchForm({
 
   return (
     <>
-      <Card className="relative w-full max-w-7xl mx-auto overflow-hidden border-0 shadow-2xl">
+      <Card className="relative w-full max-w-5xl mx-auto overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-xl">
         {/* Simplified gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-green-600/5 to-purple-600/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-emerald-50/80"></div>
 
-        <CardContent className="relative z-10 p-8">
+        <CardContent className="relative z-10 p-6">
           {/* Compact Trip Type Toggle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mb-6"
+            transition={{ duration: 0.3 }}
+            className="mb-4"
           >
             <Tabs value={tripType} onValueChange={(value) => setTripType(value as 'oneway' | 'roundtrip')}>
-              <TabsList className="grid w-full grid-cols-2 max-w-sm bg-white/80 backdrop-blur-sm rounded-xl p-1 shadow-sm">
+              <TabsList className="grid w-full grid-cols-2 max-w-xs bg-white/90 rounded-full p-1 shadow-sm border">
                 <TabsTrigger
                   value="oneway"
-                  className="text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-700 data-[state=active]:text-white data-[state=active]:shadow-md data-[state=inactive]:text-gray-600 rounded-lg transition-all duration-200 font-medium"
+                  className="text-sm data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=inactive]:text-gray-600 rounded-full transition-all duration-200 font-medium px-4 py-2"
                 >
-                  <Plane className="w-4 h-4 mr-2" />
+                  <Plane className="w-3 h-3 mr-1.5" />
                   Một chiều
                 </TabsTrigger>
                 <TabsTrigger
                   value="roundtrip"
-                  className="text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-700 data-[state=active]:text-white data-[state=active]:shadow-md data-[state=inactive]:text-gray-600 rounded-lg transition-all duration-200 font-medium"
+                  className="text-sm data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=inactive]:text-gray-600 rounded-full transition-all duration-200 font-medium px-4 py-2"
                 >
-                  <ArrowLeftRight className="w-4 h-4 mr-2" />
+                  <ArrowLeftRight className="w-3 h-3 mr-1.5" />
                   Khứ hồi
                 </TabsTrigger>
               </TabsList>
             </Tabs>
           </motion.div>
 
-          {/* Compact Quick Routes */}
+          {/* Quick Routes - More compact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="mb-6"
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="mb-4"
           >
-            <div className="flex items-center gap-3 mb-3">
-              <TrendingUp className="w-4 h-4 text-gray-600" />
-              <span className="text-sm font-medium text-gray-700">Tuyến phổ biến</span>
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp className="w-3 h-3 text-gray-500" />
+              <span className="text-xs font-medium text-gray-600">Tuyến phổ biến</span>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {QUICK_ROUTES.map(route => (
                 <Button
                   key={`${route.from}-${route.to}`}
                   variant="outline"
                   size="sm"
-                  className="text-xs px-3 py-1.5 border-gray-200 text-gray-600 rounded-lg hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200"
+                  className={`text-xs px-2.5 py-1 border rounded-full hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 ${
+                    route.popular ? 'border-blue-200 bg-blue-50/50' : 'border-gray-200'
+                  }`}
                   onClick={() => {
                     setFrom(route.from)
                     setTo(route.to)
                   }}
                 >
+                  {route.popular && <Star className="w-2.5 h-2.5 mr-1 text-blue-500 fill-current" />}
                   {route.label}
                 </Button>
               ))}
             </div>
           </motion.div>
 
-          {/* Main Search Form - Improved responsive layout */}
+          {/* Main Search Form - More compact layout */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-6"
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-3 mb-4"
           >
             {/* From Field */}
             <div className="lg:col-span-3">
-              <label className="block text-xs font-medium text-gray-600 mb-2">Điểm đi</label>
               <Button
                 variant="outline"
-                className={`relative w-full h-14 justify-start text-left bg-white/90 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md group ${
+                className={`relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border transition-all duration-200 hover:shadow-sm group ${
                   errors.from || errors.sameDestination
                     ? 'border-red-300 hover:border-red-400'
                     : 'border-gray-200 hover:border-blue-300'
                 }`}
                 onClick={openFromModal}
               >
-                <div className="flex items-center gap-3 w-full">
-                  <div className={`flex-shrink-0 p-2 rounded-lg ${
+                <div className="flex items-center gap-2.5 w-full">
+                  <div className={`flex-shrink-0 p-1.5 rounded-md ${
                     errors.from || errors.sameDestination
                       ? 'bg-red-50 text-red-600'
                       : 'bg-blue-50 text-blue-600'
                   }`}>
-                    <Plane className="w-5 h-5" />
+                    <Plane className="w-3.5 h-3.5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     {from && getAirportByCode(from) ? (
                       <div>
-                        <div className="font-semibold text-sm text-gray-800">{from}</div>
+                        <div className="font-medium text-sm text-gray-800">{from}</div>
                         <div className="text-xs text-gray-500 truncate">{getAirportByCode(from)?.city}</div>
                       </div>
                     ) : (
                       <div className={`text-sm ${errors.from || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
-                        {errors.from || errors.sameDestination || 'Chọn điểm đi'}
+                        Điểm đi
                       </div>
                     )}
                   </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
                 </div>
               </Button>
             </div>
 
             {/* Swap Button */}
-            <div className="lg:col-span-1 flex items-end justify-center pb-2">
+            <div className="lg:col-span-1 flex items-center justify-center">
               <Button
                 variant="outline"
                 size="sm"
-                className="h-10 w-10 p-0 bg-white border-2 border-gray-200 hover:border-blue-300 rounded-xl flex items-center justify-center group transition-all duration-200 hover:shadow-md"
+                className="h-8 w-8 p-0 bg-white border rounded-lg flex items-center justify-center group transition-all duration-200 hover:shadow-sm hover:border-blue-300"
                 onClick={swapDestinations}
               >
-                <ArrowLeftRight className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transition-colors duration-200" />
+                <ArrowLeftRight className="w-3.5 h-3.5 text-gray-600 group-hover:text-blue-600 transition-colors duration-200" />
               </Button>
             </div>
 
             {/* To Field */}
             <div className="lg:col-span-3">
-              <label className="block text-xs font-medium text-gray-600 mb-2">Điểm đến</label>
               <Button
                 variant="outline"
-                className={`relative w-full h-14 justify-start text-left bg-white/90 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md group ${
+                className={`relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border transition-all duration-200 hover:shadow-sm group ${
                   errors.to || errors.sameDestination
                     ? 'border-red-300 hover:border-red-400'
                     : 'border-gray-200 hover:border-blue-300'
                 }`}
                 onClick={openToModal}
               >
-                <div className="flex items-center gap-3 w-full">
-                  <div className={`flex-shrink-0 p-2 rounded-lg ${
+                <div className="flex items-center gap-2.5 w-full">
+                  <div className={`flex-shrink-0 p-1.5 rounded-md ${
                     errors.to || errors.sameDestination
                       ? 'bg-red-50 text-red-600'
                       : 'bg-green-50 text-green-600'
                   }`}>
-                    <MapPin className="w-5 h-5" />
+                    <MapPin className="w-3.5 h-3.5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     {to && getAirportByCode(to) ? (
                       <div>
-                        <div className="font-semibold text-sm text-gray-800">{to}</div>
+                        <div className="font-medium text-sm text-gray-800">{to}</div>
                         <div className="text-xs text-gray-500 truncate">{getAirportByCode(to)?.city}</div>
                       </div>
                     ) : (
                       <div className={`text-sm ${errors.to || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
-                        {errors.to || errors.sameDestination || 'Chọn điểm đến'}
+                        Điểm đến
                       </div>
                     )}
                   </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
                 </div>
               </Button>
             </div>
 
             {/* Departure Date */}
             <div className="lg:col-span-2">
-              <label className="block text-xs font-medium text-gray-600 mb-2">Ngày đi</label>
               <Popover open={departureCalendarOpen} onOpenChange={setDepartureCalendarOpen}>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
-                    className={`relative w-full h-14 justify-start text-left bg-white/90 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md ${
+                    className={`relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border transition-all duration-200 hover:shadow-sm ${
                       errors.departDate
                         ? 'border-red-300 hover:border-red-400'
                         : 'border-gray-200 hover:border-blue-300'
                     }`}
                   >
-                    <div className="flex items-center gap-3 w-full">
-                      <div className={`flex-shrink-0 p-2 rounded-lg ${
+                    <div className="flex items-center gap-2.5 w-full">
+                      <div className={`flex-shrink-0 p-1.5 rounded-md ${
                         errors.departDate
                           ? 'bg-red-50 text-red-600'
                           : 'bg-orange-50 text-orange-600'
                       }`}>
-                        <CalendarIcon className="w-5 h-5" />
+                        <CalendarIcon className="w-3.5 h-3.5" />
                       </div>
                       <div className="flex-1 min-w-0">
                         {departDate ? (
                           <div>
-                            <div className="font-semibold text-sm text-gray-800">{format(departDate, 'dd/MM/yyyy')}</div>
-                            <div className="text-xs text-gray-500">{format(departDate, 'EEEE', { locale: vi })}</div>
+                            <div className="font-medium text-sm text-gray-800">{format(departDate, 'dd/MM')}</div>
+                            <div className="text-xs text-gray-500">{format(departDate, 'EEEE', { locale: vi }).slice(0, 4)}</div>
                           </div>
                         ) : (
                           <div className={`text-sm ${errors.departDate ? 'text-red-500' : 'text-gray-500'}`}>
-                            {errors.departDate || 'Chọn ngày đi'}
+                            Ngày đi
                           </div>
                         )}
                       </div>
-                      <ChevronRight className="w-4 h-4 text-gray-400" />
                     </div>
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
+                  <div className="p-3 border-b bg-gradient-to-r from-blue-50 to-blue-100">
+                    <h4 className="font-medium text-sm text-gray-800">Chọn ngày khởi hành</h4>
+                    <p className="text-xs text-gray-600">Chọn ngày bạn muốn bay</p>
+                  </div>
                   <Calendar
                     mode="single"
                     selected={departDate}
                     onSelect={handleDepartureDateSelect}
                     disabled={(date) => date < new Date()}
                     initialFocus
+                    className="rounded-lg"
                   />
                 </PopoverContent>
               </Popover>
@@ -794,51 +797,54 @@ export function SearchForm({
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                   className="lg:col-span-2"
                 >
-                  <label className="block text-xs font-medium text-gray-600 mb-2">Ngày về</label>
                   <Popover open={returnCalendarOpen} onOpenChange={setReturnCalendarOpen}>
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
-                        className={`relative w-full h-14 justify-start text-left bg-white/90 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md ${
+                        className={`relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border transition-all duration-200 hover:shadow-sm ${
                           errors.returnDate
                             ? 'border-red-300 hover:border-red-400'
                             : 'border-gray-200 hover:border-blue-300'
                         }`}
                       >
-                        <div className="flex items-center gap-3 w-full">
-                          <div className={`flex-shrink-0 p-2 rounded-lg ${
+                        <div className="flex items-center gap-2.5 w-full">
+                          <div className={`flex-shrink-0 p-1.5 rounded-md ${
                             errors.returnDate
                               ? 'bg-red-50 text-red-600'
                               : 'bg-purple-50 text-purple-600'
                           }`}>
-                            <CalendarIcon className="w-5 h-5" />
+                            <CalendarIcon className="w-3.5 h-3.5" />
                           </div>
                           <div className="flex-1 min-w-0">
                             {returnDate ? (
                               <div>
-                                <div className="font-semibold text-sm text-gray-800">{format(returnDate, 'dd/MM/yyyy')}</div>
-                                <div className="text-xs text-gray-500">{format(returnDate, 'EEEE', { locale: vi })}</div>
+                                <div className="font-medium text-sm text-gray-800">{format(returnDate, 'dd/MM')}</div>
+                                <div className="text-xs text-gray-500">{format(returnDate, 'EEEE', { locale: vi }).slice(0, 4)}</div>
                               </div>
                             ) : (
                               <div className={`text-sm ${errors.returnDate ? 'text-red-500' : 'text-gray-500'}`}>
-                                {errors.returnDate || 'Chọn ngày về'}
+                                Ngày về
                               </div>
                             )}
                           </div>
-                          <ChevronRight className="w-4 h-4 text-gray-400" />
                         </div>
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
+                      <div className="p-3 border-b bg-gradient-to-r from-purple-50 to-purple-100">
+                        <h4 className="font-medium text-sm text-gray-800">Chọn ngày về</h4>
+                        <p className="text-xs text-gray-600">Chọn ngày bạn muốn bay về</p>
+                      </div>
                       <Calendar
                         mode="single"
                         selected={returnDate}
                         onSelect={handleReturnDateSelect}
                         disabled={(date) => date < (departDate || new Date())}
                         initialFocus
+                        className="rounded-lg"
                       />
                     </PopoverContent>
                   </Popover>
@@ -848,57 +854,64 @@ export function SearchForm({
 
             {/* Passengers */}
             <div className={`${tripType === 'roundtrip' ? 'lg:col-span-1' : 'lg:col-span-3'}`}>
-              <label className="block text-xs font-medium text-gray-600 mb-2">Hành khách</label>
               <Button
                 variant="outline"
-                className="relative w-full h-14 justify-start text-left bg-white/90 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-md"
+                className="relative w-full h-12 justify-start text-left bg-white/90 backdrop-blur-sm rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-sm"
                 onClick={() => setShowPassengerModal(true)}
               >
-                <div className="flex items-center gap-3 w-full">
-                  <div className="flex-shrink-0 p-2 bg-indigo-50 rounded-lg">
-                    <Users className="w-5 h-5 text-indigo-600" />
+                <div className="flex items-center gap-2.5 w-full">
+                  <div className="flex-shrink-0 p-1.5 bg-indigo-50 rounded-md">
+                    <Users className="w-3.5 h-3.5 text-indigo-600" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-semibold text-sm text-gray-800">
+                    <div className="font-medium text-sm text-gray-800">
                       {getTotalPassengers()} khách
                     </div>
                     <div className="text-xs text-gray-500 truncate">
-                      {passengers.adults > 0 && `${passengers.adults} người lớn`}
-                      {passengers.children > 0 && `, ${passengers.children} trẻ em`}
-                      {passengers.infants > 0 && `, ${passengers.infants} em bé`}
+                      {passengers.adults}N{passengers.children > 0 && ` ${passengers.children}T`}{passengers.infants > 0 && ` ${passengers.infants}E`}
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
                 </div>
               </Button>
             </div>
           </motion.div>
 
+          {/* Error Messages */}
+          {(errors.from || errors.to || errors.departDate || errors.returnDate || errors.sameDestination) && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              className="mb-4"
+            >
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                <div className="text-sm text-red-700">
+                  {errors.sameDestination || errors.from || errors.to || errors.departDate || errors.returnDate}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
           {/* Enhanced Search Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
             className="relative"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl blur opacity-20"></div>
             <Button
-              className="relative w-full h-16 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full h-14 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
               onClick={handleSearch}
               disabled={isSubmitting}
             >
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center gap-3">
                 {isSubmitting ? (
-                  <Loader2 className="w-6 h-6 animate-spin" />
+                  <Loader2 className="w-5 h-5 animate-spin" />
                 ) : (
-                  <Search className="w-6 h-6" />
+                  <Search className="w-5 h-5" />
                 )}
                 <div className="text-center">
-                  <div className="text-lg font-semibold">
+                  <div className="text-base font-semibold">
                     {isSubmitting ? 'Đang tìm kiếm...' : 'Tìm kiếm chuyến bay'}
-                  </div>
-                  <div className="text-sm text-blue-100 opacity-90">
-                    {isSubmitting ? 'Vui lòng chờ trong giây lát' : 'Khám phá hàng ngàn chuyến bay'}
                   </div>
                 </div>
               </div>
@@ -909,12 +922,12 @@ export function SearchForm({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="mt-6 flex items-center justify-center gap-6 text-xs text-gray-600"
+            transition={{ duration: 0.3, delay: 0.4 }}
+            className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600"
           >
             <div className="flex items-center gap-1">
               <CheckCircle className="w-3 h-3 text-green-600" />
-              <span>Đặt vé nhanh chóng</span>
+              <span>Đặt vé nhanh</span>
             </div>
             <div className="flex items-center gap-1">
               <CheckCircle className="w-3 h-3 text-green-600" />
@@ -928,54 +941,64 @@ export function SearchForm({
         </CardContent>
       </Card>
 
-      {/* Airport Selection Modal */}
+      {/* Airport Selection Modal - Redesigned */}
       <Dialog open={showFromModal || showToModal} onOpenChange={closeModals}>
-        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
+        <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader className="pb-4">
             <DialogTitle className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Plane className="w-5 h-5" />
-                {activeModal === 'from' ? 'Chọn điểm đi' : 'Chọn điểm đến'}
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-50 rounded-lg">
+                  <Globe className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">
+                    {activeModal === 'from' ? 'Chọn điểm đi' : 'Chọn điểm đến'}
+                  </h3>
+                  <p className="text-sm text-gray-500">Tìm kiếm và chọn sân bay</p>
+                </div>
               </div>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={closeModals}
-                className="h-8 w-8 p-0"
+                className="h-8 w-8 p-0 rounded-full"
               >
                 <X className="h-4 w-4" />
               </Button>
             </DialogTitle>
           </DialogHeader>
 
-          {/* Search Input */}
-          <div className="relative mb-4">
+          {/* Enhanced Search Input */}
+          <div className="relative mb-6">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input
-              placeholder="Tìm kiếm sân bay, thành phố..."
+              placeholder="Tìm kiếm theo tên sân bay, thành phố, mã sân bay..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-12 rounded-xl border-gray-200"
+              className="pl-10 h-11 rounded-lg border-gray-200 bg-gray-50 focus:bg-white transition-colors"
             />
           </div>
 
-          {/* Search History */}
+          {/* Search History - Improved design */}
           {!searchQuery && searchHistory.length > 0 && (
             <div className="mb-6">
-              <h3 className="font-semibold text-lg text-gray-800 mb-3 flex items-center gap-2">
-                <History className="w-4 h-4" />
-                Lịch sử tìm kiếm
-              </h3>
+              <div className="flex items-center gap-2 mb-3">
+                <History className="w-4 h-4 text-gray-500" />
+                <h3 className="font-medium text-gray-800">Tìm kiếm gần đây</h3>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-32 overflow-y-auto">
                 {searchHistory.slice(0, 6).map(item => (
                   <Button
                     key={item.id}
                     variant="outline"
-                    className="justify-start h-auto p-3 hover:bg-blue-50 rounded-xl"
+                    className="justify-start h-auto p-3 hover:bg-blue-50 rounded-lg border-gray-200 transition-all duration-200"
                     onClick={() => selectFromHistory(item)}
                   >
                     <div className="text-left">
-                      <div className="font-medium text-sm">{item.from} → {item.to}</div>
+                      <div className="font-medium text-sm flex items-center gap-2">
+                        <Plane className="w-3 h-3 text-gray-400" />
+                        {item.from} → {item.to}
+                      </div>
                       <div className="text-xs text-gray-500">
                         {item.departDate} • {item.passengers.adults + item.passengers.children + item.passengers.infants} khách
                       </div>
@@ -983,18 +1006,21 @@ export function SearchForm({
                   </Button>
                 ))}
               </div>
+              <Separator className="mt-4" />
             </div>
           )}
 
-          {/* Airport Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto max-h-[60vh]">
+          {/* Airport Grid - Redesigned */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto max-h-[50vh]">
             {Object.entries(regionGroups).map(([regionName, provinces]) => (
               <div key={regionName} className="space-y-3">
-                <h3 className="font-semibold text-lg text-gray-800 flex items-center gap-2 sticky top-0 bg-white pb-2">
-                  <Sparkles className="w-4 h-4" />
-                  {regionName}
-                </h3>
-                <div className="space-y-2">
+                <div className="sticky top-0 bg-white pb-2 z-10">
+                  <h3 className="font-semibold text-base text-gray-800 flex items-center gap-2 p-2 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                    <Sparkles className="w-4 h-4 text-blue-600" />
+                    {regionName}
+                  </h3>
+                </div>
+                <div className="space-y-1">
                   {provinces
                     .filter(province => {
                       if (!searchQuery) return true
@@ -1015,26 +1041,27 @@ export function SearchForm({
                             <Button
                               key={airport.code}
                               variant="ghost"
-                              className="w-full justify-start h-auto p-3 hover:bg-blue-50 rounded-xl"
+                              className="w-full justify-start h-auto p-3 hover:bg-blue-50 rounded-lg group transition-all duration-200"
                               onClick={() => selectAirport(airport)}
                             >
-                              <div className="flex items-center gap-3">
-                                <Avatar className="w-10 h-10">
-                                  <AvatarImage src={data.image} alt={province} />
-                                  <AvatarFallback>
-                                    <IconComponent className="w-5 h-5" />
+                              <div className="flex items-center gap-3 w-full">
+                                <Avatar className="w-12 h-12 border-2 border-white shadow-sm">
+                                  <AvatarImage src={data.image} alt={province} className="object-cover" />
+                                  <AvatarFallback className="bg-gradient-to-br from-blue-100 to-blue-200">
+                                    <IconComponent className="w-5 h-5 text-blue-600" />
                                   </AvatarFallback>
                                 </Avatar>
-                                <div className="text-left">
-                                  <div className="flex items-center gap-2">
-                                    <span className="font-medium">{airport.code}</span>
-                                    <Badge variant="secondary" className="text-xs bg-gray-100">
+                                <div className="text-left flex-1">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="font-semibold text-lg text-gray-800">{airport.code}</span>
+                                    <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-700">
                                       {province}
                                     </Badge>
                                   </div>
-                                  <div className="text-sm text-gray-600">{airport.name}</div>
+                                  <div className="text-sm font-medium text-gray-700">{airport.name}</div>
                                   <div className="text-xs text-gray-500">{airport.city}</div>
                                 </div>
+                                <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
                               </div>
                             </Button>
                           ))}
@@ -1048,20 +1075,25 @@ export function SearchForm({
         </DialogContent>
       </Dialog>
 
-      {/* Passenger Selection Modal */}
+      {/* Passenger Selection Modal - Cleaner design */}
       <Dialog open={showPassengerModal} onOpenChange={setShowPassengerModal}>
         <DialogContent className="max-w-md">
-          <DialogHeader>
+          <DialogHeader className="pb-4">
             <DialogTitle className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Users className="w-5 h-5" />
-                Chọn số lượng hành khách
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-indigo-50 rounded-lg">
+                  <Users className="w-5 h-5 text-indigo-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Hành khách</h3>
+                  <p className="text-sm text-gray-500">Chọn số lượng hành khách</p>
+                </div>
               </div>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowPassengerModal(false)}
-                className="h-8 w-8 p-0"
+                className="h-8 w-8 p-0 rounded-full"
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -1070,13 +1102,13 @@ export function SearchForm({
 
           <div className="space-y-6">
             {/* Adults */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-50 rounded-lg">
-                  <UserCheck className="w-5 h-5 text-blue-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <UserCheck className="w-5 h-5 text-blue-700" />
                 </div>
                 <div>
-                  <div className="font-medium">Người lớn</div>
+                  <div className="font-medium text-gray-800">Người lớn</div>
                   <div className="text-xs text-gray-500">Từ 12 tuổi trở lên</div>
                 </div>
               </div>
@@ -1084,35 +1116,33 @@ export function SearchForm({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 rounded-lg"
+                  className="h-8 w-8 p-0 rounded-full"
                   onClick={() => updatePassengers('adults', -1)}
                   disabled={passengers.adults <= 1}
                 >
-                  <Minus className="w-4 h-4" />
+                  <Minus className="w-3 h-3" />
                 </Button>
-                <span className="w-8 text-center font-medium">{passengers.adults}</span>
+                <span className="w-8 text-center font-semibold text-gray-800">{passengers.adults}</span>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 rounded-lg"
+                  className="h-8 w-8 p-0 rounded-full"
                   onClick={() => updatePassengers('adults', 1)}
                   disabled={getTotalPassengers() >= 9}
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-3 h-3" />
                 </Button>
               </div>
             </div>
 
-            <Separator />
-
             {/* Children */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-50 rounded-lg">
-                  <UserIcon className="w-5 h-5 text-green-600" />
+                <div className="p-2 bg-green-100 rounded-lg">
+                  <UserIcon className="w-5 h-5 text-green-700" />
                 </div>
                 <div>
-                  <div className="font-medium">Trẻ em</div>
+                  <div className="font-medium text-gray-800">Trẻ em</div>
                   <div className="text-xs text-gray-500">Từ 2-11 tuổi</div>
                 </div>
               </div>
@@ -1120,35 +1150,33 @@ export function SearchForm({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 rounded-lg"
+                  className="h-8 w-8 p-0 rounded-full"
                   onClick={() => updatePassengers('children', -1)}
                   disabled={passengers.children <= 0}
                 >
-                  <Minus className="w-4 h-4" />
+                  <Minus className="w-3 h-3" />
                 </Button>
-                <span className="w-8 text-center font-medium">{passengers.children}</span>
+                <span className="w-8 text-center font-semibold text-gray-800">{passengers.children}</span>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 rounded-lg"
+                  className="h-8 w-8 p-0 rounded-full"
                   onClick={() => updatePassengers('children', 1)}
                   disabled={getTotalPassengers() >= 9 || passengers.children >= passengers.adults * 2}
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-3 h-3" />
                 </Button>
               </div>
             </div>
 
-            <Separator />
-
             {/* Infants */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-pink-50 rounded-lg">
-                  <Baby className="w-5 h-5 text-pink-600" />
+                <div className="p-2 bg-pink-100 rounded-lg">
+                  <Baby className="w-5 h-5 text-pink-700" />
                 </div>
                 <div>
-                  <div className="font-medium">Em bé</div>
+                  <div className="font-medium text-gray-800">Em bé</div>
                   <div className="text-xs text-gray-500">Dưới 2 tuổi</div>
                 </div>
               </div>
@@ -1156,31 +1184,40 @@ export function SearchForm({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 rounded-lg"
+                  className="h-8 w-8 p-0 rounded-full"
                   onClick={() => updatePassengers('infants', -1)}
                   disabled={passengers.infants <= 0}
                 >
-                  <Minus className="w-4 h-4" />
+                  <Minus className="w-3 h-3" />
                 </Button>
-                <span className="w-8 text-center font-medium">{passengers.infants}</span>
+                <span className="w-8 text-center font-semibold text-gray-800">{passengers.infants}</span>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 rounded-lg"
+                  className="h-8 w-8 p-0 rounded-full"
                   onClick={() => updatePassengers('infants', 1)}
                   disabled={getTotalPassengers() >= 9 || passengers.infants >= passengers.adults}
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-3 h-3" />
                 </Button>
               </div>
             </div>
 
-            <div className="text-xs text-gray-500 bg-gray-50 p-4 rounded-xl">
-              <strong>Lưu ý:</strong> Mỗi người lớn có thể đi cùng tối đa 2 trẻ em và 1 em bé. Tối đa 9 hành khách/đơn đặt.
+            <div className="text-xs text-gray-500 bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div className="flex items-start gap-2">
+                <div className="w-4 h-4 rounded-full bg-blue-200 flex-shrink-0 mt-0.5 flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                </div>
+                <div>
+                  <strong className="text-blue-800">Lưu ý:</strong>
+                  <br />
+                  Mỗi người lớn có thể đi cùng tối đa 2 trẻ em và 1 em bé. Tối đa 9 hành khách/đơn đặt.
+                </div>
+              </div>
             </div>
 
             <Button
-              className="w-full h-12 bg-blue-600 hover:bg-blue-700 rounded-xl"
+              className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-white font-semibold"
               onClick={() => setShowPassengerModal(false)}
             >
               Xác nhận ({getTotalPassengers()} hành khách)
