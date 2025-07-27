@@ -877,7 +877,6 @@ export function SearchForm({
                   }}
                 >
                   <Plane className="w-2.5 h-2.5 mr-1 text-blue-500" />
-                  {route.popular && <Star className="w-2.5 h-2.5 mr-1 text-blue-500 fill-current" />}
                   {route.label}
                 </Button>
               ))}
