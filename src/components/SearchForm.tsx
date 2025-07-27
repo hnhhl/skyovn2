@@ -1,1218 +1,248 @@
 'use client'
-import React, { useState, useMemo, useEffect } from 'react'
-import { format } from 'date-fns'
-import { vi } from 'date-fns/locale'
-import { useRouter } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Plane, Hotel, MapPin, Calendar, Users, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Calendar } from '@/components/ui/calendar'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import {
-  Search,
-  Calendar as CalendarIcon,
-  Users,
-  ArrowLeftRight,
-  Building2,
-  Waves,
-  Mountain,
-  TreePine,
-  Landmark,
-  Plane,
-  MapPin,
-  Sparkles,
-  TrendingUp,
-  Clock,
-  Plus,
-  Minus,
-  UserCheck,
-  Baby,
-  UserIcon,
-  History,
-  CheckCircle,
-  ChevronRight,
-  Loader2,
-  X,
-  Star,
-  Globe
-} from 'lucide-react'
 
-interface Airport {
-  code: string
-  name: string
-  city: string
-}
+const SearchForm = () => {
+  const [activeTab, setActiveTab] = useState<'flight' | 'hotel'>('flight')
+  const [tripType, setTripType] = useState<'roundtrip' | 'oneway' | 'multicity'>('roundtrip')
 
-interface ProvinceData {
-  airports: Airport[]
-  image: string
-  icon: React.ComponentType<{ className?: string }>
-}
+  const popularDestinations = [
+    { code: 'SGN', name: 'TP.HCM', price: '2,500,000' },
+    { code: 'HAN', name: 'Hà Nội', price: '2,800,000' },
+    { code: 'DAD', name: 'Đà Nẵng', price: '2,200,000' },
+    { code: 'PQC', name: 'Phú Quốc', price: '3,200,000' },
+    { code: 'DLI', name: 'Đà Lạt', price: '2,100,000' },
+    { code: 'VDO', name: 'Vân Đồn', price: '2,900,000' },
+  ]
 
-interface PassengerCount {
-  adults: number
-  children: number
-  infants: number
-}
-
-interface SearchHistory {
-  id: string
-  from: string
-  to: string
-  departDate: string
-  returnDate?: string
-  tripType: string
-  passengers: PassengerCount
-  timestamp: number
-}
-
-interface SearchFormProps {
-  defaultFrom?: string
-  defaultTo?: string
-  defaultDepartDate?: Date
-  defaultReturnDate?: Date
-  defaultPassengers?: number
-  initialValues?: {
-    tripType?: string
-    from?: string
-    to?: string
-    departDate?: Date
-    returnDate?: Date | null
-    adults?: number
-    children?: number
-    infants?: number
-    cabin?: string
-  }
-  onSearch?: (params: any) => void
-  isModal?: boolean
-}
-
-const PROVINCES_DATA: Record<string, ProvinceData> = {
-  // Miền Bắc
-  "Hà Nội": {
-    airports: [
-      { code: "HAN", name: "Sân bay Nội Bài", city: "Hà Nội" }
-    ],
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=150&h=150&fit=crop&crop=center",
-    icon: Building2
-  },
-  "Hải Phòng": {
-    airports: [
-      { code: "HPH", name: "Sân bay Cát Bi", city: "Hải Phòng" }
-    ],
-    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  },
-  "Quảng Ninh": {
-    airports: [
-      { code: "VDO", name: "Sân bay Vân Đồn", city: "Quảng Ninh" }
-    ],
-    image: "https://images.unsplash.com/photo-1596523730742-cb3dc6c6c6b6?w=150&h=150&fit=crop&crop=center",
-    icon: Mountain
-  },
-  "Điện Biên": {
-    airports: [
-      { code: "DIN", name: "Sân bay Điện Biên", city: "Điện Biên" }
-    ],
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=150&h=150&fit=crop&crop=center",
-    icon: Mountain
-  },
-  "Thanh Hóa": {
-    airports: [
-      { code: "THD", name: "Sân bay Thọ Xuân", city: "Thanh Hóa" }
-    ],
-    image: "https://images.unsplash.com/photo-1561708403-5c0040ef93e8?w=150&h=150&fit=crop&crop=center",
-    icon: Landmark
-  },
-
-  // Miền Trung
-  "Đà Nẵng": {
-    airports: [
-      { code: "DAD", name: "Sân bay Đà Nẵng", city: "Đà Nẵng" }
-    ],
-    image: "https://images.unsplash.com/photo-1592503254549-d83d24a4dfab?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  },
-  "Quảng Nam": {
-    airports: [
-      { code: "VCL", name: "Sân bay Chu Lai", city: "Tam Kỳ" }
-    ],
-    image: "https://images.unsplash.com/photo-1578645515419-b14c70a4a1d1?w=150&h=150&fit=crop&crop=center",
-    icon: Landmark
-  },
-  "Thừa Thiên Huế": {
-    airports: [
-      { code: "HUI", name: "Sân bay Phú Bài", city: "Huế" }
-    ],
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=150&h=150&fit=crop&crop=center",
-    icon: Landmark
-  },
-  "Khánh Hòa": {
-    airports: [
-      { code: "CXR", name: "Sân bay Cam Ranh", city: "Nha Trang" }
-    ],
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  },
-  "Lâm Đồng": {
-    airports: [
-      { code: "DLI", name: "Sân bay Liên Khương", city: "Đà Lạt" }
-    ],
-    image: "https://images.unsplash.com/photo-1573913147827-f20b12ea8bdc?w=150&h=150&fit=crop&crop=center",
-    icon: Mountain
-  },
-  "Đắk Lắk": {
-    airports: [
-      { code: "BMV", name: "Sân bay Buôn Ma Thuột", city: "Buôn Ma Thuột" }
-    ],
-    image: "https://images.unsplash.com/photo-1580552958347-2f6b0db7dac7?w=150&h=150&fit=crop&crop=center",
-    icon: TreePine
-  },
-  "Bình Định": {
-    airports: [
-      { code: "UIH", name: "Sân bay Phù Cát", city: "Quy Nhon" }
-    ],
-    image: "https://images.unsplash.com/photo-1544266504-7ad5ac882d5d?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  },
-  "Gia Lai": {
-    airports: [
-      { code: "PXU", name: "Sân bay Pleiku", city: "Pleiku" }
-    ],
-    image: "https://images.unsplash.com/photo-1570618009871-a6dfe9e05819?w=150&h=150&fit=crop&crop=center",
-    icon: TreePine
-  },
-  "Phú Yên": {
-    airports: [
-      { code: "TBB", name: "Sân bay Tuy Hòa", city: "Tuy Hòa" }
-    ],
-    image: "https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  },
-  "Quảng Bình": {
-    airports: [
-      { code: "VDH", name: "Sân bay Đồng Hới", city: "Đồng Hới" }
-    ],
-    image: "https://images.unsplash.com/photo-1517824881-2a2cb89b6e9e?w=150&h=150&fit=crop&crop=center",
-    icon: Mountain
-  },
-
-  // Miền Nam
-  "TP. Hồ Chí Minh": {
-    airports: [
-      { code: "SGN", name: "Sân bay Tân Sơn Nhất", city: "TP.HCM" }
-    ],
-    image: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=150&h=150&fit=crop&crop=center",
-    icon: Building2
-  },
-  "Cần Thơ": {
-    airports: [
-      { code: "VCA", name: "Sân bay Cần Thơ", city: "Cần Thơ" }
-    ],
-    image: "https://images.unsplash.com/photo-1599743554301-e57be5ba9ded?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  },
-  "Kiên Giang": {
-    airports: [
-      { code: "PQC", name: "Sân bay Phú Quốc", city: "Phú Quốc" },
-      { code: "VKG", name: "Sân bay Rạch Giá", city: "Rạch Giá" }
-    ],
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  },
-  "Cà Mau": {
-    airports: [
-      { code: "CAH", name: "Sân bay Cà Mau", city: "Cà Mau" }
-    ],
-    image: "https://images.unsplash.com/photo-1570618009871-a6dfe9e05819?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  },
-  "Bà Rịa - Vũng Tàu": {
-    airports: [
-      { code: "VCS", name: "Sân bay Côn Đảo", city: "Côn Đảo" }
-    ],
-    image: "https://images.unsplash.com/photo-1560707303-4e980ce876ad?w=150&h=150&fit=crop&crop=center",
-    icon: Waves
-  }
-}
-
-const QUICK_ROUTES = [
-  { from: "HAN", to: "SGN", label: "Hà Nội - Sài Gòn", popular: true },
-  { from: "SGN", to: "DAD", label: "Sài Gòn - Đà Nẵng", popular: true },
-  { from: "HAN", to: "DAD", label: "Hà Nội - Đà Nẵng", popular: false },
-  { from: "SGN", to: "PQC", label: "Sài Gòn - Phú Quốc", popular: true },
-  { from: "HAN", to: "CXR", label: "Hà Nội - Nha Trang", popular: false },
-  { from: "SGN", to: "DLI", label: "Sài Gòn - Đà Lạt", popular: false }
-]
-
-export function SearchForm({
-  defaultFrom,
-  defaultTo,
-  defaultDepartDate,
-  defaultReturnDate,
-  defaultPassengers = 1,
-  initialValues,
-  onSearch,
-  isModal = false
-}: SearchFormProps) {
-  const router = useRouter()
-  const [tripType, setTripType] = useState<'oneway' | 'roundtrip'>(
-    initialValues?.tripType === 'roundtrip' ? 'roundtrip' : 'oneway'
-  )
-  const [from, setFrom] = useState(initialValues?.from || defaultFrom || '')
-  const [to, setTo] = useState(initialValues?.to || defaultTo || '')
-  const [departDate, setDepartDate] = useState<Date | undefined>(
-    initialValues?.departDate || defaultDepartDate
-  )
-  const [returnDate, setReturnDate] = useState<Date | undefined>(
-    initialValues?.returnDate || defaultReturnDate
-  )
-  const [passengers, setPassengers] = useState<PassengerCount>({
-    adults: initialValues?.adults || 1,
-    children: initialValues?.children || 0,
-    infants: initialValues?.infants || 0
-  })
-  const [showFromModal, setShowFromModal] = useState(false)
-  const [showToModal, setShowToModal] = useState(false)
-  const [showPassengerModal, setShowPassengerModal] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [activeModal, setActiveModal] = useState<'from' | 'to' | null>(null)
-  const [searchHistory, setSearchHistory] = useState<SearchHistory[]>([])
-
-  // Enhanced state for date picker interactions
-  const [departureCalendarOpen, setDepartureCalendarOpen] = useState(false)
-  const [returnCalendarOpen, setReturnCalendarOpen] = useState(false)
-
-  // Error state for form validation
-  const [errors, setErrors] = useState({
-    from: '',
-    to: '',
-    departDate: '',
-    returnDate: '',
-    sameDestination: ''
-  })
-
-  // Loading state for smooth transitions
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  // Load search history from localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem('wego-search-history')
-    if (saved) {
-      try {
-        setSearchHistory(JSON.parse(saved))
-      } catch (e) {
-        console.error('Failed to load search history:', e)
-      }
-    }
-  }, [])
-
-  // Save search to history
-  const saveSearchToHistory = (searchData: any) => {
-    const newSearch: SearchHistory = {
-      id: Date.now().toString(),
-      from: searchData.from,
-      to: searchData.to,
-      departDate: format(searchData.departDate, 'yyyy-MM-dd'),
-      returnDate: searchData.returnDate ? format(searchData.returnDate, 'yyyy-MM-dd') : undefined,
-      tripType: searchData.tripType,
-      passengers: {
-        adults: passengers.adults,
-        children: passengers.children,
-        infants: passengers.infants
-      },
-      timestamp: Date.now()
-    }
-
-    const updatedHistory = [newSearch, ...searchHistory.slice(0, 9)]
-    setSearchHistory(updatedHistory)
-    localStorage.setItem('wego-search-history', JSON.stringify(updatedHistory))
-  }
-
-  const allAirports = useMemo(() => {
-    const airports: Array<Airport & { province: string; image: string; icon: React.ComponentType<{ className?: string }> }> = []
-    Object.entries(PROVINCES_DATA).forEach(([province, data]) => {
-      data.airports.forEach(airport => {
-        airports.push({
-          ...airport,
-          province,
-          image: data.image,
-          icon: data.icon
-        })
-      })
-    })
-    return airports
-  }, [])
-
-  const regionGroups = useMemo(() => {
-    const northernProvinces = ["Hà Nội", "Hải Phòng", "Quảng Ninh", "Điện Biên", "Thanh Hóa"]
-    const centralProvinces = ["Đà Nẵng", "Quảng Nam", "Thừa Thiên Huế", "Khánh Hòa", "Lâm Đồng", "Đắk Lắk", "Bình Định", "Gia Lai", "Phú Yên", "Quảng Bình"]
-    const southernProvinces = ["TP. Hồ Chí Minh", "Cần Thơ", "Kiên Giang", "Cà Mau", "Bà Rịa - Vũng Tàu"]
-
-    return {
-      "Miền Bắc": northernProvinces.filter(province => PROVINCES_DATA[province]),
-      "Miền Trung": centralProvinces.filter(province => PROVINCES_DATA[province]),
-      "Miền Nam": southernProvinces.filter(province => PROVINCES_DATA[province])
-    }
-  }, [])
-
-  const getAirportByCode = (code: string) => {
-    return allAirports.find(airport => airport.code === code)
-  }
-
-  const selectAirport = (airport: Airport) => {
-    if (activeModal === 'from') {
-      setFrom(airport.code)
-      if (errors.sameDestination) {
-        setErrors(prev => ({ ...prev, sameDestination: '' }))
-      }
-      if (errors.from) {
-        setErrors(prev => ({ ...prev, from: '' }))
-      }
-      closeModals()
-      setTimeout(() => {
-        if (!to) {
-          openToModal()
-        }
-      }, 300)
-    } else if (activeModal === 'to') {
-      setTo(airport.code)
-      if (errors.sameDestination) {
-        setErrors(prev => ({ ...prev, sameDestination: '' }))
-      }
-      if (errors.to) {
-        setErrors(prev => ({ ...prev, to: '' }))
-      }
-      closeModals()
-    }
-  }
-
-  const selectFromHistory = (historyItem: SearchHistory) => {
-    setFrom(historyItem.from)
-    setTo(historyItem.to)
-    setTripType(historyItem.tripType as 'oneway' | 'roundtrip')
-    setDepartDate(new Date(historyItem.departDate))
-    if (historyItem.returnDate) {
-      setReturnDate(new Date(historyItem.returnDate))
-    }
-    setPassengers(historyItem.passengers)
-    closeModals()
-  }
-
-  const swapDestinations = () => {
-    const tempFrom = from
-    setFrom(to)
-    setTo(tempFrom)
-    if (errors.sameDestination) {
-      setErrors(prev => ({ ...prev, sameDestination: '' }))
-    }
-  }
-
-  const openFromModal = () => {
-    setActiveModal('from')
-    setShowFromModal(true)
-    setSearchQuery('')
-  }
-
-  const openToModal = () => {
-    setActiveModal('to')
-    setShowToModal(true)
-    setSearchQuery('')
-  }
-
-  const closeModals = () => {
-    setShowFromModal(false)
-    setShowToModal(false)
-    setShowPassengerModal(false)
-    setActiveModal(null)
-    setSearchQuery('')
-  }
-
-  const getTotalPassengers = () => {
-    return passengers.adults + passengers.children + passengers.infants
-  }
-
-  const updatePassengers = (type: keyof PassengerCount, delta: number) => {
-    const newPassengers = { ...passengers }
-    const newValue = Math.max(0, newPassengers[type] + delta)
-
-    if (type === 'adults') {
-      newPassengers.adults = Math.max(1, newValue)
-    } else {
-      newPassengers[type] = newValue
-    }
-
-    const total = newPassengers.adults + newPassengers.children + newPassengers.infants
-    if (total <= 9) {
-      const maxChildren = newPassengers.adults * 2
-      const maxInfants = newPassengers.adults
-
-      if (newPassengers.children <= maxChildren && newPassengers.infants <= maxInfants) {
-        setPassengers(newPassengers)
-      }
-    }
-  }
-
-  // Validation effects
-  React.useEffect(() => {
-    if (from && errors.from) {
-      setErrors(prev => ({ ...prev, from: '' }))
-    }
-  }, [from, errors.from])
-
-  React.useEffect(() => {
-    if (to && errors.to) {
-      setErrors(prev => ({ ...prev, to: '' }))
-    }
-  }, [to, errors.to])
-
-  React.useEffect(() => {
-    if (departDate && errors.departDate) {
-      setErrors(prev => ({ ...prev, departDate: '' }))
-    }
-  }, [departDate, errors.departDate])
-
-  React.useEffect(() => {
-    if (returnDate && errors.returnDate) {
-      setErrors(prev => ({ ...prev, returnDate: '' }))
-    }
-  }, [returnDate, errors.returnDate])
-
-  React.useEffect(() => {
-    if (from && to && from === to) {
-      setErrors(prev => ({ ...prev, sameDestination: 'Điểm đi và điểm đến không thể giống nhau' }))
-    } else {
-      setErrors(prev => ({ ...prev, sameDestination: '' }))
-    }
-  }, [from, to])
-
-  const validateForm = () => {
-    const newErrors = {
-      from: '',
-      to: '',
-      departDate: '',
-      returnDate: '',
-      sameDestination: ''
-    }
-
-    if (!from) {
-      newErrors.from = 'Vui lòng chọn điểm đi'
-    }
-    if (!to) {
-      newErrors.to = 'Vui lòng chọn điểm đến'
-    }
-    if (!departDate) {
-      newErrors.departDate = 'Vui lòng chọn ngày đi'
-    }
-    if (tripType === 'roundtrip' && !returnDate) {
-      newErrors.returnDate = 'Vui lòng chọn ngày về'
-    }
-    if (from && to && from === to) {
-      newErrors.sameDestination = 'Điểm đi và điểm đến không thể giống nhau'
-    }
-
-    setErrors(newErrors)
-    return !Object.values(newErrors).some(error => error !== '')
-  }
-
-  const handleDepartureDateSelect = (date: Date | undefined) => {
-    setDepartDate(date)
-    setDepartureCalendarOpen(false)
-    if (tripType === 'roundtrip' && date) {
-      // Auto-open return calendar and navigate to the selected departure month
-      setTimeout(() => {
-        setReturnCalendarOpen(true)
-      }, 300)
-    }
-  }
-
-  const handleReturnDateSelect = (date: Date | undefined) => {
-    setReturnDate(date)
-    setReturnCalendarOpen(false)
-  }
-
-  const handleSearch = async () => {
-    if (!validateForm()) {
-      return
-    }
-
-    setIsSubmitting(true)
-
-    try {
-      const searchData = {
-        tripType,
-        from,
-        to,
-        departDate,
-        returnDate: tripType === 'roundtrip' ? returnDate : null,
-        passengers: getTotalPassengers(),
-        adults: passengers.adults,
-        children: passengers.children,
-        infants: passengers.infants
-      }
-
-      saveSearchToHistory(searchData)
-
-      const searchParams = new URLSearchParams({
-        tripType,
-        from,
-        to,
-        departDate: departDate ? format(departDate, 'yyyy-MM-dd') : '',
-        ...(tripType === 'roundtrip' && returnDate && { returnDate: format(returnDate, 'yyyy-MM-dd') }),
-        passengers: getTotalPassengers().toString(),
-        adults: passengers.adults.toString(),
-        children: passengers.children.toString(),
-        infants: passengers.infants.toString()
-      })
-
-      if (onSearch) {
-        onSearch(searchData)
-      } else {
-        router.push(`/search?${searchParams.toString()}`)
-      }
-    } catch (error) {
-      console.error('Search error:', error)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  const popularHotels = [
+    { name: 'Vinpearl Resort', location: 'Phú Quốc', price: '2,500,000', image: 'hotel1' },
+    { name: 'JW Marriott', location: 'Hà Nội', price: '3,200,000', image: 'hotel2' },
+    { name: 'InterContinental', location: 'Đà Nẵng', price: '2,800,000', image: 'hotel3' },
+    { name: 'Park Hyatt', location: 'TP.HCM', price: '4,500,000', image: 'hotel4' },
+  ]
 
   return (
-    <>
-      <Card className="relative w-full max-w-5xl mx-auto overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-xl">
-        {/* Simplified gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-emerald-50/80"></div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full max-w-6xl mx-auto px-4"
+    >
+      <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0">
+        <CardContent className="p-6">
+          {/* Tab Navigation */}
+          <div className="flex space-x-1 bg-blue-50 rounded-lg p-1 mb-6">
+            <button
+              onClick={() => setActiveTab('flight')}
+              className={`flex items-center space-x-2 px-6 py-3 rounded-md transition-all duration-200 ${
+                activeTab === 'flight'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-blue-600 hover:bg-blue-100'
+              }`}
+            >
+              <Plane className="w-4 h-4" />
+              <span className="font-medium">Vé máy bay</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('hotel')}
+              className={`flex items-center space-x-2 px-6 py-3 rounded-md transition-all duration-200 ${
+                activeTab === 'hotel'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-blue-600 hover:bg-blue-100'
+              }`}
+            >
+              <Hotel className="w-4 h-4" />
+              <span className="font-medium">Khách sạn</span>
+            </button>
+          </div>
 
-        <CardContent className="relative z-10 p-6">
-          {/* Compact Trip Type Toggle */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mb-4"
-          >
-            <Tabs value={tripType} onValueChange={(value) => setTripType(value as 'oneway' | 'roundtrip')}>
-              <TabsList className="grid w-full grid-cols-2 max-w-xs bg-white/90 rounded-full p-1 shadow-sm border">
-                <TabsTrigger
-                  value="oneway"
-                  className="text-sm data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=inactive]:text-gray-600 rounded-full transition-all duration-200 font-medium px-4 py-2"
-                >
-                  <Plane className="w-3 h-3 mr-1.5" />
-                  Một chiều
-                </TabsTrigger>
-                <TabsTrigger
-                  value="roundtrip"
-                  className="text-sm data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=inactive]:text-gray-600 rounded-full transition-all duration-200 font-medium px-4 py-2"
-                >
-                  <ArrowLeftRight className="w-3 h-3 mr-1.5" />
-                  Khứ hồi
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
-          </motion.div>
-
-
-
-          {/* Main Search Form - Redesigned with balanced single row layout */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className="space-y-4"
-          >
-            {/* Redesigned Compact Form Layout - Single Row */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
-                {/* From Field - Compact */}
-                <div className="lg:col-span-2">
-                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐI</div>
-                  <Button
-                    variant="outline"
-                    className={`relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border transition-all duration-200 hover:shadow-sm group ${
-                      errors.from || errors.sameDestination
-                        ? 'border-red-300 hover:border-red-400'
-                        : 'border-gray-200 hover:border-blue-300'
+          {/* Flight Search Form */}
+          {activeTab === 'flight' && (
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Trip Type Selection */}
+              <div className="flex space-x-1 bg-gray-50 rounded-lg p-1 mb-6 w-fit">
+                {[
+                  { value: 'roundtrip', label: 'Khứ hồi' },
+                  { value: 'oneway', label: 'Một chiều' },
+                  { value: 'multicity', label: 'Nhiều thành phố' }
+                ].map((type) => (
+                  <button
+                    key={type.value}
+                    onClick={() => setTripType(type.value as any)}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                      tripType === type.value
+                        ? 'bg-blue-600 text-white'
+                        : 'text-gray-600 hover:bg-gray-100'
                     }`}
-                    onClick={openFromModal}
                   >
-                    <div className="flex items-center gap-2 w-full">
-                      <div className={`flex-shrink-0 p-1 rounded ${
-                        errors.from || errors.sameDestination
-                          ? 'bg-red-50 text-red-600'
-                          : 'bg-blue-50 text-blue-600'
-                      }`}>
-                        <Plane className="w-3 h-3" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        {from && getAirportByCode(from) ? (
-                          <div>
-                            <div className="font-semibold text-sm text-gray-800">{from}</div>
-                            <div className="text-[10px] text-gray-500 truncate">{getAirportByCode(from)?.city}</div>
-                          </div>
-                        ) : (
-                          <div className={`text-[11px] font-medium ${errors.from || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
-                            Chọn điểm đi
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </Button>
-                </div>
-
-                {/* Swap Button - Compact */}
-                <div className="lg:col-span-1 flex items-end justify-center pb-1">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="h-8 w-8 p-0 bg-white border rounded-full flex items-center justify-center group transition-all duration-300 hover:shadow-sm hover:border-blue-300 hover:bg-blue-50 active:scale-95"
-                    onClick={swapDestinations}
-                  >
-                    <ArrowLeftRight className="w-3 h-3 text-gray-600 group-hover:text-blue-600 transition-all duration-500 group-hover:rotate-180" />
-                  </Button>
-                </div>
-
-                {/* To Field - Compact */}
-                <div className="lg:col-span-2">
-                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
-                  <Button
-                    variant="outline"
-                    className={`relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border transition-all duration-200 hover:shadow-sm group ${
-                      errors.to || errors.sameDestination
-                        ? 'border-red-300 hover:border-red-400'
-                        : 'border-gray-200 hover:border-blue-300'
-                    }`}
-                    onClick={openToModal}
-                  >
-                    <div className="flex items-center gap-2 w-full">
-                      <div className={`flex-shrink-0 p-1 rounded ${
-                        errors.to || errors.sameDestination
-                          ? 'bg-red-50 text-red-600'
-                          : 'bg-blue-50 text-blue-600'
-                      }`}>
-                        <MapPin className="w-3 h-3" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        {to && getAirportByCode(to) ? (
-                          <div>
-                            <div className="font-semibold text-sm text-gray-800">{to}</div>
-                            <div className="text-[10px] text-gray-500 truncate">{getAirportByCode(to)?.city}</div>
-                          </div>
-                        ) : (
-                          <div className={`text-[11px] font-medium ${errors.to || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
-                            Chọn điểm đến
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </Button>
-                </div>
-
-                {/* Departure Date - Compact */}
-                <div className="lg:col-span-2">
-                  <div className="text-[10px] font-mediumtext-gray-500 mb-1 px-2">NGÀY ĐI</div>
-                  <Popover open={departureCalendarOpen} onOpenChange={setDepartureCalendarOpen}>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={`relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border transition-all duration-200 hover:shadow-sm ${
-                          errors.departDate
-                            ? 'border-red-300 hover:border-red-400'
-                            : 'border-gray-200 hover:border-blue-300'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2 w-full">
-                          <div className={`flex-shrink-0 p-1 rounded ${
-                            errors.departDate
-                              ? 'bg-red-50 text-red-600'
-                              : 'bg-orange-50 text-orange-600'
-                          }`}>
-                            <CalendarIcon className="w-3 h-3" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            {departDate ? (
-                              <div>
-                                <div className="font-semibold text-sm text-gray-800">{format(departDate, 'dd/MM')}</div>
-                                <div className="text-[10px] text-gray-500 truncate">{format(departDate, 'EEE', { locale: vi })}</div>
-                              </div>
-                            ) : (
-                              <div className={`text-[11px] font-medium ${errors.departDate ? 'text-red-500' : 'text-gray-500'}`}>
-                                Chọn ngày
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <div className="p-3 border-b bg-gradient-to-r from-blue-50 to-blue-100">
-                        <h4 className="font-medium text-sm text-gray-800">Chọn ngày khởi hành</h4>
-                        <p className="text-xs text-gray-600">Chọn ngày bạn muốn bay</p>
-                      </div>
-                      <Calendar
-                        mode="single"
-                        selected={departDate}
-                        onSelect={handleDepartureDateSelect}
-                        disabled={(date) => date < new Date()}
-                        initialFocus
-                        className="rounded-lg"
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-
-                {/* Return Date - Compact */}
-                <div className="lg:col-span-2">
-                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY VỀ</div>
-                  <Popover open={returnCalendarOpen} onOpenChange={setReturnCalendarOpen}>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        disabled={tripType === 'oneway'}
-                        className={`relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border transition-all duration-200 hover:shadow-sm ${
-                          tripType === 'oneway' 
-                            ? 'border-gray-100 bg-gray-50/50 cursor-not-allowed opacity-60' 
-                            : errors.returnDate
-                              ? 'border-red-300 hover:border-red-400'
-                              : 'border-gray-200 hover:border-blue-300'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2 w-full">
-                          <div className={`flex-shrink-0 p-1 rounded ${
-                            tripType === 'oneway'
-                              ? 'bg-gray-100 text-gray-400'
-                              : errors.returnDate
-                                ? 'bg-red-50 text-red-600'
-                                : 'bg-purple-50 text-purple-600'
-                          }`}>
-                            <CalendarIcon className="w-3 h-3" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            {tripType === 'roundtrip' && returnDate ? (
-                              <div>
-                                <div className="font-semibold text-sm text-gray-800">{format(returnDate, 'dd/MM')}</div>
-                                <div className="text-[10px] text-gray-500 truncate">{format(returnDate, 'EEE', { locale: vi })}</div>
-                              </div>
-                            ) : (
-                              <div className={`text-[11px] font-medium ${
-                                tripType === 'oneway' 
-                                  ? 'text-gray-400' 
-                                  : errors.returnDate 
-                                    ? 'text-red-500' 
-                                    : 'text-gray-500'
-                              }`}>
-                                Chọn ngày
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <div className="p-3 border-b bg-gradient-to-r from-purple-50 to-purple-100">
-                        <h4 className="font-medium text-sm text-gray-800">Chọn ngày về</h4>
-                        <p className="text-xs text-gray-600">Chọn ngày bạn muốn bay về</p>
-                      </div>
-                      <Calendar
-                        mode="single"
-                        selected={returnDate}
-                        onSelect={handleReturnDateSelect}
-                        disabled={(date) => date < (departDate || new Date())}
-                        initialFocus
-                        className="rounded-lg"
-                        defaultMonth={departDate || new Date()}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-
-                {/* Passengers - Compact */}
-                <div className="lg:col-span-2">
-                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HÀNH KHÁCH</div>
-                  <Button
-                    variant="outline"
-                    className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-sm overflow-hidden"
-                    onClick={() => setShowPassengerModal(true)}
-                  >
-                    <div className="flex items-center gap-2 w-full">
-                      <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
-                        <Users className="w-3 h-3 text-indigo-600" />
-                      </div>
-                      <div className="flex-1 text-left min-w-0">
-                        <div className="font-semibold text-sm text-gray-800">
-                          {getTotalPassengers()} khách
-                        </div>
-                        <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
-                          {passengers.adults} người lớn{passengers.children > 0 && `, ${passengers.children} trẻ em`}{passengers.infants > 0 && `, ${passengers.infants} em bé`}
-                        </div>
-                      </div>
-                    </div>
-                  </Button>
-                </div>
-
-                {/* Search Button - Compact */}
-                <div className="lg:col-span-1 flex items-end">
-                  <Button
-                    className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md disabled:opacity-70 disabled:cursor-not-allowed"
-                    onClick={handleSearch}
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <Search className="w-4 h-4" />
-                    )}
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Routes - Below search form */}
-            <div className="mt-4">
-              <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className="w-3 h-3 text-gray-500" />
-                <span className="text-xs font-medium text-gray-600">Tuyến phổ biến</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {QUICK_ROUTES.map(route => (
-                  <Button
-                    key={`${route.from}-${route.to}`}
-                    variant="outline"
-                    size="sm"
-                    className={`text-xs px-2.5 py-1 border rounded-full hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 ${
-                      route.popular ? 'border-blue-200 bg-blue-50/50' : 'border-gray-200'
-                    }`}
-                    onClick={() => {
-                      setFrom(route.from)
-                      setTo(route.to)
-                    }}
-                  >
-                    {route.popular && <Star className="w-2.5 h-2.5 mr-1 text-blue-500 fill-current" />}
-                    {route.label}
-                  </Button>
+                    {type.label}
+                  </button>
                 ))}
               </div>
-            </div>
 
-          </motion.div>
+              {/* Search Fields */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
+                  <Input
+                    placeholder="Điểm đi"
+                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
+                  <Input
+                    placeholder="Điểm đến"
+                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
+                  <Input
+                    type="date"
+                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="relative">
+                  <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
+                  <Input
+                    placeholder="1 hành khách"
+                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
 
-          {/* Error Messages */}
-          {(errors.from || errors.to || errors.departDate || errors.returnDate || errors.sameDestination) && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              className="mb-4"
-            >
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <div className="text-sm text-red-700">
-                  {errors.sameDestination || errors.from || errors.to || errors.departDate || errors.returnDate}
+              {/* Search Button */}
+              <Button className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold">
+                <Search className="w-4 h-4 mr-2" />
+                Tìm chuyến bay
+              </Button>
+
+              {/* Popular Destinations */}
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800">Tuyến phổ biến</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                  {popularDestinations.map((dest) => (
+                    <motion.div
+                      key={dest.code}
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 cursor-pointer border border-blue-200 hover:border-blue-300 transition-all duration-200"
+                    >
+                      <div className="text-blue-800 font-semibold text-sm">{dest.name}</div>
+                      <div className="text-blue-600 text-xs mt-1">từ {dest.price}đ</div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </motion.div>
           )}
 
-          {/* Trust indicators */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600"
-          >
-            <div className="flex items-center gap-1">
-              <CheckCircle className="w-3 h-3 text-blue-600" />
-              <span>Đặt vé nhanh</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <CheckCircle className="w-3 h-3 text-blue-600" />
-              <span>Giá tốt nhất</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <CheckCircle className="w-3 h-3 text-blue-600" />
-              <span>Hỗ trợ 24/7</span>
-            </div>
-          </motion.div>
-        </CardContent>
-      </Card>
-
-      {/* Airport Selection Modal - Redesigned */}
-      <Dialog open={showFromModal || showToModal} onOpenChange={closeModals}>
-        <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
-          <DialogHeader className="pb-4">
-            <DialogTitle className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-50 rounded-lg">
-                  <Globe className="w-5 h-5 text-blue-600" />
+          {/* Hotel Search Form */}
+          {activeTab === 'hotel' && (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Search Fields */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
+                  <Input
+                    placeholder="Thành phố, khách sạn"
+                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold">
-                    {activeModal === 'from' ? 'Chọn điểm đi' : 'Chọn điểm đến'}
-                  </h3>
-                  <p className="text-sm text-gray-500">Tìm kiếm và chọn sân bay</p>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
+                  <Input
+                    type="date"
+                    placeholder="Ngày nhận phòng"
+                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
+                  <Input
+                    type="date"
+                    placeholder="Ngày trả phòng"
+                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="relative">
+                  <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
+                  <Input
+                    placeholder="2 khách, 1 phòng"
+                    className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  />
                 </div>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={closeModals}
-                className="h-8 w-8 p-0 rounded-full"
-              >
-                <X className="h-4 w-4" />
+
+              {/* Search Button */}
+              <Button className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold">
+                <Search className="w-4 h-4 mr-2" />
+                Tìm khách sạn
               </Button>
-            </DialogTitle>
-          </DialogHeader>
 
-          {/* Enhanced Search Input */}
-          <div className="relative mb-6">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <Input
-              placeholder="Tìm kiếm theo tên sân bay, thành phố, mã sân bay..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-11 rounded-lg border-gray-200 bg-gray-50 focus:bg-white transition-colors"
-            />
-          </div>
-
-          {/* Search History - Improved design */}
-          {!searchQuery && searchHistory.length > 0 && (
-            <div className="mb-6">
-              <div className="flex items-center gap-2 mb-3">
-                <History className="w-4 h-4 text-gray-500" />
-                <h3 className="font-medium text-gray-800">Tìm kiếm gần đây</h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-32 overflow-y-auto">
-                {searchHistory.slice(0, 6).map(item => (
-                  <Button
-                    key={item.id}
-                    variant="outline"
-                    className="justify-start h-auto p-3 hover:bg-blue-50 rounded-lg border-gray-200 transition-all duration-200"
-                    onClick={() => selectFromHistory(item)}
-                  >
-                    <div className="text-left">
-                      <div className="font-medium text-sm flex items-center gap-2">
-                        <Plane className="w-3 h-3 text-gray-400" />
-                        {item.from} → {item.to}
+              {/* Popular Hotels */}
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800">Khách sạn phổ biến</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {popularHotels.map((hotel, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      className="bg-white rounded-lg overflow-hidden shadow-md border cursor-pointer hover:shadow-lg transition-all duration-200"
+                    >
+                      <div className="h-32 bg-gradient-to-br from-blue-100 to-blue-200"></div>
+                      <div className="p-4">
+                        <h4 className="font-semibold text-gray-900 mb-1">{hotel.name}</h4>
+                        <p className="text-blue-600 text-sm mb-2">{hotel.location}</p>
+                        <div className="text-orange-600 font-semibold">từ {hotel.price}đ/đêm</div>
                       </div>
-                      <div className="text-xs text-gray-500">
-                        {item.departDate} • {item.passengers.adults + item.passengers.children + item.passengers.infants} khách
-                      </div>
-                    </div>
-                  </Button>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-              <Separator className="mt-4" />
-            </div>
+            </motion.div>
           )}
 
-          {/* Airport Grid - Redesigned */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto max-h-[50vh]">
-            {Object.entries(regionGroups).map(([regionName, provinces]) => (
-              <div key={regionName} className="space-y-3">
-                <div className="sticky top-0 bg-white pb-2 z-10">
-                  <h3 className="font-semibold text-base text-gray-800 flex items-center gap-2 p-2 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
-                    <Sparkles className="w-4 h-4 text-blue-600" />
-                    {regionName}
-                  </h3>
-                </div>
-                <div className="space-y-1">
-                  {provinces
-                    .filter(province => {
-                      if (!searchQuery) return true
-                      const data = PROVINCES_DATA[province]
-                      return data.airports.some(airport =>
-                        airport.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        airport.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        airport.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        province.toLowerCase().includes(searchQuery.toLowerCase())
-                      )
-                    })
-                    .map(province => {
-                      const data = PROVINCES_DATA[province]
-                      const IconComponent = data.icon
-                      return (
-                        <div key={province} className="space-y-1">
-                          {data.airports.map(airport => (
-                            <Button
-                              key={airport.code}
-                              variant="ghost"
-                              className="w-full justify-start h-auto p-3 hover:bg-blue-50 rounded-lg group transition-all duration-200"
-                              onClick={() => selectAirport(airport)}
-                            >
-                              <div className="flex items-center gap-3 w-full">
-                                <Avatar className="w-12 h-12 border-2 border-white shadow-sm">
-                                  <AvatarImage src={data.image} alt={province} className="object-cover" />
-                                  <AvatarFallback className="bg-gradient-to-br from-blue-100 to-blue-200">
-                                    <IconComponent className="w-5 h-5 text-blue-600" />
-                                  </AvatarFallback>
-                                </Avatar>
-                                <div className="text-left flex-1">
-                                  <div className="flex items-center gap-2 mb-1">
-                                    <span className="font-semibold text-lg text-gray-800">{airport.code}</span>
-                                    <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-700">
-                                      {province}
-                                    </Badge>
-                                  </div>
-                                  <div className="text-sm font-medium text-gray-700">{airport.name}</div>
-                                  <div className="text-xs text-gray-500">{airport.city}</div>
-                                </div>
-                                <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
-                              </div>
-                            </Button>
-                          ))}
-                        </div>
-                      )
-                    })}
-                </div>
+          {/* Support Features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-100">
+            <div className="flex items-center space-x-3 text-blue-600">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <span className="text-blue-600 text-sm font-bold">✓</span>
               </div>
-            ))}
+              <span>Giá tốt nhất</span>
+            </div>
+            <div className="flex items-center space-x-3 text-blue-600">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <span className="text-blue-600 text-sm font-bold">⚡</span>
+              </div>
+              <span>Đặt nhanh chóng</span>
+            </div>
+            <div className="flex items-center space-x-3 text-blue-600">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <span className="text-blue-600 text-sm font-bold">24</span>
+              </div>
+              <span>Hỗ trợ 24/7</span>
+            </div>
           </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Passenger Selection Modal - Cleaner design */}
-      <Dialog open={showPassengerModal} onOpenChange={setShowPassengerModal}>
-        <DialogContent className="max-w-md">
-          <DialogHeader className="pb-4">
-            <DialogTitle className="flex items-center gap-3">
-              <div className="p-2 bg-indigo-50 rounded-lg">
-                <Users className="w-5 h-5 text-indigo-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold">Hành khách</h3>
-                <p className="text-sm text-gray-500">Chọn số lượng hành khách</p>
-              </div>
-            </DialogTitle>
-          </DialogHeader>
-
-          <div className="space-y-6">
-            {/* Adults */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <UserCheck className="w-5 h-5 text-blue-700" />
-                </div>
-                <div>
-                  <div className="font-medium text-gray-800">Người lớn</div>
-                  <div className="text-xs text-gray-500">Từ 12 tuổi trở lên</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 w-8 p-0 rounded-full"
-                  onClick={() => updatePassengers('adults', -1)}
-                  disabled={passengers.adults <= 1}
-                >
-                  <Minus className="w-3 h-3" />
-                </Button>
-                <span className="w-8 text-center font-semibold text-gray-800">{passengers.adults}</span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 w-8 p-0 rounded-full"
-                  onClick={() => updatePassengers('adults', 1)}
-                  disabled={getTotalPassengers() >= 9}
-                >
-                  <Plus className="w-3 h-3" />
-                </Button>
-              </div>
-            </div>
-
-            {/* Children */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <UserIcon className="w-5 h-5 text-green-700" />
-                </div>
-                <div>
-                  <div className="font-medium text-gray-800">Trẻ em</div>
-                  <div className="text-xs text-gray-500">Từ 2-11 tuổi</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 w-8 p-0 rounded-full"
-                  onClick={() => updatePassengers('children', -1)}
-                  disabled={passengers.children <= 0}
-                >
-                  <Minus className="w-3 h-3" />
-                </Button>
-                <span className="w-8 text-center font-semibold text-gray-800">{passengers.children}</span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 w-8 p-0 rounded-full"
-                  onClick={() => updatePassengers('children', 1)}
-                  disabled={getTotalPassengers() >= 9 || passengers.children >= passengers.adults * 2}
-                >
-                  <Plus className="w-3 h-3" />
-                </Button>
-              </div>
-            </div>
-
-            {/* Infants */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-pink-100 rounded-lg">
-                  <Baby className="w-5 h-5 text-pink-700" />
-                </div>
-                <div>
-                  <div className="font-medium text-gray-800">Em bé</div>
-                  <div className="text-xs text-gray-500">Dưới 2 tuổi</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 w-8 p-0 rounded-full"
-                  onClick={() => updatePassengers('infants', -1)}
-                  disabled={passengers.infants <= 0}
-                >
-                  <Minus className="w-3 h-3" />
-                </Button>
-                <span className="w-8 text-center font-semibold text-gray-800">{passengers.infants}</span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 w-8 p-0 rounded-full"
-                  onClick={() => updatePassengers('infants', 1)}
-                  disabled={getTotalPassengers() >= 9 || passengers.infants >= passengers.adults}
-                >
-                  <Plus className="w-3 h-3" />
-                </Button>
-              </div>
-            </div>
-
-            <div className="text-xs text-gray-500 bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <div className="flex items-start gap-2">
-                <div className="w-4 h-4 rounded-full bg-blue-200 flex-shrink-0 mt-0.5 flex items-center justify-center">
-                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
-                </div>
-                <div>
-                  <strong className="text-blue-800">Lưu ý:</strong>
-                  <br />
-                  Mỗi người lớn có thể đi cùng tối đa 2 trẻ em và 1 em bé. Tối đa 9 hành khách/đơn đặt.
-                </div>
-              </div>
-            </div>
-
-            <Button
-              className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-white font-semibold"
-              onClick={() => setShowPassengerModal(false)}
-            >
-              Xác nhận ({getTotalPassengers()} hành khách)
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </>
+        </CardContent>
+      </Card>
+    </motion.div>
   )
 }
+
+export default SearchForm
