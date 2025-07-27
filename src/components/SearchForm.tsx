@@ -658,7 +658,7 @@ export function SearchForm({
           >
             {/* Redesigned Compact Form Layout - Single Row */}
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
                 {/* From Field - Compact */}
                 <div className="lg:col-span-2">
                   <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐI</div>
@@ -869,18 +869,18 @@ export function SearchForm({
                   <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HÀNH KHÁCH</div>
                   <Button
                     variant="outline"
-                    className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-sm"
+                    className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-sm overflow-hidden"
                     onClick={() => setShowPassengerModal(true)}
                   >
                     <div className="flex items-center gap-2 w-full">
                       <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
                         <Users className="w-3 h-3 text-indigo-600" />
                       </div>
-                      <div className="flex-1 text-left">
+                      <div className="flex-1 text-left min-w-0">
                         <div className="font-semibold text-sm text-gray-800">
                           {getTotalPassengers()} khách
                         </div>
-                        <div className="text-[10px] text-gray-500 truncate">
+                        <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
                           {passengers.adults} người lớn{passengers.children > 0 && `, ${passengers.children} trẻ em`}{passengers.infants > 0 && `, ${passengers.infants} em bé`}
                         </div>
                       </div>
