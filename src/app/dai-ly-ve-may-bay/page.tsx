@@ -55,7 +55,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: "Tuyển Đại Lý Vé Máy Bay Cấp 2 - Không Ký Quỹ 0 VND | Skyo Vietnam",
-  description: "🔥 Đại lý vé máy bay cấp 2 KHÔNG ký quỹ với Skyo. Hoa hồng 1-3%, hệ thống tự động, đào tạo miễn phí, hỗ trợ 24/7. Thu nhập 10-100 triệu/tháng. Đăng ký ngay!",
+  description: "🔥 Đại lý vé máy bay cấp 2 KHÔNG ký quỹ với Skyo. Hoa hồng hấp dẫn, hệ thống tự động, đào tạo miễn phí, hỗ trợ 24/7. Thu nhập ổn định. Đăng ký ngay!",
   keywords: "đại lý vé máy bay cấp 2, đại lý vé máy bay không ký quỹ, tuyển đại lý vé máy bay, hệ thống đại lý vé máy bay, bán vé máy bay online, đại lý vietnam airlines, đại lý vietjet, đại lý jetstar, làm đại lý bán vé máy bay, kinh doanh vé máy bay không vốn, nghiệp vụ bán vé máy bay, hệ thống bán vé máy bay cho đại lý, đào tạo bán vé máy bay, cách làm đại lý vé máy bay, thu nhập đại lý vé máy bay, hoa hồng bán vé máy bay",
   openGraph: {
     title: "🚀 Đại Lý Vé Máy Bay Cấp 2 - 0 VND Ký Quỹ | Skyo Vietnam",
@@ -97,12 +97,12 @@ export default function AgentRecruitmentPage() {
 
             <div className="text-xl md:text-2xl mb-8 leading-relaxed">
               <p className="mb-4">
-                Cơ hội kinh doanh vé máy bay với <strong>hoa hồng 1-3%</strong>, 
+                Cơ hội kinh doanh vé máy bay với <strong>hoa hồng hấp dẫn</strong>, 
                 hệ thống công nghệ hiện đại, đào tạo miễn phí và hỗ trợ 24/7 từ Skyo Vietnam.
               </p>
               <p>
-                Tham gia <strong>mạng lưới 500+ đại lý</strong> đang kiếm thu nhập 
-                <strong> 10-100 triệu VND/tháng</strong> từ việc bán vé máy bay online.
+                Tham gia <strong>mạng lưới đại lý</strong> đang có thu nhập 
+                <strong> ổn định</strong> từ việc bán vé máy bay online.
               </p>
             </div>
 
@@ -149,10 +149,10 @@ export default function AgentRecruitmentPage() {
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <DollarSign className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">Hoa Hồng 1-3%</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Hoa Hồng Hấp Dẫn</h3>
                   <p className="text-gray-600">
-                    Mức hoa hồng hấp dẫn trên mỗi vé bán thành công. 
-                    Đại lý xuất sắc có thể nhận hoa hồng đến 3%.
+                    Mức hoa hồng cạnh tranh trên mỗi vé bán thành công. 
+                    Đại lý xuất sắc được hưởng nhiều ưu đãi và thưởng thêm.
                   </p>
                 </CardContent>
               </Card>
@@ -185,11 +185,11 @@ export default function AgentRecruitmentPage() {
 
             <div className="text-xl mb-8 leading-relaxed">
               <p className="mb-4">
-                Tham gia <strong>mạng lưới 500+ đại lý</strong> đang thành công cùng Skyo Vietnam. 
-                Cơ hội có hạn cho <strong>100 đại lý mới trong tháng này</strong>.
+                Tham gia <strong>mạng lưới đại lý</strong> đang thành công cùng Skyo Vietnam. 
+                Cơ hội tốt đang chờ đón các <strong>đại lý mới</strong>.
               </p>
               <p>
-                <strong>Cam kết 100%:</strong> Không ký quỹ • Không rủi ro • Hỗ trợ toàn diện
+                <strong>Cam kết:</strong> Không ký quỹ • Không rủi ro • Hỗ trợ toàn diện
               </p>
             </div>
 
@@ -210,7 +210,7 @@ export default function AgentRecruitmentPage() {
                 ✅ Hoàn toàn miễn phí • ✅ Không ký quỹ • ✅ Không rủi ro tài chính • ✅ Hỗ trợ 24/7
               </p>
               <p className="mt-2">
-                <strong>Đăng ký ngay hôm nay</strong> để nhận ưu đãi đặc biệt cho 100 đại lý đầu tiên!
+                <strong>Đăng ký ngay hôm nay</strong> để trở thành đối tác kinh doanh cùng Skyo!
               </p>
             </div>
           </div>
