@@ -264,7 +264,7 @@ export function SearchForm({
 }: SearchFormProps) {
   const router = useRouter()
   const [tripType, setTripType] = useState<'oneway' | 'roundtrip'>(
-    initialValues?.tripType === 'oneway' ? 'oneway' : 'roundtrip'
+    initialValues?.tripType === 'roundtrip' ? 'roundtrip' : 'oneway'
   )
   const [from, setFrom] = useState(initialValues?.from || defaultFrom || '')
   const [to, setTo] = useState(initialValues?.to || defaultTo || '')
@@ -656,10 +656,10 @@ export function SearchForm({
             transition={{ duration: 0.3, delay: 0.2 }}
             className="space-y-4"
           >
-            {/* Single Row Layout - All fields balanced */}
+            {/* Single Row Layout - Reduced field sizes */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
-              {/* From Field */}
-              <div className="lg:col-span-3">
+              {/* From Field - Reduced from col-span-3 to col-span-2.5 */}
+              <div className="lg:col-span-2">
                 <div className="text-xs font-medium text-gray-600 mb-1 px-1">ĐIỂM ĐI</div>
                 <Button
                   variant="outline"
@@ -670,22 +670,22 @@ export function SearchForm({
                   }`}
                   onClick={openFromModal}
                 >
-                  <div className="flex items-center gap-3 w-full">
-                    <div className={`flex-shrink-0 p-2 rounded-lg ${
+                  <div className="flex items-center gap-2 w-full">
+                    <div className={`flex-shrink-0 p-1.5 rounded-lg ${
                       errors.from || errors.sameDestination
                         ? 'bg-red-50 text-red-600'
                         : 'bg-blue-50 text-blue-600'
                     }`}>
-                      <Plane className="w-4 h-4" />
+                      <Plane className="w-3.5 h-3.5" />
                     </div>
                     <div className="flex-1 min-w-0">
                       {from && getAirportByCode(from) ? (
                         <div>
-                          <div className="font-semibold text-base text-gray-800">{from}</div>
+                          <div className="font-semibold text-sm text-gray-800">{from}</div>
                           <div className="text-xs text-gray-500 truncate">{getAirportByCode(from)?.city}</div>
                         </div>
                       ) : (
-                        <div className={`text-sm font-medium ${errors.from || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
+                        <div className={`text-xs font-medium ${errors.from || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
                           Chọn điểm đi
                         </div>
                       )}
@@ -694,20 +694,20 @@ export function SearchForm({
                 </Button>
               </div>
 
-              {/* Swap Button */}
+              {/* Swap Button with 360 degree rotation animation */}
               <div className="lg:col-span-1 flex items-end justify-center pb-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-10 w-10 p-0 bg-white border-2 rounded-full flex items-center justify-center group transition-all duration-200 hover:shadow-md hover:border-blue-300 hover:bg-blue-50"
+                  className="h-10 w-10 p-0 bg-white border-2 rounded-full flex items-center justify-center group transition-all duration-300 hover:shadow-md hover:border-blue-300 hover:bg-blue-50 active:scale-95"
                   onClick={swapDestinations}
                 >
-                  <ArrowLeftRight className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transition-colors duration-200" />
+                  <ArrowLeftRight className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transition-all duration-500 group-hover:rotate-180 group-active:rotate-360" />
                 </Button>
               </div>
 
-              {/* To Field */}
-              <div className="lg:col-span-3">
+              {/* To Field - Reduced from col-span-3 to col-span-2.5 */}
+              <div className="lg:col-span-2">
                 <div className="text-xs font-medium text-gray-600 mb-1 px-1">ĐIỂM ĐẾN</div>
                 <Button
                   variant="outline"
@@ -718,22 +718,22 @@ export function SearchForm({
                   }`}
                   onClick={openToModal}
                 >
-                  <div className="flex items-center gap-3 w-full">
-                    <div className={`flex-shrink-0 p-2 rounded-lg ${
+                  <div className="flex items-center gap-2 w-full">
+                    <div className={`flex-shrink-0 p-1.5 rounded-lg ${
                       errors.to || errors.sameDestination
                         ? 'bg-red-50 text-red-600'
                         : 'bg-green-50 text-green-600'
                     }`}>
-                      <MapPin className="w-4 h-4" />
+                      <MapPin className="w-3.5 h-3.5" />
                     </div>
                     <div className="flex-1 min-w-0">
                       {to && getAirportByCode(to) ? (
                         <div>
-                          <div className="font-semibold text-base text-gray-800">{to}</div>
+                          <div className="font-semibold text-sm text-gray-800">{to}</div>
                           <div className="text-xs text-gray-500 truncate">{getAirportByCode(to)?.city}</div>
                         </div>
                       ) : (
-                        <div className={`text-sm font-medium ${errors.to || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
+                        <div className={`text-xs font-medium ${errors.to || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
                           Chọn điểm đến
                         </div>
                       )}
@@ -755,22 +755,22 @@ export function SearchForm({
                           : 'border-gray-200 hover:border-blue-300'
                       }`}
                     >
-                      <div className="flex items-center gap-3 w-full">
-                        <div className={`flex-shrink-0 p-2 rounded-lg ${
+                      <div className="flex items-center gap-2 w-full">
+                        <div className={`flex-shrink-0 p-1.5 rounded-lg ${
                           errors.departDate
                             ? 'bg-red-50 text-red-600'
                             : 'bg-orange-50 text-orange-600'
                         }`}>
-                          <CalendarIcon className="w-4 h-4" />
+                          <CalendarIcon className="w-3.5 h-3.5" />
                         </div>
                         <div className="flex-1 min-w-0">
                           {departDate ? (
                             <div>
-                              <div className="font-semibold text-base text-gray-800">{format(departDate, 'dd/MM/yyyy')}</div>
+                              <div className="font-semibold text-sm text-gray-800">{format(departDate, 'dd/MM/yyyy')}</div>
                               <div className="text-xs text-gray-500 truncate">{format(departDate, 'EEE', { locale: vi })}</div>
                             </div>
                           ) : (
-                            <div className={`text-sm font-medium ${errors.departDate ? 'text-red-500' : 'text-gray-500'}`}>
+                            <div className={`text-xs font-medium ${errors.departDate ? 'text-red-500' : 'text-gray-500'}`}>
                               Chọn ngày
                             </div>
                           )}
@@ -811,24 +811,24 @@ export function SearchForm({
                             : 'border-gray-200 hover:border-blue-300'
                       }`}
                     >
-                      <div className="flex items-center gap-3 w-full">
-                        <div className={`flex-shrink-0 p-2 rounded-lg ${
+                      <div className="flex items-center gap-2 w-full">
+                        <div className={`flex-shrink-0 p-1.5 rounded-lg ${
                           tripType === 'oneway'
                             ? 'bg-gray-100 text-gray-400'
                             : errors.returnDate
                               ? 'bg-red-50 text-red-600'
                               : 'bg-purple-50 text-purple-600'
                         }`}>
-                          <CalendarIcon className="w-4 h-4" />
+                          <CalendarIcon className="w-3.5 h-3.5" />
                         </div>
                         <div className="flex-1 min-w-0">
                           {tripType === 'roundtrip' && returnDate ? (
                             <div>
-                              <div className="font-semibold text-base text-gray-800">{format(returnDate, 'dd/MM/yyyy')}</div>
+                              <div className="font-semibold text-sm text-gray-800">{format(returnDate, 'dd/MM/yyyy')}</div>
                               <div className="text-xs text-gray-500 truncate">{format(returnDate, 'EEE', { locale: vi })}</div>
                             </div>
                           ) : (
-                            <div className={`text-sm font-medium ${
+                            <div className={`text-xs font-medium ${
                               tripType === 'oneway' 
                                 ? 'text-gray-400' 
                                 : errors.returnDate 
@@ -859,24 +859,24 @@ export function SearchForm({
                 </Popover>
               </div>
 
-              {/* Passengers - Fixed width */}
-              <div className="lg:col-span-1">
+              {/* Passengers - Increased from col-span-1 to col-span-3 */}
+              <div className="lg:col-span-3">
                 <div className="text-xs font-medium text-gray-600 mb-1 px-1">HÀNH KHÁCH</div>
                 <Button
                   variant="outline"
-                  className="relative w-full h-14 justify-center text-center bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-md"
+                  className="relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-md"
                   onClick={() => setShowPassengerModal(true)}
                 >
-                  <div className="flex flex-col items-center justify-center w-full">
-                    <div className="flex-shrink-0 p-1.5 bg-indigo-50 rounded-lg mb-1">
-                      <Users className="w-4 h-4 text-indigo-600" />
+                  <div className="flex items-center gap-2 w-full">
+                    <div className="flex-shrink-0 p-1.5 bg-indigo-50 rounded-lg">
+                      <Users className="w-3.5 h-3.5 text-indigo-600" />
                     </div>
-                    <div className="text-center">
-                      <div className="font-semibold text-base text-gray-800">
-                        {getTotalPassengers()}
+                    <div className="flex-1 text-left">
+                      <div className="font-semibold text-sm text-gray-800">
+                        {getTotalPassengers()} khách
                       </div>
                       <div className="text-xs text-gray-500">
-                        khách
+                        {passengers.adults} người lớn{passengers.children > 0 && `, ${passengers.children} trẻ em`}{passengers.infants > 0 && `, ${passengers.infants} em bé`}
                       </div>
                     </div>
                   </div>
@@ -884,25 +884,7 @@ export function SearchForm({
               </div>
             </div>
 
-            {/* Toggle switch for cheap flights */}
-            <div className="flex items-center justify-end">
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-gray-600">Tìm vé rẻ nhất</span>
-                <div className="relative">
-                  <input
-                    type="checkbox"
-                    className="sr-only"
-                    id="cheap-flights"
-                  />
-                  <label htmlFor="cheap-flights" className="flex items-center cursor-pointer">
-                    <div className="relative">
-                      <div className="block bg-gray-300 w-10 h-6 rounded-full"></div>
-                      <div className="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform"></div>
-                    </div>
-                  </label>
-                </div>
-              </div>
-            </div>
+            
           </motion.div>
 
           {/* Error Messages */}
@@ -1108,24 +1090,14 @@ export function SearchForm({
       <Dialog open={showPassengerModal} onOpenChange={setShowPassengerModal}>
         <DialogContent className="max-w-md">
           <DialogHeader className="pb-4">
-            <DialogTitle className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-indigo-50 rounded-lg">
-                  <Users className="w-5 h-5 text-indigo-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Hành khách</h3>
-                  <p className="text-sm text-gray-500">Chọn số lượng hành khách</p>
-                </div>
+            <DialogTitle className="flex items-center gap-3">
+              <div className="p-2 bg-indigo-50 rounded-lg">
+                <Users className="w-5 h-5 text-indigo-600" />
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowPassengerModal(false)}
-                className="h-8 w-8 p-0 rounded-full"
-              >
-                <X className="h-4 w-4" />
-              </Button>
+              <div>
+                <h3 className="text-lg font-semibold">Hành khách</h3>
+                <p className="text-sm text-gray-500">Chọn số lượng hành khách</p>
+              </div>
             </DialogTitle>
           </DialogHeader>
 
