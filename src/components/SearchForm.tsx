@@ -856,6 +856,33 @@ export function SearchForm({
           </div>
 
 
+          {/* Quick Routes - Inside the form */}
+          <div className="mt-4 pt-3 border-t border-gray-100">
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp className="w-3 h-3 text-gray-500" />
+              <span className="text-xs font-medium text-gray-600">Tuyến phổ biến</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {QUICK_ROUTES.map(route => (
+                <Button
+                  key={`${route.from}-${route.to}`}
+                  variant="outline"
+                  size="sm"
+                  className={`text-xs px-2.5 py-1 border rounded-full hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 ${
+                    route.popular ? 'border-blue-200 bg-blue-50/50' : 'border-gray-200'
+                  }`}
+                  onClick={() => {
+                    setFrom(route.from)
+                    setTo(route.to)
+                  }}
+                >
+                  {route.popular && <Star className="w-2.5 h-2.5 mr-1 text-blue-500 fill-current" />}
+                  {route.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+
           {/* Trust indicators */}
           <motion.div
             initial={{ opacity: 0 }}
