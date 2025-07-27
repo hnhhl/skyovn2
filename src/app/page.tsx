@@ -361,7 +361,13 @@ function HotelSearchForm() {
       <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
 
       <CardContent className="relative z-10 p-6">
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+          className="space-y-4"
+        >
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg"></motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
             {/* Destination Field */}
             <div className="lg:col-span-3">
@@ -516,7 +522,12 @@ function HotelSearchForm() {
         </div>
 
         {/* Trust indicators */}
-        <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
+          className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600"
+        >
           <div className="flex items-center gap-1">
             <CheckCircle className="w-3 h-3 text-green-600" />
             <span>2M+ khách sạn</span>
@@ -529,7 +540,8 @@ function HotelSearchForm() {
             <CheckCircle className="w-3 h-3 text-green-600" />
             <span>Đặt phòng tức thì</span>
           </div>
-        </div>
+        </motion.div>
+        </motion.div>
       </CardContent>
     </Card>
   )
@@ -840,43 +852,13 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Search Forms - Connected to tabs with smooth transitions */}
+          {/* Search Forms - Connected to tabs */}
           <div className="flex justify-center w-full">
-            <AnimatePresence mode="wait" initial={false}>
-              {activeTab === 'flight' ? (
-                <motion.div
-                  key="flight-search"
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                  transition={{ 
-                    duration: 0.4, 
-                    ease: [0.4, 0.0, 0.2, 1],
-                    type: "spring",
-                    stiffness: 100
-                  }}
-                  className="w-full"
-                >
-                  <SearchForm />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="hotel-search"
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                  transition={{ 
-                    duration: 0.4, 
-                    ease: [0.4, 0.0, 0.2, 1],
-                    type: "spring",
-                    stiffness: 100
-                  }}
-                  className="w-full"
-                >
-                  <HotelSearchForm />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {activeTab === 'flight' ? (
+              <SearchForm />
+            ) : (
+              <HotelSearchForm />
+            )}
           </div>
         </div>
 
