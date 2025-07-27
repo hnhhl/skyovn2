@@ -276,7 +276,7 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
             <button
               type="button"
               onClick={switchMode}
-              className="text-sm text-green-600 hover:text-green-700 font-medium"
+              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
             >
               {mode === 'login'
                 ? 'Chưa có tài khoản? Đăng ký ngay'

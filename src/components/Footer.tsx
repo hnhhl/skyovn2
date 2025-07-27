@@ -4,7 +4,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-semibold mb-4 text-green-400">CÔNG TY</h3>
+            <h3 className="font-semibold mb-4 text-blue-400">CÔNG TY</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li><a href="/about" className="hover:text-white transition-colors duration-200">Về Skyo</a></li>
               <li><a href="#" className="hover:text-white">Press</a></li>
@@ -16,7 +16,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4 text-green-400">DỊCH VỤ</h3>
+            <h3 className="font-semibold mb-4 text-blue-400">DỊCH VỤ</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li><a href="/" className="hover:text-white transition-colors duration-200">Đặt vé trên Skyo</a></li>
               <li><a href="#" className="hover:text-white transition-colors duration-200">Skyo Business</a></li>
@@ -26,7 +26,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4 text-green-400">KHÁM PHÁ</h3>
+            <h3 className="font-semibold mb-4 text-blue-400">KHÁM PHÁ</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li><a href="#" className="hover:text-white transition-colors duration-200">Danh sách sân bay</a></li>
               <li><a href="#" className="hover:text-white transition-colors duration-200">Các hãng hàng không</a></li>
@@ -36,7 +36,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4 text-green-400">TẢI APP</h3>
+            <h3 className="font-semibold mb-4 text-blue-400">TẢI APP</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li><a href="#" className="hover:text-white transition-colors duration-200">Skyo iOS</a></li>
               <li><a href="#" className="hover:text-white transition-colors duration-200">Skyo Android</a></li>

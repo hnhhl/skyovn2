@@ -481,7 +481,7 @@ export default function BusinessDocumentsPage() {
                     <ul className="space-y-2">
                       {program.benefits.map((benefit, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-sm">
-                          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
                           <span className="text-gray-600">{benefit}</span>
                         </li>
                       ))}

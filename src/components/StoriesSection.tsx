@@ -23,7 +23,7 @@ export function StoriesSection() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold">Stories</h2>
-          <a href="#" className="text-green-600 hover:underline">
+          <a href="#" className="text-blue-600 hover:underline">
             See all stories →
           </a>
         </div>
