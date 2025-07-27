@@ -357,352 +357,334 @@ function HotelSearchForm() {
   }
 
   return (
-    
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-          className="space-y-4"
-        >
-          
-            
-              {/* Destination Field */}
-              <div className="lg:col-span-3">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
-                <div className="relative">
-                  <div className="flex items-center gap-2 h-12 px-3 bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200">
-                    <div className="flex-shrink-0 p-1 bg-green-50 rounded">
-                      <MapPin className="w-3 h-3 text-green-600" />
-                    </div>
-                    <Input
-                      placeholder="Thành phố, khách sạn, khu vực..."
-                      value={destination}
-                      onChange={(e) => setDestination(e.target.value)}
-                      className="border-0 bg-transparent p-0 h-auto text-sm font-semibold text-gray-800 placeholder:text-gray-500 focus-visible:ring-0"
-                    />
+    <div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.2 }}
+        className="space-y-4"
+      >
+        {/* Destination Field */}
+        <div className="lg:col-span-3">
+          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
+          <div className="relative">
+            <div className="flex items-center gap-2 h-12 px-3 bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200">
+              <div className="flex-shrink-0 p-1 bg-green-50 rounded">
+                <MapPin className="w-3 h-3 text-green-600" />
+              </div>
+              <Input
+                placeholder="Thành phố, khách sạn, khu vực..."
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                className="border-0 bg-transparent p-0 h-auto text-sm font-semibold text-gray-800 placeholder:text-gray-500 focus-visible:ring-0"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Check-in Date */}
+        <div className="lg:col-span-2">
+          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY NHẬN PHÒNG</div>
+          <Button
+            variant="outline"
+            className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+          >
+            <div className="flex items-center gap-2 w-full">
+              <div className="flex-shrink-0 p-1 bg-blue-50 rounded">
+                <Calendar className="w-3 h-3 text-blue-600" />
+              </div>
+              <div className="flex-1 min-w-0">
+                {checkIn ? (
+                  <div>
+                    <div className="font-semibold text-sm text-gray-800">{checkIn.toLocaleDateString('vi-VN')}</div>
+                    <div className="text-[10px] text-gray-500 truncate">Nhận phòng</div>
                   </div>
+                ) : (
+                  <div className="text-[11px] font-medium text-gray-500">
+                    Chọn ngày
+                  </div>
+                )}
+              </div>
+            </div>
+          </Button>
+        </div>
+
+        {/* Check-out Date */}
+        <div className="lg:col-span-2">
+          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY TRẢ PHÒNG</div>
+          <Button
+            variant="outline"
+            className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+          >
+            <div className="flex items-center gap-2 w-full">
+              <div className="flex-shrink-0 p-1 bg-purple-50 rounded">
+                <Calendar className="w-3 h-3 text-purple-600" />
+              </div>
+              <div className="flex-1 min-w-0">
+                {checkOut ? (
+                  <div>
+                    <div className="font-semibold text-sm text-gray-800">{checkOut.toLocaleDateString('vi-VN')}</div>
+                    <div className="text-[10px] text-gray-500 truncate">Trả phòng</div>
+                  </div>
+                ) : (
+                  <div className="text-[11px] font-medium text-gray-500">
+                    Chọn ngày
+                  </div>
+                )}
+              </div>
+            </div>
+          </Button>
+        </div>
+
+        {/* Rooms */}
+        <div className="lg:col-span-2">
+          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">PHÒNG & KHÁCH</div>
+          <Button
+            variant="outline"
+            className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+          >
+            <div className="flex items-center gap-2 w-full">
+              <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
+                <Building2 className="w-3 h-3 text-indigo-600" />
+              </div>
+              <div className="flex-1 text-left min-w-0">
+                <div className="font-semibold text-sm text-gray-800">
+                  {rooms} phòng
+                </div>
+                <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
+                  {guests} khách
                 </div>
               </div>
+            </div>
+          </Button>
+        </div>
 
-              {/* Check-in Date */}
-              <div className="lg:col-span-2">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY NHẬN PHÒNG</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1 bg-blue-50 rounded">
-                      <Calendar className="w-3 h-3 text-blue-600" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      {checkIn ? (
-                        <div>
-                          <div className="font-semibold text-sm text-gray-800">{checkIn.toLocaleDateString('vi-VN')}</div>
-                          <div className="text-[10px] text-gray-500 truncate">Nhận phòng</div>
-                        </div>
-                      ) : (
-                        <div className="text-[11px] font-medium text-gray-500">
-                          Chọn ngày
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </Button>
+        {/* Star Rating Filter */}
+        <div className="lg:col-span-2">
+          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HẠNG SAO</div>
+          <Button
+            variant="outline"
+            className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+          >
+            <div className="flex items-center gap-2 w-full">
+              <div className="flex-shrink-0 p-1 bg-yellow-50 rounded">
+                <Star className="w-3 h-3 text-yellow-600" />
               </div>
-
-              {/* Check-out Date */}
-              <div className="lg:col-span-2">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY TRẢ PHÒNG</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1 bg-purple-50 rounded">
-                      <Calendar className="w-3 h-3 text-purple-600" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      {checkOut ? (
-                        <div>
-                          <div className="font-semibold text-sm text-gray-800">{checkOut.toLocaleDateString('vi-VN')}</div>
-                          <div className="text-[10px] text-gray-500 truncate">Trả phòng</div>
-                        </div>
-                      ) : (
-                        <div className="text-[11px] font-medium text-gray-500">
-                          Chọn ngày
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </Button>
+              <div className="flex-1 text-left min-w-0">
+                <div className="font-semibold text-sm text-gray-800">
+                  Tất cả
+                </div>
+                <div className="text-[9px] text-gray-500 truncate">
+                  1-5 sao
+                </div>
               </div>
+            </div>
+          </Button>
+        </div>
 
-              {/* Rooms */}
-              <div className="lg:col-span-2">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">PHÒNG & KHÁCH</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
-                      <Building2 className="w-3 h-3 text-indigo-600" />
-                    </div>
-                    <div className="flex-1 text-left min-w-0">
-                      <div className="font-semibold text-sm text-gray-800">
-                        {rooms} phòng
-                      </div>
-                      <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
-                        {guests} khách
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-              </div>
+        {/* Search Button */}
+        <div className="lg:col-span-1 flex items-end">
+          <Button
+            className="w-full h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
+            onClick={handleSearch}
+          >
+            <Search className="w-4 h-4" />
+          </Button>
+        </div>
+      </motion.div>
 
-              {/* Star Rating Filter */}
-              <div className="lg:col-span-2">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HẠNG SAO</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1 bg-yellow-50 rounded">
-                      <Star className="w-3 h-3 text-yellow-600" />
-                    </div>
-                    <div className="flex-1 text-left min-w-0">
-                      <div className="font-semibold text-sm text-gray-800">
-                        Tất cả
-                      </div>
-                      <div className="text-[9px] text-gray-500 truncate">
-                        1-5 sao
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-              </div>
+      <div className="mt-8">
+        <div className="text-center mb-4">
+          Điểm đến phổ biến
+        </div>
+        <div className="flex justify-center gap-4">
+          {['Hà Nội', 'TP.HCM', 'Đà Nẵng', 'Nha Trang', 'Phú Quốc', 'Hạ Long', 'Hội An', 'Đà Lạt'].map(city => (
+            <div key={city} className="bg-gray-100 rounded-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors duration-200">
+              {city}
+            </div>
+          ))}
+        </div>
+      </div>
 
-              {/* Search Button */}
-              <div className="lg:col-span-1 flex items-end">
-                <Button
-                  className="w-full h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
-                  onClick={handleSearch}
-                >
-                  <Search className="w-4 h-4" />
-                </Button>
-              </div>
-            
-            
-
-            
-              
-                Điểm đến phổ biến
-              
-              
-                {['Hà Nội', 'TP.HCM', 'Đà Nẵng', 'Nha Trang', 'Phú Quốc', 'Hạ Long', 'Hội An', 'Đà Lạt'].map(city => (
-                  
-                    
-                    {city}
-                  
-                ))}
-              
-            
-            
-
-            
-              
-                
-                2M+ khách sạn
-              
-              
-                
-                Giá tốt nhất
-              
-              
-                
-                Đặt phòng tức thì
-              
-            
-          
-        
-    
+      <div className="mt-8 text-center">
+        <div className="text-sm text-gray-600">
+          2M+ khách sạn
+        </div>
+        <div className="text-sm text-gray-600">
+          Giá tốt nhất
+        </div>
+        <div className="text-sm text-gray-600">
+          Đặt phòng tức thì
+        </div>
+      </div>
+    </div>
   )
 }
 
 // Mobile App Section
 function MobileAppSection() {
   return (
-    
-      
-        
-        
-        
-      
-
-      
-        
-          
-            
-              
-                SKYO MOBILE APP
-              
-            
-
-            
+    <section className="py-16 bg-gradient-to-br from-blue-100 to-blue-50">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Left Side: App Details */}
+          <div className="text-center md:text-left">
+            <Badge className="bg-blue-600 text-white px-4 py-2 text-sm font-semibold mb-4">
+              SKYO MOBILE APP
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
               Đặt vé mọi lúc,
-              
-                mọi nơi
-              
-            
-
-            
+              <br />
+              mọi nơi
+            </h2>
+            <p className="text-xl text-slate-600 max-w-md">
               Tải app Skyo để trải nghiệm đặt vé nhanh chóng, nhận thông báo giá rẻ và quản lý chuyến đi dễ dàng.
-            
+            </p>
 
-            
-              
-                
-                  
-                
-                
-                  Đặt vé siêu nhanh
-                  Chỉ 3 bước • Thanh toán an toàn
-                
-              
+            {/* Features */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 max-w-md">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <div>
+                  <div className="font-semibold text-slate-800">Đặt vé siêu nhanh</div>
+                  <div className="text-sm text-slate-600">Chỉ 3 bước • Thanh toán an toàn</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Bell className="w-5 h-5 text-orange-500" />
+                <div>
+                  <div className="font-semibold text-slate-800">Thông báo giá rẻ</div>
+                  <div className="text-sm text-slate-600">Cập nhật real-time • Không bỏ lỡ deal</div>
+                </div>
+              </div>
+            </div>
 
-              
-                
-                  
-                
-                
-                  Thông báo giá rẻ
-                  Cập nhật real-time • Không bỏ lỡ deal
-                
-              
-            
+            {/* Download Buttons */}
+            <div className="flex items-center gap-4 mt-8">
+              <Button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg shadow-md">
+                <Download className="w-4 h-4 mr-2" />
+                Tải trên
+                <br />
+                App Store
+              </Button>
+              <Button className="bg-green-700 hover:bg-green-800 text-white font-semibold rounded-lg shadow-md">
+                <Download className="w-4 h-4 mr-2" />
+                Tải trên
+                <br />
+                Google Play
+              </Button>
+            </div>
 
-            
-              
-                
-                  
-                  Tải trên
-                  App Store
-                
-              
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 mt-12 max-w-md">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">1M+</div>
+                <div className="text-sm text-slate-600">lượt tải</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-orange-600">4.8/5</div>
+                <div className="text-sm text-slate-600">rating</div>
+              </div>
+              <div className="text-center">
+                <Shield className="w-6 h-6 mx-auto text-blue-600" />
+                <div className="text-sm text-slate-600">Bảo mật tuyệt đối</div>
+              </div>
+            </div>
+          </div>
 
-              
-                
-                  
-                  Tải trên
-                  Google Play
-                
-              
-            
-
-            
-              
-                
-                1M+ lượt tải
-              
-              
-                
-                4.8/5 rating
-              
-              
-                
-                Bảo mật tuyệt đối
-              
-            
-          
-
-          
-            
-              
-                
+          {/* Right Side: Mobile App Preview */}
+          <div className="relative">
+            {/* QR Code */}
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg p-4">
+              <div className="text-center">
+                <QrCode className="w-16 h-16 mx-auto mb-2" />
+                <div className="text-xs font-semibold text-slate-700">
                   SCAN ĐỂ TẢI APP
+                  <br />
                   Miễn phí 100%
-                
-              
-            
+                </div>
+              </div>
+            </div>
 
-            
-              
-                
-                  
-                    
-                      9:41
-                      
-                        
-                          
-                        
-                      
-                    
-                    
-                      Skyo
-                      
-                        
-                      
-                    
-                    
-                      Chào mừng trở lại!
-                    
-                    
-                      
-                        
-                          
-                            Tìm chuyến bay
-                            HCM → Hà Nội
-                          
-                        
-                      
+            {/* Phone Mockup */}
+            <div className="relative">
+              <img
+                src="https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/examples/mobile-app-mockup.png"
+                alt="Mobile App Mockup"
+                className="max-w-full mx-auto rounded-3xl shadow-2xl"
+              />
 
-                      
-                        
-                          
-                            Máy bay
-                          
-                          
-                            Khách sạn
-                          
-                        
-                      
+              {/* App Content */}
+              <div className="absolute top-6 left-6 w-[calc(100%-48px)] h-[calc(100%-48px)] bg-white rounded-2xl overflow-hidden">
+                {/* Top Bar */}
+                <div className="bg-slate-100 px-4 py-3 flex items-center justify-between">
+                  <div className="text-xs text-slate-500">
+                    <Clock className="inline-block w-4 h-4 mr-1" />
+                    9:41
+                  </div>
+                  <div className="text-xs text-slate-500">
+                    <Smartphone className="inline-block w-4 h-4" />
+                  </div>
+                </div>
 
-                      
-                        
-                          Đặt chỗ gần đây
-                          
-                            
-                              
-                                VJ123 • VietJet
-                                HCM → HN • 15/02
-                              
-                              Đã xác nhận
-                            
-                          
-                        
-                      
-                    
-                  
-                  
-                
-              
+                {/* Content Area */}
+                <div className="p-4">
+                  <div className="font-semibold text-slate-800 text-lg">
+                    Skyo
+                  </div>
+                  <div className="text-sm text-slate-600 mb-3">
+                    Chào mừng trở lại!
+                  </div>
 
-              
-                
-                  
-                
-              
+                  {/* Search Bar */}
+                  <div className="bg-white rounded-xl shadow-sm p-3 flex items-center gap-2 mb-4">
+                    <Search className="w-4 h-4 text-slate-400" />
+                    <div className="text-sm text-slate-500">
+                      Tìm chuyến bay
+                      <span className="font-medium text-slate-700">
+                        HCM → Hà Nội
+                      </span>
+                    </div>
+                  </div>
 
-              
-                
-              
-            
-          
-        
-      
-    
+                  {/* Tabs */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium">
+                      <Plane className="inline-block w-4 h-4 mr-1" />
+                      Máy bay
+                    </div>
+                    <div className="px-4 py-2 rounded-full text-slate-700 text-sm font-medium">
+                      <Hotel className="inline-block w-4 h-4 mr-1" />
+                      Khách sạn
+                    </div>
+                  </div>
+
+                  {/* Recent Bookings */}
+                  <div>
+                    <div className="text-xs font-semibold text-slate-700 mb-2">
+                      Đặt chỗ gần đây
+                    </div>
+                    <div classNameName="bg-white rounded-xl shadow-sm p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="text-sm font-medium text-slate-700">
+                          VJ123 • VietJet
+                        </div>
+                        <div className="text-xs text-slate-500">
+                          HCM → HN • 15/02
+                        </div>
+                      </div>
+                      <div className="text-xs text-green-600 font-semibold">
+                        Đã xác nhận
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -730,102 +712,47 @@ export default function HomePage() {
   return (
     
       
-      
-
-      
-        
         
           
+            ✈️ Nền tảng du lịch hàng đầu Việt Nam
+          
+          
+            Khám phá thế giới
+            với giá tốt nhất
+          
+          
+            Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với 
+            hơn 1000+ chuyến bay mỗi ngày
+            từ các đối tác uy tín
+          
+          
+
+            
+              Giá rẻ nhất thị trường
+            
+            
+              Thanh toán an toàn
+            
+            
+              Hỗ trợ 24/7
+            
+          
+
+          
+            
+              Chuyến bay
+            
+            
+              Khách sạn
+            
+          
+
+          {activeTab === 'flight' ? (
+            <SearchForm />
+          ) : (
+            <HotelSearchForm />
+          )}
         
-        
-          
-        
-
-        
-          
-            
-              ✈️ Nền tảng du lịch hàng đầu Việt Nam
-            
-            
-              Khám phá thế giới
-              
-              với giá tốt nhất
-            
-            
-              Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với 
-              hơn 1000+ chuyến bay mỗi ngày
-              từ các đối tác uy tín
-            
-            
-              
-                
-                Giá rẻ nhất thị trường
-              
-              
-                
-                Thanh toán an toàn
-              
-              
-                
-                Hỗ trợ 24/7
-              
-            
-          
-
-          
-            
-              
-                
-                  
-                    
-                    Chuyến bay
-                  
-                
-              
-              
-                
-                  
-                    
-                    Khách sạn
-                  
-                
-              
-            
-          
-
-          
-            {activeTab === 'flight' ? (
-              <SearchForm />
-            ) : (
-              <HotelSearchForm />
-            )}
-          
-        
-
-        
-          
-          
-          
-          
-        
-      
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
       
     
   )
