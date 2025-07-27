@@ -350,6 +350,7 @@ function HotelSearchForm() {
   const [checkOut, setCheckOut] = useState<Date>()
   const [rooms, setRooms] = useState(1)
   const [guests, setGuests] = useState(2)
+  const [isHotelSearchLoading, setIsHotelSearchLoading] = useState(false);
 
   const handleSearch = () => {
     // Handle hotel search logic here
@@ -486,7 +487,7 @@ function HotelSearchForm() {
           {/* Search Button */}
           <div className="lg:col-span-1 flex items-end">
             <Button
-              className="w-full h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
+              className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
               onClick={handleSearch}
             >
               <Search className="w-4 h-4" />
@@ -519,15 +520,15 @@ function HotelSearchForm() {
         {/* Trust indicators */}
         <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600">
           <div className="flex items-center gap-1">
-            <CheckCircle className="w-3 h-3 text-green-600" />
+            <CheckCircle className="w-3 h-3 text-blue-600" />
             <span>2M+ khách sạn</span>
           </div>
           <div className="flex items-center gap-1">
-            <CheckCircle className="w-3 h-3 text-green-600" />
+            <CheckCircle className="w-3 h-3 text-blue-600" />
             <span>Giá tốt nhất</span>
           </div>
           <div className="flex items-center gap-1">
-            <CheckCircle className="w-3 h-3 text-green-600" />
+            <CheckCircle className="w-3 h-3 text-blue-600" />
             <span>Đặt phòng tức thì</span>
           </div>
         </div>
