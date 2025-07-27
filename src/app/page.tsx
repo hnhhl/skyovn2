@@ -507,10 +507,10 @@ function HotelSearchForm() {
                 key={city}
                 variant="outline"
                 size="sm"
-                className="text-xs px-2.5 py-1 border rounded-full hover:bg-green-50 hover:border-green-300 hover:text-green-700 transition-all duration-200"
+                className="text-xs px-2.5 py-1 border rounded-full hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200"
                 onClick={() => setDestination(city)}
               >
-                <Hotel className="w-2.5 h-2.5 mr-1 text-green-500" />
+                <Hotel className="w-2.5 h-2.5 mr-1 text-blue-500" />
                 {city}
               </Button>
             ))}
