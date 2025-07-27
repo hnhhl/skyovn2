@@ -745,7 +745,7 @@ export function SearchForm({
 
                 {/* Departure Date - Compact */}
                 <div className="lg:col-span-2">
-                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY ĐI</div>
+                  <div className="text-[10px] font-mediumtext-gray-500 mb-1 px-2">NGÀY ĐI</div>
                   <Popover open={departureCalendarOpen} onOpenChange={setDepartureCalendarOpen}>
                     <PopoverTrigger asChild>
                       <Button

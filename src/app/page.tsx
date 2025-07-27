@@ -43,7 +43,7 @@ function WhyChooseSkyoSection() {
       icon: Shield,
       title: 'Đáng Tin Cậy',
       description: 'Được tin tưởng bởi hơn 2 triệu khách hàng với tỷ lệ thành công 99.9%',
-      color: 'from-emerald-500 to-teal-600',
+      color: 'from-blue-500 to-sky-600',
       stats: '99.9% thành công'
     },
     {
@@ -73,7 +73,7 @@ function WhyChooseSkyoSection() {
     <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge className="bg-emerald-600 text-white px-4 py-2 text-sm font-semibold mb-4">
+          <Badge className="bg-blue-600 text-white px-4 py-2 text-sm font-semibold mb-4">
             VÌ SAO CHỌN SKYO
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
@@ -239,7 +239,7 @@ function TestimonialsSection() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 to-emerald-900 text-white">
+    <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <Badge className="bg-white/20 text-white px-4 py-2 text-sm font-semibold mb-4">
@@ -289,7 +289,7 @@ function TestimonialsSection() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-white/70">Tiết kiệm:</span>
-                    <span className="text-emerald-300 font-bold">{testimonial.saved}</span>
+                    <span className="text-blue-300 font-bold">{testimonial.saved}</span>
                   </div>
                 </div>
               </CardContent>
@@ -312,7 +312,7 @@ function TestimonialsSection() {
 // Mobile App Section
 function MobileAppSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-emerald-600 to-blue-700">
+    <section className="py-20 bg-gradient-to-br from-blue-600 to-sky-700">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-white">
@@ -392,11 +392,11 @@ export default function HomePage() {
       <div
         className="relative min-h-[700px] bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
+          backgroundImage: "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
         }}
       >
         {/* Animated Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 via-emerald-900/20 to-blue-800/40" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 via-blue-900/20 to-sky-800/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
         {/* Content */}
@@ -404,7 +404,7 @@ export default function HomePage() {
           {/* Hero Text */}
           <div className="text-center mb-12">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Khám phá <span className="text-emerald-400">thế giới</span>
+              Khám phá <span className="text-blue-400">thế giới</span>
               <br />
               với giá tốt nhất
             </h1>
@@ -416,7 +416,7 @@ export default function HomePage() {
           {/* Flight/Hotel Tabs */}
           <div className="flex gap-3 mb-8 justify-center">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl px-8 py-4 shadow-lg border border-white/20">
-              <div className="flex items-center gap-3 text-emerald-600 font-semibold text-lg">
+              <div className="flex items-center gap-3 text-blue-600 font-semibold text-lg">
                 <span className="text-2xl">✈️</span>
                 Chuyến bay
               </div>
@@ -437,7 +437,7 @@ export default function HomePage() {
 
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-emerald-400/20 rounded-full animate-bounce"></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-blue-400/20 rounded-full animate-bounce"></div>
         <div className="absolute bottom-40 left-20 w-12 h-12 bg-blue-400/20 rounded-full animate-ping"></div>
       </div>
 
