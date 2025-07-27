@@ -826,9 +826,6 @@ export function SearchForm({
                         initialFocus
                         className="rounded-lg"
                         defaultMonth={departDate || new Date()}
-                        destination={to}
-                        isReturnCalendar={true}
-                        departureDate={departDate}
                       />
                     </PopoverContent>
                   </Popover>
@@ -919,8 +916,6 @@ export function SearchForm({
             </motion.div>
           )}
 
-
-
           {/* Trust indicators */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -940,7 +935,7 @@ export function SearchForm({
               <CheckCircle className="w-3 h-3 text-blue-600" />
               <span>Hỗ trợ 24/7</span>
             </div>
-          </div>
+          </motion.div>
         </CardContent>
       </Card>
 
