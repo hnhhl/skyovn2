@@ -656,231 +656,248 @@ export function SearchForm({
             transition={{ duration: 0.3, delay: 0.2 }}
             className="space-y-4"
           >
-            {/* Balanced Grid Layout with proper spacing */}
-            <div className="grid grid-cols-1 lg:grid-cols-24 gap-3">
-              {/* From Field - Better proportions */}
-              <div className="lg:col-span-5">
-                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">ĐIỂM ĐI</div>
-                <Button
-                  variant="outline"
-                  className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md group ${
-                    errors.from || errors.sameDestination
-                      ? 'border-red-300 hover:border-red-400'
-                      : 'border-gray-200 hover:border-blue-300'
-                  }`}
-                  onClick={openFromModal}
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className={`flex-shrink-0 p-1.5 rounded-lg ${
+            {/* Redesigned Compact Form Layout - Single Row */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
+                {/* From Field - Compact */}
+                <div className="lg:col-span-2">
+                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐI</div>
+                  <Button
+                    variant="outline"
+                    className={`relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border transition-all duration-200 hover:shadow-sm group ${
                       errors.from || errors.sameDestination
-                        ? 'bg-red-50 text-red-600'
-                        : 'bg-blue-50 text-blue-600'
-                    }`}>
-                      <Plane className="w-3.5 h-3.5" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      {from && getAirportByCode(from) ? (
-                        <div>
-                          <div className="font-semibold text-sm text-gray-800">{from}</div>
-                          <div className="text-xs text-gray-500 truncate">{getAirportByCode(from)?.city}</div>
-                        </div>
-                      ) : (
-                        <div className={`text-xs font-medium ${errors.from || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
-                          Chọn điểm đi
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </Button>
-              </div>
-
-              {/* Swap Button with proper spacing */}
-              <div className="lg:col-span-2 flex items-end justify-center pb-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-10 w-10 p-0 bg-white border-2 rounded-full flex items-center justify-center group transition-all duration-300 hover:shadow-md hover:border-blue-300 hover:bg-blue-50 active:scale-95"
-                  onClick={swapDestinations}
-                >
-                  <ArrowLeftRight className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transition-all duration-500 group-hover:rotate-180 group-active:rotate-360" />
-                </Button>
-              </div>
-
-              {/* To Field - Balanced with from field */}
-              <div className="lg:col-span-5">
-                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">ĐIỂM ĐẾN</div>
-                <Button
-                  variant="outline"
-                  className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md group ${
-                    errors.to || errors.sameDestination
-                      ? 'border-red-300 hover:border-red-400'
-                      : 'border-gray-200 hover:border-blue-300'
-                  }`}
-                  onClick={openToModal}
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className={`flex-shrink-0 p-1.5 rounded-lg ${
-                      errors.to || errors.sameDestination
-                        ? 'bg-red-50 text-red-600'
-                        : 'bg-green-50 text-green-600'
-                    }`}>
-                      <MapPin className="w-3.5 h-3.5" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      {to && getAirportByCode(to) ? (
-                        <div>
-                          <div className="font-semibold text-sm text-gray-800">{to}</div>
-                          <div className="text-xs text-gray-500 truncate">{getAirportByCode(to)?.city}</div>
-                        </div>
-                      ) : (
-                        <div className={`text-xs font-medium ${errors.to || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
-                          Chọn điểm đến
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </Button>
-              </div>
-
-              {/* Departure Date - Proper spacing from destination */}
-              <div className="lg:col-span-4">
-                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">NGÀY ĐI</div>
-                <Popover open={departureCalendarOpen} onOpenChange={setDepartureCalendarOpen}>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md ${
-                        errors.departDate
-                          ? 'border-red-300 hover:border-red-400'
-                          : 'border-gray-200 hover:border-blue-300'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 w-full">
-                        <div className={`flex-shrink-0 p-1.5 rounded-lg ${
-                          errors.departDate
-                            ? 'bg-red-50 text-red-600'
-                            : 'bg-orange-50 text-orange-600'
-                        }`}>
-                          <CalendarIcon className="w-3.5 h-3.5" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          {departDate ? (
-                            <div>
-                              <div className="font-semibold text-sm text-gray-800">{format(departDate, 'dd/MM/yyyy')}</div>
-                              <div className="text-xs text-gray-500 truncate">{format(departDate, 'EEE', { locale: vi })}</div>
-                            </div>
-                          ) : (
-                            <div className={`text-xs font-medium ${errors.departDate ? 'text-red-500' : 'text-gray-500'}`}>
-                              Chọn ngày
-                            </div>
-                          )}
-                        </div>
+                        ? 'border-red-300 hover:border-red-400'
+                        : 'border-gray-200 hover:border-blue-300'
+                    }`}
+                    onClick={openFromModal}
+                  >
+                    <div className="flex items-center gap-2 w-full">
+                      <div className={`flex-shrink-0 p-1 rounded ${
+                        errors.from || errors.sameDestination
+                          ? 'bg-red-50 text-red-600'
+                          : 'bg-blue-50 text-blue-600'
+                      }`}>
+                        <Plane className="w-3 h-3" />
                       </div>
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <div className="p-3 border-b bg-gradient-to-r from-blue-50 to-blue-100">
-                      <h4 className="font-medium text-sm text-gray-800">Chọn ngày khởi hành</h4>
-                      <p className="text-xs text-gray-600">Chọn ngày bạn muốn bay</p>
+                      <div className="flex-1 min-w-0">
+                        {from && getAirportByCode(from) ? (
+                          <div>
+                            <div className="font-semibold text-sm text-gray-800">{from}</div>
+                            <div className="text-[10px] text-gray-500 truncate">{getAirportByCode(from)?.city}</div>
+                          </div>
+                        ) : (
+                          <div className={`text-[11px] font-medium ${errors.from || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
+                            Chọn điểm đi
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <Calendar
-                      mode="single"
-                      selected={departDate}
-                      onSelect={handleDepartureDateSelect}
-                      disabled={(date) => date < new Date()}
-                      initialFocus
-                      className="rounded-lg"
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
+                  </Button>
+                </div>
 
-              {/* Return Date - Same size as departure date */}
-              <div className="lg:col-span-4">
-                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">NGÀY VỀ</div>
-                <Popover open={returnCalendarOpen} onOpenChange={setReturnCalendarOpen}>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      disabled={tripType === 'oneway'}
-                      className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md ${
-                        tripType === 'oneway' 
-                          ? 'border-gray-100 bg-gray-50/50 cursor-not-allowed opacity-60' 
-                          : errors.returnDate
+                {/* Swap Button - Compact */}
+                <div className="lg:col-span-1 flex items-end justify-center pb-1">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-8 w-8 p-0 bg-white border rounded-full flex items-center justify-center group transition-all duration-300 hover:shadow-sm hover:border-blue-300 hover:bg-blue-50 active:scale-95"
+                    onClick={swapDestinations}
+                  >
+                    <ArrowLeftRight className="w-3 h-3 text-gray-600 group-hover:text-blue-600 transition-all duration-500 group-hover:rotate-180" />
+                  </Button>
+                </div>
+
+                {/* To Field - Compact */}
+                <div className="lg:col-span-2">
+                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
+                  <Button
+                    variant="outline"
+                    className={`relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border transition-all duration-200 hover:shadow-sm group ${
+                      errors.to || errors.sameDestination
+                        ? 'border-red-300 hover:border-red-400'
+                        : 'border-gray-200 hover:border-blue-300'
+                    }`}
+                    onClick={openToModal}
+                  >
+                    <div className="flex items-center gap-2 w-full">
+                      <div className={`flex-shrink-0 p-1 rounded ${
+                        errors.to || errors.sameDestination
+                          ? 'bg-red-50 text-red-600'
+                          : 'bg-green-50 text-green-600'
+                      }`}>
+                        <MapPin className="w-3 h-3" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        {to && getAirportByCode(to) ? (
+                          <div>
+                            <div className="font-semibold text-sm text-gray-800">{to}</div>
+                            <div className="text-[10px] text-gray-500 truncate">{getAirportByCode(to)?.city}</div>
+                          </div>
+                        ) : (
+                          <div className={`text-[11px] font-medium ${errors.to || errors.sameDestination ? 'text-red-500' : 'text-gray-500'}`}>
+                            Chọn điểm đến
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </Button>
+                </div>
+
+                {/* Departure Date - Compact */}
+                <div className="lg:col-span-2">
+                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY ĐI</div>
+                  <Popover open={departureCalendarOpen} onOpenChange={setDepartureCalendarOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={`relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border transition-all duration-200 hover:shadow-sm ${
+                          errors.departDate
                             ? 'border-red-300 hover:border-red-400'
                             : 'border-gray-200 hover:border-blue-300'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 w-full">
-                        <div className={`flex-shrink-0 p-1.5 rounded-lg ${
-                          tripType === 'oneway'
-                            ? 'bg-gray-100 text-gray-400'
-                            : errors.returnDate
+                        }`}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <div className={`flex-shrink-0 p-1 rounded ${
+                            errors.departDate
                               ? 'bg-red-50 text-red-600'
-                              : 'bg-purple-50 text-purple-600'
-                        }`}>
-                          <CalendarIcon className="w-3.5 h-3.5" />
+                              : 'bg-orange-50 text-orange-600'
+                          }`}>
+                            <CalendarIcon className="w-3 h-3" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            {departDate ? (
+                              <div>
+                                <div className="font-semibold text-sm text-gray-800">{format(departDate, 'dd/MM')}</div>
+                                <div className="text-[10px] text-gray-500 truncate">{format(departDate, 'EEE', { locale: vi })}</div>
+                              </div>
+                            ) : (
+                              <div className={`text-[11px] font-medium ${errors.departDate ? 'text-red-500' : 'text-gray-500'}`}>
+                                Chọn ngày
+                              </div>
+                            )}
+                          </div>
                         </div>
-                        <div className="flex-1 min-w-0">
-                          {tripType === 'roundtrip' && returnDate ? (
-                            <div>
-                              <div className="font-semibold text-sm text-gray-800">{format(returnDate, 'dd/MM/yyyy')}</div>
-                              <div className="text-xs text-gray-500 truncate">{format(returnDate, 'EEE', { locale: vi })}</div>
-                            </div>
-                          ) : (
-                            <div className={`text-xs font-medium ${
-                              tripType === 'oneway' 
-                                ? 'text-gray-400' 
-                                : errors.returnDate 
-                                  ? 'text-red-500' 
-                                  : 'text-gray-500'
-                            }`}>
-                              {tripType === 'oneway' ? 'Chọn ngày' : 'Chọn ngày'}
-                            </div>
-                          )}
-                        </div>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <div className="p-3 border-b bg-gradient-to-r from-blue-50 to-blue-100">
+                        <h4 className="font-medium text-sm text-gray-800">Chọn ngày khởi hành</h4>
+                        <p className="text-xs text-gray-600">Chọn ngày bạn muốn bay</p>
                       </div>
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <div className="p-3 border-b bg-gradient-to-r from-purple-50 to-purple-100">
-                      <h4 className="font-medium text-sm text-gray-800">Chọn ngày về</h4>
-                      <p className="text-xs text-gray-600">Chọn ngày bạn muốn bay về</p>
-                    </div>
-                    <Calendar
-                      mode="single"
-                      selected={returnDate}
-                      onSelect={handleReturnDateSelect}
-                      disabled={(date) => date < (departDate || new Date())}
-                      initialFocus
-                      className="rounded-lg"
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
+                      <Calendar
+                        mode="single"
+                        selected={departDate}
+                        onSelect={handleDepartureDateSelect}
+                        disabled={(date) => date < new Date()}
+                        initialFocus
+                        className="rounded-lg"
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
 
-              {/* Passengers - Proper proportion */}
-              <div className="lg:col-span-4">
-                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">HÀNH KHÁCH</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-md"
-                  onClick={() => setShowPassengerModal(true)}
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1.5 bg-indigo-50 rounded-lg">
-                      <Users className="w-3.5 h-3.5 text-indigo-600" />
-                    </div>
-                    <div className="flex-1 text-left">
-                      <div className="font-semibold text-sm text-gray-800">
-                        {getTotalPassengers()} khách
+                {/* Return Date - Compact */}
+                <div className="lg:col-span-2">
+                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY VỀ</div>
+                  <Popover open={returnCalendarOpen} onOpenChange={setReturnCalendarOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        disabled={tripType === 'oneway'}
+                        className={`relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border transition-all duration-200 hover:shadow-sm ${
+                          tripType === 'oneway' 
+                            ? 'border-gray-100 bg-gray-50/50 cursor-not-allowed opacity-60' 
+                            : errors.returnDate
+                              ? 'border-red-300 hover:border-red-400'
+                              : 'border-gray-200 hover:border-blue-300'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <div className={`flex-shrink-0 p-1 rounded ${
+                            tripType === 'oneway'
+                              ? 'bg-gray-100 text-gray-400'
+                              : errors.returnDate
+                                ? 'bg-red-50 text-red-600'
+                                : 'bg-purple-50 text-purple-600'
+                          }`}>
+                            <CalendarIcon className="w-3 h-3" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            {tripType === 'roundtrip' && returnDate ? (
+                              <div>
+                                <div className="font-semibold text-sm text-gray-800">{format(returnDate, 'dd/MM')}</div>
+                                <div className="text-[10px] text-gray-500 truncate">{format(returnDate, 'EEE', { locale: vi })}</div>
+                              </div>
+                            ) : (
+                              <div className={`text-[11px] font-medium ${
+                                tripType === 'oneway' 
+                                  ? 'text-gray-400' 
+                                  : errors.returnDate 
+                                    ? 'text-red-500' 
+                                    : 'text-gray-500'
+                              }`}>
+                                Chọn ngày
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <div className="p-3 border-b bg-gradient-to-r from-purple-50 to-purple-100">
+                        <h4 className="font-medium text-sm text-gray-800">Chọn ngày về</h4>
+                        <p className="text-xs text-gray-600">Chọn ngày bạn muốn bay về</p>
                       </div>
-                      <div className="text-xs text-gray-500 truncate">
-                        {passengers.adults} người lớn{passengers.children > 0 && `, ${passengers.children} trẻ em`}{passengers.infants > 0 && `, ${passengers.infants} em bé`}
+                      <Calendar
+                        mode="single"
+                        selected={returnDate}
+                        onSelect={handleReturnDateSelect}
+                        disabled={(date) => date < (departDate || new Date())}
+                        initialFocus
+                        className="rounded-lg"
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                {/* Passengers - Compact */}
+                <div className="lg:col-span-2">
+                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HÀNH KHÁCH</div>
+                  <Button
+                    variant="outline"
+                    className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-sm"
+                    onClick={() => setShowPassengerModal(true)}
+                  >
+                    <div className="flex items-center gap-2 w-full">
+                      <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
+                        <Users className="w-3 h-3 text-indigo-600" />
+                      </div>
+                      <div className="flex-1 text-left">
+                        <div className="font-semibold text-sm text-gray-800">
+                          {getTotalPassengers()} khách
+                        </div>
+                        <div className="text-[10px] text-gray-500 truncate">
+                          {passengers.adults} người lớn{passengers.children > 0 && `, ${passengers.children} trẻ em`}{passengers.infants > 0 && `, ${passengers.infants} em bé`}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Button>
+                  </Button>
+                </div>
+
+                {/* Search Button - Compact */}
+                <div className="lg:col-span-1 flex items-end">
+                  <Button
+                    className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md disabled:opacity-70 disabled:cursor-not-allowed"
+                    onClick={handleSearch}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Search className="w-4 h-4" />
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
 
@@ -902,32 +919,7 @@ export function SearchForm({
             </motion.div>
           )}
 
-          {/* Enhanced Search Button with proper spacing */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
-            className="relative mt-6"
-          >
-            <Button
-              className="w-full h-14 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
-              onClick={handleSearch}
-              disabled={isSubmitting}
-            >
-              <div className="flex items-center justify-center gap-3">
-                {isSubmitting ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  <Search className="w-5 h-5" />
-                )}
-                <div className="text-center">
-                  <div className="text-base font-semibold">
-                    {isSubmitting ? 'Đang tìm kiếm...' : 'Tìm kiếm chuyến bay'}
-                  </div>
-                </div>
-              </div>
-            </Button>
-          </motion.div>
+          
 
           {/* Trust indicators */}
           <motion.div
