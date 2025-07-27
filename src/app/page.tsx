@@ -710,50 +710,106 @@ export default function HomePage() {
   }, [])
 
   return (
-    
+    <div className="min-h-screen">
+      <Header />
       
+      {/* Hero Section */}
+      <section 
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Background overlay */}
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px]"></div>
         
-          
-            ✈️ Nền tảng du lịch hàng đầu Việt Nam
-          
-          
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 py-20 text-center text-white">
+          <Badge className="bg-white/20 text-white px-4 py-2 text-sm font-semibold mb-4">
+            ✈ Nền tảng du lịch hàng đầu Việt Nam
+          </Badge>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Khám phá thế giới
+            <br />
             với giá tốt nhất
-          
-          
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với 
+            <br />
             hơn 1000+ chuyến bay mỗi ngày
+            <br />
             từ các đối tác uy tín
+          </p>
           
-          
+          {/* Trust indicators */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="flex flex-wrap justify-center gap-6 mb-8"
+          >
+            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+              <DollarSign className="w-4 h-4" />
+              <span>Giá rẻ nhất thị trường</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+              <Shield className="w-4 h-4" />
+              <span>Thanh toán an toàn</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+              <Headphones className="w-4 h-4" />
+              <span>Hỗ trợ 24/7</span>
+            </div>
+          </motion.div>
 
-            
-              Giá rẻ nhất thị trường
-            
-            
-              Thanh toán an toàn
-            
-            
-              Hỗ trợ 24/7
-            
-          
+          {/* Tab navigation */}
+          <div className="flex justify-center mb-8">
+            <div className="bg-white/20 backdrop-blur-sm rounded-full p-1">
+              <button
+                className={`px-6 py-3 rounded-full transition-all duration-300 ${
+                  activeTab === 'flight'
+                    ? 'bg-white text-blue-600 shadow-lg'
+                    : 'text-white hover:bg-white/10'
+                }`}
+                onClick={() => setActiveTab('flight')}
+              >
+                <Plane className="w-4 h-4 inline mr-2" />
+                Chuyến bay
+              </button>
+              <button
+                className={`px-6 py-3 rounded-full transition-all duration-300 ${
+                  activeTab === 'hotel'
+                    ? 'bg-white text-blue-600 shadow-lg'
+                    : 'text-white hover:bg-white/10'
+                }`}
+                onClick={() => setActiveTab('hotel')}
+              >
+                <Hotel className="w-4 h-4 inline mr-2" />
+                Khách sạn
+              </button>
+            </div>
+          </div>
 
-          
-            
-              Chuyến bay
-            
-            
-              Khách sạn
-            
-          
+          {/* Search Forms */}
+          <div className="w-full max-w-5xl mx-auto">
+            {activeTab === 'flight' ? (
+              <SearchForm />
+            ) : (
+              <HotelSearchForm />
+            )}
+          </div>
+        </div>
+      </section>
 
-          {activeTab === 'flight' ? (
-            <SearchForm />
-          ) : (
-            <HotelSearchForm />
-          )}
-        
+      {/* Feature Sections */}
+      <WhyChooseSkyoSection />
+      <TrustNumbersSection />
+      <TestimonialsSection />
+      <MobileAppSection />
       
-    
+      <Footer />
+    </div>
   )
 }
