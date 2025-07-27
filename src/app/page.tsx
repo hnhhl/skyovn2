@@ -7,7 +7,7 @@ import { FeatureSection } from '@/components/FeatureSection'
 import { StoriesSection } from '@/components/StoriesSection'
 import { PopularAirlines } from '@/components/PopularAirlines'
 import { Footer } from '@/components/Footer'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Search, 
   Star, 
