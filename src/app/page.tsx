@@ -124,62 +124,62 @@ function TrustNumbersSection() {
   const partners = [
     { 
       name: 'Vietnam Airlines', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Vietnam_Airlines_logo.svg/2560px-Vietnam_Airlines_logo.svg.png',
+      logo: 'https://res.cloudinary.com/wego/f_auto,fl_lossy,w_1000,q_auto/v1480072078/flights/airlines_rectangular/VN.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Vietjet Air', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/VietJet_Air_logo.svg/2560px-VietJet_Air_logo.svg.png',
+      logo: 'https://res.cloudinary.com/wego/f_auto,fl_lossy,w_1000,q_auto/v1480072078/flights/airlines_rectangular/VJ.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Jetstar Pacific', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Jetstar.svg/2560px-Logo_Jetstar.svg.png',
+      logo: 'https://res.cloudinary.com/wego/f_auto,fl_lossy,w_1000,q_auto/v1480072078/flights/airlines_rectangular/BL.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Bamboo Airways', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Bamboo_Airways_logo.svg/2560px-Bamboo_Airways_logo.svg.png',
+      logo: 'https://res.cloudinary.com/wego/f_auto,fl_lossy,w_1000,q_auto/v1480072078/flights/airlines_rectangular/QH.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Singapore Airlines', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Singapore_Airlines_Logo_2.svg/2560px-Singapore_Airlines_Logo_2.svg.png',
+      logo: 'https://logos-world.net/wp-content/uploads/2023/01/Singapore-Airlines-Logo.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Thai Airways', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Thai_Airways_Logo.svg/2560px-Thai_Airways_Logo.svg.png',
+      logo: 'https://logos-world.net/wp-content/uploads/2023/01/Thai-Airways-Logo.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'AirAsia', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/AirAsia_New_Logo.svg/2560px-AirAsia_New_Logo.svg.png',
+      logo: 'https://logos-world.net/wp-content/uploads/2020/03/AirAsia-Logo.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Cathay Pacific', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Cathay_Pacific_logo.svg/2560px-Cathay_Pacific_logo.svg.png',
+      logo: 'https://logos-world.net/wp-content/uploads/2023/01/Cathay-Pacific-Logo.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Vinpearl', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Vinpearl_logo.svg/2560px-Vinpearl_logo.svg.png',
+      logo: 'https://cdn.haitrieu.com/wp-content/uploads/2022/01/Logo-Vinpearl.png',
       type: 'Khách sạn'
     },
     { 
       name: 'InterContinental', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/InterContinental_Hotels_Group_logo.svg/2560px-InterContinental_Hotels_Group_logo.svg.png',
+      logo: 'https://logos-world.net/wp-content/uploads/2021/02/InterContinental-Logo.png',
       type: 'Khách sạn'
     },
     { 
       name: 'Marriott', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Marriott_Logo.svg/2560px-Marriott_Logo.svg.png',
+      logo: 'https://logos-world.net/wp-content/uploads/2020/06/Marriott-Logo.png',
       type: 'Khách sạn'
     },
     { 
       name: 'Hilton', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Hilton_Worldwide_Logo.svg/2560px-Hilton_Worldwide_Logo.svg.png',
+      logo: 'https://logos-world.net/wp-content/uploads/2020/06/Hilton-Logo.png',
       type: 'Khách sạn'
     }
   ]
@@ -830,6 +830,9 @@ export default function HomePage() {
         <div className="absolute bottom-32 left-24 w-16 h-16 bg-gradient-to-br from-sky-400/20 to-cyan-300/10 rounded-full animate-ping backdrop-blur-sm" style={{animationDelay: '1s'}}></div>
         <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-gradient-to-br from-blue-300/10 to-sky-400/5 rounded-full animate-pulse backdrop-blur-sm" style={{animationDelay: '1.5s'}}></div>
       </div>
+
+      {/* Trust & Numbers Section */}
+      <TrustNumbersSection />
 
       {/* Testimonials Section */}
       <TestimonialsSection />
