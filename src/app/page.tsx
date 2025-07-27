@@ -357,164 +357,192 @@ function HotelSearchForm() {
   }
 
   return (
-    <div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.2 }}
-        className="space-y-4"
-      >
-        {/* Destination Field */}
-        <div className="lg:col-span-3">
-          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
-          <div className="relative">
-            <div className="flex items-center gap-2 h-12 px-3 bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200">
-              <div className="flex-shrink-0 p-1 bg-green-50 rounded">
-                <MapPin className="w-3 h-3 text-green-600" />
+    <div className="w-full max-w-5xl mx-auto">
+      <div className="bg-white/95 backdrop-blur-sm overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
+
+        <div className="relative z-10 p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="space-y-4"
+          >
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
+              {/* Destination Field */}
+              <div className="lg:col-span-3">
+                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
+                <div className="relative">
+                  <div className="flex items-center gap-2 h-12 px-3 bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200">
+                    <div className="flex-shrink-0 p-1 bg-green-50 rounded">
+                      <MapPin className="w-3 h-3 text-green-600" />
+                    </div>
+                    <Input
+                      placeholder="Thành phố, khách sạn, khu vực..."
+                      value={destination}
+                      onChange={(e) => setDestination(e.target.value)}
+                      className="border-0 bg-transparent p-0 h-auto text-sm font-semibold text-gray-800 placeholder:text-gray-500 focus-visible:ring-0"
+                    />
+                  </div>
+                </div>
               </div>
-              <Input
-                placeholder="Thành phố, khách sạn, khu vực..."
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
-                className="border-0 bg-transparent p-0 h-auto text-sm font-semibold text-gray-800 placeholder:text-gray-500 focus-visible:ring-0"
-              />
+
+              {/* Check-in Date */}
+              <div className="lg:col-span-2">
+                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY NHẬN PHÒNG</div>
+                <Button
+                  variant="outline"
+                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+                >
+                  <div className="flex items-center gap-2 w-full">
+                    <div className="flex-shrink-0 p-1 bg-blue-50 rounded">
+                      <Calendar className="w-3 h-3 text-blue-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      {checkIn ? (
+                        <div>
+                          <div className="font-semibold text-sm text-gray-800">{checkIn.toLocaleDateString('vi-VN')}</div>
+                          <div className="text-[10px] text-gray-500 truncate">Nhận phòng</div>
+                        </div>
+                      ) : (
+                        <div className="text-[11px] font-medium text-gray-500">
+                          Chọn ngày
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </Button>
+              </div>
+
+              {/* Check-out Date */}
+              <div className="lg:col-span-2">
+                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY TRẢ PHÒNG</div>
+                <Button
+                  variant="outline"
+                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+                >
+                  <div className="flex items-center gap-2 w-full">
+                    <div className="flex-shrink-0 p-1 bg-purple-50 rounded">
+                      <Calendar className="w-3 h-3 text-purple-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      {checkOut ? (
+                        <div>
+                          <div className="font-semibold text-sm text-gray-800">{checkOut.toLocaleDateString('vi-VN')}</div>
+                          <div className="text-[10px] text-gray-500 truncate">Trả phòng</div>
+                        </div>
+                      ) : (
+                        <div className="text-[11px] font-medium text-gray-500">
+                          Chọn ngày
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </Button>
+              </div>
+
+              {/* Rooms */}
+              <div className="lg:col-span-2">
+                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">PHÒNG & KHÁCH</div>
+                <Button
+                  variant="outline"
+                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+                >
+                  <div className="flex items-center gap-2 w-full">
+                    <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
+                      <Building2 className="w-3 h-3 text-indigo-600" />
+                    </div>
+                    <div className="flex-1 text-left min-w-0">
+                      <div className="font-semibold text-sm text-gray-800">
+                        {rooms} phòng
+                      </div>
+                      <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
+                        {guests} khách
+                      </div>
+                    </div>
+                  </div>
+                </Button>
+              </div>
+
+              {/* Star Rating Filter */}
+              <div className="lg:col-span-2">
+                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HẠNG SAO</div>
+                <Button
+                  variant="outline"
+                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+                >
+                  <div className="flex items-center gap-2 w-full">
+                    <div className="flex-shrink-0 p-1 bg-yellow-50 rounded">
+                      <Star className="w-3 h-3 text-yellow-600" />
+                    </div>
+                    <div className="flex-1 text-left min-w-0">
+                      <div className="font-semibold text-sm text-gray-800">
+                        Tất cả
+                      </div>
+                      <div className="text-[9px] text-gray-500 truncate">
+                        1-5 sao
+                      </div>
+                    </div>
+                  </div>
+                </Button>
+              </div>
+
+              {/* Search Button */}
+              <div className="lg:col-span-1 flex items-end">
+                <Button
+                  className="w-full h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
+                  onClick={handleSearch}
+                >
+                  <Search className="w-4 h-4" />
+                </Button>
+              </div>
             </div>
+
+            {/* Quick Destinations */}
+            <div className="mt-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Star className="w-3 h-3 text-gray-500" />
+                <span className="text-xs font-medium text-gray-600">Điểm đến phổ biến</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['Hà Nội', 'TP.HCM', 'Đà Nẵng', 'Nha Trang', 'Phú Quốc', 'Hạ Long', 'Hội An', 'Đà Lạt'].map(city => (
+                  <Button
+                    key={city}
+                    variant="outline"
+                    size="sm"
+                    className="text-xs px-2.5 py-1 border rounded-full hover:bg-green-50 hover:border-green-300 hover:text-green-700 transition-all duration-200"
+                    onClick={() => setDestination(city)}
+                  >
+                    <Hotel className="w-2.5 h-2.5 mr-1 text-green-500" />
+                    {city}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Trust indicators */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600"
+            >
+              <div className="flex items-center gap-1">
+                <CheckCircle className="w-3 h-3 text-green-600" />
+                <span>2M+ khách sạn</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <CheckCircle className="w-3 h-3 text-green-600" />
+                <span>Giá tốt nhất</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <CheckCircle className="w-3 h-3 text-green-600" />
+                <span>Đặt phòng tức thì</span>
+              </div>
+            </motion.div>
           </div>
-        </div>
-
-        {/* Check-in Date */}
-        <div className="lg:col-span-2">
-          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY NHẬN PHÒNG</div>
-          <Button
-            variant="outline"
-            className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-          >
-            <div className="flex items-center gap-2 w-full">
-              <div className="flex-shrink-0 p-1 bg-blue-50 rounded">
-                <Calendar className="w-3 h-3 text-blue-600" />
-              </div>
-              <div className="flex-1 min-w-0">
-                {checkIn ? (
-                  <div>
-                    <div className="font-semibold text-sm text-gray-800">{checkIn.toLocaleDateString('vi-VN')}</div>
-                    <div className="text-[10px] text-gray-500 truncate">Nhận phòng</div>
-                  </div>
-                ) : (
-                  <div className="text-[11px] font-medium text-gray-500">
-                    Chọn ngày
-                  </div>
-                )}
-              </div>
-            </div>
-          </Button>
-        </div>
-
-        {/* Check-out Date */}
-        <div className="lg:col-span-2">
-          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY TRẢ PHÒNG</div>
-          <Button
-            variant="outline"
-            className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-          >
-            <div className="flex items-center gap-2 w-full">
-              <div className="flex-shrink-0 p-1 bg-purple-50 rounded">
-                <Calendar className="w-3 h-3 text-purple-600" />
-              </div>
-              <div className="flex-1 min-w-0">
-                {checkOut ? (
-                  <div>
-                    <div className="font-semibold text-sm text-gray-800">{checkOut.toLocaleDateString('vi-VN')}</div>
-                    <div className="text-[10px] text-gray-500 truncate">Trả phòng</div>
-                  </div>
-                ) : (
-                  <div className="text-[11px] font-medium text-gray-500">
-                    Chọn ngày
-                  </div>
-                )}
-              </div>
-            </div>
-          </Button>
-        </div>
-
-        {/* Rooms */}
-        <div className="lg:col-span-2">
-          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">PHÒNG & KHÁCH</div>
-          <Button
-            variant="outline"
-            className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-          >
-            <div className="flex items-center gap-2 w-full">
-              <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
-                <Building2 className="w-3 h-3 text-indigo-600" />
-              </div>
-              <div className="flex-1 text-left min-w-0">
-                <div className="font-semibold text-sm text-gray-800">
-                  {rooms} phòng
-                </div>
-                <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
-                  {guests} khách
-                </div>
-              </div>
-            </div>
-          </Button>
-        </div>
-
-        {/* Star Rating Filter */}
-        <div className="lg:col-span-2">
-          <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HẠNG SAO</div>
-          <Button
-            variant="outline"
-            className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-          >
-            <div className="flex items-center gap-2 w-full">
-              <div className="flex-shrink-0 p-1 bg-yellow-50 rounded">
-                <Star className="w-3 h-3 text-yellow-600" />
-              </div>
-              <div className="flex-1 text-left min-w-0">
-                <div className="font-semibold text-sm text-gray-800">
-                  Tất cả
-                </div>
-                <div className="text-[9px] text-gray-500 truncate">
-                  1-5 sao
-                </div>
-              </div>
-            </div>
-          </Button>
-        </div>
-
-        {/* Search Button */}
-        <div className="lg:col-span-1 flex items-end">
-          <Button
-            className="w-full h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
-            onClick={handleSearch}
-          >
-            <Search className="w-4 h-4" />
-          </Button>
-        </div>
-      </motion.div>
-
-      <div className="mt-8">
-        <div className="text-center mb-4">
-          Điểm đến phổ biến
-        </div>
-        <div className="flex justify-center gap-4">
-          {['Hà Nội', 'TP.HCM', 'Đà Nẵng', 'Nha Trang', 'Phú Quốc', 'Hạ Long', 'Hội An', 'Đà Lạt'].map(city => (
-            <div key={city} className="bg-gray-100 rounded-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors duration-200">
-              {city}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-8 text-center">
-        <div className="text-sm text-gray-600">
-          2M+ khách sạn
-        </div>
-        <div className="text-sm text-gray-600">
-          Giá tốt nhất
-        </div>
-        <div className="text-sm text-gray-600">
-          Đặt phòng tức thì
+        </motion.div>
         </div>
       </div>
     </div>
@@ -524,161 +552,185 @@ function HotelSearchForm() {
 // Mobile App Section
 function MobileAppSection() {
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-100 to-blue-50">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left Side: App Details */}
-          <div className="text-center md:text-left">
-            <Badge className="bg-blue-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              SKYO MOBILE APP
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-              Đặt vé mọi lúc,
-              <br />
-              mọi nơi
+    <section className="py-20 bg-gradient-to-br from-blue-600 via-sky-600 to-cyan-700 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white rounded-full blur-2xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Content */}
+          <div className="text-white lg:pr-8">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
+              <Smartphone className="w-4 h-4" />
+              <span className="text-sm font-semibold uppercase tracking-wider">SKYO MOBILE APP</span>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Đặt vé mọi lúc,<br />
+              <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                mọi nơi
+              </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-md">
+
+            <p className="text-xl text-white/90 mb-10 leading-relaxed max-w-lg">
               Tải app Skyo để trải nghiệm đặt vé nhanh chóng, nhận thông báo giá rẻ và quản lý chuyến đi dễ dàng.
             </p>
 
             {/* Features */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 max-w-md">
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-green-500" />
+            <div className="space-y-6 mb-10">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                  <Zap className="w-7 h-7 text-white" />
+                </div>
                 <div>
-                  <div className="font-semibold text-slate-800">Đặt vé siêu nhanh</div>
-                  <div className="text-sm text-slate-600">Chỉ 3 bước • Thanh toán an toàn</div>
+                  <div className="font-bold text-lg">Đặt vé siêu nhanh</div>
+                  <div className="text-white/80">Chỉ 3 bước • Thanh toán an toàn</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <Bell className="w-5 h-5 text-orange-500" />
+
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                  <Bell className="w-7 h-7 text-white" />
+                </div>
                 <div>
-                  <div className="font-semibold text-slate-800">Thông báo giá rẻ</div>
-                  <div className="text-sm text-slate-600">Cập nhật real-time • Không bỏ lỡ deal</div>
+                  <div className="font-bold text-lg">Thông báo giá rẻ</div>
+                  <div className="text-white/80">Cập nhật real-time • Không bỏ lỡ deal</div>
                 </div>
               </div>
             </div>
 
             {/* Download Buttons */}
-            <div className="flex items-center gap-4 mt-8">
-              <Button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg shadow-md">
-                <Download className="w-4 h-4 mr-2" />
-                Tải trên
-                <br />
-                App Store
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <Download className="w-5 h-5 mr-3" />
+                <div className="text-left">
+                  <div className="text-xs opacity-70">Tải trên</div>
+                  <div className="text-sm">App Store</div>
+                </div>
               </Button>
-              <Button className="bg-green-700 hover:bg-green-800 text-white font-semibold rounded-lg shadow-md">
-                <Download className="w-4 h-4 mr-2" />
-                Tải trên
-                <br />
-                Google Play
+
+              <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                <Smartphone className="w-5 h-5 mr-3" />
+                <div className="text-left">
+                  <div className="text-xs opacity-70">Tải trên</div>
+                  <div className="text-sm">Google Play</div>
+                </div>
               </Button>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 mt-12 max-w-md">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">1M+</div>
-                <div className="text-sm text-slate-600">lượt tải</div>
+            <div className="flex items-center gap-6 text-sm text-white/80">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>1M+ lượt tải</span>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-600">4.8/5</div>
-                <div className="text-sm text-slate-600">rating</div>
+              <div className="flex items-center gap-2">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <span>4.8/5 rating</span>
               </div>
-              <div className="text-center">
-                <Shield className="w-6 h-6 mx-auto text-blue-600" />
-                <div className="text-sm text-slate-600">Bảo mật tuyệt đối</div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-green-400" />
+                <span>Bảo mật tuyệt đối</span>
               </div>
             </div>
           </div>
 
-          {/* Right Side: Mobile App Preview */}
-          <div className="relative">
-            {/* QR Code */}
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg p-4">
+          {/* Right Content - Phone Mockup */}
+          <div className="relative flex justify-center lg:justify-end">
+            {/* QR Code Card */}
+            <div className="absolute top-8 -left-4 lg:left-8 bg-white rounded-3xl p-6 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="text-center">
-                <QrCode className="w-16 h-16 mx-auto mb-2" />
-                <div className="text-xs font-semibold text-slate-700">
-                  SCAN ĐỂ TẢI APP
-                  <br />
-                  Miễn phí 100%
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+                  <QrCode className="w-16 h-16 text-white" />
                 </div>
+                <div className="text-xs font-bold text-slate-800 mb-1">SCAN ĐỂ TẢI APP</div>
+                <div className="text-xs text-slate-500">Miễn phí 100%</div>
               </div>
             </div>
 
             {/* Phone Mockup */}
             <div className="relative">
-              <img
-                src="https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/examples/mobile-app-mockup.png"
-                alt="Mobile App Mockup"
-                className="max-w-full mx-auto rounded-3xl shadow-2xl"
-              />
-
-              {/* App Content */}
-              <div className="absolute top-6 left-6 w-[calc(100%-48px)] h-[calc(100%-48px)] bg-white rounded-2xl overflow-hidden">
-                {/* Top Bar */}
-                <div className="bg-slate-100 px-4 py-3 flex items-center justify-between">
-                  <div className="text-xs text-slate-500">
-                    <Clock className="inline-block w-4 h-4 mr-1" />
-                    9:41
-                  </div>
-                  <div className="text-xs text-slate-500">
-                    <Smartphone className="inline-block w-4 h-4" />
-                  </div>
-                </div>
-
-                {/* Content Area */}
-                <div className="p-4">
-                  <div className="font-semibold text-slate-800 text-lg">
-                    Skyo
-                  </div>
-                  <div className="text-sm text-slate-600 mb-3">
-                    Chào mừng trở lại!
-                  </div>
-
-                  {/* Search Bar */}
-                  <div className="bg-white rounded-xl shadow-sm p-3 flex items-center gap-2 mb-4">
-                    <Search className="w-4 h-4 text-slate-400" />
-                    <div className="text-sm text-slate-500">
-                      Tìm chuyến bay
-                      <span className="font-medium text-slate-700">
-                        HCM → Hà Nội
-                      </span>
+              {/* Phone Frame */}
+              <div className="relative w-80 h-[600px] bg-gradient-to-b from-slate-900 to-slate-800 rounded-[3rem] p-3 shadow-2xl">
+                {/* Screen */}
+                <div className="w-full h-full bg-gradient-to-b from-blue-50 to-white rounded-[2.5rem] overflow-hidden relative">
+                  {/* Status Bar */}
+                  <div className="flex justify-between items-center px-6 py-3 bg-blue-600 text-white text-sm">
+                    <span className="font-semibold">9:41</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-4 h-2 border border-white rounded-sm">
+                        <div className="w-3 h-1 bg-white rounded-sm m-0.5"></div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Tabs */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium">
-                      <Plane className="inline-block w-4 h-4 mr-1" />
-                      Máy bay
+                  {/* App Header */}
+                  <div className="bg-gradient-to-r from-blue-600 to-sky-600 px-6 py-4 text-white">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="text-2xl font-bold">Skyo</div>
+                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <Bell className="w-4 h-4" />
+                      </div>
                     </div>
-                    <div className="px-4 py-2 rounded-full text-slate-700 text-sm font-medium">
-                      <Hotel className="inline-block w-4 h-4 mr-1" />
-                      Khách sạn
-                    </div>
+                    <div className="text-white/90 text-sm">Chào mừng trở lại!</div>
                   </div>
 
-                  {/* Recent Bookings */}
-                  <div>
-                    <div className="text-xs font-semibold text-slate-700 mb-2">
-                      Đặt chỗ gần đây
-                    </div>
-                    <div classNameName="bg-white rounded-xl shadow-sm p-3">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="text-sm font-medium text-slate-700">
-                          VJ123 • VietJet
-                        </div>
-                        <div className="text-xs text-slate-500">
-                          HCM → HN • 15/02
+                  {/* Content */}
+                  <div className="p-6 space-y-4">
+                    {/* Search Bar */}
+                    <div className="bg-white rounded-2xl p-4 shadow-lg border border-gray-100">
+                      <div className="flex items-center gap-3 text-gray-600">
+                        <Plane className="w-5 h-5 text-blue-600" />
+                        <div className="flex-1">
+                          <div className="text-xs text-gray-400">Tìm chuyến bay</div>
+                          <div className="font-semibold">HCM → Hà Nội</div>
                         </div>
                       </div>
-                      <div className="text-xs text-green-600 font-semibold">
-                        Đã xác nhận
+                    </div>
+
+                    {/* Quick Actions */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-gradient-to-br from-blue-500 to-sky-600 text-white p-4 rounded-2xl">
+                        <Plane className="w-6 h-6 mb-2" />
+                        <div className="text-sm font-semibold">Máy bay</div>
+                      </div>
+                      <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-4 rounded-2xl">
+                        <Hotel className="w-6 h-6 mb-2" />
+                        <div className="text-sm font-semibold">Khách sạn</div>
+                      </div>
+                    </div>
+
+                    {/* Recent Bookings */}
+                    <div className="space-y-3">
+                      <div className="text-sm font-semibold text-gray-700">Đặt chỗ gần đây</div>
+                      <div className="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <div className="font-semibold text-sm">VJ123 • VietJet</div>
+                            <div className="text-xs text-gray-500">HCM → HN • 15/02</div>
+                          </div>
+                          <Badge className="bg-green-100 text-green-800 text-xs">Đã xác nhận</Badge>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Home Indicator */}
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full"></div>
+              </div>
+
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-xl animate-bounce">
+                <Star className="w-8 h-8 text-white fill-current" />
+              </div>
+
+              <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center shadow-xl">
+                <Download className="w-10 h-10 text-white" />
               </div>
             </div>
           </div>
@@ -711,89 +763,99 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
+      {/* Header */}
       <Header />
-      
-      {/* Hero Section */}
-      <section 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+
+      {/* Hero Section with Background */}
+      <div
+        className="relative min-h-[800px] bg-cover bg-center bg-no-repeat overflow-hidden transition-all duration-1000"
         style={{
-          backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage: `linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%), url('${backgroundImages[currentImageIndex]}')`
         }}
       >
-        {/* Background overlay */}
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px]"></div>
-        
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 py-20 text-center text-white">
-          <Badge className="bg-white/20 text-white px-4 py-2 text-sm font-semibold mb-4">
-            ✈ Nền tảng du lịch hàng đầu Việt Nam
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Khám phá thế giới
-            <br />
-            với giá tốt nhất
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với 
-            <br />
-            hơn 1000+ chuyến bay mỗi ngày
-            <br />
-            từ các đối tác uy tín
-          </p>
-          
-          {/* Trust indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-6 mb-8"
-          >
-            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
-              <DollarSign className="w-4 h-4" />
-              <span>Giá rẻ nhất thị trường</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
-              <Shield className="w-4 h-4" />
-              <span>Thanh toán an toàn</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
-              <Headphones className="w-4 h-4" />
-              <span>Hỗ trợ 24/7</span>
-            </div>
-          </motion.div>
+        {/* Enhanced Animated Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/25 via-sky-800/15 to-cyan-700/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-blue-500/10" />
 
-          {/* Tab navigation */}
-          <div className="flex justify-center mb-8">
-            <div className="bg-white/20 backdrop-blur-sm rounded-full p-1">
-              <button
-                className={`px-6 py-3 rounded-full transition-all duration-300 ${
-                  activeTab === 'flight'
-                    ? 'bg-white text-blue-600 shadow-lg'
-                    : 'text-white hover:bg-white/10'
-                }`}
-                onClick={() => setActiveTab('flight')}
-              >
-                <Plane className="w-4 h-4 inline mr-2" />
-                Chuyến bay
-              </button>
-              <button
-                className={`px-6 py-3 rounded-full transition-all duration-300 ${
-                  activeTab === 'hotel'
-                    ? 'bg-white text-blue-600 shadow-lg'
-                    : 'text-white hover:bg-white/10'
-                }`}
-                onClick={() => setActiveTab('hotel')}
-              >
-                <Hotel className="w-4 h-4 inline mr-2" />
-                Khách sạn
-              </button>
+        {/* Animated particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-sky-300/20 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-1/3 left-1/5 w-1 h-1 bg-cyan-400/40 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-blue-300/25 rounded-full animate-pulse" style={{animationDelay: '3s'}}></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 pt-12 pb-2">
+          {/* Hero Text */}
+          <div className="text-center mb-16">
+            <div className="inline-block mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text text-sm font-semibold tracking-wider uppercase">
+                ✈️ Nền tảng du lịch hàng đầu Việt Nam
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Khám phá <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-300 text-transparent bg-clip-text">thế giới</span>
+              <br />
+              <span className="text-4xl md:text-6xl">với giá tốt nhất</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với 
+              <span className="font-semibold text-blue-300"> hơn 1000+ chuyến bay mỗi ngày</span> 
+              từ các đối tác uy tín
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-green-400" />
+                <span>Giá rẻ nhất thị trường</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-blue-400" />
+                <span>Thanh toán an toàn</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Headphones className="w-5 h-5 text-purple-400" />
+                <span>Hỗ trợ 24/7</span>
+              </div>
             </div>
           </div>
 
-          {/* Search Forms */}
-          <div className="w-full max-w-5xl mx-auto">
+          {/* Flight/Hotel Tabs - Moved closer to form */}
+          <div className="flex gap-2 mb-4 justify-center">
+            <button
+              onClick={() => setActiveTab('flight')}
+              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 ${
+                activeTab === 'flight'
+                  ? 'bg-gradient-to-r from-blue-600 to-sky-600 border-blue-400/30 border border-b-0'
+                  : 'bg-white/15 backdrop-blur-sm border-white/30 border border-b-0 hover:bg-white/25'
+              }`}
+            >
+              <div className={`flex items-center gap-3 font-bold text-lg ${
+                activeTab === 'flight' ? 'text-white' : 'text-white/90'
+              }`}>
+                <Plane className="w-6 h-6" />
+                Chuyến bay
+              </div>
+            </button>
+            <button
+              onClick={() => setActiveTab('hotel')}
+              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 ${
+                activeTab === 'hotel'
+                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 border-green-400/30 border border-b-0'
+                  : 'bg-white/15 backdrop-blur-sm border-white/30 border border-b-0 hover:bg-white/25'
+              }`}
+            >
+              <div className={`flex items-center gap-3 font-bold text-lg ${
+                activeTab === 'hotel' ? 'text-white' : 'text-white/90'
+              }`}>
+                <Hotel className="w-6 h-6" />
+                Khách sạn
+              </div>
+            </button>
+          </div>
+
+          {/* Search Forms - Connected to tabs */}
+          <div className="flex justify-center w-full">
             {activeTab === 'flight' ? (
               <SearchForm />
             ) : (
@@ -801,15 +863,40 @@ export default function HomePage() {
             )}
           </div>
         </div>
-      </section>
 
-      {/* Feature Sections */}
+        {/* Enhanced Floating Elements */}
+        <div className="absolute top-32 left-16 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-sky-300/10 rounded-full animate-pulse backdrop-blur-sm"></div>
+        <div className="absolute top-60 right-24 w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-300/10 rounded-full animate-bounce backdrop-blur-sm" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute bottom-32 left-24 w-16 h-16 bg-gradient-to-br from-sky-400/20 to-cyan-300/10 rounded-full animate-ping backdrop-blur-sm" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-gradient-to-br from-blue-300/10 to-sky-400/5 rounded-full animate-pulse backdrop-blur-sm" style={{animationDelay: '1.5s'}}></div>
+      </div>
+
+      {/* Feature Section */}
+      <FeatureSection />
+
+      {/* Why Choose Skyo Section */}
       <WhyChooseSkyoSection />
+
+      {/* Trust & Numbers Section */}
       <TrustNumbersSection />
+
+      {/* Testimonials Section */}
       <TestimonialsSection />
+
+      {/* Stories Section */}
+      <StoriesSection />
+
+      {/* Mobile App Section */}
       <MobileAppSection />
-      
+
+      {/* Popular Airlines */}
+      <PopularAirlines />
+
+      {/* Footer */}
       <Footer />
+
+      {/* Debug Info - Remove in production */}
+      <DebugInfo />
     </div>
   )
 }
