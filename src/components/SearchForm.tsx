@@ -656,11 +656,11 @@ export function SearchForm({
             transition={{ duration: 0.3, delay: 0.2 }}
             className="space-y-4"
           >
-            {/* Single Row Layout - Reduced field sizes */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
-              {/* From Field - Reduced from col-span-3 to col-span-2.5 */}
-              <div className="lg:col-span-2">
-                <div className="text-xs font-medium text-gray-600 mb-1 px-1">ĐIỂM ĐI</div>
+            {/* Balanced Grid Layout with proper spacing */}
+            <div className="grid grid-cols-1 lg:grid-cols-24 gap-3">
+              {/* From Field - Better proportions */}
+              <div className="lg:col-span-5">
+                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">ĐIỂM ĐI</div>
                 <Button
                   variant="outline"
                   className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md group ${
@@ -694,8 +694,8 @@ export function SearchForm({
                 </Button>
               </div>
 
-              {/* Swap Button with 360 degree rotation animation */}
-              <div className="lg:col-span-1 flex items-end justify-center pb-2">
+              {/* Swap Button with proper spacing */}
+              <div className="lg:col-span-2 flex items-end justify-center pb-2">
                 <Button
                   variant="outline"
                   size="sm"
@@ -706,9 +706,9 @@ export function SearchForm({
                 </Button>
               </div>
 
-              {/* To Field - Reduced from col-span-3 to col-span-2.5 */}
-              <div className="lg:col-span-2">
-                <div className="text-xs font-medium text-gray-600 mb-1 px-1">ĐIỂM ĐẾN</div>
+              {/* To Field - Balanced with from field */}
+              <div className="lg:col-span-5">
+                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">ĐIỂM ĐẾN</div>
                 <Button
                   variant="outline"
                   className={`relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 transition-all duration-200 hover:shadow-md group ${
@@ -742,9 +742,9 @@ export function SearchForm({
                 </Button>
               </div>
 
-              {/* Departure Date */}
-              <div className="lg:col-span-2">
-                <div className="text-xs font-medium text-gray-600 mb-1 px-1">NGÀY ĐI</div>
+              {/* Departure Date - Proper spacing from destination */}
+              <div className="lg:col-span-4">
+                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">NGÀY ĐI</div>
                 <Popover open={departureCalendarOpen} onOpenChange={setDepartureCalendarOpen}>
                   <PopoverTrigger asChild>
                     <Button
@@ -795,9 +795,9 @@ export function SearchForm({
                 </Popover>
               </div>
 
-              {/* Return Date - Fixed width, no layout shift */}
-              <div className="lg:col-span-2">
-                <div className="text-xs font-medium text-gray-600 mb-1 px-1">NGÀY VỀ</div>
+              {/* Return Date - Same size as departure date */}
+              <div className="lg:col-span-4">
+                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">NGÀY VỀ</div>
                 <Popover open={returnCalendarOpen} onOpenChange={setReturnCalendarOpen}>
                   <PopoverTrigger asChild>
                     <Button
@@ -859,9 +859,9 @@ export function SearchForm({
                 </Popover>
               </div>
 
-              {/* Passengers - Increased from col-span-1 to col-span-3 */}
-              <div className="lg:col-span-3">
-                <div className="text-xs font-medium text-gray-600 mb-1 px-1">HÀNH KHÁCH</div>
+              {/* Passengers - Proper proportion */}
+              <div className="lg:col-span-4">
+                <div className="text-xs font-medium text-gray-600 mb-1.5 px-1">HÀNH KHÁCH</div>
                 <Button
                   variant="outline"
                   className="relative w-full h-14 justify-start text-left bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-md"
@@ -875,7 +875,7 @@ export function SearchForm({
                       <div className="font-semibold text-sm text-gray-800">
                         {getTotalPassengers()} khách
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-gray-500 truncate">
                         {passengers.adults} người lớn{passengers.children > 0 && `, ${passengers.children} trẻ em`}{passengers.infants > 0 && `, ${passengers.infants} em bé`}
                       </div>
                     </div>
@@ -902,12 +902,12 @@ export function SearchForm({
             </motion.div>
           )}
 
-          {/* Enhanced Search Button */}
+          {/* Enhanced Search Button with proper spacing */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.3 }}
-            className="relative"
+            className="relative mt-6"
           >
             <Button
               className="w-full h-14 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
