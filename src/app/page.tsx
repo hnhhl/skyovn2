@@ -8,12 +8,13 @@ import { StoriesSection } from '@/components/StoriesSection'
 import { PopularAirlines } from '@/components/PopularAirlines'
 import { Footer } from '@/components/Footer'
 import { motion } from 'framer-motion'
-import { Star, Heart, MapPin, Calendar, Users, ChevronRight, CheckCircle, Globe, Sparkles, TrendingUp, Plane, Building2 } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import {
+import { 
+  Search, 
+  Star, 
+  Users, 
+  MapPin, 
+  Calendar, 
+  Plane, 
   Shield,
   Zap,
   Globe,
@@ -23,6 +24,16 @@ import {
   Clock,
   Hotel,
   CreditCard,
+  Users2,
+  Badge,
+  Heart
+} from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import {
+  DollarSign,
   Headphones,
   Smartphone,
   Download,
@@ -30,8 +41,8 @@ import {
   ArrowRight,
   Quote,
   Bell,
-  Search,
-  Bed
+  Bed,
+  Building2
 } from 'lucide-react'
 
 // Why Choose Skyo Section
