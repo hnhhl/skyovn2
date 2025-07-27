@@ -364,159 +364,159 @@ function HotelSearchForm() {
       className="w-full max-w-5xl mx-auto"
     >
       <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end"></div>
-              {/* Destination Field */}
-              <div className="lg:col-span-3">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
-                <div className="relative">
-                  <div className="flex items-center gap-2 h-12 px-3 bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200">
-                    <div className="flex-shrink-0 p-1 bg-green-50 rounded">
-                      <MapPin className="w-3 h-3 text-green-600" />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
+          {/* Destination Field */}
+          <div className="lg:col-span-3">
+            <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
+            <div className="relative">
+              <div className="flex items-center gap-2 h-12 px-3 bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200">
+                <div className="flex-shrink-0 p-1 bg-green-50 rounded">
+                  <MapPin className="w-3 h-3 text-green-600" />
+                </div>
+                <Input
+                  placeholder="Thành phố, khách sạn, khu vực..."
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
+                  className="border-0 bg-transparent p-0 h-auto text-sm font-semibold text-gray-800 placeholder:text-gray-500 focus-visible:ring-0"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Check-in Date */}
+          <div className="lg:col-span-2">
+            <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY NHẬN PHÒNG</div>
+            <Button
+              variant="outline"
+              className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+            >
+              <div className="flex items-center gap-2 w-full">
+                <div className="flex-shrink-0 p-1 bg-blue-50 rounded">
+                  <Calendar className="w-3 h-3 text-blue-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  {checkIn ? (
+                    <div>
+                      <div className="font-semibold text-sm text-gray-800">{checkIn.toLocaleDateString('vi-VN')}</div>
+                      <div className="text-[10px] text-gray-500 truncate">Nhận phòng</div>
                     </div>
-                    <Input
-                      placeholder="Thành phố, khách sạn, khu vực..."
-                      value={destination}
-                      onChange={(e) => setDestination(e.target.value)}
-                      className="border-0 bg-transparent p-0 h-auto text-sm font-semibold text-gray-800 placeholder:text-gray-500 focus-visible:ring-0"
-                    />
+                  ) : (
+                    <div className="text-[11px] font-medium text-gray-500">
+                      Chọn ngày
+                    </div>
+                  )}
+                </div>
+              </div>
+            </Button>
+          </div>
+
+          {/* Check-out Date */}
+          <div className="lg:col-span-2">
+            <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY TRẢ PHÒNG</div>
+            <Button
+              variant="outline"
+              className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+            >
+              <div className="flex items-center gap-2 w-full">
+                <div className="flex-shrink-0 p-1 bg-purple-50 rounded">
+                  <Calendar className="w-3 h-3 text-purple-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  {checkOut ? (
+                    <div>
+                      <div className="font-semibold text-sm text-gray-800">{checkOut.toLocaleDateString('vi-VN')}</div>
+                      <div className="text-[10px] text-gray-500 truncate">Trả phòng</div>
+                    </div>
+                  ) : (
+                    <div className="text-[11px] font-medium text-gray-500">
+                      Chọn ngày
+                    </div>
+                  )}
+                </div>
+              </div>
+            </Button>
+          </div>
+
+          {/* Rooms */}
+          <div className="lg:col-span-2">
+            <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">PHÒNG & KHÁCH</div>
+            <Button
+              variant="outline"
+              className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+            >
+              <div className="flex items-center gap-2 w-full">
+                <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
+                  <Building2 className="w-3 h-3 text-indigo-600" />
+                </div>
+                <div className="flex-1 text-left min-w-0">
+                  <div className="font-semibold text-sm text-gray-800">
+                    {rooms} phòng
+                  </div>
+                  <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
+                    {guests} khách
                   </div>
                 </div>
               </div>
+            </Button>
+          </div>
 
-              {/* Check-in Date */}
-              <div className="lg:col-span-2">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY NHẬN PHÒNG</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1 bg-blue-50 rounded">
-                      <Calendar className="w-3 h-3 text-blue-600" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      {checkIn ? (
-                        <div>
-                          <div className="font-semibold text-sm text-gray-800">{checkIn.toLocaleDateString('vi-VN')}</div>
-                          <div className="text-[10px] text-gray-500 truncate">Nhận phòng</div>
-                        </div>
-                      ) : (
-                        <div className="text-[11px] font-medium text-gray-500">
-                          Chọn ngày
-                        </div>
-                      )}
-                    </div>
+          {/* Star Rating Filter */}
+          <div className="lg:col-span-2">
+            <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HẠNG SAO</div>
+            <Button
+              variant="outline"
+              className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
+            >
+              <div className="flex items-center gap-2 w-full">
+                <div className="flex-shrink-0 p-1 bg-yellow-50 rounded">
+                  <Star className="w-3 h-3 text-yellow-600" />
+                </div>
+                <div className="flex-1 text-left min-w-0">
+                  <div className="font-semibold text-sm text-gray-800">
+                    Tất cả
                   </div>
-                </Button>
-              </div>
-
-              {/* Check-out Date */}
-              <div className="lg:col-span-2">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY TRẢ PHÒNG</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1 bg-purple-50 rounded">
-                      <Calendar className="w-3 h-3 text-purple-600" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      {checkOut ? (
-                        <div>
-                          <div className="font-semibold text-sm text-gray-800">{checkOut.toLocaleDateString('vi-VN')}</div>
-                          <div className="text-[10px] text-gray-500 truncate">Trả phòng</div>
-                        </div>
-                      ) : (
-                        <div className="text-[11px] font-medium text-gray-500">
-                          Chọn ngày
-                        </div>
-                      )}
-                    </div>
+                  <div className="text-[9px] text-gray-500 truncate">
+                    1-5 sao
                   </div>
-                </Button>
+                </div>
               </div>
+            </Button>
+          </div>
 
-              {/* Rooms */}
-              <div className="lg:col-span-2">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">PHÒNG & KHÁCH</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1 bg-indigo-50 rounded">
-                      <Building2 className="w-3 h-3 text-indigo-600" />
-                    </div>
-                    <div className="flex-1 text-left min-w-0">
-                      <div className="font-semibold text-sm text-gray-800">
-                        {rooms} phòng
-                      </div>
-                      <div className="text-[9px] text-gray-500 truncate overflow-hidden max-w-full">
-                        {guests} khách
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-              </div>
+          {/* Search Button */}
+          <div className="lg:col-span-1 flex items-end">
+            <Button
+              className="w-full h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
+              onClick={handleSearch}
+            >
+              <Search className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
 
-              {/* Star Rating Filter */}
-              <div className="lg:col-span-2">
-                <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">HẠNG SAO</div>
-                <Button
-                  variant="outline"
-                  className="relative w-full h-12 justify-start text-left bg-white/95 rounded-lg border border-gray-200 hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-shrink-0 p-1 bg-yellow-50 rounded">
-                      <Star className="w-3 h-3 text-yellow-600" />
-                    </div>
-                    <div className="flex-1 text-left min-w-0">
-                      <div className="font-semibold text-sm text-gray-800">
-                        Tất cả
-                      </div>
-                      <div className="text-[9px] text-gray-500 truncate">
-                        1-5 sao
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-              </div>
+        {/* Quick Destinations */}
+        <div className="mt-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Star className="w-3 h-3 text-gray-500" />
+            <span className="text-xs font-medium text-gray-600">Điểm đến phổ biến</span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {['Hà Nội', 'TP.HCM', 'Đà Nẵng', 'Nha Trang', 'Phú Quốc', 'Hạ Long', 'Hội An', 'Đà Lạt'].map(city => (
+              <Button
+                key={city}
+                variant="outline"
+                size="sm"
+                className="text-xs px-2.5 py-1 border rounded-full hover:bg-green-50 hover:border-green-300 hover:text-green-700 transition-all duration-200"
+                onClick={() => setDestination(city)}
+              >
+                <Hotel className="w-2.5 h-2.5 mr-1 text-green-500" />
+                {city}
+              </Button>
+            ))}
+          </div>
+        </div>
 
-              {/* Search Button */}
-              <div className="lg:col-span-1 flex items-end">
-                <Button
-                  className="w-full h-12 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 shadow-md"
-                  onClick={handleSearch}
-                >
-                  <Search className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-
-            {/* Quick Destinations */}
-            <div className="mt-4">
-              <div className="flex items-center gap-2 mb-2">
-                <Star className="w-3 h-3 text-gray-500" />
-                <span className="text-xs font-medium text-gray-600">Điểm đến phổ biến</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {['Hà Nội', 'TP.HCM', 'Đà Nẵng', 'Nha Trang', 'Phú Quốc', 'Hạ Long', 'Hội An', 'Đà Lạt'].map(city => (
-                  <Button
-                    key={city}
-                    variant="outline"
-                    size="sm"
-                    className="text-xs px-2.5 py-1 border rounded-full hover:bg-green-50 hover:border-green-300 hover:text-green-700 transition-all duration-200"
-                    onClick={() => setDestination(city)}
-                  >
-                    <Hotel className="w-2.5 h-2.5 mr-1 text-green-500" />
-                    {city}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* Trust indicators */}
+        {/* Trust indicators */}
         <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600">
           <div className="flex items-center gap-1">
             <CheckCircle className="w-3 h-3 text-green-600" />
@@ -632,7 +632,7 @@ function MobileAppSection() {
             <div className="absolute top-8 -left-4 lg:left-8 bg-white rounded-3xl p-6 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center mb-4 mx-auto">
-                  <QrCode className="w-16 h-16 text-white" />
+                  <QrCode className="w-16 h-16 textwhite" />
                 </div>
                 <div className="text-xs font-bold text-slate-800 mb-1">SCAN ĐỂ TẢI APP</div>
                 <div className="text-xs text-slate-500">Miễn phí 100%</div>
