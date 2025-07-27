@@ -550,22 +550,22 @@ function SeoFlightRoutesSection() {
       { name: "Khách sạn Đà Nẵng", url: "/khach-san-da-nang" },
       { name: "Khách sạn Fukuoka", url: "/khach-san-fukuoka" },
       { name: "Khách sạn Hà Nội", url: "/khach-san-ha-noi" },
-      { name: "Khách sạn Hải Vân", url: "/khach-san-hai-van" },
-      { name: "Khách sạn TP.HCM Hồ Chí Minh", url: "/khach-san-tp-hcm" },
+      { name: "Khách sạn TP.HCM", url: "/khach-san-tp-hcm" },
       { name: "Khách sạn Hội An", url: "/khach-san-hoi-an" },
       { name: "Khách sạn Hồng Kông", url: "/khach-san-hong-kong" },
-      { name: "Khách sạn Huế Huế", url: "/khach-san-hue" },
-      { name: "Khách sạn Hoa Lư", url: "/khach-san-hoa-lu" },
+      { name: "Khách sạn Huế", url: "/khach-san-hue" },
       { name: "Khách sạn Ipoh", url: "/khach-san-ipoh" },
       { name: "Khách sạn Jakarta", url: "/khach-san-jakarta" },
-      { name: "Khách sạn Đắk Lắk", url: "/khach-san-dak-lak" },
       { name: "Khách sạn Kathmandu", url: "/khach-san-kathmandu" },
       { name: "Khách sạn Cao Hùng", url: "/khach-san-cao-hung" },
       { name: "Khách sạn Kota Kinabalu", url: "/khach-san-kota-kinabalu" },
       { name: "Khách sạn Krabi", url: "/khach-san-krabi" },
       { name: "Khách sạn Kuala Lumpur", url: "/khach-san-kuala-lumpur" },
-      { name: "Khách sạn Kumnan", url: "/khach-san-kumnan" },
-      { name: "Khách sạn Kyoto", url: "/khach-san-kyoto" }
+      { name: "Khách sạn Kyoto", url: "/khach-san-kyoto" },
+      { name: "Khách sạn Seoul", url: "/khach-san-seoul" },
+      { name: "Khách sạn Singapore", url: "/khach-san-singapore" },
+      { name: "Khách sạn Tokyo", url: "/khach-san-tokyo" },
+      { name: "Khách sạn Manila", url: "/khach-san-manila" }
     ],
     "Châu Âu": [
       { name: "Khách sạn Paris", url: "/khach-san-paris" },
@@ -590,38 +590,38 @@ function SeoFlightRoutesSection() {
       { name: "Khách sạn Oslo", url: "/khach-san-oslo" },
       { name: "Khách sạn Helsinki", url: "/khach-san-helsinki" }
     ],
-    "Quốc gia & Vùng lãnh thổ Châu Phi": [
+    "Châu Phi": [
       { name: "Khách sạn Nam Phi", url: "/khach-san-nam-phi" },
       { name: "Khách sạn Marốc", url: "/khach-san-maroc" },
-      { name: "Khách sạn Argentina", url: "/khach-san-argentina" },
-      { name: "Khách sạn Brazil", url: "/khach-san-brazil" },
-      { name: "Khách sạn Canada", url: "/khach-san-canada" },
-      { name: "Khách sạn Mexico", url: "/khach-san-mexico" },
-      { name: "Khách sạn Hoa Kỳ", url: "/khach-san-hoa-ky" },
-      { name: "Khách sạn Venezuela", url: "/khach-san-venezuela" }
+      { name: "Khách sạn Kenya", url: "/khach-san-kenya" },
+      { name: "Khách sạn Tanzania", url: "/khach-san-tanzania" },
+      { name: "Khách sạn Nigeria", url: "/khach-san-nigeria" },
+      { name: "Khách sạn Egypt", url: "/khach-san-egypt" }
+    ],
+    "Châu Mỹ": [
+      { name: "Khách sạn New York", url: "/khach-san-new-york" },
+      { name: "Khách sạn Los Angeles", url: "/khach-san-los-angeles" },
+      { name: "Khách sạn Toronto", url: "/khach-san-toronto" },
+      { name: "Khách sạn Vancouver", url: "/khach-san-vancouver" },
+      { name: "Khách sạn Mexico City", url: "/khach-san-mexico-city" },
+      { name: "Khách sạn Buenos Aires", url: "/khach-san-buenos-aires" },
+      { name: "Khách sạn São Paulo", url: "/khach-san-sao-paulo" },
+      { name: "Khách sạn Rio de Janeiro", url: "/khach-san-rio-de-janeiro" }
     ],
     "Châu Úc": [
-      { name: "Khách sạn Cambodia", url: "/khach-san-cambodia" },
-      { name: "Khách sạn Trung Quốc", url: "/khach-san-trung-quoc" },
-      { name: "Khách sạn Ấn Độ", url: "/khach-san-an-do" },
-      { name: "Khách sạn Indonesia", url: "/khach-san-indonesia" },
-      { name: "Khách sạn Nhật Bản", url: "/khach-san-nhat-ban" },
-      { name: "Khách sạn Lào", url: "/khach-san-lao" },
-      { name: "Khách sạn Malaysia", url: "/khach-san-malaysia" },
-      { name: "Khách sạn Myanmar", url: "/khach-san-myanmar" },
-      { name: "Khách sạn Nepal", url: "/khach-san-nepal" },
-      { name: "Khách sạn Philippines", url: "/khach-san-philippines" },
-      { name: "Khách sạn Hàn Quốc", url: "/khach-san-han-quoc" },
-      { name: "Khách sạn Sri Lanka", url: "/khach-san-sri-lanka" },
-      { name: "Khách sạn Đài Loan", url: "/khach-san-dai-loan" },
-      { name: "Khách sạn Thái Lan", url: "/khach-san-thai-lan" },
-      { name: "Khách sạn Việt Nam", url: "/khach-san-viet-nam" }
+      { name: "Khách sạn Sydney", url: "/khach-san-sydney" },
+      { name: "Khách sạn Melbourne", url: "/khach-san-melbourne" },
+      { name: "Khách sạn Brisbane", url: "/khach-san-brisbane" },
+      { name: "Khách sạn Auckland", url: "/khach-san-auckland" },
+      { name: "Khách sạn Perth", url: "/khach-san-perth" },
+      { name: "Khách sạn Adelaide", url: "/khach-san-adelaide" }
     ],
     "Trung Đông": [
       { name: "Khách sạn Dubai", url: "/khach-san-dubai" },
-      { name: "Khách sạn Ả Rập Xê Út", url: "/khach-san-a-rap-xe-ut" },
-      { name: "Khách sạn Qatar", url: "/khach-san-qatar" },
-      { name: "Khách sạn UAE", url: "/khach-san-uae" }
+      { name: "Khách sạn Doha", url: "/khach-san-doha" },
+      { name: "Khách sạn Riyadh", url: "/khach-san-riyadh" },
+      { name: "Khách sạn Kuwait", url: "/khach-san-kuwait" },
+      { name: "Khách sạn Istanbul", url: "/khach-san-istanbul" }
     ]
   }
 
@@ -701,28 +701,28 @@ function SeoFlightRoutesSection() {
   }
 
   const popularDestinations = {
-    "Cẩm nang Điểm đến": [
-      { name: "Trang chủ Cẩm nang Điểm đến", url: "/cam-nang-diem-den" },
-      { name: "Cẩm nang Bali", url: "/cam-nang-bali" },
-      { name: "Cẩm nang Bangkok", url: "/cam-nang-bangkok" },
-      { name: "Cẩm nang Hồng Kông", url: "/cam-nang-hong-kong" },
-      { name: "Cẩm nang Jakarta", url: "/cam-nang-jakarta" },
-      { name: "Cẩm nang Đào Jeju", url: "/cam-nang-dao-jeju" },
-      { name: "Cẩm nang Kuala Lumpur", url: "/cam-nang-kuala-lumpur" },
-      { name: "Cẩm nang Kyoto", url: "/cam-nang-kyoto" },
-      { name: "Cẩm nang Kyushu", url: "/cam-nang-kyushu" },
-      { name: "Cẩm nang Macau", url: "/cam-nang-macau" },
-      { name: "Cẩm nang Melacca", url: "/cam-nang-melacca" },
-      { name: "Cẩm nang Nagoya", url: "/cam-nang-nagoya" },
-      { name: "Cẩm nang Osaka", url: "/cam-nang-osaka" },
-      { name: "Cẩm nang Phuket", url: "/cam-nang-phuket" },
-      { name: "Cẩm nang Sapporo", url: "/cam-nang-sapporo" },
-      { name: "Cẩm nang Seoul", url: "/cam-nang-seoul" },
-      { name: "Cẩm nang Singapore", url: "/cam-nang-singapore" },
-      { name: "Cẩm nang Đài Trung", url: "/cam-nang-dai-trung" },
-      { name: "Cẩm nang Đài Bắc", url: "/cam-nang-dai-bac" },
-      { name: "Cẩm nang Tokyo", url: "/cam-nang-tokyo" },
-      { name: "Cẩm nang Goa", url: "/cam-nang-goa" }
+    "Cẩm nang Du lịch": [
+      { name: "Trang chủ Cẩm nang Du lịch", url: "/cam-nang-du-lich" },
+      { name: "Cẩm nang du lịch Bali", url: "/cam-nang-du-lich-bali" },
+      { name: "Cẩm nang du lịch Bangkok", url: "/cam-nang-du-lich-bangkok" },
+      { name: "Cẩm nang du lịch Hồng Kông", url: "/cam-nang-du-lich-hong-kong" },
+      { name: "Cẩm nang du lịch Jakarta", url: "/cam-nang-du-lich-jakarta" },
+      { name: "Cẩm nang du lịch Đảo Jeju", url: "/cam-nang-du-lich-dao-jeju" },
+      { name: "Cẩm nang du lịch Kuala Lumpur", url: "/cam-nang-du-lich-kuala-lumpur" },
+      { name: "Cẩm nang du lịch Kyoto", url: "/cam-nang-du-lich-kyoto" },
+      { name: "Cẩm nang du lịch Kyushu", url: "/cam-nang-du-lich-kyushu" },
+      { name: "Cẩm nang du lịch Macau", url: "/cam-nang-du-lich-macau" },
+      { name: "Cẩm nang du lịch Melacca", url: "/cam-nang-du-lich-melacca" },
+      { name: "Cẩm nang du lịch Nagoya", url: "/cam-nang-du-lich-nagoya" },
+      { name: "Cẩm nang du lịch Osaka", url: "/cam-nang-du-lich-osaka" },
+      { name: "Cẩm nang du lịch Phuket", url: "/cam-nang-du-lich-phuket" },
+      { name: "Cẩm nang du lịch Sapporo", url: "/cam-nang-du-lich-sapporo" },
+      { name: "Cẩm nang du lịch Seoul", url: "/cam-nang-du-lich-seoul" },
+      { name: "Cẩm nang du lịch Singapore", url: "/cam-nang-du-lich-singapore" },
+      { name: "Cẩm nang du lịch Đài Trung", url: "/cam-nang-du-lich-dai-trung" },
+      { name: "Cẩm nang du lịch Đài Bắc", url: "/cam-nang-du-lich-dai-bac" },
+      { name: "Cẩm nang du lịch Tokyo", url: "/cam-nang-du-lich-tokyo" },
+      { name: "Cẩm nang du lịch Goa", url: "/cam-nang-du-lich-goa" }
     ],
     "Agoda Homes Căn hộ châu Á": [
       { name: "Căn hộ Bangkok", url: "/can-ho-bangkok" },
@@ -843,9 +843,11 @@ function SeoFlightRoutesSection() {
             <div>
               <h4 className="font-semibold text-slate-800 mb-3">Châu Đại Dương</h4>
               <ul className="space-y-1 text-sm text-slate-600">
-                <li><a href="/cam-nang-brisbane" className="hover:text-blue-600">Cẩm nang Brisbane</a></li>
-                <li><a href="/cam-nang-melbourne" className="hover:text-blue-600">Cẩm nang Melbourne</a></li>
-                <li><a href="/cam-nang-sydney" className="hover:text-blue-600">Cẩm nang Sydney</a></li>
+                <li><a href="/cam-nang-du-lich-brisbane" className="hover:text-blue-600">Cẩm nang du lịch Brisbane</a></li>
+                <li><a href="/cam-nang-du-lich-melbourne" className="hover:text-blue-600">Cẩm nang du lịch Melbourne</a></li>
+                <li><a href="/cam-nang-du-lich-sydney" className="hover:text-blue-600">Cẩm nang du lịch Sydney</a></li>
+                <li><a href="/cam-nang-du-lich-auckland" className="hover:text-blue-600">Cẩm nang du lịch Auckland</a></li>
+                <li><a href="/cam-nang-du-lich-wellington" className="hover:text-blue-600">Cẩm nang du lịch Wellington</a></li>
               </ul>
             </div>
 
