@@ -357,7 +357,7 @@ function HotelSearchForm() {
   return (
     <Card className="relative w-full max-w-5xl mx-auto overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-xl">
       <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
-      
+
       <CardContent className="relative z-10 p-6">
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
@@ -552,14 +552,14 @@ function MobileAppSection() {
               <Smartphone className="w-4 h-4" />
               <span className="text-sm font-semibold uppercase tracking-wider">SKYO MOBILE APP</span>
             </div>
-            
+
             <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Đặt vé mọi lúc,<br />
               <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                 mọi nơi
               </span>
             </h2>
-            
+
             <p className="text-xl text-white/90 mb-10 leading-relaxed max-w-lg">
               Tải app Skyo để trải nghiệm đặt vé nhanh chóng, nhận thông báo giá rẻ và quản lý chuyến đi dễ dàng.
             </p>
@@ -575,7 +575,7 @@ function MobileAppSection() {
                   <div className="text-white/80">Chỉ 3 bước • Thanh toán an toàn</div>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
                   <Bell className="w-7 h-7 text-white" />
@@ -596,7 +596,7 @@ function MobileAppSection() {
                   <div className="text-sm">App Store</div>
                 </div>
               </Button>
-              
+
               <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:-translate-y-1">
                 <Smartphone className="w-5 h-5 mr-3" />
                 <div className="text-left">
@@ -629,7 +629,7 @@ function MobileAppSection() {
             <div className="absolute top-8 -left-4 lg:left-8 bg-white rounded-3xl p-6 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center mb-4 mx-auto">
-                  <QrCode className="w-16 h-16 text-white" />
+                  <QrCode className="w-8 h-8 text-white" />
                 </div>
                 <div className="text-xs font-bold text-slate-800 mb-1">SCAN ĐỂ TẢI APP</div>
                 <div className="text-xs text-slate-500">Miễn phí 100%</div>
@@ -760,7 +760,7 @@ export default function HomePage() {
         {/* Enhanced Animated Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/25 via-sky-800/15 to-cyan-700/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-blue-500/10" />
-        
+
         {/* Animated particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>

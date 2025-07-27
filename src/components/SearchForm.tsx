@@ -617,7 +617,7 @@ export function SearchForm({
             </Tabs>
           </motion.div>
 
-          
+
 
           {/* Main Search Form - Redesigned with balanced single row layout */}
           <motion.div
@@ -693,7 +693,7 @@ export function SearchForm({
                       <div className={`flex-shrink-0 p-1 rounded ${
                         errors.to || errors.sameDestination
                           ? 'bg-red-50 text-red-600'
-                          : 'bg-green-50 text-green-600'
+                          : 'bg-blue-50 text-blue-600'
                       }`}>
                         <MapPin className="w-3 h-3" />
                       </div>
