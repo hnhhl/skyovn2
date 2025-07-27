@@ -42,6 +42,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { DebugInfo } from '@/components/DebugInfo'
+import { Label } from "@/components/ui/label"
 
 // Why Choose Skyo Section
 function WhyChooseSkyoSection() {
@@ -357,12 +358,67 @@ function HotelSearchForm() {
   }
 
   return (
-    
-      
-        
-          
-            
-</div>
+    <div className="w-full max-w-5xl mx-auto">
+      <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-xl overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
+
+        <CardContent className="relative z-10 p-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* Destination */}
+            <div className="space-y-2">
+              <Label className="text-sm font-semibold text-gray-700">ĐIỂM ĐẾN</Label>
+              <Input
+                placeholder="Thành phố, khách sạn, khu vực"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                className="border-2 border-gray-200 focus:border-green-500"
+              />
+            </div>
+
+            {/* Check-in Date */}
+            <div className="space-y-2">
+              <Label className="text-sm font-semibold text-gray-700">NGÀY NHẬN PHÒNG</Label>
+              <Input
+                type="date"
+                className="border-2 border-gray-200 focus:border-green-500"
+              />
+            </div>
+
+            {/* Check-out Date */}
+            <div className="space-y-2">
+              <Label className="text-sm font-semibold text-gray-700">NGÀY TRẢ PHÒNG</Label>
+              <Input
+                type="date"
+                className="border-2 border-gray-200 focus:border-green-500"
+              />
+            </div>
+
+            {/* Rooms & Guests */}
+            <div className="space-y-2">
+              <Label className="text-sm font-semibold text-gray-700">PHÒNG & KHÁCH</Label>
+              <div className="flex gap-2">
+                <select className="flex-1 px-3 py-2 border-2 border-gray-200 rounded-md focus:border-green-500">
+                  <option>1 phòng</option>
+                  <option>2 phòng</option>
+                  <option>3 phòng</option>
+                </select>
+                <select className="flex-1 px-3 py-2 border-2 border-gray-200 rounded-md focus:border-green-500">
+                  <option>2 khách</option>
+                  <option>3 khách</option>
+                  <option>4 khách</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Search Button */}
+          <Button 
+            onClick={handleSearch}
+            className="w-full mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <Search className="w-5 h-5 mr-2" />
+            TÌM KHÁCH SẠN
+          </Button>
 
           {/* Trust indicators */}
           <motion.div
@@ -383,10 +439,10 @@ function HotelSearchForm() {
               <CheckCircle className="w-3 h-3 text-green-600" />
               <span>Hỗ trợ 24/7</span>
             </div>
-          </div>
-        </motion.div>
-      </div>
-    
+          </motion.div>
+        </CardContent>
+      </Card>
+    </div>
   )
 }
 
