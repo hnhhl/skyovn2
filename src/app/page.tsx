@@ -357,19 +357,14 @@ function HotelSearchForm() {
   }
 
   return (
-    <div className="w-full max-w-5xl mx-auto">
-      <div className="bg-white/95 backdrop-blur-sm overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
-
-        <div className="relative z-10 p-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className="space-y-4"
-          >
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.2 }}
+      className="w-full max-w-5xl mx-auto"
+    >
+      <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-end"></div>
               {/* Destination Field */}
               <div className="lg:col-span-3">
                 <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">ĐIỂM ĐẾN</div>
@@ -522,30 +517,22 @@ function HotelSearchForm() {
             </div>
 
             {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-              className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600"
-            >
-              <div className="flex items-center gap-1">
-                <CheckCircle className="w-3 h-3 text-green-600" />
-                <span>2M+ khách sạn</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <CheckCircle className="w-3 h-3 text-green-600" />
-                <span>Giá tốt nhất</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <CheckCircle className="w-3 h-3 text-green-600" />
-                <span>Đặt phòng tức thì</span>
-              </div>
-            </motion.div>
+        <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600">
+          <div className="flex items-center gap-1">
+            <CheckCircle className="w-3 h-3 text-green-600" />
+            <span>2M+ khách sạn</span>
           </div>
-        </motion.div>
+          <div className="flex items-center gap-1">
+            <CheckCircle className="w-3 h-3 text-green-600" />
+            <span>Giá tốt nhất</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <CheckCircle className="w-3 h-3 text-green-600" />
+            <span>Đặt phòng tức thì</span>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
