@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { Header } from '@/components/Header'
 import { SearchForm } from '@/components/SearchForm'
-import { FeatureSection } from '@/components/FeatureSection'
 import { StoriesSection } from '@/components/StoriesSection'
 import { PopularAirlines } from '@/components/PopularAirlines'
 import { Footer } from '@/components/Footer'
@@ -831,15 +830,6 @@ export default function HomePage() {
         <div className="absolute bottom-32 left-24 w-16 h-16 bg-gradient-to-br from-sky-400/20 to-cyan-300/10 rounded-full animate-ping backdrop-blur-sm" style={{animationDelay: '1s'}}></div>
         <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-gradient-to-br from-blue-300/10 to-sky-400/5 rounded-full animate-pulse backdrop-blur-sm" style={{animationDelay: '1.5s'}}></div>
       </div>
-
-      {/* Feature Section */}
-      <FeatureSection />
-
-      {/* Why Choose Skyo Section */}
-      <WhyChooseSkyoSection />
-
-      {/* Trust & Numbers Section */}
-      <TrustNumbersSection />
 
       {/* Testimonials Section */}
       <TestimonialsSection />
