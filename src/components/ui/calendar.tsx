@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -98,13 +99,11 @@ function Calendar({
     }
   }, [hoveredDate, destination])
 
-
-
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn(
-        "bg-background group/calendar p-6 [--cell-size:3.5rem] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent min-w-[400px]",
+        "bg-background group/calendar p-0 [--cell-size:3.2rem] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent min-w-[380px]",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
@@ -122,36 +121,36 @@ function Calendar({
         ...formatters,
       }}
       classNames={{
-        root: cn("w-fit min-w-[400px]", defaultClassNames.root),
+        root: cn("w-fit min-w-[380px]", defaultClassNames.root),
         months: cn(
-          "relative flex flex-col gap-6 md:flex-row",
+          "relative flex flex-col gap-0 md:flex-row",
           defaultClassNames.months
         ),
-        month: cn("flex w-full flex-col gap-6", defaultClassNames.month),
+        month: cn("flex w-full flex-col gap-0", defaultClassNames.month),
         nav: cn(
-          "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-2",
+          "absolute inset-x-0 top-0 z-20 flex w-full items-center justify-between gap-2 px-4 py-3",
           defaultClassNames.nav
         ),
         button_previous: cn(
           buttonVariants({ variant: buttonVariant }),
-          "h-[--cell-size] w-[--cell-size] select-none p-0 aria-disabled:opacity-50 hover:bg-green-100 hover:text-green-700 hover:shadow-md transition-all duration-200 rounded-xl border border-green-200",
+          "h-8 w-8 select-none p-0 aria-disabled:opacity-40 hover:bg-blue-100 hover:text-blue-700 hover:shadow-sm transition-all duration-200 rounded-lg border border-blue-200/60 bg-white/90 backdrop-blur-sm shadow-sm",
           defaultClassNames.button_previous
         ),
         button_next: cn(
           buttonVariants({ variant: buttonVariant }),
-          "h-[--cell-size] w-[--cell-size] select-none p-0 aria-disabled:opacity-50 hover:bg-green-100 hover:text-green-700 hover:shadow-md transition-all duration-200 rounded-xl border border-green-200",
+          "h-8 w-8 select-none p-0 aria-disabled:opacity-40 hover:bg-blue-100 hover:text-blue-700 hover:shadow-sm transition-all duration-200 rounded-lg border border-blue-200/60 bg-white/90 backdrop-blur-sm shadow-sm",
           defaultClassNames.button_next
         ),
         month_caption: cn(
-          "flex h-[--cell-size] w-full items-center justify-center px-[--cell-size] bg-gradient-to-r from-green-50 to-blue-50 border-b border-green-100",
+          "flex h-14 w-full items-center justify-center px-[--cell-size] bg-gradient-to-r from-blue-600 to-blue-700",
           defaultClassNames.month_caption
         ),
         dropdowns: cn(
-          "flex h-[--cell-size] w-full items-center justify-center gap-2 text-lg font-bold text-green-700 bg-gradient-to-r from-green-50 to-blue-50",
+          "flex h-14 w-full items-center justify-center gap-3 text-lg font-bold text-white bg-gradient-to-r from-blue-600 to-blue-700",
           defaultClassNames.dropdowns
         ),
         dropdown_root: cn(
-          "has-focus:border-green-500 border-input shadow-xs has-focus:ring-green-500/50 has-focus:ring-[3px] relative rounded-lg border-2",
+          "has-focus:border-white has-focus:ring-white/30 border-white/20 shadow-sm has-focus:ring-2 relative rounded-lg border bg-white/10 backdrop-blur-sm",
           defaultClassNames.dropdown_root
         ),
         dropdown: cn(
@@ -159,19 +158,19 @@ function Calendar({
           defaultClassNames.dropdown
         ),
         caption_label: cn(
-          "select-none font-bold text-lg text-green-700",
+          "select-none font-bold text-lg text-white",
           captionLayout === "label"
             ? "text-lg"
-            : "[&>svg]:text-muted-foreground flex h-10 items-center gap-2 rounded-lg pl-3 pr-2 text-lg [&>svg]:size-4",
+            : "[&>svg]:text-white/80 flex h-10 items-center gap-2 rounded-lg pl-3 pr-2 text-lg [&>svg]:size-4",
           defaultClassNames.caption_label
         ),
-        table: "w-full border-collapse",
-        weekdays: cn("flex mb-3 bg-gradient-to-r from-green-100 to-blue-100 rounded-lg mx-2 py-1", defaultClassNames.weekdays),
+        table: "w-full border-collapse bg-white",
+        weekdays: cn("flex bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-100", defaultClassNames.weekdays),
         weekday: cn(
-          "text-green-700 flex-1 select-none text-sm font-bold uppercase tracking-wide py-2 text-center",
+          "text-blue-700 flex-1 select-none text-xs font-bold uppercase tracking-wider py-3 text-center border-r border-blue-100 last:border-r-0",
           defaultClassNames.weekday
         ),
-        week: cn("mt-1 flex w-full", defaultClassNames.week),
+        week: cn("flex w-full border-b border-gray-100 last:border-b-0", defaultClassNames.week),
         week_number_header: cn(
           "w-[--cell-size] select-none",
           defaultClassNames.week_number_header
@@ -181,25 +180,25 @@ function Calendar({
           defaultClassNames.week_number
         ),
         day: cn(
-          "group/day relative aspect-square h-full w-full select-none p-1 text-center [&:first-child[data-selected=true]_button]:rounded-l-lg [&:last-child[data-selected=true]_button]:rounded-r-lg",
+          "group/day relative aspect-square h-full w-full select-none text-center border-r border-gray-100 last:border-r-0 hover:bg-blue-50/50 transition-colors duration-200",
           defaultClassNames.day
         ),
         range_start: cn(
-          "bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-l-lg shadow-lg",
+          "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg border-blue-600",
           defaultClassNames.range_start
         ),
-        range_middle: cn("rounded-none bg-gradient-to-r from-green-100 to-emerald-100 text-green-800", defaultClassNames.range_middle),
-        range_end: cn("bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-r-lg shadow-lg", defaultClassNames.range_end),
+        range_middle: cn("bg-gradient-to-r from-blue-100 to-blue-50 text-blue-800 border-blue-200", defaultClassNames.range_middle),
+        range_end: cn("bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg border-blue-600", defaultClassNames.range_end),
         today: cn(
-          "bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 rounded-lg data-[selected=true]:rounded-none font-semibold border-2 border-blue-300 shadow-sm",
+          "bg-gradient-to-br from-emerald-100 to-green-100 text-emerald-800 font-semibold border-2 border-emerald-300 shadow-sm relative",
           defaultClassNames.today
         ),
         outside: cn(
-          "text-gray-300 aria-selected:text-gray-400",
+          "text-gray-300 aria-selected:text-gray-400 hover:bg-gray-50",
           defaultClassNames.outside
         ),
         disabled: cn(
-          "text-gray-300 opacity-40",
+          "text-gray-200 opacity-30 cursor-not-allowed hover:bg-transparent",
           defaultClassNames.disabled
         ),
         hidden: cn("invisible", defaultClassNames.hidden),
@@ -221,40 +220,41 @@ function Calendar({
                   ) : (
                     /* Show weather data when loaded */
                     (weather || hoveredDateWeather) && (
-                      <div className="bg-gradient-to-r from-blue-50 to-green-50 border-b border-green-100 p-4 rounded-t-2xl mb-2 transition-all duration-300">
+                      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 rounded-t-2xl mb-0 transition-all duration-300 shadow-lg">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="text-2xl">{hoveredDateWeather?.icon || weather?.icon}</div>
+                            <div className="text-3xl">{hoveredDateWeather?.icon || weather?.icon}</div>
                             <div>
-                              <div className="font-semibold text-gray-800">
+                              <div className="font-bold text-white text-lg">
                                 {getCityName(destination)}
                                 {hoveredDate && (
-                                  <span className="ml-2 text-sm font-normal text-blue-600">
+                                  <span className="ml-2 text-sm font-normal text-blue-200">
                                     • {hoveredDate.toLocaleDateString('vi-VN')}
                                   </span>
                                 )}
                               </div>
-                              <div className="text-sm text-gray-600">
+                              <div className="text-sm text-blue-100">
                                 {hoveredDateWeather?.description || weather?.description}
                               </div>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-2xl font-bold text-gray-800">
+                            <div className="text-2xl font-bold text-white">
                               {hoveredDateWeather ? (
-                                <span className="text-blue-600">
+                                <span className="text-blue-100">
                                   {hoveredDateWeather.tempMin}° - {hoveredDateWeather.tempMax}°C
                                 </span>
                               ) : (
                                 <span>{weather?.temperature}°C</span>
                               )}
                             </div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-blue-200">
                               Độ ẩm {hoveredDateWeather?.humidity || weather?.humidity}% • Gió {hoveredDateWeather?.windSpeed || weather?.windSpeed}km/h
                             </div>
                             {hoveredDateWeather && (
-                              <div className="text-xs text-blue-600 mt-1 animate-pulse">
-                                📅 Dự báo ngày này
+                              <div className="text-xs text-blue-200 mt-1 flex items-center gap-1">
+                                <span className="animate-pulse">📅</span>
+                                <span>Dự báo ngày này</span>
                               </div>
                             )}
                           </div>
@@ -265,8 +265,8 @@ function Calendar({
 
                   {/* Show error state */}
                   {weatherLoading.error && (
-                    <div className="bg-red-50 border border-red-200 p-3 rounded-t-2xl mb-2">
-                      <div className="flex items-center gap-2 text-red-600">
+                    <div className="bg-red-500 text-white p-3 rounded-t-2xl mb-0">
+                      <div className="flex items-center gap-2">
                         <span>⚠️</span>
                         <span className="text-sm">{weatherLoading.error}</span>
                       </div>
@@ -279,14 +279,10 @@ function Calendar({
               <div
                 data-slot="calendar"
                 ref={rootRef}
-                className={cn("rounded-2xl shadow-2xl border-2 border-gradient-to-r from-green-200 to-blue-200 bg-gradient-to-br from-white via-green-50/30 to-blue-50/30 backdrop-blur-sm overflow-hidden", className)}
+                className={cn("rounded-2xl shadow-2xl border border-gray-200 bg-white overflow-hidden", className)}
                 {...props}
               >
-                {/* Enhanced border with gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-green-200 via-blue-200 to-purple-200 rounded-2xl opacity-30 animate-pulse"></div>
-                <div className="relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-inner">
-                  {children}
-                </div>
+                {children}
               </div>
             </>
           )
@@ -294,21 +290,21 @@ function Calendar({
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (
-              <ChevronLeftIcon className={cn("size-5 text-green-600", className)} {...props} />
+              <ChevronLeftIcon className={cn("size-4 text-white", className)} {...props} />
             )
           }
 
           if (orientation === "right") {
             return (
               <ChevronRightIcon
-                className={cn("size-5 text-green-600", className)}
+                className={cn("size-4 text-white", className)}
                 {...props}
               />
             )
           }
 
           return (
-            <ChevronDownIcon className={cn("size-5 text-green-600", className)} {...props} />
+            <ChevronDownIcon className={cn("size-4 text-white", className)} {...props} />
           )
         },
         DayButton: (dayButtonProps) => (
@@ -323,7 +319,7 @@ function Calendar({
         WeekNumber: ({ children, ...props }) => {
           return (
             <td {...props}>
-              <div className="flex size-[--cell-size] items-center justify-center text-center text-green-600 font-medium">
+              <div className="flex size-[--cell-size] items-center justify-center text-center text-blue-600 font-medium bg-blue-50">
                 {children}
               </div>
             </td>
@@ -393,7 +389,7 @@ function CalendarDayButton({
   }, [onDateHover])
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <Button
         ref={ref}
         variant="ghost"
@@ -411,13 +407,13 @@ function CalendarDayButton({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className={cn(
-          "data-[selected-single=true]:bg-gradient-to-br data-[selected-single=true]:from-green-500 data-[selected-single=true]:to-emerald-600 data-[selected-single=true]:text-white data-[selected-single=true]:shadow-lg data-[range-middle=true]:bg-green-100 data-[range-middle=true]:text-green-800 data-[range-start=true]:bg-gradient-to-br data-[range-start=true]:from-green-500 data-[range-start=true]:to-emerald-600 data-[range-start=true]:text-white data-[range-start=true]:shadow-lg data-[range-end=true]:bg-gradient-to-br data-[range-end=true]:from-green-500 data-[range-end=true]:to-emerald-600 data-[range-end=true]:text-white data-[range-end=true]:shadow-lg group-data-[focused=true]/day:border-green-500 group-data-[focused=true]/day:ring-green-500/50 flex aspect-square h-auto w-full min-w-[--cell-size] flex-col gap-0.5 font-normal leading-none data-[range-end=true]:rounded-lg data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-lg group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] hover:bg-gradient-to-br hover:from-green-50 hover:to-blue-50 hover:text-green-700 hover:shadow-md transition-all duration-200 relative transform hover:scale-105",
+          "data-[selected-single=true]:bg-gradient-to-br data-[selected-single=true]:from-blue-600 data-[selected-single=true]:to-blue-700 data-[selected-single=true]:text-white data-[selected-single=true]:shadow-lg data-[selected-single=true]:border-blue-600 data-[range-middle=true]:bg-blue-100 data-[range-middle=true]:text-blue-800 data-[range-middle=true]:border-blue-200 data-[range-start=true]:bg-gradient-to-br data-[range-start=true]:from-blue-600 data-[range-start=true]:to-blue-700 data-[range-start=true]:text-white data-[range-start=true]:shadow-lg data-[range-start=true]:border-blue-600 data-[range-end=true]:bg-gradient-to-br data-[range-end=true]:from-blue-600 data-[range-end=true]:to-blue-700 data-[range-end=true]:text-white data-[range-end=true]:shadow-lg data-[range-end=true]:border-blue-600 group-data-[focused=true]/day:border-blue-500 group-data-[focused=true]/day:ring-blue-500/30 flex aspect-square h-full w-full min-w-[--cell-size] flex-col gap-0.5 font-normal leading-none p-1 relative transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 hover:shadow-sm hover:scale-105 group-data-[focused=true]/day:ring-2",
           // Special styling for departure date in return calendar
-          isDepartureDate && isReturnCalendar && "bg-gradient-to-br from-blue-100 to-cyan-100 border-2 border-blue-400 text-blue-800 hover:from-blue-200 hover:to-cyan-200 ring-2 ring-blue-300 shadow-md",
+          isDepartureDate && isReturnCalendar && "bg-gradient-to-br from-orange-100 to-amber-100 border-2 border-orange-400 text-orange-800 hover:from-orange-200 hover:to-amber-200 ring-2 ring-orange-300 shadow-md",
           // Special styling for holidays and special dates
-          isSpecialDay && !modifiers.selected && "ring-2 ring-opacity-50 shadow-sm",
+          isSpecialDay && !modifiers.selected && "ring-2 ring-opacity-60 shadow-sm",
           isPublicHoliday && !modifiers.selected && "bg-gradient-to-br from-red-50 to-pink-50 ring-red-300 text-red-800 shadow-sm",
-          isSpecialDay && !isPublicHoliday && !modifiers.selected && "ring-orange-300 shadow-sm",
+          isSpecialDay && !isPublicHoliday && !modifiers.selected && "ring-orange-300 shadow-sm bg-gradient-to-br from-orange-50 to-yellow-50",
           defaultClassNames.day,
           className
         )}
@@ -431,7 +427,7 @@ function CalendarDayButton({
       >
         {/* Solar date (main) */}
         <span className={cn(
-          "text-base font-semibold leading-none",
+          "text-base font-bold leading-none mb-0.5",
           isPublicHoliday && "text-red-700",
           isSpecialDay && !isPublicHoliday && "text-orange-700"
         )}>
@@ -439,44 +435,47 @@ function CalendarDayButton({
         </span>
 
         {/* Lunar date (smaller, below) */}
-        <span className="text-xs opacity-70 leading-none text-orange-600 font-medium">
+        <span className="text-[10px] opacity-70 leading-none text-gray-500 font-medium">
           {lunarDay}
         </span>
 
         {/* Holiday/Special event indicator */}
         {specialEvent && (
-          <span
-            className="text-xs leading-none font-bold px-1 py-0.5 rounded text-center max-w-full overflow-hidden"
+          <div
+            className="absolute bottom-0 left-0 right-0 text-[8px] leading-tight font-bold text-center overflow-hidden px-0.5 py-0.5 rounded-b"
             style={{
-              backgroundColor: eventColor + '20',
-              color: eventColor,
-              fontSize: '9px',
-              lineHeight: '10px'
+              backgroundColor: eventColor,
+              color: 'white',
+              fontSize: '8px',
+              lineHeight: '9px'
             }}
             title={specialEvent.name}
           >
             {specialEvent.shortName}
-          </span>
+          </div>
         )}
 
         {/* Weather indicator */}
         {dayWeather && (
-          <div className="absolute top-0 right-0 text-xs opacity-60" title={`${dayWeather.tempMin}°-${dayWeather.tempMax}°C • ${dayWeather.description}`}>
+          <div className="absolute top-1 right-1 text-xs opacity-70 bg-white/80 rounded-full p-0.5" title={`${dayWeather.tempMin}°-${dayWeather.tempMax}°C • ${dayWeather.description}`}>
             {dayWeather.icon}
           </div>
+        )}
+
+        {/* Today indicator */}
+        {modifiers.today && (
+          <div className="absolute top-1 left-1 w-2 h-2 bg-emerald-500 rounded-full shadow-sm animate-pulse"></div>
         )}
       </Button>
 
       {/* Label for departure date */}
       {isDepartureDate && isReturnCalendar && (
-        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 translate-y-full z-20">
-          <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium whitespace-nowrap shadow-lg">
+        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 translate-y-full z-30">
+          <div className="bg-orange-500 text-white text-[10px] px-2 py-1 rounded-full font-bold whitespace-nowrap shadow-lg border border-orange-600">
             Ngày đi
-          </span>
+          </div>
         </div>
       )}
-
-
     </div>
   )
 }
