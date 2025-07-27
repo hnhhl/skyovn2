@@ -588,10 +588,10 @@ export default function AgentRecruitmentPage() {
                       <strong>Linh hoạt tối đa:</strong> Làm việc mọi lúc mọi nơi, kiểm soát hoàn toàn 
                       thời gian và nhịp độ công việc.
                     </p>
+                    <previous_generation>
                     <p>
                       <strong>Đội ngũ hậu thuẫn:</strong> Team support chuyên nghiệp, training đầy đủ, 
-                      marketing materials```typescript
- sẵn có.
+                      marketing materials
                     </p>
                   </div>
                 </CardContent>
@@ -1201,29 +1201,6 @@ export default function AgentRecruitmentPage() {
               <p>
                 <strong>Cam kết 100%:</strong> Không ký quỹ • Không rủi ro • Hỗ trợ toàn diện
               </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <Phone className="w-8 h-8 mx-auto mb-3" />
-                <h3 className="font-bold mb-2">Hotline 24/7</h3>
-                <p className="text-green-300 font-semibold">1900 1234</p>
-                <p className="text-sm text-white/80 mt-1">Miễn phí từ điện thoại bàn</p>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <Mail className="w-8 h-8 mx-auto mb-3" />
-                <h3 className="font-bold mb-2">Email Tư Vấn</h3>
-                <p className="text-green-300 font-semibold">agency@skyo.vn</p>
-                <p className="text-sm text-white/80 mt-1">Phản hồi trong 2 giờ</p>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <MapPin className="w-8 h-8 mx-auto mb-3" />
-                <h3 className="font-bold mb-2">Văn Phòng</h3>
-                <p className="text-green-300 font-semibold">Hà Nội & TP.HCM</p>
-                <p className="text-sm text-white/80 mt-1">Hẹn lịch tư vấn trực tiếp</p>
-              </div>
             </div>
 
             <div className="flex flex-wrap gap-6 justify-center">
