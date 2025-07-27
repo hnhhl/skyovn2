@@ -1,3 +1,4 @@
+
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Card, CardContent } from '@/components/ui/card'
@@ -45,7 +46,9 @@ import {
   Coffee,
   ChevronRight,
   MessageCircle,
-  Hotel
+  Hotel,
+  AlertCircle,
+  Info
 } from 'lucide-react'
 import { Metadata } from 'next'
 
@@ -77,980 +80,1171 @@ export const metadata: Metadata = {
 }
 
 export default function AgentRecruitmentPage() {
-  const benefits = [
-    {
-      icon: PiggyBank,
-      title: '0 VND Ký Quỹ',
-      description: 'Không cần đặt cọc hay ký quỹ bất kỳ. Bắt đầu kinh doanh ngay lập tức.',
-      highlight: true,
-      color: 'from-green-500 to-emerald-600'
-    },
-    {
-      icon: Search,
-      title: 'Hệ Thống Tìm Kiếm Thông Minh',
-      description: 'Search vé máy bay real-time từ 5+ hãng hàng không với công nghệ AI.',
-      highlight: true,
-      color: 'from-blue-500 to-indigo-600'
-    },
-    {
-      icon: CreditCard,
-      title: 'Thanh Toán Tự Động',
-      description: 'Hệ thống thanh toán tự động, settlement nhanh chóng và minh bạch.',
-      highlight: true,
-      color: 'from-purple-500 to-pink-600'
-    },
-    {
-      icon: DollarSign,
-      title: 'Hoa Hồng Hấp Dẫn',
-      description: 'Mức hoa hồng cạnh tranh từ 1-3% trên mỗi giao dịch thành công.',
-      highlight: false,
-      color: 'from-orange-500 to-red-600'
-    },
-    {
-      icon: Headphones,
-      title: 'Hỗ Trợ 24/7',
-      description: 'Đội ngũ hỗ trợ chuyên nghiệp, sẵn sàng giải đáp mọi thắc mắc.',
-      highlight: false,
-      color: 'from-teal-500 to-cyan-600'
-    },
-    {
-      icon: BookOpen,
-      title: 'Đào Tạo Miễn Phí',
-      description: 'Khóa đào tạo về nghiệp vụ bán vé và sử dụng hệ thống.',
-      highlight: false,
-      color: 'from-indigo-500 to-blue-600'
-    }
-  ]
-
-  const whyChooseUs = [
-    {
-      title: 'Không Ràng Buộc Tài Chính',
-      description: 'Khác với các đại lý khác yêu cầu ký quỹ 10-50 triệu, Skyo hoàn toàn miễn phí tham gia.',
-      icon: Shield
-    },
-    {
-      title: 'Công Nghệ Tiên Tiến',
-      description: 'Hệ thống được xây dựng với công nghệ cloud hiện đại, tốc độ tìm kiếm nhanh chóng.',
-      icon: Zap
-    },
-    {
-      title: 'Đa Dạng Sản Phẩm',
-      description: 'Không chỉ vé máy bay, còn có khách sạn, tours, và các dịch vụ du lịch khác.',
-      icon: Globe
-    },
-    {
-      title: 'Thu Nhập Ổn Định',
-      description: 'Với thị trường hàng không phát triển, đây là cơ hội kinh doanh bền vững.',
-      icon: TrendingUp
-    }
-  ]
-
-  const systemFeatures = [
-    {
-      icon: Laptop,
-      title: 'Dashboard Chuyên Nghiệp',
-      description: 'Giao diện quản lý hiện đại, theo dõi doanh thu và hoa hồng real-time'
-    },
-    {
-      icon: Smartphone,
-      title: 'Tương Thích Mobile',
-      description: 'Làm việc mọi lúc mọi nơi với giao diện tối ưu cho điện thoại'
-    },
-    {
-      icon: BarChart3,
-      title: 'Báo Cáo Chi Tiết',
-      description: 'Thống kê chi tiết về doanh số, khách hàng, và hiệu suất kinh doanh'
-    },
-    {
-      icon: UserCheck,
-      title: 'Quản Lý Khách Hàng',
-      description: 'CRM tích hợp giúp theo dõi và chăm sóc khách hàng hiệu quả'
-    }
-  ]
-
-  const stats = [
-    { number: '500+', label: 'Đại lý đang hoạt động', icon: Users },
-    { number: '10K+', label: 'Vé bán thành công/tháng', icon: Plane },
-    { number: '99.8%', label: 'Tỷ lệ thành công giao dịch', icon: CheckCircle },
-    { number: '2 phút', label: 'Thời gian setup trung bình', icon: Clock }
-  ]
-
-  const steps = [
-    {
-      step: 1,
-      title: 'Đăng Ký Tài Khoản',
-      description: 'Điền form đăng ký với thông tin cơ bản và chứng từ pháp lý'
-    },
-    {
-      step: 2,
-      title: 'Xác Thực Hồ Sơ',
-      description: 'Đội ngũ của chúng tôi sẽ xem xét và xác thực trong 24h'
-    },
-    {
-      step: 3,
-      title: 'Đào Tạo Hệ Thống',
-      description: 'Tham gia khóa đào tạo online về cách sử dụng hệ thống'
-    },
-    {
-      step: 4,
-      title: 'Bắt Đầu Bán Vé',
-      description: 'Nhận quyền truy cập và bắt đầu kinh doanh ngay lập tức'
-    }
-  ]
-
-  const whyNotAgent1 = [
-    {
-      title: 'Vốn Pháp Định Khủng',
-      description: 'Theo Thông tư 01/2021/TT-BVHTTDL, đại lý cấp 1 cần vốn pháp định tối thiểu 500 triệu - 2 tỷ VND tùy loại hình kinh doanh.',
-      icon: DollarSign,
-      amount: '500M - 2B VND',
-      details: ['Lữ hành nội địa: 500M VND', 'Lữ hành quốc tế: 2B VND', 'Phải nộp đủ trước khi cấp phép']
-    },
-    {
-      title: 'Giấy Phép Kinh Doanh Lữ Hành',
-      description: 'Bắt buộc phải có Giấy phép kinh doanh dịch vụ lữ hành của Tổng cục Du lịch, không phải chỉ đăng ký kinh doanh thường.',
-      icon: BookOpen,
-      amount: '6-12 tháng',
-      details: ['Hồ sơ pháp lý phức tạp', 'Thẩm định nghiêm ngặt', 'Tỷ lệ pass chỉ 60%']
-    },
-    {
-      title: 'Nhân Sự Chuyên Môn Cao',
-      description: 'Cần ít nhất 3 cán bộ có chứng chỉ hướng dẫn viên du lịch/quản lý du lịch và 1 kế toán chuyên ngành du lịch.',
-      icon: Users,
-      amount: '4+ nhân viên',
-      details: ['Lương tối thiểu 15M/người/tháng', 'Chi phí đào tạo chứng chỉ', 'Phải có kinh nghiệm 2+ năm']
-    },
-    {
-      title: 'Văn Phòng Tiêu Chuẩn',
-      description: 'Văn phòng tối thiểu 80m² tại trung tâm thành phố, đáp ứng tiêu chuẩn của Tổng cục Du lịch về cơ sở vật chất.',
-      icon: Building2,
-      amount: '50-100M VND/năm',
-      details: ['Vị trí trung tâm thành phố', 'Diện tích tối thiểu 80m²', 'Trang thiết bị đầy đủ']
-    },
-    {
-      title: 'Bảo Hiểm Trách Nhiệm',
-      description: 'Bắt buộc mua bảo hiểm trách nhiệm nghề nghiệp tối thiểu 1 tỷ VND và ký quỹ với Hiệp hội Du lịch.',
-      icon: Shield,
-      amount: '1 tỷ VND',
-      details: ['Bảo hiểm nghề nghiệp', 'Ký quỹ với Hiệp hội', 'Phí gia hạn hàng năm']
-    },
-    {
-      title: 'Hệ Thống IT & Kết Nối',
-      description: 'Đầu tư hệ thống IT riêng, kết nối API trực tiếp với các hãng hàng không, chi phí phát triển và duy trì cao.',
-      icon: Laptop,
-      amount: '200-500M VND',
-      details: ['Phát triển hệ thống riêng', 'Kết nối API với hãng bay', 'Bảo trì và nâng cấp liên tục']
-    },
-    {
-      title: 'Audit & Kiểm Toán',
-      description: 'Báo cáo tài chính được kiểm toán độc lập hàng năm, tuân thủ đầy đủ các quy định về thuế và kế toán du lịch.',
-      icon: Award,
-      amount: '50-200M VND/năm',
-      details: ['Kiểm toán độc lập', 'Báo cáo định kỳ', 'Tuân thủ pháp luật nghiêm ngặt']
-    },
-    {
-      title: 'Doanh Số Cam Kết',
-      description: 'Cam kết doanh số tối thiểu 20-50 tỷ VND/năm với hãng bay, chịu trách nhiệm tài chính đầy đủ về các giao dịch.',
-      icon: TrendingUp,
-      amount: '20-50 tỷ VND/năm',
-      details: ['Cam kết doanh số với hãng', 'Chịu rủi ro tài chính 100%', 'Penalty nếu không đạt target']
-    }
-  ]
-
-  const documentLibrary = [
-    {
-      title: 'Quick Start Guide - Bắt Đầu Nhanh',
-      description: 'Hướng dẫn từng bước cho đại lý mới, từ đăng nhập đến booking đầu tiên',
-      type: 'PDF + Video',
-      pages: '24 trang + 45 phút video',
-      icon: Lightbulb,
-      color: 'from-yellow-500 to-orange-500',
-      features: ['Checklist 30 điểm', 'Video walkthrough', 'Templates sẵn có'],
-      level: 'Beginner',
-      downloads: '2,847'
-    },
-    {
-      title: 'Hướng Dẫn Dashboard & Booking',
-      description: 'Master toàn bộ chức năng search, book, modify và cancel vé máy bay',
-      type: 'Video Tutorials',
-      pages: '15 videos - 3.5 giờ',
-      icon: Video,
-      color: 'from-blue-500 to-indigo-500',
-      features: ['Screen recording HD', 'Subtitles tiếng Việt', 'Practice exercises'],
-      level: 'Intermediate',
-      downloads: '1,923'
-    },
-    {
-      title: 'Nghiệp Vụ Hàng Không Chuyên Sâu',
-      description: 'Kiến thức về fare rules, class booking, routing, stopover, connecting flights',
-      type: 'E-learning Course',
-      pages: '12 modules - 150 lessons',
-      icon: GraduationCap,
-      color: 'from-purple-500 to-pink-500',
-      features: ['Interactive quizzes', 'Case studies thực tế', 'Certificate completion'],
-      level: 'Advanced',
-      downloads: '1,456'
-    },
-    {
-      title: 'Sales Scripts & Templates',
-      description: 'Bộ công cụ bán hàng: scripts điện thoại, email templates, objection handling',
-      type: 'Templates Pack',
-      pages: '80+ templates',
-      icon: Gift,
-      color: 'from-green-500 to-teal-500',
-      features: ['Email templates', 'Phone scripts', 'Follow-up sequences'],
-      level: 'All levels',
-      downloads: '2,156'
-    },
-    {
-      title: 'Xử Lý Hoàn Hủy Đổi Vé',
-      description: 'Hướng dẫn chi tiết các trường hợp refund, exchange, name change, date change',
-      type: 'PDF Handbook',
-      pages: '68 trang',
-      icon: FileText,
-      color: 'from-red-500 to-orange-500',
-      features: ['Flow charts quy trình', 'Fee calculator', 'Special cases guide'],
-      level: 'Advanced',
-      downloads: '1,789'
-    },
-    {
-      title: 'Customer Service Excellence',
-      description: 'Kỹ năng chăm sóc khách hàng, xử lý khiếu nại và tạo customer loyalty',
-      type: 'Interactive Course',
-      pages: '8 modules - 4 giờ',
-      icon: Headphones,
-      color: 'from-indigo-500 to-purple-500',
-      features: ['Role-play scenarios', 'Best practices', 'KPI tracking'],
-      level: 'Intermediate',
-      downloads: '1,345'
-    },
-    {
-      title: 'Marketing & Lead Generation',
-      description: 'Strategies digital marketing, social media, content creation cho đại lý',
-      type: 'Multimedia Kit',
-      pages: '50+ assets',
-      icon: Sparkles,
-      color: 'from-pink-500 to-rose-500',
-      features: ['Social media templates', 'Content calendar', 'Ad copy examples'],
-      level: 'All levels',
-      downloads: '987'
-    },
-    {
-      title: 'SOP & Compliance Manual',
-      description: 'Quy trình chuẩn, chính sách công ty, data protection và legal compliance',
-      type: 'Official Handbook',
-      pages: '120 trang',
-      icon: Shield,
-      color: 'from-gray-600 to-gray-800',
-      features: ['Legal requirements', 'GDPR compliance', 'Audit checklists'],
-      level: 'Required',
-      downloads: '3,245'
-    }
-  ]
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      {/* Hero Section */}
-      <div
-        className="relative min-h-[600px] bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "linear-gradient(135deg, rgba(34, 197, 94, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%), url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-green-900/50 via-blue-900/50 to-purple-900/50" />
-
-        <div className="relative z-10 container mx-auto px-4 py-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Briefcase className="w-5 h-5 text-white" />
-              <span className="text-white font-semibold">Cơ Hội Kinh Doanh</span>
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Trở Thành <span className="text-green-400">Đại Lý</span>
-              <br />
-              Vé Máy Bay Cấp 2
+      {/* Hero Section with Rich Content */}
+      <section className="relative bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 py-20">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Tuyển Đại Lý Vé Máy Bay Cấp 2 
+              <span className="block text-green-400">Không Ký Quỹ - 0 VND</span>
             </h1>
-
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-              Kinh doanh vé máy bay không cần ký quỹ với công nghệ hàng đầu
-            </p>
-
-            {/* Key Highlights */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                <div className="flex items-center justify-center gap-2 text-white">
-                  <PiggyBank className="w-6 h-6 text-green-400" />
-                  <span className="font-bold">0 VND Ký Quỹ</span>
-                </div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                <div className="flex items-center justify-center gap-2 text-white">
-                  <Search className="w-6 h-6 text-blue-400" />
-                  <span className="font-bold">Search Tự Động</span>
-                </div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                <div className="flex items-center justify-center gap-2 text-white">
-                  <CreditCard className="w-6 h-6 text-purple-400" />
-                  <span className="font-bold">Thanh Toán Tự Động</span>
-                </div>
-              </div>
+            
+            <div className="text-xl md:text-2xl mb-8 leading-relaxed">
+              <p className="mb-4">
+                Cơ hội kinh doanh vé máy bay với <strong>hoa hồng 1-3%</strong>, 
+                hệ thống công nghệ hiện đại, đào tạo miễn phí và hỗ trợ 24/7 từ Skyo Vietnam.
+              </p>
+              <p>
+                Tham gia <strong>mạng lưới 500+ đại lý</strong> đang kiếm thu nhập 
+                <strong> 10-100 triệu VND/tháng</strong> từ việc bán vé máy bay online.
+              </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 font-semibold px-8">
+            <div className="flex flex-wrap gap-4 justify-center mb-8">
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4">
                 <UserCheck className="w-5 h-5 mr-2" />
-                Đăng Ký Ngay
+                Đăng Ký Làm Đại Lý Ngay
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-semibold px-8">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold px-8 py-4">
                 <Phone className="w-5 h-5 mr-2" />
-                Tư Vấn Miễn Phí
+                Hotline: 1900 1234
               </Button>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Stats Section */}
-      <div className="relative -mt-20 z-20">
+      {/* Introduction & Benefits */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <Card key={index} className="bg-white/95 backdrop-blur-sm shadow-xl border-0 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <stat.icon className="w-8 h-8 text-white" />
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                  Đại Lý Vé Máy Bay Cấp 2 Là Gì?
+                </h2>
+                
+                <div className="prose prose-lg text-gray-600 leading-relaxed">
+                  <p className="mb-4">
+                    <strong>Đại lý vé máy bay cấp 2</strong> là mô hình kinh doanh cho phép cá nhân và doanh nghiệp 
+                    bán vé máy bay thông qua hệ thống của đại lý cấp 1 (như Skyo Vietnam) mà không cần đầu tư 
+                    vốn lớn hay thực hiện các thủ tục phức tạp như xin giấy phép kinh doanh lữ hành.
+                  </p>
+                  
+                  <p className="mb-4">
+                    Khác với <strong>đại lý cấp 1</strong> cần vốn pháp định 500 triệu - 2 tỷ VND, giấy phép 
+                    kinh doanh lữ hành từ Tổng cục Du lịch, văn phòng tối thiểu 80m² và nhân sự chuyên môn cao, 
+                    <strong> đại lý cấp 2 với Skyo</strong> hoàn toàn miễn phí tham gia.
+                  </p>
+                  
+                  <p className="mb-6">
+                    Bạn sẽ được cung cấp hệ thống booking online hiện đại, kết nối trực tiếp với các hãng hàng không 
+                    lớn như Vietnam Airlines, Vietjet Air, Jetstar Pacific, Bamboo Airways để search và đặt vé 
+                    real-time với giá tốt nhất thị trường.
+                  </p>
+
+                  <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+                    <p className="text-green-800 font-semibold">
+                      ✅ Cam kết: Hoàn toàn MIỄN PHÍ tham gia - Không ký quỹ - Không rủi ro tài chính
+                    </p>
                   </div>
-                  <div className="text-3xl font-bold text-gray-800 mb-2">{stat.number}</div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Why Choose Us Section */}
-      <div className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="bg-green-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              TẠI SAO CHỌN SKYO
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Những Lý Do Nên Làm Đại Lý Cấp 2
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Skyo mang đến cơ hội kinh doanh tuyệt vời với điều kiện linh hoạt nhất thị trường
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <Card key={index} className="bg-gradient-to-br from-gray-50 to-blue-50 border-2 border-blue-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <item.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-800 mb-3">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Benefits Section */}
-      <div className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="bg-blue-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              ƯU ĐIỂM VƯỢT TRỘI
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Những Lợi Ích Khi Làm Đại Lý Skyo
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hệ sinh thái hoàn chỉnh giúp bạn phát triển kinh doanh hiệu quả
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className={`bg-white hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 group border-0 shadow-lg relative overflow-hidden ${benefit.highlight ? 'ring-2 ring-green-400' : ''}`}>
-                {benefit.highlight && (
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-green-500 text-white text-xs px-2 py-1 font-bold animate-pulse">
-                      NỔI BẬT
-                    </Badge>
-                  </div>
-                )}
-                <CardContent className="p-8 text-center">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${benefit.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <benefit.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">{benefit.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* System Features Section */}
-      <div className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="bg-purple-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              CÔNG NGHỆ HIỆN ĐẠI
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Hệ Thống Quản Lý Toàn Diện
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Được xây dựng với công nghệ cloud hiện đại, đảm bảo tính ổn định và bảo mật cao
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {systemFeatures.map((feature, index) => (
-              <Card key={index} className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
-                <CardContent className="p-6 text-center">
-                  <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <feature.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-3">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Why Not Agent Level 1 Section */}
-      <div className="py-20 bg-gradient-to-br from-red-50 to-orange-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="bg-red-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              TẠI SAO KHÔNG THỂ LÀM ĐẠI LÝ CẤP 1?
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Rào Cản Của Đại Lý Cấp 1
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Nhiều doanh nghiệp muốn trở thành đại lý cấp 1 nhưng gặp phải những điều kiện khắt khe này
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyNotAgent1.map((item, index) => (
-              <Card key={index} className="bg-white border-2 border-red-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
-                <CardContent className="p-5">
-                  <div className="text-center mb-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <item.icon className="w-7 h-7 text-white" />
-                    </div>
-                    <h3 className="text-base font-bold text-gray-800 mb-2 leading-tight">{item.title}</h3>
-                    <div className="bg-red-100 rounded-lg p-2 mb-3">
-                      <span className="text-red-700 font-bold text-xs">{item.amount}</span>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 text-xs leading-relaxed mb-3">{item.description}</p>
-                  {item.details && (
-                    <div className="bg-red-50 rounded-lg p-3 border border-red-100">
-                      <h4 className="text-xs font-semibold text-red-800 mb-2">Chi tiết:</h4>
-                      <ul className="space-y-1">
-                        {item.details.map((detail, idx) => (
-                          <li key={idx} className="text-xs text-red-700 flex items-start gap-1">
-                            <span className="text-red-400 mt-0.5">•</span>
-                            <span>{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Card className="bg-gradient-to-r from-green-100 to-emerald-100 border-green-300 max-w-4xl mx-auto">
-              <CardContent className="p-8">
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
-                  <h3 className="text-2xl font-bold text-green-800">Giải Pháp Của Skyo</h3>
                 </div>
-                <p className="text-green-700 text-lg leading-relaxed">
-                  <strong>Làm đại lý cấp 2 với Skyo</strong> - Tất cả lợi ích của đại lý cấp 1 nhưng
-                  <span className="font-bold text-green-800"> KHÔNG CẦN KÝ QUỸ, KHÔNG RỦI RO TÀI CHÍNH,
-                  KHÔNG THỦ TỤC PHỨC TẠP</span>. Bắt đầu kinh doanh ngay hôm nay!
-                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                  Lợi Ích Khi Trở Thành Đại Lý Skyo
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                    <PiggyBank className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">0 VND Ký Quỹ</h4>
+                      <p className="text-sm text-gray-600">
+                        Khởi nghiệp ngay lập tức mà không cần đầu tư vốn ban đầu. 
+                        Chỉ cần máy tính/điện thoại và kết nối internet.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                    <DollarSign className="w-6 h-6 text-green-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Hoa Hồng Cạnh Tranh 1-3%</h4>
+                      <p className="text-sm text-gray-600">
+                        Mức hoa hồng hấp dẫn trên mỗi vé bán thành công. 
+                        Đại lý xuất sắc có thể nhận hoa hồng đến 3% và các ưu đãi đặc biệt.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                    <Search className="w-6 h-6 text-purple-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Hệ Thống Search Thông Minh</h4>
+                      <p className="text-sm text-gray-600">
+                        Công nghệ AI tìm kiếm vé tự động từ 5+ hãng hàng không, 
+                        so sánh giá real-time và đưa ra lựa chọn tối ưu cho khách hàng.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-3 bg-orange-50 rounded-lg">
+                    <BookOpen className="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Đào Tạo Nghiệp Vụ Miễn Phí</h4>
+                      <p className="text-sm text-gray-600">
+                        Khóa học online và offline về nghiệp vụ hàng không, 
+                        kỹ năng bán hàng, sử dụng hệ thống và chăm sóc khách hàng.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-3 bg-red-50 rounded-lg">
+                    <Headphones className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Hỗ Trợ 24/7</h4>
+                      <p className="text-sm text-gray-600">
+                        Đội ngũ support chuyên nghiệp sẵn sàng hỗ trợ qua hotline, 
+                        live chat, email để giải quyết mọi vấn đề phát sinh.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Thu Nhập Potential */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Thu Nhập Thực Tế Của Đại Lý Vé Máy Bay
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Dựa trên dữ liệu thống kê từ 500+ đại lý đang hoạt động tại Skyo Vietnam
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <Card className="border-2 border-green-200 bg-green-50">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl font-bold text-green-700 mb-2">10-30 triệu</div>
+                  <div className="text-lg font-semibold text-gray-800 mb-3">Đại lý Part-time</div>
+                  <div className="text-sm text-gray-600 space-y-1">
+                    <p>• Bán 50-150 vé/tháng</p>
+                    <p>• Làm việc 2-4 giờ/ngày</p>
+                    <p>• Phù hợp sinh viên, nội trợ</p>
+                    <p>• Thu nhập ổn định bên cạnh công việc chính</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-blue-200 bg-blue-50 relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <Badge className="bg-blue-600 text-white px-3 py-1">PHỔ BIẾN NHẤT</Badge>
+                </div>
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl font-bold text-blue-700 mb-2">30-80 triệu</div>
+                  <div className="text-lg font-semibold text-gray-800 mb-3">Đại lý Full-time</div>
+                  <div className="text-sm text-gray-600 space-y-1">
+                    <p>• Bán 150-400 vé/tháng</p>
+                    <p>• Làm việc 6-8 giờ/ngày</p>
+                    <p>• Có mạng lưới khách hàng ổn định</p>
+                    <p>• Nghề nghiệp chính, thu nhập chủ lực</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-purple-200 bg-purple-50">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl font-bold text-purple-700 mb-2">100+ triệu</div>
+                  <div className="text-lg font-semibold text-gray-800 mb-3">Top Performers</div>
+                  <div className="text-sm text-gray-600 space-y-1">
+                    <p>• Bán 500+ vé/tháng</p>
+                    <p>• Có team bán hàng</p>
+                    <p>• Khách hàng doanh nghiệp lớn</p>
+                    <p>• Hoa hồng đặc biệt 3% + bonus</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                Phân Tích Chi Tiết Thu Nhập Đại Lý Vé Máy Bay
+              </h3>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-800 mb-4">Tính Toán Hoa Hồng Cụ Thể:</h4>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                      <span className="text-gray-600">Vé nội địa (1.5M VND) x hoa hồng 1.5%:</span>
+                      <span className="font-semibold text-green-600">22,500 VND</span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                      <span className="text-gray-600">Vé quốc tế (8M VND) x hoa hồng 2%:</span>
+                      <span className="font-semibold text-green-600">160,000 VND</span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                      <span className="text-gray-600">Vé business (15M VND) x hoa hồng 2.5%:</span>
+                      <span className="font-semibold text-green-600">375,000 VND</span>
+                    </div>
+                    <div className="border-t pt-2 mt-3">
+                      <div className="flex justify-between items-center font-semibold">
+                        <span>Bán 200 vé/tháng (mix):</span>
+                        <span className="text-green-700 text-lg">≈ 35-50 triệu VND</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-800 mb-4">Yếu Tố Ảnh Hưởng Thu Nhập:</h4>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-start gap-2">
+                      <TrendingUp className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Mùa cao điểm</strong> (Tết, hè, lễ): Tăng 150-200% doanh số
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Users className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Mạng lưới khách hàng</strong>: Khách quen chiếm 60-70% doanh số
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Globe className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Chuyên sâu thị trường</strong>: Vé quốc tế hoa hồng cao hơn nội địa
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Award className="w-4 h-4 text-orange-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Performance bonus</strong>: Đạt target nhận thêm 10-20%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quy Trình Hoạt Động */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Quy Trình Hoạt Động Của Đại Lý Vé Máy Bay
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Hướng dẫn chi tiết từng bước để bắt đầu kinh doanh hiệu quả
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6">Quy Trình Bán Vé Chuẩn</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg">
+                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">1</div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">Tiếp Nhận Yêu Cầu Khách Hàng</h4>
+                      <p className="text-sm text-gray-600">
+                        Khách hàng liên hệ qua điện thoại, Facebook, Zalo hoặc trực tiếp. 
+                        Thu thập thông tin: điểm đi/đến, ngày bay, số hành khách, yêu cầu đặc biệt.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 bg-green-50 rounded-lg">
+                    <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">2</div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">Search & Báo Giá</h4>
+                      <p className="text-sm text-gray-600">
+                        Đăng nhập hệ thống Skyo, search real-time các chuyến bay phù hợp. 
+                        So sánh giá từ nhiều hãng, tư vấn lựa chọn tối ưu cho khách.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 bg-purple-50 rounded-lg">
+                    <div className="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">3</div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">Xác Nhận & Đặt Vé</h4>
+                      <p className="text-sm text-gray-600">
+                        Khách đồng ý giá và lịch bay. Nhập thông tin hành khách chính xác, 
+                        thực hiện booking qua hệ thống. Nhận mã booking confirmation.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 bg-orange-50 rounded-lg">
+                    <div className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">4</div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">Thanh Toán & Xuất Vé</h4>
+                      <p className="text-sm text-gray-600">
+                        Khách chuyển khoản theo thông tin Skyo cung cấp. 
+                        Sau khi xác nhận thanh toán, hệ thống tự động xuất vé điện tử gửi email.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 bg-red-50 rounded-lg">
+                    <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">5</div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">Giao Vé & Nhận Hoa Hồng</h4>
+                      <p className="text-sm text-gray-600">
+                        Gửi vé điện tử cho khách qua email/Zalo. Hướng dẫn thủ tục check-in. 
+                        Hoa hồng được tự động tính vào tài khoản đại lý trong 24h.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6">Hệ Thống Công Nghệ Hỗ Trợ</h3>
+                
+                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 mb-6">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <Laptop className="w-5 h-5 text-indigo-600" />
+                    Dashboard Quản Lý Chuyên Nghiệp
+                  </h4>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <p>• <strong>Real-time search:</strong> Kết nối trực tiếp API các hãng hàng không</p>
+                    <p>• <strong>Multi-currency:</strong> Hỗ trợ VND, USD cho vé quốc tế</p>
+                    <p>• <strong>Fare comparison:</strong> So sánh giá tự động, highlight deal tốt nhất</p>
+                    <p>• <strong>Booking management:</strong> Quản lý toàn bộ đơn hàng từ A-Z</p>
+                    <p>• <strong>Commission tracking:</strong> Theo dõi hoa hồng real-time</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6 mb-6">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <Smartphone className="w-5 h-5 text-green-600" />
+                    Mobile-First Design
+                  </h4>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <p>• <strong>Responsive design:</strong> Hoạt động mượt trên mọi thiết bị</p>
+                    <p>• <strong>Quick booking:</strong> Đặt vé chỉ trong 3 phút</p>
+                    <p>• <strong>Offline capability:</strong> Lưu cache để làm việc khi mạng yếu</p>
+                    <p>• <strong>Touch optimization:</strong> UI/UX tối ưu cho mobile</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <BarChart3 className="w-5 h-5 text-orange-600" />
+                    Analytics & Reporting
+                  </h4>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <p>• <strong>Sales dashboard:</strong> Thống kê doanh thu theo ngày/tháng/năm</p>
+                    <p>• <strong>Customer insights:</strong> Phân tích hành vi khách hàng</p>
+                    <p>• <strong>Performance metrics:</strong> KPI, conversion rate, average order</p>
+                    <p>• <strong>Export reports:</strong> Xuất báo cáo Excel cho kế toán</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* So Sánh Đại Lý Cấp 1 vs Cấp 2 */}
+      <section className="py-16 bg-gradient-to-br from-red-50 to-orange-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Tại Sao Chọn Đại Lý Cấp 2 Thay Vì Cấp 1?
+              </h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                Phân tích chi tiết sự khác biệt giữa đại lý cấp 1 và cấp 2, 
+                giúp bạn hiểu rõ lý do tại sao mô hình đại lý cấp 2 phù hợp với đa số doanh nghiệp SME và cá nhân
+              </p>
+            </div>
+
+            <Card className="bg-white shadow-xl border-0 mb-8">
+              <CardContent className="p-8">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-gray-200">
+                        <th className="text-left py-4 px-2 font-bold text-gray-800">Tiêu Chí So Sánh</th>
+                        <th className="text-center py-4 px-2 font-bold text-red-600 bg-red-50">Đại Lý Cấp 1</th>
+                        <th className="text-center py-4 px-2 font-bold text-green-600 bg-green-50">Đại Lý Cấp 2 Skyo</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      <tr>
+                        <td className="py-4 px-2 font-semibold">Vốn Pháp Định</td>
+                        <td className="py-4 px-2 text-center text-red-600">500M - 2B VND</td>
+                        <td className="py-4 px-2 text-center text-green-600 font-bold">0 VND</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="py-4 px-2 font-semibold">Giấy Phép Kinh Doanh</td>
+                        <td className="py-4 px-2 text-center text-red-600">Giấy phép lữ hành từ Tổng cục Du lịch</td>
+                        <td className="py-4 px-2 text-center text-green-600 font-bold">Không cần</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-2 font-semibold">Văn Phòng</td>
+                        <td className="py-4 px-2 text-center text-red-600">Tối thiểu 80m², vị trí trung tâm</td>
+                        <td className="py-4 px-2 text-center text-green-600 font-bold">Làm việc tại nhà</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="py-4 px-2 font-semibold">Nhân Sự</td>
+                        <td className="py-4 px-2 text-center text-red-600">4+ nhân viên có chứng chỉ</td>
+                        <td className="py-4 px-2 text-center text-green-600 font-bold">Chỉ cần 1 người</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-2 font-semibold">Hệ Thống IT</td>
+                        <td className="py-4 px-2 text-center text-red-600">Đầu tư riêng 200-500M VND</td>
+                        <td className="py-4 px-2 text-center text-green-600 font-bold">Miễn phí sử dụng</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="py-4 px-2 font-semibold">Cam Kết Doanh Số</td>
+                        <td className="py-4 px-2 text-center text-red-600">20-50 tỷ VND/năm</td>
+                        <td className="py-4 px-2 text-center text-green-600 font-bold">Không cam kết</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-2 font-semibold">Rủi Ro Tài Chính</td>
+                        <td className="py-4 px-2 text-center text-red-600">Chịu 100% rủi ro</td>
+                        <td className="py-4 px-2 text-center text-green-600 font-bold">Không rủi ro</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="py-4 px-2 font-semibold">Thời Gian Setup</td>
+                        <td className="py-4 px-2 text-center text-red-600">6-12 tháng</td>
+                        <td className="py-4 px-2 text-center text-green-600 font-bold">2-3 ngày</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <Card className="border-2 border-red-200 bg-white">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-red-700 mb-4 flex items-center gap-2">
+                    <AlertCircle className="w-5 h-5" />
+                    Rào Cản Của Đại Lý Cấp 1
+                  </h3>
+                  <div className="space-y-3 text-sm text-gray-600">
+                    <p>
+                      <strong>Vốn khổng lồ:</strong> Theo Thông tư 01/2021/TT-BVHTTDL, vốn pháp định tối thiểu 
+                      500 triệu VND cho lữ hành nội địa, 2 tỷ VND cho quốc tế.
+                    </p>
+                    <p>
+                      <strong>Thủ tục phức tạp:</strong> Hồ sơ xin giấy phép dài dòng, thẩm định nghiêm ngặt, 
+                      tỷ lệ phê duyệt chỉ 60%.
+                    </p>
+                    <p>
+                      <strong>Chi phí vận hành cao:</strong> Văn phòng, nhân sự, bảo hiểm, audit... 
+                      ước tính 300-500 triệu VND/năm.
+                    </p>
+                    <p>
+                      <strong>Áp lực doanh số:</strong> Cam kết với hãng bay về volume, penalty nặng nếu không đạt target.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-green-200 bg-white">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-green-700 mb-4 flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5" />
+                    Ưu Thế Đại Lý Cấp 2 Skyo
+                  </h3>
+                  <div className="space-y-3 text-sm text-gray-600">
+                    <p>
+                      <strong>Khởi nghiệp không vốn:</strong> Bắt đầu ngay hôm nay với 0 VND đầu tư, 
+                      chỉ cần laptop và internet.
+                    </p>
+                    <p>
+                      <strong>Công nghệ hiện đại:</strong> Hưởng lợi hệ thống cloud của Skyo với khả năng 
+                      scale unlimited, uptime 99.9%.
+                    </p>
+                    <p>
+                      <strong>Linh hoạt tối đa:</strong> Làm việc mọi lúc mọi nơi, kiểm soát hoàn toàn 
+                      thời gian và nhịp độ công việc.
+                    </p>
+                    <p>
+                      <strong>Đội ngũ hậu thuẫn:</strong> Team support chuyên nghiệp, training đầy đủ, 
+                      marketing materials sẵn có.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Training & Support */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Hệ Thống Đào Tạo & Hỗ Trợ Toàn Diện
+              </h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                Skyo cam kết đồng hành cùng đại lý từ những ngày đầu đến khi trở thành chuyên gia
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
+                    <BookOpen className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Onboarding Training</h3>
+                  <div className="text-sm text-gray-600 space-y-2">
+                    <p>• <strong>Tuần 1:</strong> Cơ sở nghiệp vụ hàng không (8 giờ)</p>
+                    <p>• <strong>Tuần 2:</strong> Sử dụng hệ thống booking (6 giờ)</p>
+                    <p>• <strong>Tuần 3:</strong> Kỹ năng bán hàng & chăm sóc KH (4 giờ)</p>
+                    <p>• <strong>Tuần 4:</strong> Thực hành với mentor 1-on-1 (4 giờ)</p>
+                  </div>
+                  <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+                    <p className="text-xs text-blue-800">
+                      <strong>Cam kết:</strong> 100% miễn phí, lớp học tối đa 10 người, 
+                      có chứng chỉ hoàn thành từ Skyo Academy.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-4">
+                    <Video className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Knowledge Base</h3>
+                  <div className="text-sm text-gray-600 space-y-2">
+                    <p>• <strong>50+ video tutorials</strong> HD có phụ đề tiếng Việt</p>
+                    <p>• <strong>200+ tài liệu</strong> PDF về nghiệp vụ chuyên sâu</p>
+                    <p>• <strong>Templates & Scripts</strong> bán hàng ready-to-use</p>
+                    <p>• <strong>FAQ database</strong> với 1000+ câu hỏi thường gặp</p>
+                  </div>
+                  <div className="mt-4 p-3 bg-green-100 rounded-lg">
+                    <p className="text-xs text-green-800">
+                      <strong>Cập nhật:</strong> Nội dung được refresh hàng tháng theo 
+                      thay đổi chính sách của các hãng bay.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-4">
+                    <Headphones className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">24/7 Support</h3>
+                  <div className="text-sm text-gray-600 space-y-2">
+                    <p>• <strong>Hotline:</strong> 1900 1234 (miễn phí từ ĐT bàn)</p>
+                    <p>• <strong>Live chat:</strong> Response time < 5 phút</p>
+                    <p>• <strong>Email:</strong> support@skyo.vn (reply trong 2h)</p>
+                    <p>• <strong>Zalo OA:</strong> Skyo Vietnam Support</p>
+                  </div>
+                  <div className="mt-4 p-3 bg-purple-100 rounded-lg">
+                    <p className="text-xs text-purple-800">
+                      <strong>Đặc biệt:</strong> Dedicated support manager cho đại lý 
+                      VIP (doanh số 50+ vé/tháng).
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                    Chương Trình Đào Tạo Chuyên Sâu
+                  </h3>
+                  <p className="text-gray-600">
+                    Hệ thống giáo dục nghiệp vụ bài bản duy nhất tại Việt Nam dành riêng cho đại lý vé máy bay
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <GraduationCap className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="text-2xl font-bold text-indigo-600 mb-1">Level 1</div>
+                    <div className="text-sm font-semibold text-gray-800 mb-1">Basic Agent</div>
+                    <div className="text-xs text-gray-600">
+                      Nghiệp vụ cơ bản, sử dụng hệ thống, booking đơn giản
+                    </div>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Target className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="text-2xl font-bold text-green-600 mb-1">Level 2</div>
+                    <div className="text-sm font-semibold text-gray-800 mb-1">Expert Agent</div>
+                    <div className="text-xs text-gray-600">
+                      Fare rules, group booking, corporate contracts
+                    </div>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Award className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="text-2xl font-bold text-purple-600 mb-1">Level 3</div>
+                    <div className="text-sm font-semibold text-gray-800 mb-1">Master Agent</div>
+                    <div className="text-xs text-gray-600">
+                      Team management, advanced strategies, mentor others
+                    </div>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Crown className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="text-2xl font-bold text-orange-600 mb-1">VIP</div>
+                    <div className="text-sm font-semibold text-gray-800 mb-1">Super Agent</div>
+                    <div className="text-xs text-gray-600">
+                      Exclusive benefits, higher commission, priority support
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Document Library Section */}
-      <div className="py-20 bg-white">
+      {/* Success Stories */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="bg-indigo-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              TÀI LIỆU NGHIỆP VỤ
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Kho Tài Liệu Đầy Đủ & Chuyên Sâu
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hệ thống tài liệu nghiệp vụ được xây dựng bài bản, giúp đại lý nắm vững kiến thức và kỹ năng
-            </p>
-          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Câu Chuyện Thành Công Của Các Đại Lý
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Những con số thực tế và kinh nghiệm chia sẻ từ đại lý xuất sắc của Skyo
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {documentLibrary.map((doc, index) => (
-              <Card key={index} className="bg-white border-2 border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${doc.color}`}></div>
-                <CardContent className="p-5">
-                  <div className="text-center mb-4">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${doc.color} rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                      <doc.icon className="w-6 h-6 text-white" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold">NT</span>
                     </div>
-                    <h3 className="text-sm font-bold text-gray-800 mb-2 leading-tight">{doc.title}</h3>
-                  </div>
-
-                  <div className="space-y-2 mb-4">
-                    <div className="flex justify-between items-center">
-                      <Badge variant="outline" className="text-xs">{doc.type}</Badge>
-                      <Badge className={`text-xs ${doc.level === 'Required' ? 'bg-red-500' : doc.level === 'Advanced' ? 'bg-purple-500' : doc.level === 'Intermediate' ? 'bg-blue-500' : 'bg-green-500'} text-white`}>
-                        {doc.level}
-                      </Badge>
-                    </div>
-                    <div className="text-xs text-gray-600">
-                      <div className="flex justify-between">
-                        <span>Nội dung:</span>
-                        <span className="font-semibold">{doc.pages}</span>
-                      </div>
-                      <div className="flex justify-between mt-1">
-                        <span>Downloads:</span>
-                        <span className="font-semibold text-green-600">{doc.downloads}</span>
-                      </div>
+                    <div>
+                      <h3 className="font-bold text-gray-800">Chị Nguyễn Thảo</h3>
+                      <p className="text-sm text-gray-600">Hà Nội • Tham gia 2 năm</p>
                     </div>
                   </div>
-
-                  <p className="text-gray-600 text-xs leading-relaxed mb-4">{doc.description}</p>
-
                   <div className="mb-4">
-                    <h4 className="text-xs font-semibold text-gray-800 mb-2">Highlights:</h4>
-                    <ul className="space-y-1">
-                      {doc.features.map((feature, idx) => (
-                        <li key={idx} className="text-xs text-gray-600 flex items-start gap-1">
-                          <CheckCircle className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="text-2xl font-bold text-green-600 mb-1">85 triệu/tháng</div>
+                    <div className="text-sm text-gray-600">Thu nhập trung bình</div>
                   </div>
-
-                  <Button size="sm" className="w-full bg-gray-800 hover:bg-gray-900 text-white">
-                    <Download className="w-3 h-3 mr-2" />
-                    Tải xuống
-                  </Button>
+                  <blockquote className="text-sm text-gray-700 italic mb-4">
+                    "Từ một kế toán viên với lương 12 triệu, giờ tôi kiếm được 85 triệu/tháng 
+                    từ việc bán vé máy bay. Skyo đã thay đổi cuộc sống gia đình tôi hoàn toàn."
+                  </blockquote>
+                  <div className="text-xs text-gray-500 space-y-1">
+                    <p>• Chuyên về thị trường doanh nghiệp</p>
+                    <p>• Bán 320+ vé/tháng</p>
+                    <p>• Có team 3 người</p>
+                  </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
 
-          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 border border-indigo-200">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">📚 Hệ Thống Đào Tạo Toàn Diện Nhất Việt Nam</h3>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Video className="w-8 h-8 text-white" />
+              <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold">MH</span>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-800">Anh Minh Hải</h3>
+                      <p className="text-sm text-gray-600">TP.HCM • Tham gia 18 tháng</p>
+                    </div>
                   </div>
-                  <div className="text-2xl font-bold text-indigo-600 mb-1">50+</div>
-                  <div className="text-sm text-gray-600">Video HD Tutorials</div>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <FileText className="w-8 h-8 text-white" />
+                  <div className="mb-4">
+                    <div className="text-2xl font-bold text-blue-600 mb-1">120 triệu/tháng</div>
+                    <div className="text-sm text-gray-600">Thu nhập cao điểm</div>
                   </div>
-                  <div className="text-2xl font-bold text-purple-600 mb-1">200+</div>
-                  <div className="text-sm text-gray-600">Tài liệu chuyên nghiệp</div>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Clock className="w-8 h-8 text-white" />
+                  <blockquote className="text-sm text-gray-700 italic mb-4">
+                    "Làm part-time bên cạnh công việc chính, tháng cao điểm tôi kiếm được 120 triệu. 
+                    Hệ thống Skyo rất dễ sử dụng, khách hàng tin tưởng."
+                  </blockquote>
+                  <div className="text-xs text-gray-500 space-y-1">
+                    <p>• Chuyên vé quốc tế và tour</p>
+                    <p>• Bán 450+ vé trong tháng 7</p>
+                    <p>• Làm việc buổi tối & cuối tuần</p>
                   </div>
-                  <div className="text-2xl font-bold text-green-600 mb-1">60+</div>
-                  <div className="text-sm text-gray-600">Giờ nội dung training</div>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Award className="w-8 h-8 text-white" />
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold">LM</span>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-800">Chị Lan Mai</h3>
+                      <p className="text-sm text-gray-600">Đà Nẵng • Tham gia 3 năm</p>
+                    </div>
                   </div>
-                  <div className="text-2xl font-bold text-orange-600 mb-1">3</div>
-                  <div className="text-sm text-gray-600">Cấp độ chứng chỉ</div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h4 className="font-semibold text-gray-800 mb-2">🎯 Chuyên Sâu</h4>
-                  <p className="text-sm text-gray-600">Từ cơ bản đến expert, coverage 100% nghiệp vụ hàng không</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h4 className="font-semibold text-gray-800 mb-2">⚡ Thực Hành</h4>
-                  <p className="text-sm text-gray-600">Case studies thực tế, templates sẵn dùng, practice exercises</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h4 className="font-semibold text-gray-800 mb-2">🔄 Cập Nhật</h4>
-                  <p className="text-sm text-gray-600">Nội dung được cập nhật liên tục theo thay đổi của ngành</p>
-                </div>
-              </div>
-
-              <p className="text-gray-700 leading-relaxed mb-4">
-                <strong>Hệ thống đào tạo duy nhất tại Việt Nam</strong> được thiết kế riêng cho đại lý vé máy bay,
-                từ kiến thức cơ bản đến chiến lược bán hàng nâng cao.
-                <span className="text-indigo-600 font-semibold"> 100% miễn phí cho đối tác Skyo.</span>
-              </p>
-
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Badge className="bg-green-100 text-green-800 px-3 py-1">✅ Interactive Learning</Badge>
-                <Badge className="bg-blue-100 text-blue-800 px-3 py-1">🏆 Certification Ready</Badge>
-                <Badge className="bg-purple-100 text-purple-800 px-3 py-1">📱 Mobile Friendly</Badge>
-                <Badge className="bg-orange-100 text-orange-800 px-3 py-1">🆘 24/7 Support</Badge>
-              </div>
+                  <div className="mb-4">
+                    <div className="text-2xl font-bold text-purple-600 mb-1">65 triệu/tháng</div>
+                    <div className="text-sm text-gray-600">Thu nhập ổn định</div>
+                  </div>
+                  <blockquote className="text-sm text-gray-700 italic mb-4">
+                    "Với nền tảng du lịch, tôi dễ dàng tư vấn khách hàng. 
+                    Skyo giúp tôi có thu nhập cao hơn làm hướng dẫn viên."
+                  </blockquote>
+                  <div className="text-xs text-gray-500 space-y-1">
+                    <p>• Kết hợp bán vé + tour</p>
+                    <p>• Mạng lưới khách quen tại miền Trung</p>
+                    <p>• Focus vào family trips</p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* How It Works Section */}
-      <div className="py-20 bg-gradient-to-br from-gray-50 to-green-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="bg-green-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              QUY TRÌNH ĐĂNG KÝ
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              4 Bước Trở Thành Đại Lý
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Quy trình đơn giản, nhanh chóng, không rườm rà
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Progress Line */}
-              <div className="absolute left-8 top-16 bottom-16 w-0.5 bg-gradient-to-b from-green-400 to-blue-500 hidden md:block"></div>
-
-              {steps.map((step, index) => (
-                <div key={index} className="relative flex items-start gap-8 pb-12 last:pb-0">
-                  {/* Step Number */}
-                  <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
-                    <span className="text-white font-bold text-lg">{step.step}</span>
-                  </div>
-
-                  {/* Content */}
-                  <Card className="flex-1 bg-white border-2 border-green-200 hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-gray-800 mb-3">{step.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{step.description}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Cross-selling Hotel Agent */}
-      <div className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge className="bg-indigo-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              MỞ RỘNG KINH DOANH
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-              Tăng Gấp Đôi Thu Nhập Với Combo Flight + Hotel
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Đã là đại lý vé máy bay? Hãy thêm dịch vụ khách sạn để tăng thu nhập
-            </p>
-          </div>
-
-          <Card className="max-w-4xl mx-auto bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                    🏨 Package Deal: Flight + Hotel Agent
+            <div className="mt-12 text-center">
+              <Card className="bg-white border-2 border-indigo-200 shadow-lg inline-block">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">
+                    Thống Kê Toàn Mạng Lưới Đại Lý Skyo
                   </h3>
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                      <span className="text-gray-700">Hoa hồng từ cả 2 dịch vụ: flight 1-3% + hotel 2-5%</span>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                      <div className="text-2xl font-bold text-blue-600 mb-1">500+</div>
+                      <div className="text-sm text-gray-600">Đại lý hoạt động</div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                      <span className="text-gray-700">Cross-selling hiệu quả: khách book flight → upsell hotel</span>
+                    <div>
+                      <div className="text-2xl font-bold text-green-600 mb-1">45M</div>
+                      <div className="text-sm text-gray-600">Thu nhập TB/tháng</div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                      <span className="text-gray-700">Unified dashboard: quản lý cả flight và hotel bookings</span>
+                    <div>
+                      <div className="text-2xl font-bold text-purple-600 mb-1">12K+</div>
+                      <div className="text-sm text-gray-600">Vé bán/tháng</div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                      <span className="text-gray-700">Package deals: tạo combo vacation cho khách hàng</span>
+                    <div>
+                      <div className="text-2xl font-bold text-orange-600 mb-1">98%</div>
+                      <div className="text-sm text-gray-600">Tỷ lệ hài lòng</div>
                     </div>
                   </div>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6" asChild>
-                    <a href="/dai-ly-khach-san">
-                      <Hotel className="w-4 h-4 mr-2" />
-                      Tìm hiểu đại lý khách sạn
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </a>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Yêu Cầu & Quy Trình Đăng Ký */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Yêu Cầu & Quy Trình Đăng Ký Đại Lý
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Điều kiện đơn giản, quy trình nhanh chóng, bắt đầu kinh doanh trong 3 ngày
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6">Yêu Cầu Cơ Bản</h3>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start gap-3 p-4 bg-green-50 rounded-lg border border-green-200">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Pháp Lý</h4>
+                      <p className="text-sm text-gray-600">
+                        CMND/CCCD hoặc Giấy phép kinh doanh (đối với doanh nghiệp). 
+                        Không cần giấy phép lữ hành hay các chứng chỉ chuyên môn.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Tài Chính</h4>
+                      <p className="text-sm text-gray-600">
+                        Không cần vốn ký quỹ. Chỉ cần tài khoản ngân hàng cá nhân/doanh nghiệp 
+                        để nhận hoa hồng và giao dịch với khách hàng.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                    <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Kỹ Năng</h4>
+                      <p className="text-sm text-gray-600">
+                        Biết sử dụng máy tính/smartphone cơ bản. Kỹ năng giao tiếp tốt. 
+                        Tiếng Anh cơ bản là lợi thế (không bắt buộc).
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                    <CheckCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Thiết Bị</h4>
+                      <p className="text-sm text-gray-600">
+                        Laptop/PC hoặc smartphone với kết nối internet ổn định. 
+                        Hệ thống Skyo tối ưu cho mọi thiết bị.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">Lưu Ý Quan Trọng</h4>
+                      <p className="text-sm text-gray-600">
+                        Skyo ưu tiên các ứng viên có kinh nghiệm bán hàng, du lịch hoặc 
+                        mạng lưới khách hàng sẵn có. Tuy nhiên, chúng tôi cũng chào đón 
+                        người mới bắt đầu với tinh thần học hỏi.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6">Quy Trình 4 Bước</h3>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-800 mb-2">Nộp Hồ Sơ Online</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        Điền form đăng ký trên website với thông tin cơ bản: họ tên, 
+                        CMND, SĐT, email, địa chỉ. Upload ảnh CMND và ảnh chân dung.
+                      </p>
+                      <div className="bg-blue-50 rounded p-3">
+                        <p className="text-xs text-blue-800">
+                          <strong>Thời gian:</strong> 10 phút • <strong>Chi phí:</strong> Miễn phí
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">2</div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-800 mb-2">Xác Thực & Phỏng Vấn</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        Team Skyo sẽ gọi điện xác thực thông tin trong 24h. 
+                        Phỏng vấn online 15-20 phút để hiểu về kinh nghiệm và mục tiêu.
+                      </p>
+                      <div className="bg-green-50 rounded p-3">
+                        <p className="text-xs text-green-800">
+                          <strong>Thời gian:</strong> 1-2 ngày • <strong>Tỷ lệ pass:</strong> 85%
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">3</div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-800 mb-2">Training & Setup</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        Tham gia khóa đào tạo online 4 giờ về nghiệp vụ và hệ thống. 
+                        Nhận tài khoản truy cập và tài liệu hướng dẫn chi tiết.
+                      </p>
+                      <div className="bg-purple-50 rounded p-3">
+                        <p className="text-xs text-purple-800">
+                          <strong>Thời gian:</strong> 1 ngày • <strong>Có chứng chỉ</strong> hoàn thành
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">4</div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-800 mb-2">Kích Hoạt & Bán Vé</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        Tài khoản được kích hoạt đầy đủ quyền. Bắt đầu search và bán vé ngay lập tức. 
+                        Mentor hỗ trợ trong 2 tuần đầu.
+                      </p>
+                      <div className="bg-orange-50 rounded p-3">
+                        <p className="text-xs text-orange-800">
+                          <strong>Bắt đầu:</strong> Ngay sau training • <strong>Support:</strong> 24/7
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-8 py-4">
+                    <UserCheck className="w-5 h-5 mr-2" />
+                    Đăng Ký Ngay - Miễn Phí 100%
                   </Button>
                 </div>
-                <div className="text-center">
-                  <div className="bg-white rounded-xl p-6 shadow-lg">
-                    <h4 className="text-lg font-bold text-gray-800 mb-4">Thu nhập potential:</h4>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Flight commission:</span>
-                        <span className="font-semibold text-blue-600">15-40M/tháng</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Hotel commission:</span>
-                        <span className="font-semibold text-green-600">20-50M/tháng</span>
-                      </div>
-                      <hr className="my-2" />
-                      <div className="flex justify-between text-lg">
-                        <span className="font-bold text-gray-800">Tổng cộng:</span>
-                        <span className="font-bold text-purple-600">35-90M/tháng</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Advanced FAQ Section */}
-      <div className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="bg-teal-600 text-white px-4 py-2 text-sm font-semibold mb-4">
-              FAQ CHI TIẾT
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Câu Hỏi Thường Gặp Về Đại Lý Cấp 2
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Giải đáp toàn diện các thắc mắc về kinh doanh vé máy bay
-            </p>
+            </div>
           </div>
+        </div>
+      </section>
 
+      {/* FAQ Comprehensive */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Business Model FAQs */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                  <Briefcase className="w-6 h-6 text-blue-600" />
-                  Mô Hình Kinh Doanh
-                </h3>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Câu Hỏi Thường Gặp Về Đại Lý Vé Máy Bay
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Giải đáp chi tiết những thắc mắc phổ biến nhất của đại lý mới
+              </p>
+            </div>
 
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="space-y-6">
                 <Card className="border-l-4 border-l-blue-500 shadow-lg">
                   <CardContent className="p-6">
-                    <h4 className="font-bold text-gray-800 mb-3">❓ Tại sao nên chọn đại lý cấp 2 thay vì cấp 1?</h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      <strong>Đại lý cấp 1:</strong> Cần vốn 500M-2B VND, giấy phép lữ hành, văn phòng 80m², nhân sự chuyên môn cao, cam kết doanh số lớn.
-                      <br/><br/>
-                      <strong>Đại lý cấp 2 Skyo:</strong> 0 VND ký quỹ, không cần giấy phép, làm việc tại nhà, đào tạo miễn phí, không cam kết doanh số.
+                    <h3 className="font-bold text-gray-800 mb-3 text-lg">
+                      ❓ Đại lý cấp 2 có được phép bán vé trực tiếp không?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      <strong>Có.</strong> Theo quy định hiện hành, đại lý cấp 2 được phép bán vé máy bay 
+                      thông qua hệ thống của đại lý cấp 1 (Skyo). Bạn sẽ nhận được vé chính thức 
+                      từ hãng hàng không với đầy đủ quyền lợi như check-in, đổi vé, hoàn vé... 
+                      Khách hàng hoàn toàn an tâm về tính pháp lý.
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-l-4 border-l-green-500 shadow-lg">
                   <CardContent className="p-6">
-                    <h4 className="font-bold text-gray-800 mb-3">💰 Thu nhập thực tế của đại lý có thể đạt bao nhiêu?</h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      <strong>Đại lý part-time:</strong> 10-30 triệu VND/tháng (bán 50-150 vé)<br/>
-                      <strong>Đại lý full-time:</strong> 30-80 triệu VND/tháng (bán 150-400 vé)<br/>
-                      <strong>Top performers:</strong> 100+ triệu VND/tháng (bán 500+ vé)<br/>
-                      <em>Hoa hồng từ 1-3% tùy theo volume và performance.</em>
+                    <h3 className="font-bold text-gray-800 mb-3 text-lg">
+                      💰 Hoa hồng được thanh toán như thế nào?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      Hoa hồng được <strong>tự động tính vào tài khoản trong 24h</strong> sau khi vé được xuất thành công. 
+                      Thanh toán qua chuyển khoản ngân hàng vào <strong>thứ 2 và thứ 6 hàng tuần</strong>. 
+                      Không có phí rút tiền hay các khoản khấu trừ ẩn. 
+                      Đại lý có thể theo dõi real-time trên dashboard.
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-l-4 border-l-purple-500 shadow-lg">
                   <CardContent className="p-6">
-                    <h4 className="font-bold text-gray-800 mb-3">🎯 Target khách hàng nào phù hợp nhất?</h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      <strong>B2C:</strong> Cá nhân, gia đình đi du lịch, công tác<br/>
-                      <strong>B2B:</strong> Công ty, trường học, tổ chức có nhu cầu đi lại<br/>
-                      <strong>B2B2C:</strong> Các đại lý nhỏ, travel bloggers, influencers<br/>
-                      <strong>Niche markets:</strong> Du học sinh, lao động xuất khẩu, người Việt overseas
+                    <h3 className="font-bold text-gray-800 mb-3 text-lg">
+                      🔒 Nếu Skyo gặp vấn đề, đại lý có bị ảnh hưởng không?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      <strong>Skyo là công ty có vốn pháp định 2 tỷ VND</strong>, giấy phép kinh doanh lữ hành quốc tế 
+                      từ Tổng cục Du lịch, bảo hiểm trách nhiệm nghề nghiệp 5 tỷ VND. 
+                      Mọi giao dịch đều được bảo đảm. Trong trường hợp bất khả kháng, 
+                      đại lý sẽ được chuyển đổi sang đối tác khác hoặc hoàn lại toàn bộ hoa hồng.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-l-4 border-l-orange-500 shadow-lg">
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-gray-800 mb-3 text-lg">
+                      ⚡ Hệ thống có ổn định và nhanh không?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      <strong>Uptime 99.9%</strong> được monitor 24/7. Search speed dưới 3 giây cho nội địa, 
+                      dưới 7 giây cho quốc tế. <strong>Booking success rate 99.8%</strong>. 
+                      Hệ thống được hosting trên AWS với khả năng auto-scale, 
+                      đảm bảo hoạt động ổn định ngay cả trong peak time Tết, nghỉ lễ.
                     </p>
                   </CardContent>
                 </Card>
               </div>
 
-              {/* Technical & Support FAQs */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                  <Headphones className="w-6 h-6 text-green-600" />
-                  Hỗ Trợ & Kỹ Thuật
-                </h3>
-
-                <Card className="border-l-4 border-l-orange-500 shadow-lg">
-                  <CardContent className="p-6">
-                    <h4 className="font-bold text-gray-800 mb-3">⚡ Hệ thống có ổn định và nhanh không?</h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      <strong>Uptime:</strong> 99.9% (monitored 24/7)<br/>
-                      <strong>Search speed:</strong> &lt;2 giây cho domestic, &lt;5 giây cho international<br/>
-                      <strong>Booking success rate:</strong> 99.8%<br/>
-                      <strong>API integration:</strong> Trực tiếp với Vietnam Airlines, Vietjet, Jetstar, Bamboo Airways
-                    </p>
-                  </CardContent>
-                </Card>
-
                 <Card className="border-l-4 border-l-red-500 shadow-lg">
                   <CardContent className="p-6">
-                    <h4 className="font-bold text-gray-800 mb-3">🆘 Support khi gặp vấn đề được giải quyết ra sao?</h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      <strong>Hotline 24/7:</strong> 1900 1234 (free từ điện thoại bàn)<br/>
-                      <strong>Live chat:</strong> Response time &lt;5 phút (8AM-10PM)<br/>
-                      <strong>Email:</strong> support@skyo.vn (reply trong 2 giờ)<br/>
-                      <strong>Dedicated support:</strong> Cho đại lý VIP (doanh số 50+ vé/tháng)
+                    <h3 className="font-bold text-gray-800 mb-3 text-lg">
+                      👥 Có thể làm team hay chỉ được làm cá nhân?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      <strong>Hoàn toàn có thể xây dựng team</strong>. Nhiều đại lý top đã có 3-5 nhân viên. 
+                      Skyo hỗ trợ tạo sub-account cho team members, 
+                      phân quyền theo level, tracking riêng từng người. 
+                      <strong>Team leader nhận thêm 0.2-0.5% override commission</strong> từ doanh số của team.
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-l-4 border-l-indigo-500 shadow-lg">
                   <CardContent className="p-6">
-                    <h4 className="font-bold text-gray-800 mb-3">📚 Có training và tài liệu hướng dẫn không?</h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      <strong>Onboarding:</strong> 1-on-1 training trong tuần đầu<br/>
-                      <strong>Documentation:</strong> 200+ tài liệu, 50+ videos, 60+ giờ training<br/>
-                      <strong>Certification:</strong> 3 cấp độ chứng chỉ (Basic, Expert, Master)<br/>
-                      <strong>Ongoing support:</strong> Weekly webinars, monthly updates, quarterly workshops
+                    <h3 className="font-bold text-gray-800 mb-3 text-lg">
+                      📱 Có app mobile cho đại lý không?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      Hiện tại chưa có app riêng, nhưng <strong>website được optimize 100% cho mobile</strong>. 
+                      Giao diện responsive, load nhanh, đầy đủ chức năng như desktop. 
+                      Nhiều đại lý chỉ dùng smartphone cũng bán được 200+ vé/tháng. 
+                      <strong>Mobile app sẽ ra mắt Q2/2024</strong>.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-l-4 border-l-teal-500 shadow-lg">
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-gray-800 mb-3 text-lg">
+                      🎯 Có hỗ trợ marketing và tìm khách không?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      <strong>Có đầy đủ marketing kit</strong>: Logo, brochure, price list, social media templates, 
+                      landing page builder. Đào tạo digital marketing, Facebook Ads, Google Ads. 
+                      <strong>Lead sharing program</strong>: Skyo chia sẻ leads dư cho đại lý có performance tốt. 
+                      Referral bonus khi giới thiệu đại lý mới.
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-l-4 border-l-pink-500 shadow-lg">
                   <CardContent className="p-6">
-                    <h4 className="font-bold text-gray-800 mb-3">🔒 Bảo mật thông tin khách hàng và thanh toán?</h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      <strong>Data protection:</strong> GDPR compliant, ISO 27001<br/>
-                      <strong>Payment security:</strong> PCI DSS certified, encrypted transactions<br/>
-                      <strong>Customer data:</strong> Segregated by agent, không cross-contamination<br/>
-                      <strong>Backup:</strong> Daily backup, disaster recovery plan
+                    <h3 className="font-bold text-gray-800 mb-3 text-lg">
+                      🌟 Có cơ hội thăng tiến trong mô hình này không?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      <strong>Có nhiều cơ hội phát triển</strong>: Agent → Senior Agent → Team Leader → Regional Manager. 
+                      Top performers được mời làm <strong>mentor cho đại lý mới</strong> (có thêm thu nhập), 
+                      tham gia <strong>chương trình IPO shares</strong> khi Skyo lên sàn, 
+                      ưu tiên mở chi nhánh tại các tỉnh thành.
                     </p>
                   </CardContent>
                 </Card>
               </div>
             </div>
 
-            <div className="text-center mt-16">
-              <div className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl p-8 border border-teal-200">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Còn câu hỏi khác?</h3>
-                <p className="text-gray-600 mb-6">Đội ngũ tư vấn chuyên nghiệp sẵn sàng giải đáp mọi thắc mắc của bạn</p>
-                <div className="flex flex-wrap gap-4 justify-center">
-                  <Button className="bg-teal-600 hover:bg-teal-700 text-white px-6" asChild>
-                    <a href="/lien-he">
+            <div className="mt-12 text-center">
+              <Card className="bg-gradient-to-r from-teal-50 to-blue-50 border-2 border-teal-200 inline-block max-w-2xl">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">
+                    Vẫn còn thắc mắc khác?
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Đội ngũ tư vấn chuyên nghiệp sẵn sàng giải đáp 24/7
+                  </p>
+                  <div className="flex flex-wrap gap-4 justify-center">
+                    <Button className="bg-teal-600 hover:bg-teal-700 text-white px-6">
                       <MessageCircle className="w-4 h-4 mr-2" />
-                      Chat với chuyên viên
-                    </a>
-                  </Button>
-                  <Button variant="outline" className="border-teal-600 text-teal-600 hover:bg-teal-50 px-6">
-                    <Phone className="w-4 h-4 mr-2" />
-                    Gọi 1900 1234
-                  </Button>
-                </div>
-              </div>
+                      Live Chat Ngay
+                    </Button>
+                    <Button variant="outline" className="border-teal-600 text-teal-600 hover:bg-teal-50 px-6">
+                      <Phone className="w-4 h-4 mr-2" />
+                      Hotline: 1900 1234
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* CTA Section */}
-      <div className="py-20 bg-gradient-to-br from-green-600 to-blue-700">
+      {/* Final CTA */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Sẵn Sàng Bắt Đầu Kinh Doanh?
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+              Sẵn Sàng Bắt Đầu Hành Trình 
+              <span className="block text-green-400">Đại Lý Vé Máy Bay?</span>
             </h2>
-            <p className="text-xl text-green-100 mb-8 leading-relaxed">
-              Tham gia ngay hôm nay và trở thành một phần của mạng lưới đại lý hàng đầu Việt Nam
-            </p>
+            
+            <div className="text-xl mb-8 leading-relaxed">
+              <p className="mb-4">
+                Tham gia <strong>mạng lưới 500+ đại lý</strong> đang thành công cùng Skyo Vietnam. 
+                Cơ hội có hạn cho <strong>100 đại lý mới trong tháng này</strong>.
+              </p>
+              <p>
+                <strong>Cam kết 100%:</strong> Không ký quỹ • Không rủi ro • Hỗ trợ toàn diện
+              </p>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-center">
-                <CardContent className="p-6">
-                  <Phone className="w-12 h-12 text-white mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-2">Hotline 24/7</h3>
-                  <p className="text-green-100 font-semibold">1900 1234</p>
-                </CardContent>
-              </Card>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <Phone className="w-8 h-8 mx-auto mb-3" />
+                <h3 className="font-bold mb-2">Hotline 24/7</h3>
+                <p className="text-green-300 font-semibold">1900 1234</p>
+                <p className="text-sm text-white/80 mt-1">Miễn phí từ điện thoại bàn</p>
+              </div>
 
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-center">
-                <CardContent className="p-6">
-                  <Mail className="w-12 h-12 text-white mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-2">Email Tư Vấn</h3>
-                  <p className="text-green-100 font-semibold">agency@skyo.vn</p>
-                </CardContent>
-              </Card>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <Mail className="w-8 h-8 mx-auto mb-3" />
+                <h3 className="font-bold mb-2">Email Tư Vấn</h3>
+                <p className="text-green-300 font-semibold">agency@skyo.vn</p>
+                <p className="text-sm text-white/80 mt-1">Phản hồi trong 2 giờ</p>
+              </div>
 
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-center">
-                <CardContent className="p-6">
-                  <MapPin className="w-12 h-12 text-white mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-2">Văn Phòng</h3>
-                  <p className="text-green-100 font-semibold">Hà Nội & TP.HCM</p>
-                </CardContent>
-              </Card>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <MapPin className="w-8 h-8 mx-auto mb-3" />
+                <h3 className="font-bold mb-2">Văn Phòng</h3>
+                <p className="text-green-300 font-semibold">Hà Nội & TP.HCM</p>
+                <p className="text-sm text-white/80 mt-1">Hẹn lịch tư vấn trực tiếp</p>
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-6 justify-center">
-              <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 font-bold px-12 py-4 text-lg" asChild>
-                <a href="/lien-he">
-                  <UserCheck className="w-6 h-6 mr-3" />
-                  Đăng Ký Làm Đại Lý Ngay
-                  <ArrowRight className="w-6 h-6 ml-3" />
-                </a>
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-bold px-12 py-4 text-lg">
+                <UserCheck className="w-6 h-6 mr-3" />
+                Đăng Ký Làm Đại Lý Ngay
+                <ArrowRight className="w-6 h-6 ml-3" />
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold px-12 py-4 text-lg" asChild>
-                <a href="/tai-lieu-nghiep-vu">
-                  <BookOpen className="w-6 h-6 mr-3" />
-                  Tải Tài Liệu Hướng Dẫn
-                </a>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold px-12 py-4 text-lg">
+                <BookOpen className="w-6 h-6 mr-3" />
+                Tải Tài Liệu Hướng Dẫn
               </Button>
             </div>
 
-            <p className="text-sm text-green-200 mt-6">
-              * Miễn phí hoàn toàn, không ký quỹ, không rủi ro tài chính
-            </p>
+            <div className="mt-8 text-sm text-green-200">
+              <p>
+                ✅ Hoàn toàn miễn phí • ✅ Không ký quỹ • ✅ Không rủi ro tài chính • ✅ Hỗ trợ 24/7
+              </p>
+              <p className="mt-2">
+                <strong>Đăng ký ngay hôm nay</strong> để nhận ưu đãi đặc biệt cho 100 đại lý đầu tiên!
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <Footer />
     </div>
