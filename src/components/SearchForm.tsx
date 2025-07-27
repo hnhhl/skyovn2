@@ -1216,5 +1216,3 @@ export function SearchForm({
     </>
   )
 }
-
-export default SearchForm
