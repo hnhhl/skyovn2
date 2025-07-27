@@ -525,7 +525,8 @@ export function SearchForm({
   const handleDepartureDateSelect = (date: Date | undefined) => {
     setDepartDate(date)
     setDepartureCalendarOpen(false)
-    if (tripType === 'roundtrip' && date && !returnDate) {
+    if (tripType === 'roundtrip' && date) {
+      // Auto-open return calendar and navigate to the selected departure month
       setTimeout(() => {
         setReturnCalendarOpen(true)
       }, 300)
@@ -855,6 +856,10 @@ export function SearchForm({
                         disabled={(date) => date < (departDate || new Date())}
                         initialFocus
                         className="rounded-lg"
+                        month={departDate || new Date()}
+                        destination={to}
+                        isReturnCalendar={true}
+                        departureDate={departDate}
                       />
                     </PopoverContent>
                   </Popover>
