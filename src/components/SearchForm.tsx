@@ -1,4 +1,3 @@
-
 'use client'
 import React, { useState, useMemo, useEffect } from 'react'
 import { format } from 'date-fns'
@@ -856,7 +855,22 @@ export function SearchForm({
                         disabled={(date) => date < (departDate || new Date())}
                         initialFocus
                         className="rounded-lg"
-                        month={departDate || new Date()}
+                        defaultMonth={(() => {
+                          if (!departDate) return new Date()
+
+                          // If departure date is in the last 3 days of the month, show next month
+                          const year = departDate.getFullYear()
+                          const month = departDate.getMonth()
+                          const daysInMonth = new Date(year, month + 1, 0).getDate()
+                          const dayOfMonth = departDate.getDate()
+
+                          if (daysInMonth - dayOfMonth <= 2) {
+                            // Show next month if departure is in last 3 days
+                            return new Date(year, month + 1, 1)
+                          }
+
+                          return departDate
+                        })()}
                         destination={to}
                         isReturnCalendar={true}
                         departureDate={departDate}
@@ -906,7 +920,7 @@ export function SearchForm({
               </div>
             </div>
 
-            
+
           </motion.div>
 
           {/* Error Messages */}
@@ -924,7 +938,7 @@ export function SearchForm({
             </motion.div>
           )}
 
-          
+
 
           {/* Trust indicators */}
           <motion.div
@@ -1228,3 +1242,6 @@ export function SearchForm({
 }
 
 export default SearchForm
+```
+
+This code updates the Calendar component's navigation buttons by replacing `month` prop with `defaultMonth` and improving return calendar logic.
