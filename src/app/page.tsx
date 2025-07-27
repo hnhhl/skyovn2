@@ -644,13 +644,25 @@ function SeoFlightRoutesSection() {
       { name: "Vé máy bay Đà Nẵng - Nha Trang", url: "/ve-may-bay-da-nang-nha-trang" },
       { name: "Vé máy bay Đà Nẵng - Phú Quốc", url: "/ve-may-bay-da-nang-phu-quoc" }
     ],
-    "Tuyến quốc tế từ Việt Nam": [
+    "Tuyến quốc tế Đông Nam Á": [
       { name: "Vé máy bay Hà Nội - Bangkok", url: "/ve-may-bay-ha-noi-bangkok" },
       { name: "Vé máy bay TP.HCM - Bangkok", url: "/ve-may-bay-tp-hcm-bangkok" },
       { name: "Vé máy bay Hà Nội - Singapore", url: "/ve-may-bay-ha-noi-singapore" },
       { name: "Vé máy bay TP.HCM - Singapore", url: "/ve-may-bay-tp-hcm-singapore" },
       { name: "Vé máy bay Hà Nội - Kuala Lumpur", url: "/ve-may-bay-ha-noi-kuala-lumpur" },
       { name: "Vé máy bay TP.HCM - Kuala Lumpur", url: "/ve-may-bay-tp-hcm-kuala-lumpur" },
+      { name: "Vé máy bay Hà Nội - Jakarta", url: "/ve-may-bay-ha-noi-jakarta" },
+      { name: "Vé máy bay TP.HCM - Jakarta", url: "/ve-may-bay-tp-hcm-jakarta" },
+      { name: "Vé máy bay Hà Nội - Manila", url: "/ve-may-bay-ha-noi-manila" },
+      { name: "Vé máy bay TP.HCM - Manila", url: "/ve-may-bay-tp-hcm-manila" },
+      { name: "Vé máy bay Hà Nội - Phnom Penh", url: "/ve-may-bay-ha-noi-phnom-penh" },
+      { name: "Vé máy bay TP.HCM - Phnom Penh", url: "/ve-may-bay-tp-hcm-phnom-penh" },
+      { name: "Vé máy bay Hà Nội - Yangon", url: "/ve-may-bay-ha-noi-yangon" },
+      { name: "Vé máy bay TP.HCM - Yangon", url: "/ve-may-bay-tp-hcm-yangon" },
+      { name: "Vé máy bay Hà Nội - Vientiane", url: "/ve-may-bay-ha-noi-vientiane" },
+      { name: "Vé máy bay TP.HCM - Phuket", url: "/ve-may-bay-tp-hcm-phuket" }
+    ],
+    "Tuyến quốc tế Đông Á": [
       { name: "Vé máy bay Hà Nội - Seoul", url: "/ve-may-bay-ha-noi-seoul" },
       { name: "Vé máy bay TP.HCM - Seoul", url: "/ve-may-bay-tp-hcm-seoul" },
       { name: "Vé máy bay Hà Nội - Tokyo", url: "/ve-may-bay-ha-noi-tokyo" },
@@ -660,7 +672,31 @@ function SeoFlightRoutesSection() {
       { name: "Vé máy bay Hà Nội - Hong Kong", url: "/ve-may-bay-ha-noi-hong-kong" },
       { name: "Vé máy bay TP.HCM - Hong Kong", url: "/ve-may-bay-tp-hcm-hong-kong" },
       { name: "Vé máy bay Hà Nội - Taipei", url: "/ve-may-bay-ha-noi-taipei" },
-      { name: "Vé máy bay TP.HCM - Taipei", url: "/ve-may-bay-tp-hcm-taipei" }
+      { name: "Vé máy bay TP.HCM - Taipei", url: "/ve-may-bay-tp-hcm-taipei" },
+      { name: "Vé máy bay Hà Nội - Beijing", url: "/ve-may-bay-ha-noi-beijing" },
+      { name: "Vé máy bay TP.HCM - Beijing", url: "/ve-may-bay-tp-hcm-beijing" },
+      { name: "Vé máy bay Hà Nội - Shanghai", url: "/ve-may-bay-ha-noi-shanghai" },
+      { name: "Vé máy bay TP.HCM - Shanghai", url: "/ve-may-bay-tp-hcm-shanghai" },
+      { name: "Vé máy bay Hà Nội - Busan", url: "/ve-may-bay-ha-noi-busan" },
+      { name: "Vé máy bay TP.HCM - Busan", url: "/ve-may-bay-tp-hcm-busan" }
+    ],
+    "Tuyến quốc tế châu Âu & Mỹ": [
+      { name: "Vé máy bay Hà Nội - Paris", url: "/ve-may-bay-ha-noi-paris" },
+      { name: "Vé máy bay TP.HCM - Paris", url: "/ve-may-bay-tp-hcm-paris" },
+      { name: "Vé máy bay Hà Nội - London", url: "/ve-may-bay-ha-noi-london" },
+      { name: "Vé máy bay TP.HCM - London", url: "/ve-may-bay-tp-hcm-london" },
+      { name: "Vé máy bay Hà Nội - Frankfurt", url: "/ve-may-bay-ha-noi-frankfurt" },
+      { name: "Vé máy bay TP.HCM - Frankfurt", url: "/ve-may-bay-tp-hcm-frankfurt" },
+      { name: "Vé máy bay Hà Nội - Amsterdam", url: "/ve-may-bay-ha-noi-amsterdam" },
+      { name: "Vé máy bay TP.HCM - Amsterdam", url: "/ve-may-bay-tp-hcm-amsterdam" },
+      { name: "Vé máy bay Hà Nội - Moscow", url: "/ve-may-bay-ha-noi-moscow" },
+      { name: "Vé máy bay TP.HCM - Moscow", url: "/ve-may-bay-tp-hcm-moscow" },
+      { name: "Vé máy bay Hà Nội - New York", url: "/ve-may-bay-ha-noi-new-york" },
+      { name: "Vé máy bay TP.HCM - New York", url: "/ve-may-bay-tp-hcm-new-york" },
+      { name: "Vé máy bay Hà Nội - Los Angeles", url: "/ve-may-bay-ha-noi-los-angeles" },
+      { name: "Vé máy bay TP.HCM - Los Angeles", url: "/ve-may-bay-tp-hcm-los-angeles" },
+      { name: "Vé máy bay Hà Nội - San Francisco", url: "/ve-may-bay-ha-noi-san-francisco" },
+      { name: "Vé máy bay TP.HCM - Vancouver", url: "/ve-may-bay-tp-hcm-vancouver" }
     ]
   }
 
@@ -822,6 +858,30 @@ function SeoFlightRoutesSection() {
                 <li><a href="/ve-may-bay-tp-hcm-con-dao" className="hover:text-blue-600">TP.HCM - Côn Đảo</a></li>
                 <li><a href="/ve-may-bay-ha-noi-pleiku" className="hover:text-blue-600">Hà Nội - Pleiku</a></li>
                 <li><a href="/ve-may-bay-tp-hcm-buon-ma-thuot" className="hover:text-blue-600">TP.HCM - Buôn Ma Thuột</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-slate-800 mb-3">Tuyến quốc tế hot</h4>
+              <ul className="space-y-1 text-sm text-slate-600">
+                <li><a href="/ve-may-bay-ha-noi-dubai" className="hover:text-blue-600">Hà Nội - Dubai</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-dubai" className="hover:text-blue-600">TP.HCM - Dubai</a></li>
+                <li><a href="/ve-may-bay-ha-noi-sydney" className="hover:text-blue-600">Hà Nội - Sydney</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-sydney" className="hover:text-blue-600">TP.HCM - Sydney</a></li>
+                <li><a href="/ve-may-bay-ha-noi-melbourne" className="hover:text-blue-600">Hà Nội - Melbourne</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-melbourne" className="hover:text-blue-600">TP.HCM - Melbourne</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-slate-800 mb-3">Tuyến mùa cao</h4>
+              <ul className="space-y-1 text-sm text-slate-600">
+                <li><a href="/ve-may-bay-ha-noi-bali" className="hover:text-blue-600">Hà Nội - Bali</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-bali" className="hover:text-blue-600">TP.HCM - Bali</a></li>
+                <li><a href="/ve-may-bay-ha-noi-mumbai" className="hover:text-blue-600">Hà Nội - Mumbai</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-mumbai" className="hover:text-blue-600">TP.HCM - Mumbai</a></li>
+                <li><a href="/ve-may-bay-ha-noi-delhi" className="hover:text-blue-600">Hà Nội - Delhi</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-delhi" className="hover:text-blue-600">TP.HCM - Delhi</a></li>
               </ul>
             </div>
           </div>
