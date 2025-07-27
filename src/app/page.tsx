@@ -536,6 +536,301 @@ function HotelSearchForm() {
   )
 }
 
+// SEO Flight Routes Section
+function SeoFlightRoutesSection() {
+  const flightRoutes = {
+    "Các thành phố tại điểm đến Châu Á": [
+      { name: "Khách sạn Bali", url: "/khach-san-bali" },
+      { name: "Khách sạn Bandung", url: "/khach-san-bandung" },
+      { name: "Khách sạn Bangkok", url: "/khach-san-bangkok" },
+      { name: "Khách sạn đảo Boracay", url: "/khach-san-dao-boracay" },
+      { name: "Khách sạn Busan", url: "/khach-san-busan" },
+      { name: "Khách sạn Cebu", url: "/khach-san-cebu" },
+      { name: "Khách sạn Chiang Mai", url: "/khach-san-chiang-mai" },
+      { name: "Khách sạn Đà Nẵng", url: "/khach-san-da-nang" },
+      { name: "Khách sạn Fukuoka", url: "/khach-san-fukuoka" },
+      { name: "Khách sạn Hà Nội", url: "/khach-san-ha-noi" },
+      { name: "Khách sạn Hải Vân", url: "/khach-san-hai-van" },
+      { name: "Khách sạn TP.HCM Hồ Chí Minh", url: "/khach-san-tp-hcm" },
+      { name: "Khách sạn Hội An", url: "/khach-san-hoi-an" },
+      { name: "Khách sạn Hồng Kông", url: "/khach-san-hong-kong" },
+      { name: "Khách sạn Huế Huế", url: "/khach-san-hue" },
+      { name: "Khách sạn Hoa Lư", url: "/khach-san-hoa-lu" },
+      { name: "Khách sạn Ipoh", url: "/khach-san-ipoh" },
+      { name: "Khách sạn Jakarta", url: "/khach-san-jakarta" },
+      { name: "Khách sạn Đắk Lắk", url: "/khach-san-dak-lak" },
+      { name: "Khách sạn Kathmandu", url: "/khach-san-kathmandu" },
+      { name: "Khách sạn Cao Hùng", url: "/khach-san-cao-hung" },
+      { name: "Khách sạn Kota Kinabalu", url: "/khach-san-kota-kinabalu" },
+      { name: "Khách sạn Krabi", url: "/khach-san-krabi" },
+      { name: "Khách sạn Kuala Lumpur", url: "/khach-san-kuala-lumpur" },
+      { name: "Khách sạn Kumnan", url: "/khach-san-kumnan" },
+      { name: "Khách sạn Kyoto", url: "/khach-san-kyoto" }
+    ],
+    "Châu Âu": [
+      { name: "Khách sạn Macao", url: "/khach-san-macao" },
+      { name: "Khách sạn Malaka", url: "/khach-san-malaka" },
+      { name: "Khách sạn Manila", url: "/khach-san-manila" },
+      { name: "Khách sạn Nagoya", url: "/khach-san-nagoya" },
+      { name: "Khách sạn Nha Trang", url: "/khach-san-nha-trang" },
+      { name: "Khách sạn Oaxaca", url: "/khach-san-oaxaca" },
+      { name: "Khách sạn Osaka", url: "/khach-san-osaka" },
+      { name: "Khách sạn Pattaya", url: "/khach-san-pattaya" },
+      { name: "Khách sạn Penang", url: "/khach-san-penang" },
+      { name: "Khách sạn Phuket", url: "/khach-san-phuket" },
+      { name: "Khách sạn Sapporo", url: "/khach-san-sapporo" },
+      { name: "Khách sạn Seoul", url: "/khach-san-seoul" },
+      { name: "Khách sạn Siem Reap", url: "/khach-san-siem-reap" },
+      { name: "Khách sạn Singapore", url: "/khach-san-singapore" },
+      { name: "Khách sạn Surabaya", url: "/khach-san-surabaya" },
+      { name: "Khách sạn Đài Trung", url: "/khach-san-dai-trung" },
+      { name: "Khách sạn Đài Bắc", url: "/khach-san-dai-bac" },
+      { name: "Khách sạn Đài Bắc", url: "/khach-san-dai-bac" },
+      { name: "Khách sạn Tokyo", url: "/khach-san-tokyo" },
+      { name: "Khách sạn Nghi Lâm", url: "/khach-san-nghi-lam" },
+      { name: "Khách sạn Yogyakarta", url: "/khach-san-yogyakarta" }
+    ],
+    "Quốc gia & Vùng lãnh thổ Châu Phi": [
+      { name: "Khách sạn Nam Phi", url: "/khach-san-nam-phi" },
+      { name: "Khách sạn Marốc", url: "/khach-san-maroc" },
+      { name: "Khách sạn Argentina", url: "/khach-san-argentina" },
+      { name: "Khách sạn Brazil", url: "/khach-san-brazil" },
+      { name: "Khách sạn Canada", url: "/khach-san-canada" },
+      { name: "Khách sạn Mexico", url: "/khach-san-mexico" },
+      { name: "Khách sạn Hoa Kỳ", url: "/khach-san-hoa-ky" },
+      { name: "Khách sạn Venezuela", url: "/khach-san-venezuela" }
+    ],
+    "Châu Úc": [
+      { name: "Khách sạn Cambodia", url: "/khach-san-cambodia" },
+      { name: "Khách sạn Trung Quốc", url: "/khach-san-trung-quoc" },
+      { name: "Khách sạn Ấn Độ", url: "/khach-san-an-do" },
+      { name: "Khách sạn Indonesia", url: "/khach-san-indonesia" },
+      { name: "Khách sạn Nhật Bản", url: "/khach-san-nhat-ban" },
+      { name: "Khách sạn Lào", url: "/khach-san-lao" },
+      { name: "Khách sạn Malaysia", url: "/khach-san-malaysia" },
+      { name: "Khách sạn Myanmar", url: "/khach-san-myanmar" },
+      { name: "Khách sạn Nepal", url: "/khach-san-nepal" },
+      { name: "Khách sạn Philippines", url: "/khach-san-philippines" },
+      { name: "Khách sạn Hàn Quốc", url: "/khach-san-han-quoc" },
+      { name: "Khách sạn Sri Lanka", url: "/khach-san-sri-lanka" },
+      { name: "Khách sạn Đài Loan", url: "/khach-san-dai-loan" },
+      { name: "Khách sạn Thái Lan", url: "/khach-san-thai-lan" },
+      { name: "Khách sạn Việt Nam", url: "/khach-san-viet-nam" }
+    ],
+    "Trung Đông": [
+      { name: "Khách sạn Dubai", url: "/khach-san-dubai" },
+      { name: "Khách sạn Ả Rập Xê Út", url: "/khach-san-a-rap-xe-ut" },
+      { name: "Khách sạn Qatar", url: "/khach-san-qatar" },
+      { name: "Khách sạn UAE", url: "/khach-san-uae" }
+    ]
+  }
+
+  const domesticRoutes = {
+    "Tuyến nội địa Việt Nam": [
+      { name: "Vé máy bay Hà Nội - TP.HCM", url: "/ve-may-bay-ha-noi-tp-hcm" },
+      { name: "Vé máy bay TP.HCM - Hà Nội", url: "/ve-may-bay-tp-hcm-ha-noi" },
+      { name: "Vé máy bay Hà Nội - Đà Nẵng", url: "/ve-may-bay-ha-noi-da-nang" },
+      { name: "Vé máy bay TP.HCM - Đà Nẵng", url: "/ve-may-bay-tp-hcm-da-nang" },
+      { name: "Vé máy bay Hà Nội - Nha Trang", url: "/ve-may-bay-ha-noi-nha-trang" },
+      { name: "Vé máy bay TP.HCM - Nha Trang", url: "/ve-may-bay-tp-hcm-nha-trang" },
+      { name: "Vé máy bay Hà Nội - Phú Quốc", url: "/ve-may-bay-ha-noi-phu-quoc" },
+      { name: "Vé máy bay TP.HCM - Phú Quốc", url: "/ve-may-bay-tp-hcm-phu-quoc" },
+      { name: "Vé máy bay Hà Nội - Đà Lạt", url: "/ve-may-bay-ha-noi-da-lat" },
+      { name: "Vé máy bay TP.HCM - Đà Lạt", url: "/ve-may-bay-tp-hcm-da-lat" },
+      { name: "Vé máy bay Hà Nội - Huế", url: "/ve-may-bay-ha-noi-hue" },
+      { name: "Vé máy bay TP.HCM - Huế", url: "/ve-may-bay-tp-hcm-hue" },
+      { name: "Vé máy bay Hà Nội - Cần Thơ", url: "/ve-may-bay-ha-noi-can-tho" },
+      { name: "Vé máy bay TP.HCM - Cần Thơ", url: "/ve-may-bay-tp-hcm-can-tho" },
+      { name: "Vé máy bay Đà Nẵng - Nha Trang", url: "/ve-may-bay-da-nang-nha-trang" },
+      { name: "Vé máy bay Đà Nẵng - Phú Quốc", url: "/ve-may-bay-da-nang-phu-quoc" }
+    ],
+    "Tuyến quốc tế từ Việt Nam": [
+      { name: "Vé máy bay Hà Nội - Bangkok", url: "/ve-may-bay-ha-noi-bangkok" },
+      { name: "Vé máy bay TP.HCM - Bangkok", url: "/ve-may-bay-tp-hcm-bangkok" },
+      { name: "Vé máy bay Hà Nội - Singapore", url: "/ve-may-bay-ha-noi-singapore" },
+      { name: "Vé máy bay TP.HCM - Singapore", url: "/ve-may-bay-tp-hcm-singapore" },
+      { name: "Vé máy bay Hà Nội - Kuala Lumpur", url: "/ve-may-bay-ha-noi-kuala-lumpur" },
+      { name: "Vé máy bay TP.HCM - Kuala Lumpur", url: "/ve-may-bay-tp-hcm-kuala-lumpur" },
+      { name: "Vé máy bay Hà Nội - Seoul", url: "/ve-may-bay-ha-noi-seoul" },
+      { name: "Vé máy bay TP.HCM - Seoul", url: "/ve-may-bay-tp-hcm-seoul" },
+      { name: "Vé máy bay Hà Nội - Tokyo", url: "/ve-may-bay-ha-noi-tokyo" },
+      { name: "Vé máy bay TP.HCM - Tokyo", url: "/ve-may-bay-tp-hcm-tokyo" },
+      { name: "Vé máy bay Hà Nội - Osaka", url: "/ve-may-bay-ha-noi-osaka" },
+      { name: "Vé máy bay TP.HCM - Osaka", url: "/ve-may-bay-tp-hcm-osaka" },
+      { name: "Vé máy bay Hà Nội - Hong Kong", url: "/ve-may-bay-ha-noi-hong-kong" },
+      { name: "Vé máy bay TP.HCM - Hong Kong", url: "/ve-may-bay-tp-hcm-hong-kong" },
+      { name: "Vé máy bay Hà Nội - Taipei", url: "/ve-may-bay-ha-noi-taipei" },
+      { name: "Vé máy bay TP.HCM - Taipei", url: "/ve-may-bay-tp-hcm-taipei" }
+    ]
+  }
+
+  const popularDestinations = {
+    "Cẩm nang Điểm đến": [
+      { name: "Trang chủ Cẩm nang Điểm đến", url: "/cam-nang-diem-den" },
+      { name: "Cẩm nang Bali", url: "/cam-nang-bali" },
+      { name: "Cẩm nang Bangkok", url: "/cam-nang-bangkok" },
+      { name: "Cẩm nang Hồng Kông", url: "/cam-nang-hong-kong" },
+      { name: "Cẩm nang Jakarta", url: "/cam-nang-jakarta" },
+      { name: "Cẩm nang Đào Jeju", url: "/cam-nang-dao-jeju" },
+      { name: "Cẩm nang Kuala Lumpur", url: "/cam-nang-kuala-lumpur" },
+      { name: "Cẩm nang Kyoto", url: "/cam-nang-kyoto" },
+      { name: "Cẩm nang Kyushu", url: "/cam-nang-kyushu" },
+      { name: "Cẩm nang Macau", url: "/cam-nang-macau" },
+      { name: "Cẩm nang Melacca", url: "/cam-nang-melacca" },
+      { name: "Cẩm nang Nagoya", url: "/cam-nang-nagoya" },
+      { name: "Cẩm nang Osaka", url: "/cam-nang-osaka" },
+      { name: "Cẩm nang Phuket", url: "/cam-nang-phuket" },
+      { name: "Cẩm nang Sapporo", url: "/cam-nang-sapporo" },
+      { name: "Cẩm nang Seoul", url: "/cam-nang-seoul" },
+      { name: "Cẩm nang Singapore", url: "/cam-nang-singapore" },
+      { name: "Cẩm nang Đài Trung", url: "/cam-nang-dai-trung" },
+      { name: "Cẩm nang Đài Bắc", url: "/cam-nang-dai-bac" },
+      { name: "Cẩm nang Tokyo", url: "/cam-nang-tokyo" },
+      { name: "Cẩm nang Goa", url: "/cam-nang-goa" }
+    ],
+    "Agoda Homes Căn hộ châu Á": [
+      { name: "Căn hộ Bangkok", url: "/can-ho-bangkok" },
+      { name: "Căn hộ Kuala Lumpur", url: "/can-ho-kuala-lumpur" },
+      { name: "Căn hộ Manila", url: "/can-ho-manila" },
+      { name: "Căn hộ Osaka", url: "/can-ho-osaka" },
+      { name: "Căn hộ Pattaya", url: "/can-ho-pattaya" },
+      { name: "Căn hộ Tokyo", url: "/can-ho-tokyo" }
+    ],
+    "Bungalow châu Á": [
+      { name: "Bungalow Bali", url: "/bungalow-bali" },
+      { name: "Bungalow Koh Kood", url: "/bungalow-koh-kood" },
+      { name: "Bungalow Koh Phangan", url: "/bungalow-koh-phangan" },
+      { name: "Bungalow Koh Samui", url: "/bungalow-koh-samui" },
+      { name: "Bungalow Phú Quốc", url: "/bungalow-phu-quoc" }
+    ]
+  }
+
+  return (
+    <section className="py-16 bg-gradient-to-b from-slate-50 to-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+            Tìm kiếm phổ biến
+          </h2>
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            Khám phá các điểm đến hàng đầu và tuyến bay phổ biến với giá tốt nhất
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {/* Flight Routes */}
+          {Object.entries(flightRoutes).map(([category, routes]) => (
+            <div key={category} className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow duration-300">
+              <h3 className="font-bold text-lg text-slate-800 mb-4 border-b border-slate-100 pb-2">
+                {category}
+              </h3>
+              <ul className="space-y-2">
+                {routes.map((route, index) => (
+                  <li key={index}>
+                    <a 
+                      href={route.url}
+                      className="text-sm text-slate-600 hover:text-blue-600 hover:underline transition-colors duration-200 block py-1"
+                    >
+                      {route.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Domestic Routes */}
+          {Object.entries(domesticRoutes).map(([category, routes]) => (
+            <div key={category} className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow duration-300">
+              <h3 className="font-bold text-lg text-slate-800 mb-4 border-b border-slate-100 pb-2">
+                {category}
+              </h3>
+              <ul className="space-y-2">
+                {routes.map((route, index) => (
+                  <li key={index}>
+                    <a 
+                      href={route.url}
+                      className="text-sm text-slate-600 hover:text-blue-600 hover:underline transition-colors duration-200 block py-1"
+                    >
+                      {route.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Popular Destinations */}
+          {Object.entries(popularDestinations).map(([category, routes]) => (
+            <div key={category} className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow duration-300">
+              <h3 className="font-bold text-lg text-slate-800 mb-4 border-b border-slate-100 pb-2">
+                {category}
+              </h3>
+              <ul className="space-y-2">
+                {routes.map((route, index) => (
+                  <li key={index}>
+                    <a 
+                      href={route.url}
+                      className="text-sm text-slate-600 hover:text-blue-600 hover:underline transition-colors duration-200 block py-1"
+                    >
+                      {route.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Additional SEO Content */}
+        <div className="mt-12 bg-gradient-to-r from-blue-50 to-sky-50 rounded-2xl p-8 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div>
+              <h4 className="font-semibold text-slate-800 mb-3">Biệt thự châu Á</h4>
+              <ul className="space-y-1 text-sm text-slate-600">
+                <li><a href="/biet-thu-bali" className="hover:text-blue-600">Biệt thự Bali</a></li>
+                <li><a href="/biet-thu-pattaya" className="hover:text-blue-600">Biệt thự Pattaya</a></li>
+                <li><a href="/biet-thu-hua-hin" className="hover:text-blue-600">Biệt thự Hua Hin / Cha-am</a></li>
+                <li><a href="/biet-thu-seoul" className="hover:text-blue-600">Biệt thự Seoul</a></li>
+                <li><a href="/biet-thu-port-dickson" className="hover:text-blue-600">Biệt thự Port Dickson</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-slate-800 mb-3">Nhà nghỉ dưỡng cho thuê tại châu Á</h4>
+              <ul className="space-y-1 text-sm text-slate-600">
+                <li><a href="/nha-nghi-duong-tokyo" className="hover:text-blue-600">Nhà nghỉ dưỡng cho thuê Tokyo</a></li>
+                <li><a href="/nha-nghi-duong-bangkok" className="hover:text-blue-600">Nhà nghỉ dưỡng cho thuê Bangkok</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-slate-800 mb-3">Châu Đại Dương</h4>
+              <ul className="space-y-1 text-sm text-slate-600">
+                <li><a href="/cam-nang-brisbane" className="hover:text-blue-600">Cẩm nang Brisbane</a></li>
+                <li><a href="/cam-nang-melbourne" className="hover:text-blue-600">Cẩm nang Melbourne</a></li>
+                <li><a href="/cam-nang-sydney" className="hover:text-blue-600">Cẩm nang Sydney</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-slate-800 mb-3">Tuyến hot Việt Nam</h4>
+              <ul className="space-y-1 text-sm text-slate-600">
+                <li><a href="/ve-may-bay-ha-noi-quy-nhon" className="hover:text-blue-600">Hà Nội - Quy Nhon</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-quy-nhon" className="hover:text-blue-600">TP.HCM - Quy Nhon</a></li>
+                <li><a href="/ve-may-bay-ha-noi-con-dao" className="hover:text-blue-600">Hà Nội - Côn Đảo</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-con-dao" className="hover:text-blue-600">TP.HCM - Côn Đảo</a></li>
+                <li><a href="/ve-may-bay-ha-noi-pleiku" className="hover:text-blue-600">Hà Nội - Pleiku</a></li>
+                <li><a href="/ve-may-bay-tp-hcm-buon-ma-thuot" className="hover:text-blue-600">TP.HCM - Buôn Ma Thuột</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // Mobile App Section
 function MobileAppSection() {
   return (
@@ -842,6 +1137,9 @@ export default function HomePage() {
 
       {/* Mobile App Section */}
       <MobileAppSection />
+
+      {/* SEO Flight Routes Section */}
+      <SeoFlightRoutesSection />
 
       {/* Footer */}
       <Footer />
