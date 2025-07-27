@@ -1,3 +1,5 @@
+'use client'
+
 import { Header } from '@/components/Header'
 import SearchForm from '@/components/SearchForm'
 import { FeatureSection } from '@/components/FeatureSection'
@@ -105,7 +107,6 @@ function WhyChooseSkyoSection() {
 }
 
 // Trust & Numbers Section
-'use client'
 function TrustNumbersSection() {
   const numbers = [
     { number: '2M+', label: 'Khách hàng hài lòng', icon: Users, color: 'text-blue-600' },
