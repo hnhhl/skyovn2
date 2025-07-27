@@ -1,3 +1,4 @@
+'use client'
 
 import React from 'react'
 import { Header } from '@/components/Header'
@@ -95,7 +96,7 @@ export default function AgentRecruitmentPage() {
               Tuyển Đại Lý Vé Máy Bay Cấp 2 
               <span className="block text-green-400">Không Ký Quỹ - 0 VND</span>
             </h1>
-            
+
             <div className="text-xl md:text-2xl mb-8 leading-relaxed">
               <p className="mb-4">
                 Cơ hội kinh doanh vé máy bay với <strong>hoa hồng 1-3%</strong>, 
@@ -130,20 +131,20 @@ export default function AgentRecruitmentPage() {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
                   Đại Lý Vé Máy Bay Cấp 2 Là Gì?
                 </h2>
-                
+
                 <div className="prose prose-lg text-gray-600 leading-relaxed">
                   <p className="mb-4">
                     <strong>Đại lý vé máy bay cấp 2</strong> là mô hình kinh doanh cho phép cá nhân và doanh nghiệp 
                     bán vé máy bay thông qua hệ thống của đại lý cấp 1 (như Skyo Vietnam) mà không cần đầu tư 
                     vốn lớn hay thực hiện các thủ tục phức tạp như xin giấy phép kinh doanh lữ hành.
                   </p>
-                  
+
                   <p className="mb-4">
                     Khác với <strong>đại lý cấp 1</strong> cần vốn pháp định 500 triệu - 2 tỷ VND, giấy phép 
                     kinh doanh lữ hành từ Tổng cục Du lịch, văn phòng tối thiểu 80m² và nhân sự chuyên môn cao, 
                     <strong> đại lý cấp 2 với Skyo</strong> hoàn toàn miễn phí tham gia.
                   </p>
-                  
+
                   <p className="mb-6">
                     Bạn sẽ được cung cấp hệ thống booking online hiện đại, kết nối trực tiếp với các hãng hàng không 
                     lớn như Vietnam Airlines, Vietjet Air, Jetstar Pacific, Bamboo Airways để search và đặt vé 
@@ -162,7 +163,7 @@ export default function AgentRecruitmentPage() {
                 <h3 className="text-2xl font-bold text-gray-800 mb-6">
                   Lợi Ích Khi Trở Thành Đại Lý Skyo
                 </h3>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
                     <PiggyBank className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
@@ -589,7 +590,8 @@ export default function AgentRecruitmentPage() {
                     </p>
                     <p>
                       <strong>Đội ngũ hậu thuẫn:</strong> Team support chuyên nghiệp, training đầy đủ, 
-                      marketing materials sẵn có.
+                      marketing materials```typescript
+ sẵn có.
                     </p>
                   </div>
                 </CardContent>
@@ -1190,7 +1192,7 @@ export default function AgentRecruitmentPage() {
               Sẵn Sàng Bắt Đầu Hành Trình 
               <span className="block text-green-400">Đại Lý Vé Máy Bay?</span>
             </h2>
-            
+
             <div className="text-xl mb-8 leading-relaxed">
               <p className="mb-4">
                 Tham gia <strong>mạng lưới 500+ đại lý</strong> đang thành công cùng Skyo Vietnam. 
