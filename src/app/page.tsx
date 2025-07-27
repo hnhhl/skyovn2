@@ -339,68 +339,186 @@ function TestimonialsSection() {
 // Mobile App Section
 function MobileAppSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-600 to-sky-700">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-white">
-            <Badge className="bg-white/20 text-white px-4 py-2 text-sm font-semibold mb-6">
-              SKYO MOBILE APP
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Đặt vé mọi lúc,<br />mọi nơi
+    <section className="py-20 bg-gradient-to-br from-blue-600 via-sky-600 to-cyan-700 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white rounded-full blur-2xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Content */}
+          <div className="text-white lg:pr-8">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
+              <Smartphone className="w-4 h-4" />
+              <span className="text-sm font-semibold uppercase tracking-wider">SKYO MOBILE APP</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Đặt vé mọi lúc,<br />
+              <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                mọi nơi
+              </span>
             </h2>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+            
+            <p className="text-xl text-white/90 mb-10 leading-relaxed max-w-lg">
               Tải app Skyo để trải nghiệm đặt vé nhanh chóng, nhận thông báo giá rẻ và quản lý chuyến đi dễ dàng.
             </p>
 
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-white" />
+            {/* Features */}
+            <div className="space-y-6 mb-10">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                  <Zap className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold">Đặt vé siêu nhanh</div>
-                  <div className="text-sm text-white/70">Chỉ 3 bước</div>
+                  <div className="font-bold text-lg">Đặt vé siêu nhanh</div>
+                  <div className="text-white/80">Chỉ 3 bước • Thanh toán an toàn</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                  <Bell className="w-6 h-6 text-white" />
+              
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                  <Bell className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold">Thông báo giá rẻ</div>
-                  <div className="text-sm text-white/70">Real-time alerts</div>
+                  <div className="font-bold text-lg">Thông báo giá rẻ</div>
+                  <div className="text-white/80">Cập nhật real-time • Không bỏ lỡ deal</div>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-6">
-                <Download className="w-5 h-5 mr-2" />
-                App Store
+            {/* Download Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <Download className="w-5 h-5 mr-3" />
+                <div className="text-left">
+                  <div className="text-xs opacity-70">Tải trên</div>
+                  <div className="text-sm">App Store</div>
+                </div>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-semibold px-6">
-                <Smartphone className="w-5 h-5 mr-2" />
-                Google Play
+              
+              <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                <Smartphone className="w-5 h-5 mr-3" />
+                <div className="text-left">
+                  <div className="text-xs opacity-70">Tải trên</div>
+                  <div className="text-sm">Google Play</div>
+                </div>
               </Button>
             </div>
 
-            <p className="text-sm text-white/70 mt-6">
-              📱 Hơn 1 triệu lượt tải • ⭐ 4.8/5 rating • 🔒 Bảo mật tuyệt đối
-            </p>
+            {/* Stats */}
+            <div className="flex items-center gap-6 text-sm text-white/80">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>1M+ lượt tải</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <span>4.8/5 rating</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-green-400" />
+                <span>Bảo mật tuyệt đối</span>
+              </div>
+            </div>
           </div>
 
-          <div className="relative">
-            <div className="relative z-10">
-              <img
-                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=600&fit=crop"
-                alt="Skyo Mobile App"
-                className="rounded-2xl shadow-2xl mx-auto"
-              />
+          {/* Right Content - Phone Mockup */}
+          <div className="relative flex justify-center lg:justify-end">
+            {/* QR Code Card */}
+            <div className="absolute top-8 -left-4 lg:left-8 bg-white rounded-3xl p-6 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-300">
+              <div className="text-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+                  <QrCode className="w-16 h-16 text-white" />
+                </div>
+                <div className="text-xs font-bold text-slate-800 mb-1">SCAN ĐỂ TẢI APP</div>
+                <div className="text-xs text-slate-500">Miễn phí 100%</div>
+              </div>
             </div>
-            <div className="absolute top-8 right-8 bg-white p-4 rounded-xl shadow-lg">
-              <QrCode className="w-20 h-20 text-slate-800" />
-              <p className="text-xs text-slate-600 mt-2 text-center">Scan để tải app</p>
+
+            {/* Phone Mockup */}
+            <div className="relative">
+              {/* Phone Frame */}
+              <div className="relative w-80 h-[600px] bg-gradient-to-b from-slate-900 to-slate-800 rounded-[3rem] p-3 shadow-2xl">
+                {/* Screen */}
+                <div className="w-full h-full bg-gradient-to-b from-blue-50 to-white rounded-[2.5rem] overflow-hidden relative">
+                  {/* Status Bar */}
+                  <div className="flex justify-between items-center px-6 py-3 bg-blue-600 text-white text-sm">
+                    <span className="font-semibold">9:41</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-4 h-2 border border-white rounded-sm">
+                        <div className="w-3 h-1 bg-white rounded-sm m-0.5"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* App Header */}
+                  <div className="bg-gradient-to-r from-blue-600 to-sky-600 px-6 py-4 text-white">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="text-2xl font-bold">Skyo</div>
+                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <Bell className="w-4 h-4" />
+                      </div>
+                    </div>
+                    <div className="text-white/90 text-sm">Chào mừng trở lại!</div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 space-y-4">
+                    {/* Search Bar */}
+                    <div className="bg-white rounded-2xl p-4 shadow-lg border border-gray-100">
+                      <div className="flex items-center gap-3 text-gray-600">
+                        <Plane className="w-5 h-5 text-blue-600" />
+                        <div className="flex-1">
+                          <div className="text-xs text-gray-400">Tìm chuyến bay</div>
+                          <div className="font-semibold">HCM → Hà Nội</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Quick Actions */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-gradient-to-br from-blue-500 to-sky-600 text-white p-4 rounded-2xl">
+                        <Plane className="w-6 h-6 mb-2" />
+                        <div className="text-sm font-semibold">Máy bay</div>
+                      </div>
+                      <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-4 rounded-2xl">
+                        <Hotel className="w-6 h-6 mb-2" />
+                        <div className="text-sm font-semibold">Khách sạn</div>
+                      </div>
+                    </div>
+
+                    {/* Recent Bookings */}
+                    <div className="space-y-3">
+                      <div className="text-sm font-semibold text-gray-700">Đặt chỗ gần đây</div>
+                      <div className="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <div className="font-semibold text-sm">VJ123 • VietJet</div>
+                            <div className="text-xs text-gray-500">HCM → HN • 15/02</div>
+                          </div>
+                          <Badge className="bg-green-100 text-green-800 text-xs">Đã xác nhận</Badge>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Home Indicator */}
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full"></div>
+              </div>
+
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-xl animate-bounce">
+                <Star className="w-8 h-8 text-white fill-current" />
+              </div>
+
+              <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center shadow-xl">
+                <Download className="w-10 h-10 text-white" />
+              </div>
             </div>
           </div>
         </div>
