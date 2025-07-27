@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Header } from '@/components/Header'
-import SearchForm from '@/components/SearchForm'
+import { SearchForm } from '@/components/SearchForm'
 import { FeatureSection } from '@/components/FeatureSection'
 import { StoriesSection } from '@/components/StoriesSection'
 import { PopularAirlines } from '@/components/PopularAirlines'

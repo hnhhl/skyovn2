@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Switch } from '@/components/ui/switch'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -590,32 +591,7 @@ export function SearchForm({
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-emerald-50/80"></div>
 
         <CardContent className="relative z-10 p-6">
-          {/* Compact Trip Type Toggle */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mb-4"
-          >
-            <Tabs value={tripType} onValueChange={(value) => setTripType(value as 'oneway' | 'roundtrip')}>
-              <TabsList className="grid w-full grid-cols-2 max-w-xs bg-white/90 rounded-full p-1 shadow-sm border">
-                <TabsTrigger
-                  value="oneway"
-                  className="text-sm data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=inactive]:text-gray-600 rounded-full transition-all duration-200 font-medium px-4 py-2"
-                >
-                  <Plane className="w-3 h-3 mr-1.5" />
-                  Một chiều
-                </TabsTrigger>
-                <TabsTrigger
-                  value="roundtrip"
-                  className="text-sm data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=inactive]:text-gray-600 rounded-full transition-all duration-200 font-medium px-4 py-2"
-                >
-                  <ArrowLeftRight className="w-3 h-3 mr-1.5" />
-                  Khứ hồi
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
-          </motion.div>
+          
 
           
 
@@ -766,9 +742,26 @@ export function SearchForm({
                   </Popover>
                 </div>
 
-                {/* Return Date - Compact */}
+                {/* Return Date with Toggle - Compact */}
                 <div className="lg:col-span-2">
-                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2">NGÀY VỀ</div>
+                  <div className="text-[10px] font-medium text-gray-500 mb-1 px-2 flex items-center justify-between">
+                    <span>NGÀY VỀ</span>
+                    <div className="flex items-center gap-1">
+                      <Switch
+                        checked={tripType === 'roundtrip'}
+                        onCheckedChange={(checked) => {
+                          setTripType(checked ? 'roundtrip' : 'oneway')
+                          if (!checked) {
+                            setReturnDate(undefined)
+                          }
+                        }}
+                        className="scale-75"
+                      />
+                      <span className="text-[9px] text-gray-400">
+                        {tripType === 'roundtrip' ? 'BẬT' : 'TẮT'}
+                      </span>
+                    </div>
+                  </div>
                   <Popover open={returnCalendarOpen} onOpenChange={setReturnCalendarOpen}>
                     <PopoverTrigger asChild>
                       <Button
@@ -806,7 +799,7 @@ export function SearchForm({
                                     ? 'text-red-500' 
                                     : 'text-gray-500'
                               }`}>
-                                Chọn ngày
+                                {tripType === 'oneway' ? 'Tắt ngày về' : 'Chọn ngày'}
                               </div>
                             )}
                           </div>
