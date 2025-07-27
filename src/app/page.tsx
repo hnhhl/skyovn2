@@ -118,42 +118,62 @@ function TrustNumbersSection() {
   const partners = [
     { 
       name: 'Vietnam Airlines', 
-      logo: 'https://logos-world.net/wp-content/uploads/2023/01/Vietnam-Airlines-Logo.png',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Vietnam_Airlines_logo.svg/2560px-Vietnam_Airlines_logo.svg.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Vietjet Air', 
-      logo: 'https://seeklogo.com/images/V/vietjet-air-logo-142001AD14-seeklogo.com.png',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/VietJet_Air_logo.svg/2560px-VietJet_Air_logo.svg.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Jetstar Pacific', 
-      logo: 'https://logos-world.net/wp-content/uploads/2023/01/Jetstar-Logo.png',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Jetstar.svg/2560px-Logo_Jetstar.svg.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Bamboo Airways', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Bamboo_Airways_logo.svg/1200px-Bamboo_Airways_logo.svg.png',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Bamboo_Airways_logo.svg/2560px-Bamboo_Airways_logo.svg.png',
+      type: 'Hãng hàng không'
+    },
+    { 
+      name: 'Singapore Airlines', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Singapore_Airlines_Logo_2.svg/2560px-Singapore_Airlines_Logo_2.svg.png',
+      type: 'Hãng hàng không'
+    },
+    { 
+      name: 'Thai Airways', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Thai_Airways_Logo.svg/2560px-Thai_Airways_Logo.svg.png',
+      type: 'Hãng hàng không'
+    },
+    { 
+      name: 'AirAsia', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/AirAsia_New_Logo.svg/2560px-AirAsia_New_Logo.svg.png',
+      type: 'Hãng hàng không'
+    },
+    { 
+      name: 'Cathay Pacific', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Cathay_Pacific_logo.svg/2560px-Cathay_Pacific_logo.svg.png',
       type: 'Hãng hàng không'
     },
     { 
       name: 'Vinpearl', 
-      logo: 'https://logos-world.net/wp-content/uploads/2022/11/Vinpearl-Logo.png',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Vinpearl_logo.svg/2560px-Vinpearl_logo.svg.png',
       type: 'Khách sạn'
     },
     { 
-      name: 'Muong Thanh', 
-      logo: 'https://muongthanhhotel.com/images/logos/muong-thanh-logo.png',
+      name: 'InterContinental', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/InterContinental_Hotels_Group_logo.svg/2560px-InterContinental_Hotels_Group_logo.svg.png',
       type: 'Khách sạn'
     },
     { 
-      name: 'FLC Hotels', 
-      logo: 'https://flchotels.vn/wp-content/uploads/2019/01/logo-flc.png',
+      name: 'Marriott', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Marriott_Logo.svg/2560px-Marriott_Logo.svg.png',
       type: 'Khách sạn'
     },
     { 
-      name: 'Lotte Hotel', 
-      logo: 'https://logos-world.net/wp-content/uploads/2022/02/Lotte-Hotels-Logo.png',
+      name: 'Hilton', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Hilton_Worldwide_Logo.svg/2560px-Hilton_Worldwide_Logo.svg.png',
       type: 'Khách sạn'
     }
   ]
@@ -185,17 +205,24 @@ function TrustNumbersSection() {
             <h3 className="text-2xl font-bold text-slate-800 mb-4">Đối tác tin cậy</h3>
             <p className="text-slate-600">Hợp tác chính thức với các thương hiệu hàng đầu</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 items-center">
             {partners.map((partner, index) => (
-              <div key={index} className="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow group">
-                <div className="h-12 flex items-center justify-center mb-3">
+              <div key={index} className="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group border border-slate-100">
+                <div className="h-16 flex items-center justify-center mb-3">
                   <img 
                     src={partner.logo} 
                     alt={partner.name}
-                    className="max-h-8 max-w-full object-contain group-hover:scale-105 transition-transform"
+                    className="max-h-10 max-w-full object-contain group-hover:scale-110 transition-transform duration-300 filter brightness-90 group-hover:brightness-100"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling.style.display = 'block';
+                    }}
                   />
-                  <span className="text-slate-700 font-semibold text-sm">{partner.name}</span>
+                  <div className="hidden bg-gradient-to-br from-blue-500 to-sky-600 text-white px-3 py-2 rounded-lg text-xs font-bold">
+                    {partner.name}
+                  </div>
                 </div>
+                <div className="text-xs font-medium text-slate-700 mb-1">{partner.name}</div>
                 <div className="text-xs text-slate-500">{partner.type}</div>
               </div>
             ))}
@@ -390,40 +417,69 @@ export default function HomePage() {
 
       {/* Hero Section with Background */}
       <div
-        className="relative min-h-[700px] bg-cover bg-center bg-no-repeat"
+        className="relative min-h-[800px] bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{
-          backgroundImage: "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
+          backgroundImage: "linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
         }}
       >
-        {/* Animated Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 via-blue-900/20 to-sky-800/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+        {/* Enhanced Animated Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/25 via-sky-800/15 to-cyan-700/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-blue-500/10" />
+        
+        {/* Animated particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-sky-300/20 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-1/3 left-1/5 w-1 h-1 bg-cyan-400/40 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-blue-300/25 rounded-full animate-pulse" style={{animationDelay: '3s'}}></div>
+        </div>
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 pt-12 pb-8">
           {/* Hero Text */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Khám phá <span className="text-blue-400">thế giới</span>
+          <div className="text-center mb-16">
+            <div className="inline-block mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text text-sm font-semibold tracking-wider uppercase">
+                ✈️ Nền tảng du lịch hàng đầu Việt Nam
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Khám phá <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-300 text-transparent bg-clip-text">thế giới</span>
               <br />
-              với giá tốt nhất
+              <span className="text-4xl md:text-6xl">với giá tốt nhất</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với hơn 1000+ chuyến bay mỗi ngày
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với 
+              <span className="font-semibold text-blue-300"> hơn 1000+ chuyến bay mỗi ngày</span> 
+              từ các đối tác uy tín
             </p>
+            <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-green-400" />
+                <span>Giá rẻ nhất thị trường</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-blue-400" />
+                <span>Thanh toán an toàn</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Headphones className="w-5 h-5 text-purple-400" />
+                <span>Hỗ trợ 24/7</span>
+              </div>
+            </div>
           </div>
 
           {/* Flight/Hotel Tabs */}
-          <div className="flex gap-3 mb-8 justify-center">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl px-8 py-4 shadow-lg border border-white/20">
-              <div className="flex items-center gap-3 text-blue-600 font-semibold text-lg">
-                <span className="text-2xl">✈️</span>
+          <div className="flex gap-2 mb-12 justify-center">
+            <div className="bg-gradient-to-r from-blue-600 to-sky-600 backdrop-blur-sm rounded-2xl px-10 py-5 shadow-xl border border-blue-400/30 transform hover:scale-105 transition-all duration-300">
+              <div className="flex items-center gap-3 text-white font-bold text-lg">
+                <Plane className="w-6 h-6" />
                 Chuyến bay
               </div>
             </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-8 py-4 border border-white/30">
-              <div className="flex items-center gap-3 text-white/80 font-semibold text-lg">
-                <span className="text-2xl">🏨</span>
+            <div className="bg-white/15 backdrop-blur-sm rounded-2xl px-10 py-5 border border-white/30 hover:bg-white/25 transition-all duration-300 cursor-pointer">
+              <div className="flex items-center gap-3 text-white/90 font-semibold text-lg">
+                <Hotel className="w-6 h-6" />
                 Khách sạn
               </div>
             </div>
@@ -435,10 +491,11 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-blue-400/20 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-40 left-20 w-12 h-12 bg-blue-400/20 rounded-full animate-ping"></div>
+        {/* Enhanced Floating Elements */}
+        <div className="absolute top-32 left-16 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-sky-300/10 rounded-full animate-pulse backdrop-blur-sm"></div>
+        <div className="absolute top-60 right-24 w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-300/10 rounded-full animate-bounce backdrop-blur-sm" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute bottom-32 left-24 w-16 h-16 bg-gradient-to-br from-sky-400/20 to-cyan-300/10 rounded-full animate-ping backdrop-blur-sm" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-gradient-to-br from-blue-300/10 to-sky-400/5 rounded-full animate-pulse backdrop-blur-sm" style={{animationDelay: '1.5s'}}></div>
       </div>
 
       {/* Feature Section */}
