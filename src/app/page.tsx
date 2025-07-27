@@ -48,7 +48,7 @@ function WhyChooseSkyoSection() {
     {
       icon: DollarSign,
       title: 'Giá Tốt Nhất',
-      description: 'So sánh giá từ 300+ hãng hàng không và đảm bảo giá rẻ nhất',
+      description: 'Cam kết giá rẻ nhất thị trường, hoàn tiền nếu tìm thấy giá tốt hơn',
       color: 'from-blue-500 to-cyan-600',
       stats: 'Tiết kiệm 40%'
     },
@@ -105,13 +105,12 @@ function WhyChooseSkyoSection() {
   )
 }
 
-// Trust & Numbers Section with Partners
+// Trust & Numbers Section
+'use client'
 function TrustNumbersSection() {
-  'use client'
-  
   const numbers = [
     { number: '2M+', label: 'Khách hàng hài lòng', icon: Users, color: 'text-blue-600' },
-    { number: '500+', label: 'Hãng hàng không', icon: Plane, color: 'text-emerald-600' },
+    { number: '50K+', label: 'Chuyến bay mỗi tháng', icon: Plane, color: 'text-emerald-600' },
     { number: '200+', label: 'Quốc gia & vùng lãnh thổ', icon: Globe, color: 'text-orange-600' },
     { number: '99.9%', label: 'Tỷ lệ đặt chỗ thành công', icon: CheckCircle, color: 'text-teal-600' }
   ]
@@ -119,43 +118,43 @@ function TrustNumbersSection() {
   const partners = [
     { 
       name: 'Vietnam Airlines', 
-      logo: '/api/placeholder/120/60',
-      type: 'Hãng hàng không quốc gia'
+      logo: 'https://logos-world.net/wp-content/uploads/2023/01/Vietnam-Airlines-Logo.png',
+      type: 'Hãng hàng không'
     },
     { 
       name: 'Vietjet Air', 
-      logo: '/api/placeholder/120/60',
-      type: 'Hãng hàng không giá rẻ'
+      logo: 'https://seeklogo.com/images/V/vietjet-air-logo-142001AD14-seeklogo.com.png',
+      type: 'Hãng hàng không'
     },
     { 
       name: 'Jetstar Pacific', 
-      logo: '/api/placeholder/120/60',
-      type: 'Hãng hàng không quốc tế'
+      logo: 'https://logos-world.net/wp-content/uploads/2023/01/Jetstar-Logo.png',
+      type: 'Hãng hàng không'
     },
     { 
       name: 'Bamboo Airways', 
-      logo: '/api/placeholder/120/60',
-      type: 'Hãng hàng không hiện đại'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Bamboo_Airways_logo.svg/1200px-Bamboo_Airways_logo.svg.png',
+      type: 'Hãng hàng không'
     },
     { 
-      name: 'Qatar Airways', 
-      logo: '/api/placeholder/120/60',
-      type: 'Hãng hàng không 5 sao'
+      name: 'Vinpearl', 
+      logo: 'https://logos-world.net/wp-content/uploads/2022/11/Vinpearl-Logo.png',
+      type: 'Khách sạn'
     },
     { 
-      name: 'Singapore Airlines', 
-      logo: '/api/placeholder/120/60',
-      type: 'Hãng hàng không cao cấp'
+      name: 'Muong Thanh', 
+      logo: 'https://muongthanhhotel.com/images/logos/muong-thanh-logo.png',
+      type: 'Khách sạn'
     },
     { 
-      name: 'Emirates', 
-      logo: '/api/placeholder/120/60',
-      type: 'Hãng hàng không quốc tế'
+      name: 'FLC Hotels', 
+      logo: 'https://flchotels.vn/wp-content/uploads/2019/01/logo-flc.png',
+      type: 'Khách sạn'
     },
     { 
-      name: 'Thai Airways', 
-      logo: '/api/placeholder/120/60',
-      type: 'Hãng hàng không khu vực'
+      name: 'Lotte Hotel', 
+      logo: 'https://logos-world.net/wp-content/uploads/2022/02/Lotte-Hotels-Logo.png',
+      type: 'Khách sạn'
     }
   ]
 
@@ -180,19 +179,22 @@ function TrustNumbersSection() {
           </div>
         </div>
 
-        {/* Partners */}
+        {/* Trust Indicators */}
         <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-8 border border-emerald-200">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-slate-800 mb-4">Đối tác tin cậy</h3>
-            <p className="text-slate-600">Hợp tác chính thức với các hãng hàng không hàng đầu thế giới</p>
+            <p className="text-slate-600">Hợp tác chính thức với các thương hiệu hàng đầu</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
             {partners.map((partner, index) => (
               <div key={index} className="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow group">
                 <div className="h-12 flex items-center justify-center mb-3">
-                  <div className="w-20 h-8 bg-slate-200 rounded flex items-center justify-center text-xs text-slate-600 group-hover:scale-105 transition-transform">
-                    {partner.name}
-                  </div>
+                  <img 
+                    src={partner.logo} 
+                    alt={partner.name}
+                    className="max-h-8 max-w-full object-contain group-hover:scale-105 transition-transform"
+                  />
+                  <span className="text-slate-700 font-semibold text-sm">{partner.name}</span>
                 </div>
                 <div className="text-xs text-slate-500">{partner.type}</div>
               </div>
@@ -210,7 +212,7 @@ function TestimonialsSection() {
     {
       name: 'Nguyễn Minh Anh',
       location: 'Hà Nội',
-      avatar: '/api/placeholder/80/80',
+      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
       rating: 5,
       comment: 'Đặt vé qua Skyo siêu nhanh và giá rẻ hơn rất nhiều. Đã tiết kiệm được 2 triệu cho chuyến du lịch gia đình.',
       trip: 'HCM → Tokyo',
@@ -219,7 +221,7 @@ function TestimonialsSection() {
     {
       name: 'Trần Văn Nam',
       location: 'TP.HCM',
-      avatar: '/api/placeholder/80/80',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
       rating: 5,
       comment: 'Hỗ trợ khách hàng tuyệt vời! Khi có vấn đề với chuyến bay, team Skyo đã giúp đổi vé miễn phí trong 10 phút.',
       trip: 'HN → Singapore',
@@ -228,9 +230,9 @@ function TestimonialsSection() {
     {
       name: 'Lê Thị Hương',
       location: 'Đà Nẵng',
-      avatar: '/api/placeholder/80/80',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
       rating: 5,
-      comment: 'So sánh giá từ nhiều nguồn và luôn tìm được deal tốt nhất. Giao diện dễ sử dụng, thanh toán an toàn.',
+      comment: 'Đặt khách sạn qua Skyo rẻ hơn Booking.com tận 40%. Phòng đẹp, dịch vụ tốt, chắc chắn sẽ dùng lại!',
       trip: 'Phú Quốc Resort',
       saved: '3.2M VND'
     }
@@ -256,9 +258,11 @@ function TestimonialsSection() {
             <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-slate-300 rounded-full flex items-center justify-center text-xs text-slate-700">
-                    {testimonial.name.charAt(0)}
-                  </div>
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover border-2 border-white/30"
+                  />
                   <div>
                     <div className="font-semibold text-white">{testimonial.name}</div>
                     <div className="text-sm text-white/70">{testimonial.location}</div>
@@ -361,12 +365,11 @@ function MobileAppSection() {
 
           <div className="relative">
             <div className="relative z-10">
-              <div className="w-64 h-96 bg-slate-800 rounded-2xl shadow-2xl mx-auto flex items-center justify-center">
-                <div className="text-white text-center">
-                  <Smartphone className="w-16 h-16 mx-auto mb-4 text-emerald-400" />
-                  <p className="text-sm">Skyo Mobile App</p>
-                </div>
-              </div>
+              <img
+                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=600&fit=crop"
+                alt="Skyo Mobile App"
+                className="rounded-2xl shadow-2xl mx-auto"
+              />
             </div>
             <div className="absolute top-8 right-8 bg-white p-4 rounded-xl shadow-lg">
               <QrCode className="w-20 h-20 text-slate-800" />
@@ -406,8 +409,24 @@ export default function HomePage() {
               với giá tốt nhất
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              So sánh giá từ 500+ hãng hàng không và tìm vé máy bay rẻ nhất cho chuyến đi của bạn
+              Tìm kiếm và đặt vé máy bay & khách sạn toàn cầu với hơn 1000+ chuyến bay mỗi ngày
             </p>
+          </div>
+
+          {/* Flight/Hotel Tabs */}
+          <div className="flex gap-3 mb-8 justify-center">
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl px-8 py-4 shadow-lg border border-white/20">
+              <div className="flex items-center gap-3 text-emerald-600 font-semibold text-lg">
+                <span className="text-2xl">✈️</span>
+                Chuyến bay
+              </div>
+            </div>
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-8 py-4 border border-white/30">
+              <div className="flex items-center gap-3 text-white/80 font-semibold text-lg">
+                <span className="text-2xl">🏨</span>
+                Khách sạn
+              </div>
+            </div>
           </div>
 
           {/* Search Form */}
@@ -422,6 +441,9 @@ export default function HomePage() {
         <div className="absolute bottom-40 left-20 w-12 h-12 bg-blue-400/20 rounded-full animate-ping"></div>
       </div>
 
+      {/* Feature Section */}
+      <FeatureSection />
+
       {/* Why Choose Skyo Section */}
       <WhyChooseSkyoSection />
 
@@ -430,6 +452,9 @@ export default function HomePage() {
 
       {/* Testimonials Section */}
       <TestimonialsSection />
+
+      {/* Stories Section */}
+      <StoriesSection />
 
       {/* Mobile App Section */}
       <MobileAppSection />
