@@ -882,6 +882,27 @@ export function SearchForm({
               ))}
             </div>
           </div>
+
+          {/* Trust indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+            className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600"
+          >
+            <div className="flex items-center gap-1">
+              <CheckCircle className="w-3 h-3 text-green-600" />
+              <span>Đặt vé nhanh</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <CheckCircle className="w-3 h-3 text-green-600" />
+              <span>Giá tốt nhất</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <CheckCircle className="w-3 h-3 text-green-600" />
+              <span>Hỗ trợ 24/7</span>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
 
