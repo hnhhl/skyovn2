@@ -857,7 +857,7 @@ export function SearchForm({
 
 
           {/* Quick Routes - Inside the form */}
-          <div className="mt-4 pt-3 border-t border-gray-100">
+          <div className="mt-3">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="w-3 h-3 text-gray-500" />
               <span className="text-xs font-medium text-gray-600">Tuyến phổ biến</span>
