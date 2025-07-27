@@ -811,13 +811,13 @@ export default function HomePage() {
           <div className="flex gap-2 mb-4 justify-center">
             <button
               onClick={() => setActiveTab('flight')}
-              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 ${
+              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 h-16 ${
                 activeTab === 'flight'
                   ? 'bg-gradient-to-r from-blue-600 to-sky-600 border-blue-400/30 border border-b-0'
                   : 'bg-white/15 backdrop-blur-sm border-white/30 border border-b-0 hover:bg-white/25'
               }`}
             >
-              <div className={`flex items-center gap-3 font-bold text-lg ${
+              <div className={`flex items-center gap-3 font-bold text-lg h-full ${
                 activeTab === 'flight' ? 'text-white' : 'text-white/90'
               }`}>
                 <Plane className="w-6 h-6" />
@@ -826,13 +826,13 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => setActiveTab('hotel')}
-              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 ${
+              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 h-16 ${
                 activeTab === 'hotel'
                   ? 'bg-gradient-to-r from-green-600 to-emerald-600 border-green-400/30 border border-b-0'
                   : 'bg-white/15 backdrop-blur-sm border-white/30 border border-b-0 hover:bg-white/25'
               }`}
             >
-              <div className={`flex items-center gap-3 font-bold text-lg ${
+              <div className={`flex items-center gap-3 font-bold text-lg h-full ${
                 activeTab === 'hotel' ? 'text-white' : 'text-white/90'
               }`}>
                 <Hotel className="w-6 h-6" />
