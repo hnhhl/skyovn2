@@ -357,7 +357,7 @@ function HotelSearchForm() {
   }
 
   return (
-    <Card className="relative w-full max-w-5xl mx-auto overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-xl">
+    <Card className="relative w-full max-w-5xl mx-auto overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-xl rounded-t-none">
       <div className="absolute inset-0 bg-gradient-to-br from-green-50/80 via-white to-emerald-50/80"></div>
 
       <CardContent className="relative z-10 p-6">
@@ -772,7 +772,7 @@ export default function HomePage() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 pt-12 pb-8">
+        <div className="relative z-10 container mx-auto px-4 pt-12 pb-2">
           {/* Hero Text */}
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
@@ -806,14 +806,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Flight/Hotel Tabs */}
-          <div className="flex gap-2 mb-12 justify-center">
+          {/* Flight/Hotel Tabs - Moved closer to form */}
+          <div className="flex gap-2 mb-4 justify-center">
             <button
               onClick={() => setActiveTab('flight')}
-              className={`rounded-2xl px-10 py-5 shadow-xl border transition-all duration-300 transform hover:scale-105 ${
+              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 ${
                 activeTab === 'flight'
-                  ? 'bg-gradient-to-r from-blue-600 to-sky-600 border-blue-400/30'
-                  : 'bg-white/15 backdrop-blur-sm border-white/30 hover:bg-white/25'
+                  ? 'bg-gradient-to-r from-blue-600 to-sky-600 border-blue-400/30 border border-b-0'
+                  : 'bg-white/15 backdrop-blur-sm border-white/30 border border-b-0 hover:bg-white/25'
               }`}
             >
               <div className={`flex items-center gap-3 font-bold text-lg ${
@@ -825,10 +825,10 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => setActiveTab('hotel')}
-              className={`rounded-2xl px-10 py-5 shadow-xl border transition-all duration-300 transform hover:scale-105 ${
+              className={`rounded-t-2xl rounded-b-none px-10 py-5 shadow-lg border-b-0 transition-all duration-300 transform hover:scale-105 ${
                 activeTab === 'hotel'
-                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 border-green-400/30'
-                  : 'bg-white/15 backdrop-blur-sm border-white/30 hover:bg-white/25'
+                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 border-green-400/30 border border-b-0'
+                  : 'bg-white/15 backdrop-blur-sm border-white/30 border border-b-0 hover:bg-white/25'
               }`}
             >
               <div className={`flex items-center gap-3 font-bold text-lg ${
@@ -840,7 +840,7 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Search Forms */}
+          {/* Search Forms - Connected to tabs */}
           <div className="flex justify-center w-full">
             {activeTab === 'flight' ? (
               <SearchForm />
