@@ -552,10 +552,10 @@ export function FlightResults(props: FlightResultsProps) {
   // Get airline colors for display
   const getAirlineColor = (airlineCode: string): string => {
     switch (airlineCode) {
-      case 'VJ': return 'bg-emerald-400'
+      case 'VJ': return 'bg-orange-400'
       case 'VN': return 'bg-blue-400'
       case 'QH': return 'bg-green-400'
-      case 'VU': return 'bg-teal-400'
+      case 'VU': return 'bg-purple-400'
       default: return 'bg-gray-400'
     }
   }
@@ -816,10 +816,10 @@ export function FlightResults(props: FlightResultsProps) {
           </div>
 
           {/* Biểu đồ khung giờ dạng dọc */}
-          <div className="mt-8 p-6 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl border border-green-100">
+          <div className="mt-8 p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border border-blue-100">
             <div className="text-center mb-6">
               <h4 className="font-bold text-xl text-gray-800 mb-2 flex items-center justify-center gap-2">
-                <BarChart3 className="w-6 h-6 text-green-600" />
+                <BarChart3 className="w-6 h-6 text-blue-600" />
                 Biểu đồ giá theo khung giờ
               </h4>
               <p className="text-sm text-gray-600">So sánh giá vé rẻ nhất của từng hãng theo thời gian trong ngày</p>
@@ -929,10 +929,10 @@ export function FlightResults(props: FlightResultsProps) {
 
           {/* Cross-Airline Recommendations với copy text */}
           {crossAirlineRecommendations.length > 0 && (
-            <div className="mt-8 p-6 bg-green-50 border border-green-200 rounded-lg">
+            <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-semibold text-lg flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-green-600" />
+                  <Sparkles className="w-5 h-5 text-blue-600" />
                   Gợi ý đáng cân nhắc
                 </h4>
                 <Button
@@ -978,7 +978,7 @@ ${text}
               </div>
               <div className="space-y-4">
                 {crossAirlineRecommendations.map((rec, index) => (
-                  <div key={index} className="bg-white rounded-lg p-4 border border-green-300">
+                  <div key={index} className="bg-white rounded-lg p-4 border border-blue-300">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
                         <div className="flex items-center gap-4 mb-2">
@@ -996,8 +996,8 @@ ${text}
                           </div>
 
                           <div className="flex-1 text-center">
-                            <ArrowRight className="w-5 h-5 mx-auto text-green-500 mb-1" />
-                            <div className="text-xs text-green-600 font-medium">
+                            <ArrowRight className="w-5 h-5 mx-auto text-blue-500 mb-1" />
+                            <div className="text-xs text-blue-600 font-medium">
                               Chênh lệch +{new Intl.NumberFormat('vi-VN').format(rec.priceDiff)}₫
                             </div>
                           </div>
@@ -1018,14 +1018,14 @@ ${text}
                       </div>
                     </div>
 
-                    <div className="bg-green-100 rounded-lg p-3">
-                      <p className="text-sm font-medium text-green-800 mb-2">
+                    <div className="bg-blue-100 rounded-lg p-3">
+                      <p className="text-sm font-medium text-blue-800 mb-2">
                         💡 Trả thêm {new Intl.NumberFormat('vi-VN').format(rec.priceDiff)}₫ để được:
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                         {rec.benefits.map((benefit, idx) => (
-                          <div key={idx} className="text-sm text-green-700 flex items-center gap-1">
-                            <CheckCircle className="w-3 h-3 text-green-600" />
+                          <div key={idx} className="text-sm text-blue-700 flex items-center gap-1">
+                            <CheckCircle className="w-3 h-3 text-blue-600" />
                             {benefit}
                           </div>
                         ))}
@@ -1617,9 +1617,9 @@ ${text}
           <div className="text-center">
             <div className="relative mx-auto mb-8">
               {/* Outer spinning ring */}
-              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-green-500 via-emerald-500 to-blue-500 animate-spin opacity-20" />
+              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 animate-spin opacity-20" />
               {/* Middle spinning ring */}
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-blue-500 to-green-500 animate-spin opacity-40" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} /></div>
+              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-green-500 to-blue-500 animate-spin opacity-40" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
               {/* Inner content */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative">
@@ -1632,10 +1632,10 @@ ${text}
               <p className="text-xl font-semibold text-gray-800">Đang khởi tạo tìm kiếm</p>
               <p className="text-gray-600">Đang kết nối với hệ thống đặt vé...</p>
               <div className="flex justify-center space-x-1 mt-4">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-2 h-2 bg-teal-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
               </div>
             </div>
           </div>
@@ -2065,7 +2065,7 @@ ${text}
                                           {info.airlineName}
                                         </p> */}
                                         {isSelected && (
-                                          <Badge className="bg-emerald-600 text-white text-xs px-2 py-1 font-bold">
+                                          <Badge className="bg-green-600 text-white text-xs px-2 py-1 font-bold">
                                             ✓ Đã chọn
                                           </Badge>
                                         )}
@@ -2110,7 +2110,7 @@ ${text}
                                       Còn {info.remainSeats} ghế
                                     </Badge>
                                     {group.flights.length > 1 && (
-                                      <Badge variant="default" className="text-xs bg-green-500">
+                                      <Badge variant="default" className="text-xs bg-orange-500">
                                         <Sparkles className="h-3 w-3 mr-1" />
                                         {group.flights.length} hạng vé
                                       </Badge>
@@ -2133,7 +2133,7 @@ ${text}
                                   </p>
                                 )}
                                 {!includeServiceFee && info.taxAndFee > 0 && (
-                                  <p className="text-xs text-amber-600 mt-1">
+                                  <p className="text-xs text-orange-600 mt-1">
                                     + {new Intl.NumberFormat('vi-VN').format(info.taxAndFee)}₫ Thuế & phí
                                   </p>
                                 )}
@@ -2232,7 +2232,7 @@ ${text}
                                     {info.serviceFee > 0 && (
                                       <div className="flex justify-between">
                                         <span className="text-gray-600">Phí dịch vụ:</span>
-                                        <span className={includeServiceFee ? "" : "text-amber-600"}>
+                                        <span className={includeServiceFee ? "" : "text-orange-600"}>
                                           {new Intl.NumberFormat('vi-VN').format(info.serviceFee)}₫
                                         </span>
                                       </div>
@@ -2245,7 +2245,7 @@ ${text}
                                       </span>
                                     </div>
                                     {!includeServiceFee && info.serviceFee > 0 && (
-                                      <div className="flex justify-between text-amber-600 text-xs mt-1">
+                                      <div className="flex justify-between text-orange-600 text-xs mt-1">
                                         <span>Tổng (gồm phí DV):</span>
                                         <span>{new Intl.NumberFormat('vi-VN').format(info.totalPrice + info.serviceFee)}₫</span>
                                       </div>
