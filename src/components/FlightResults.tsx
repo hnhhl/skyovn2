@@ -1663,9 +1663,9 @@ ${text}
 
                 {/* Flying trail effect */}
                 <div className="absolute inset-0 w-10 h-10">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping absolute top-2 left-8 opacity-60" style={{ animationDelay: '0s' }}></div>
-                  <div className="w-1 h-1 bg-green-400 rounded-full animate-ping absolute top-4 left-6 opacity-40" style={{ animationDelay: '0.5s' }}></div>
-                  <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping absolute top-6 left-4 opacity-50" style={{ animationDelay: '1s' }}></div>
+                  <div className={`w-2 h-2 bg-green-400 rounded-full animate-ping absolute top-2 left-8 opacity-60`} style={{ animationDelay: '0s' }}></div>
+                  <div className={`w-1 h-1 bg-blue-400 rounded-full animate-ping absolute top-4 left-6 opacity-40`} style={{ animationDelay: '0.5s' }}></div>
+                  <div className={`w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping absolute top-6 left-4 opacity-50`} style={{ animationDelay: '1s' }}></div>
                 </div>
               </div>
               <div className="text-center">
@@ -1969,11 +1969,11 @@ ${text}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="mb-4 relative overflow-hidden rounded-lg border border-blue-100">
+                    <div className="mb-4 relative overflow-hidden rounded-lg border border-green-100">
                       {/* Shimmer effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200/30 to-transparent transform -skew-x-12 animate-shimmer-slow"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-200/30 to-transparent transform -skew-x-12 animate-shimmer-slow"></div>
 
-                      <div className="relative flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-purple-50">
+                      <div className="relative flex items-center gap-3 p-3 bg-gradient-to-r from-green-50 to-blue-50">
                         <div className="flex items-center gap-2">
                           <div className="relative">
                             <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-spin opacity-20" />
