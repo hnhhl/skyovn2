@@ -1,7 +1,8 @@
+
 'use client'
 
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { format, parse } from 'date-fns'
 import { vi } from 'date-fns/locale'
@@ -139,9 +140,9 @@ const getTimePeriodInfo = (hour: number) => {
   } else if (hour >= 14 && hour < 18) {
     return { icon: Sunset, label: 'Buổi chiều', color: 'text-amber-500 bg-amber-50' }
   } else if (hour >= 18 && hour < 22) {
-    return { icon: Moon, label: 'Buổi tối', color: 'text-indigo-500 bg-indigo-50' }
+    return { icon: Moon, label: 'Buổi tối', color: 'text-green-500 bg-green-50' }
   } else {
-    return { icon: Moon, label: 'Ban đêm', color: 'text-purple-500 bg-purple-50' }
+    return { icon: Moon, label: 'Ban đêm', color: 'text-blue-500 bg-blue-50' }
   }
 }
 
@@ -151,16 +152,16 @@ function getTimeColorBg(time: string): string {
   if (hour >= 5 && hour < 11) return 'bg-yellow-50'; // sáng
   if (hour >= 11 && hour < 14) return 'bg-orange-50'; // trưa
   if (hour >= 14 && hour < 18) return 'bg-sky-50'; // chiều
-  if (hour >= 18 && hour < 22) return 'bg-indigo-50'; // tối
-  return 'bg-purple-50'; // đêm
+  if (hour >= 18 && hour < 22) return 'bg-green-50'; // tối
+  return 'bg-blue-50'; // đêm
 }
 const getTimeColorIcon = (dateStr: string) => {
   const hour = new Date(dateStr).getHours();
   if (hour >= 5 && hour < 11) return 'text-yellow-400';
   if (hour >= 11 && hour < 14) return 'text-orange-400';
   if (hour >= 14 && hour < 18) return 'text-sky-500';
-  if (hour >= 18 && hour < 22) return 'text-indigo-400';
-  return 'text-purple-500';
+  if (hour >= 18 && hour < 22) return 'text-green-400';
+  return 'text-blue-500';
 }
 
 // Helper for time icon in download modal
@@ -553,20 +554,12 @@ export function FlightResults(props: FlightResultsProps) {
   const getAirlineColor = (airlineCode: string): string => {
     switch (airlineCode) {
       case 'VJ': return 'bg-orange-400'
-      case 'VN': return 'bg-blue-400'
+      case 'VN': return 'bg-cyan-400'
       case 'QH': return 'bg-green-400'
-      case 'VU': return 'bg-purple-400'
+      case 'VU': return 'bg-blue-400'
       default: return 'bg-gray-400'
     }
   }
-
-
-
-
-
-
-
-
 
   // Helper functions cho modal so sánh giá
   const getTimePeriod = (hour: number): string => {
@@ -661,8 +654,6 @@ export function FlightResults(props: FlightResultsProps) {
                 benefits.push('💼 Hạng thương gia')
               }
 
-
-
               // Service quality benefits by airline (more detailed)
               if (betterAirline === 'VN' && cheaperAirline !== 'VN') {
                 benefits.push('⭐ Vietnam Airlines - dịch vụ hàng không quốc gia')
@@ -693,8 +684,6 @@ export function FlightResults(props: FlightResultsProps) {
       })
       .slice(0, 3)
   }
-
-
 
   // Price Comparison Modal Component
   const PriceComparisonModal = () => {
@@ -1235,8 +1224,6 @@ ${text}
     return hours * 60 + minutes
   }
 
-
-
   const handleSelectFlight = (flight: Flight) => {
     console.log('🎯 FlightResults: Selecting flight', { direction, flightNumber: flight.flightNumber })
     if (onSelectFlight) {
@@ -1388,7 +1375,7 @@ ${text}
         style={{maxHeight:downloadMode==="desktop"?850:1200, overflowY:'auto'}}
       >
         <div className="mb-3 text-center">
-          <div className="font-bold text-base md:text-lg text-blue-700 mb-1">{from} → {to}</div>
+          <div className="font-bold text-base md:text-lg text-green-700 mb-1">{from} → {to}</div>
           <div className="text-xs text-gray-500">{formatSafeDate(departDate)}</div>
           <p className="text-xs text-gray-400 mt-1">Trang {downloadPage}/{totalPages}</p>
         </div>
@@ -1444,8 +1431,8 @@ ${text}
                       if (baggageLoading) {
                         return (
                           <div className="flex items-center gap-1">
-                            <Loader2 className="w-3 h-3 animate-spin text-blue-500" />
-                            <span className="text-blue-600">...</span>
+                            <Loader2 className="w-3 h-3 animate-spin text-green-500" />
+                            <span className="text-green-600">...</span>
                           </div>
                         )
                       }
@@ -1497,7 +1484,7 @@ ${text}
   const totalDownloadPages = Math.max(1, Math.ceil((filteredAndSortedGroups?.length || 0) / pageSize))
 
   return (
-    <AnimatePresence mode="wait">
+    <div>
       {/* Download Modal */}
       <Dialog open={showDownloadModal} onOpenChange={setShowDownloadModal} >
         <DialogContent className="max-w-2xl">
@@ -1579,7 +1566,6 @@ ${text}
                   }
                 }, 'image/png')
               } catch (error){
-```python
                 console.error('Screenshot error:', error)
                 alert(`Lỗi khi chụp ảnh: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`)
               } finally {
@@ -1606,328 +1592,159 @@ ${text}
       {/* Price Comparison Modal */}
       <PriceComparisonModal />
 
-      {!progressive && (
-        <motion.div
-          key="initial-loading"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.4 }}
-          className="flex items-center justify-center min-h-[400px]"
-        >
-          <div className="text-center">
-            <div className="relative mx-auto mb-8">
-              {/* Outer spinning ring */}
-              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 animate-spin opacity-20" />
-              {/* Middle spinning ring */}
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-green-500 to-blue-500 animate-spin opacity-40" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
-              {/* Inner content */}
-              <div className="absolute inset-0 flex items-center justify-center">
+      <AnimatePresence mode="wait">
+        {!progressive && (
+          <motion.div
+            key="initial-loading"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center justify-center min-h-[400px]"
+          >
+            <div className="text-center">
+              <div className="relative mx-auto mb-8">
+                {/* Outer spinning ring */}
+                <div className="w-24 h-24 rounded-full bg-gradient-to-r from-green-500 via-cyan-500 to-emerald-500 animate-spin opacity-20" />
+                {/* Middle spinning ring */}
+                <div className="absolute inset-2 rounded-full bg-gradient-to-r from-cyan-500 to-green-500 animate-spin opacity-40" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
+                {/* Inner content */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative">
+                    <Plane className="h-12 w-12 text-green-600 animate-pulse" />
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-ping"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <p className="text-xl font-semibold text-gray-800">Đang khởi tạo tìm kiếm</p>
+                <p className="text-gray-600">Đang kết nối với hệ thống đặt vé...</p>
+                <div className="flex justify-center space-x-1 mt-4">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {displayMode === 'loading' && progressive && (
+          <motion.div
+            key="loading"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
+          >
+            {/* Beautiful loading header */}
+            <div className="relative overflow-hidden bg-gradient-to-r from-green-50 via-cyan-50 to-emerald-50 rounded-lg p-4 border border-green-100">
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 animate-shimmer"></div>
+
+              <div className="relative flex items-center justify-center space-x-4">
                 <div className="relative">
-                  <Plane className="h-12 w-12 text-green-600 animate-pulse" />
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-ping"></div>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <p className="text-xl font-semibold text-gray-800">Đang khởi tạo tìm kiếm</p>
-              <p className="text-gray-600">Đang kết nối với hệ thống đặt vé...</p>
-              <div className="flex justify-center space-x-1 mt-4">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 animate-spin opacity-20" />
+                              <Plane className="absolute inset-0 m-auto h-5 w-5 text-green-600" />
 
-      {displayMode === 'loading' && progressive && (
-        <motion.div
-          key="loading"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          className="space-y-6"
-        >
-          {/* Beautiful loading header */}
-          <div className="relative overflow-hidden bg-gradient-to-r from-blue-50 via-green-50 to-purple-50 rounded-lg p-4 border border-blue-100">
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 animate-shimmer"></div>
-
-            <div className="relative flex items-center justify-center space-x-4">
-              <div className="relative">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 animate-spin opacity-20" />
-                            <Plane className="absolute inset-0 m-auto h-5 w-5 text-green-600" />
-
-                {/* Flying trail effect */}
-                <div className="absolute inset-0 w-10 h-10">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-ping absolute top-2 left-8 opacity-60" style={{ animationDelay: '0s' }}></div>
-                  <div className="w-1 h-1 bg-blue-400 rounded-full animate-ping absolute top-4 left-6 opacity-40" style={{ animationDelay: '0.5s' }}></div>
-                  <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping absolute top-6 left-4 opacity-50" style={{ animationDelay: '1s' }}></div>
-                </div>
-              </div>
-              <div className="text-center">
-                <p className="text-base font-semibold text-gray-800 mb-1">Đang tìm kiếm chuyến bay</p>
-                <p className="text-xs text-gray-600">Chúng tôi đang tìm kiếm trong hàng ngàn chuyến bay...</p>
-              </div>
-            </div>
-
-            {/* Airline status indicators */}
-            <div className="flex justify-center space-x-3 mt-3">
-              {progressive.searchStatuses.map((status) => (
-                        <span
-                          key={status.airline}
-                          className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                            status.status === 'success' ? 'bg-green-100 text-green-700' :
-                            status.status === 'loading' ? 'bg-blue-100 text-blue-700' :
-                            'bg-gray-100 text-gray-500'
-                          }`}
-                        >
-                          {status.airline}
-                        </span>
-                      ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <div className="hidden lg:block lg:col-span-1">
-              <div className="bg-white rounded-lg shadow p-4">
-                <div className="h-5 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-24 mb-4 animate-pulse"></div>
-                <div className="space-y-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="h-8 bg-gradient-to-r from-gray-100 to-gray-200 rounded animate-pulse" style={{ animationDelay: `${i * 100}ms` }}></div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-3 space-y-4">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="bg-white rounded-lg shadow p-6 animate-pulse" style={{ animationDelay: `${i * 150}ms` }}>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-green-200 rounded animate-pulse"></div>
-                    <div className="flex-1">
-                      <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-32 mb-2 animate-pulse"></div>
-                      <div className="h-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded w-24 animate-pulse"></div>
-                    </div>
-                    <div className="text-right">
-                      <div className="h-6 bg-gradient-to-r from-green-100 to-green-200 rounded w-28 mb-1 animate-pulse"></div>
-                      <div className="h-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded w-16 animate-pulse"></div>
-                    </div>
+                  {/* Flying trail effect */}
+                  <div className="absolute inset-0 w-10 h-10">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-ping absolute top-2 left-8 opacity-60" style={{ animationDelay: '0s' }}></div>
+                    <div className="w-1 h-1 bg-cyan-400 rounded-full animate-ping absolute top-4 left-6 opacity-40" style={{ animationDelay: '0.5s' }}></div>
+                    <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping absolute top-6 left-4 opacity-50" style={{ animationDelay: '1s' }}></div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      )}
-
-      {displayMode === 'no-results' && (
-        <motion.div
-          key="no-results"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Card className="text-center py-12">
-            <CardContent>
-              <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Không tìm thấy chuyến bay</h3>
-              <p className="text-gray-600">Vui lòng thử lại với tiêu chí tìm kiếm khác</p>
-            </CardContent>
-          </Card>
-        </motion.div>
-      )}
-
-      {displayMode === 'results' && (
-        <motion.div
-          key="results"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <div className="hidden lg:block lg:col-span-1">
-              <Card className="sticky top-4">
-                <CardHeader className="pb-3">
-                  <h3 className="font-semibold flex items-center gap-2">
-                    <Filter className="h-4 w-4" />
-                    Lọc kết quả
-                  </h3>
-                </CardHeader>
-                <CardContent>
-                  <FlightFilters
-                    filters={filters}
-                    onFiltersChange={setFilters}
-                    airlines={uniqueAirlines.map(airline => {
-                      const airlineFlights = flightGroups.filter(g => getFlightInfo(g.cheapest).airline === airline)
-                      return {
-                        code: airline,
-                        name: getFlightInfo(airlineFlights[0]?.cheapest)?.airlineName || airline,
-                        count: airlineFlights.length,
-                        percentage: Math.round((airlineFlights.length / flightGroups.length) * 100)
-                      }
-                    })}
-                    classTypes={uniqueClassTypes}
-                    priceMin={priceRange.min}
-                    priceMax={priceRange.max}
-                  />
-                </CardContent>
-              </Card>
-            </div>
-            <div className="lg:col-span-3">
-              <div className="flex justify-between items-center gap-4 mb-4">
-                <div className="flex items-center gap-4">
-                  <h2 className="text-lg font-semibold">
-                    {filteredAndSortedGroups.length} chuyến bay {searchInfo?.from || from} → {searchInfo?.to || to}
-                  </h2>
-                  {process.env.NODE_ENV === 'development' && (
-                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                      {allFlights.length} vé • {uniqueAirlines.length} hãng
-                    </span>
-                  )}
+                <div className="text-center">
+                  <p className="text-base font-semibold text-gray-800 mb-1">Đang tìm kiếm chuyến bay</p>
+                  <p className="text-xs text-gray-600">Chúng tôi đang tìm kiếm trong hàng ngàn chuyến bay...</p>
                 </div>
-                <div className="flex gap-2 flex-wrap">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="lg:hidden"
-                    onClick={() => setShowFilters(!showFilters)}
-                  >
-                    <Filter className="h-4 w-4 mr-2" />
-                    Lọc
-                  </Button>
-                  <div className="flex items-center gap-2">
-                    <span className={`text-sm font-medium transition-colors ${
-                      includeServiceFee ? 'text-green-700' : 'text-gray-500'
-                    }`}>
-                      Gồm thuế & phí
-                    </span>
-                    <Switch
-                      checked={includeServiceFee}
-                      onCheckedChange={setIncludeServiceFee}
-                      className="data-[state=checked]:bg-green-600"
-                    />
-                  </div>
-                  <Button
-                    variant={showPriceComparison ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setShowPriceComparison(!showPriceComparison)}
-                  >
-                    <BarChart3 className="h-4 w-4 mr-2" />
-                    So sánh
-                  </Button>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="min-w-[140px] justify-between">
-                        <div className="flex items-center gap-2">
-                          <ArrowUpDown className="h-4 w-4" />
-                          <span className="text-sm">
-                            {sortBy === 'price' && 'Giá thấp nhất'}
-                            {sortBy === 'duration' && 'Thời gian ngắn'}
-                            {sortBy === 'departure' && 'Khởi hành sớm'}
+              </div>
+
+              {/* Airline status indicators */}
+              <div className="flex justify-center space-x-3 mt-3">
+                {progressive.searchStatuses.map((status) => (
+                          <span
+                            key={status.airline}
+                            className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                              status.status === 'success' ? 'bg-green-100 text-green-700' :
+                              status.status === 'loading' ? 'bg-cyan-100 text-cyan-700' :
+                              'bg-gray-100 text-gray-500'
+                            }`}
+                          >
+                            {status.airline}
                           </span>
-                        </div>
-                        <ChevronDown className="h-3 w-3 opacity-50" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56" align="end">
-                      <DropdownMenuItem
-                        onClick={() => setSortBy('price')}
-                        className={`cursor-pointer ${sortBy === 'price' ? 'bg-green-50 text-green-700' : ''}`}
-                      >
-                        <div className="flex items-center gap-3 w-full">
-                          <DollarSign className="h-4 w-4" />
-                          <span>Giá thấp nhất</span>
-                          {sortBy === 'price' && <CheckCircle className="h-4 w-4 ml-auto text-green-600" />}
-                        </div>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() => setSortBy('duration')}
-                        className={`cursor-pointer ${sortBy === 'duration' ? 'bg-green-50 text-green-700' : ''}`}
-                      >
-                        <div className="flex items-center gap-3 w-full">
-                          <Clock className="h-4 w-4" />
-                          <span>Thời gian bay ngắn nhất</span>
-                          {sortBy === 'duration' && <CheckCircle className="h-4 w-4 ml-auto text-green-600" />}
-                        </div>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() => setSortBy('departure')}
-                        className={`cursor-pointer ${sortBy === 'departure' ? 'bg-green-50 text-green-700' : ''}`}
-                      >
-                        <div className="flex items-center gap-3 w-full">
-                          <Sunrise className="h-4 w-4" />
-                          <span>Khởi hành sớm nhất</span>
-                          {sortBy === 'departure' && <CheckCircle className="h-4 w-4 ml-auto text-green-600" />}
-                        </div>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setShowDownloadModal(true)}
-                    disabled={isCapturingScreenshot}
-                  >
-                    {isCapturingScreenshot ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Download className="h-4 w-4" />
-                    )}
-                  </Button>
+                        ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              <div className="hidden lg:block lg:col-span-1">
+                <div className="bg-white rounded-lg shadow p-4">
+                  <div className="h-5 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-24 mb-4 animate-pulse"></div>
+                  <div className="space-y-3">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="h-8 bg-gradient-to-r from-gray-100 to-gray-200 rounded animate-pulse" style={{ animationDelay: `${i * 100}ms` }}></div>
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              {/* Price Trend Bar - Always show, let component handle validation */}
-              <PriceTrendBar
-                currentDate={departDate || new Date().toISOString().split('T')[0]} // Fallback to today
-                from={from || 'SGN'} // Fallback values
-                to={to || 'HAN'}
-                adults={adults}
-                childrenCount={children}
-                infants={infants}
-                includeTaxFee={includeServiceFee}
-                currentDatePrice={cheapestPriceFromResults}
-                isSearching={props.progressive?.status === 'loading' || props.progressive?.status === 'partial'}
-                noFlightsFound={
-                  props.progressive?.status === 'complete' &&
-                  (!results?.departure || results.departure.length === 0)
-                }
-                onDateSelect={(newDate) => {
-                  console.log('🔄 FlightResults onDateSelect:', { newDate, from, to })
-                  if (props.onDateSelect) {
-                    props.onDateSelect(newDate)
-                  } else {
-                    // Fallback: Navigate to search results with new date
-                    try {
-                      const currentUrl = new URL(window.location.href)
-                      currentUrl.searchParams.set('departDate', newDate)
-                      window.location.href = currentUrl.toString()
-                    } catch (error) {
-                      console.error('Error updating URL:', error)
-                    }
-                  }
-                }}
-              />
-
-              {showFilters && (
-                <Card className="lg:hidden mb-4">
-                  <CardHeader className="pb-3">
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-semibold">Lọc kết quả</h3>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setShowFilters(false)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
+              <div className="lg:col-span-3 space-y-4">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="bg-white rounded-lg shadow p-6 animate-pulse" style={{ animationDelay: `${i * 150}ms` }}>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-green-200 to-cyan-200 rounded animate-pulse"></div>
+                      <div className="flex-1">
+                        <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-32 mb-2 animate-pulse"></div>
+                        <div className="h-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded w-24 animate-pulse"></div>
+                      </div>
+                      <div className="text-right">
+                        <div className="h-6 bg-gradient-to-r from-green-100 to-green-200 rounded w-28 mb-1 animate-pulse"></div>
+                        <div className="h-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded w-16 animate-pulse"></div>
+                      </div>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {displayMode === 'no-results' && (
+          <motion.div
+            key="no-results"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Card className="text-center py-12">
+              <CardContent>
+                <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Không tìm thấy chuyến bay</h3>
+                <p className="text-gray-600">Vui lòng thử lại với tiêu chí tìm kiếm khác</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
+        {displayMode === 'results' && (
+          <motion.div
+            key="results"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              <div className="hidden lg:block lg:col-span-1">
+                <Card className="sticky top-4">
+                  <CardHeader className="pb-3">
+                    <h3 className="font-semibold flex items-center gap-2">
+                      <Filter className="h-4 w-4" />
+                      Lọc kết quả
+                    </h3>
                   </CardHeader>
                   <CardContent>
                     <FlightFilters
@@ -1942,383 +1759,551 @@ ${text}
                           percentage: Math.round((airlineFlights.length / flightGroups.length) * 100)
                         }
                       })}
+                      classTypes={uniqueClassTypes}
                       priceMin={priceRange.min}
                       priceMax={priceRange.max}
                     />
                   </CardContent>
                 </Card>
-              )}
-              <AnimatePresence>
-                {progressive && progressive.status !== 'complete' && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="mb-4 relative overflow-hidden rounded-lg border border-green-100">
-                      {/* Shimmer effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-200/30 to-transparent transform -skew-x-12 animate-shimmer-slow"></div>
-
-                      <div className="relative flex items-center gap-3 p-3 bg-gradient-to-r from-green-50 to-blue-50">
-                        <div className="flex items-center gap-2">
-                          <div className="relative">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 animate-spin opacity-20" />
-                            <Plane className="absolute inset-0 m-auto h-4 w-4 text-green-600" />
-                          </div>
-                          <p className="text-sm font-medium text-gray-700">
-                            Đang tìm thêm chuyến bay
-                          </p>
-                        </div>
-                        <div className="flex-1 flex items-center gap-2 justify-end">
-                        {progressive.searchStatuses.map((status) => (
-                        <span
-                          key={status.airline}
-                          className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                            status.status === 'success' ? 'bg-green-100 text-green-700' :
-                            status.status === 'loading' ? 'bg-blue-100 text-blue-700' :
-                            'bg-gray-100 text-gray-500'
-                          }`}
-                        >
-                          {status.airline}
-                        </span>
-                      ))}
-                        <span className="text-sm text-gray-500 ml-2">
-                          {progressive.completedAirlines}/{progressive.totalAirlines}
-                        </span>
-                      </div>
-                    </div>
+              </div>
+              <div className="lg:col-span-3">
+                <div className="flex justify-between items-center gap-4 mb-4">
+                  <div className="flex items-center gap-4">
+                    <h2 className="text-lg font-semibold">
+                      {filteredAndSortedGroups.length} chuyến bay {searchInfo?.from || from} → {searchInfo?.to || to}
+                    </h2>
+                    {process.env.NODE_ENV === 'development' && (
+                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                        {allFlights.length} vé • {uniqueAirlines.length} hãng
+                      </span>
+                    )}
                   </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <div ref={flightsRef} className="space-y-4">
-                {filteredAndSortedGroups.slice(0, visibleFlights).map((group) => {
-                  const getDefaultFlight = () => {
-                    if (filters.classTypes.length > 0) {
-                      const matchingFlight = group.flights.find(flight => {
-                        const category = getFareClassCategory(flight.fareClass, getFlightInfo(flight).airline)
-                        return filters.classTypes.includes(category)
-                      })
-                      if (matchingFlight) return matchingFlight
-                    }
-                    return group.cheapest
-                  }
-
-                  const selectedFlight = selectedClasses[group.key]
-                    ? group.flights.find(f => `${f.groupClass}-${f.fareClass}` === selectedClasses[group.key])
-                    : getDefaultFlight()
-
-                  const info = getFlightInfo(selectedFlight || group.cheapest)
-                  const isExpanded = expandedFlights.has(group.key)
-                  const departureDate = new Date(info.departureTime)
-                  const arrivalDate = new Date(info.arrivalTime)
-
-                  const flightToCheck = selectedFlight || group.cheapest
-                  const isSelected = selectedFlightId && (
-                    flightToCheck.flightNumber === selectedFlightId ||
-                    `${flightToCheck.flightNumber}-${flightToCheck.segments?.[0]?.startDate}` === selectedFlightId
-                  )
-
-                  return (
-                    <Card
-                      key={group.key}
-                      className={`overflow-hidden hover:shadow-lg transition-all duration-200 ${
-                        isSelected ? 'ring-2 ring-green-500 shadow-lg bg-green-50' : ''
-                      }`}
-                    >
-                      <CardContent className="p-0">
-                        <div className="p-4 sm:p-6">
-                          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                            <div className="flex-1">
-                              <div className="flex items-start gap-4">
-                                <div className="hidden sm:block">
-                                  <AirlineLogo
-                                    airlineCode={info.airline}
-                                    className="w-12 h-12"
-                                  />
-                                </div>
-                                <div className="flex-1 space-y-3">
-                                  <div className="flex items-center gap-2">
-                                    <div className="sm:hidden">
-                                      <AirlineLogo
-                                        airlineCode={info.airline}
-                                        className="w-8 h-8"
-                                      />
-                                    </div>
-                                    <div className="flex-1">
-                                      <div className="flex items-center gap-2 flex-wrap">
-                                        {/* <p className="font-semibold text-gray-900">
-                                          {info.airlineName}
-                                        </p> */}
-                                        {isSelected && (
-                                          <Badge className="bg-green-600 text-white text-xs px-2 py-1 font-bold">
-                                            ✓ Đã chọn
-                                          </Badge>
-                                        )}
-                                      </div>
-                                      <p className="text-sm text-gray-600">
-                                        {info.flightNumber} • {info.aircraft || getFareClassDisplayName(info.fareClass, info.airline, false)}
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-center gap-3">
-                                    <div className="text-center">
-                                      <p className="text-xl font-bold">
-                                        {format(departureDate, 'HH:mm')}
-                                      </p>
-                                      <p className="text-sm text-gray-600">
-                                        {info.from}
-                                      </p>
-                                    </div>
-                                    <div className="flex-1 px-3">
-                                      <div className="relative">
-                                        <div className="border-t-2 border-gray-300 border-dashed"></div>
-                                        <Plane className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 bg-white" />
-                                      </div>
-                                      <p className="text-center text-sm text-gray-600 mt-1">
-                                        {info.duration}
-                                      </p>
-                                    </div>
-                                    <div className="text-center">
-                                      <p className="text-xl font-bold">
-                                        {format(arrivalDate, 'HH:mm')}
-                                      </p>
-                                      <p className="text-sm text-gray-600">
-                                        {info.to}
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-wrap gap-2">
-                                    <Badge variant="secondary" className="text-xs">
-                                      {info.isConnecting ? 'Có dừng' : 'Bay thẳng'}
-                                    </Badge>
-                                    <Badge variant="outline" className="text-xs">
-                                      Còn {info.remainSeats} ghế
-                                    </Badge>
-                                    {group.flights.length > 1 && (
-                                      <Badge variant="default" className="text-xs bg-orange-500">
-                                        <Sparkles className="h-3 w-3 mr-1" />
-                                        {group.flights.length} hạng vé
-                                      </Badge>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex flex-col items-end gap-3">
-                              <div className="text-right">
-                                <p className="text-2xl font-bold text-green-600">
-                                  {new Intl.NumberFormat('vi-VN').format(info.totalPrice)}₫
-                                </p>
-                                <p className="text-sm text-gray-600">
-                                  {adults} người
-                                </p>
-                                {includeServiceFee && info.taxAndFee > 0 && (
-                                  <p className="text-xs text-gray-500 mt-1">
-                                    Đã bao gồm thuế & phí
-                                  </p>
-                                )}
-                                {!includeServiceFee && info.taxAndFee > 0 && (
-                                  <p className="text-xs text-orange-600 mt-1">
-                                    + {new Intl.NumberFormat('vi-VN').format(info.taxAndFee)}₫ Thuế & phí
-                                  </p>
-                                )}
-                              </div>
-                              <div className="flex gap-2">
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  onClick={() => toggleFlightExpanded(group.key)}
-                                >
-                                  {isExpanded ? (
-                                    <ChevronUp className="h-4 w-4" />
-                                  ) : (
-                                    <ChevronDown className="h-4 w-4" />
-                                  )}
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  onClick={() => handleSelectFlight(selectedFlight || group.cheapest)}
-                                  className={isSelected ? "bg-green-700" : "bg-green-600 hover:bg-green-700"}
-                                  disabled={!!isSelected}
-                                >
-                                  {isSelected ? (
-                                    <>
-                                      <CheckCircle className="h-4 w-4 mr-1" />
-                                      Đã chọn
-                                    </>
-                                  ) : (
-                                    'Chọn'
-                                  )}
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
-                          {isExpanded && (
-                            <div className="mt-4 pt-4 border-t space-y-3">
-                              <div>
-                                <p className="text-sm font-medium text-gray-700 mb-2">
-                                  Chi tiết
-                                </p>
-                                <div className={`grid gap-2 ${group.flights.length > 4 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
-                                  {group.flights.map((flight) => {
-                                    const flightInfo = getFlightInfo(flight)
-                                    const isSelected = (selectedClasses[group.key] || `${group.cheapest.groupClass}-${group.cheapest.fareClass}`) === `${flight.groupClass}-${flight.fareClass}`
-
-                                    return (
-                                      <div
-                                        key={`${flight.groupClass}-${flight.fareClass}`}
-                                        className={`border rounded-lg p-3 cursor-pointer transition-all ${
-                                          isSelected ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'
-                                        }`}
-                                        onClick={() => {
-                                          setSelectedClasses(prev => ({
-                                            ...prev,
-                                            [group.key]: `${flight.groupClass}-${flight.fareClass}`
-                                          }))
-                                        }}
-                                      >
-                                        <div className="flex justify-between items-start">
-                                          <div>
-                                            <p className="font-medium text-sm">
-                                              {getFareClassDisplayName(flight.fareClass, flightInfo.airline)}
-                                            </p>
-                                            <p className="text-xs text-gray-600 mt-1">
-                                              Còn {flight.remainSeats} ghế
-                                            </p>
-                                          </div>
-                                          <div className="text-right">
-                                            <p className="font-semibold text-green-600">
-                                              {new Intl.NumberFormat('vi-VN').format(flightInfo.totalPrice)}₫
-                                            </p>
-                                            <p className="text-xs text-gray-500">
-                                              /người
-                                            </p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    )
-                                  })}
-                                </div>
-                              </div>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                  <p className="text-sm font-medium text-gray-700 mb-1">
-                                    Chi tiết giá vé
-                                  </p>
-                                  <div className="space-y-1 text-sm">
-                                    <div className="flex justify-between">
-                                      <span className="text-gray-600">Giá vé cơ bản:</span>
-                                      <span>{new Intl.NumberFormat('vi-VN').format(info.basePrice)}₫</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                      <span className="text-gray-600">Thuế & phí:</span>
-                                      <span>{new Intl.NumberFormat('vi-VN').format(info.tax)}₫</span>
-                                    </div>
-                                    {info.serviceFee > 0 && (
-                                      <div className="flex justify-between">
-                                        <span className="text-gray-600">Phí dịch vụ:</span>
-                                        <span className={includeServiceFee ? "" : "text-orange-600"}>
-                                          {new Intl.NumberFormat('vi-VN').format(info.serviceFee)}₫
-                                        </span>
-                                      </div>
-                                    )}
-                                    <Separator className="my-1" />
-                                    <div className="flex justify-between font-semibold">
-                                      <span>Tổng cộng:</span>
-                                      <span className="text-green-600">
-                                        {new Intl.NumberFormat('vi-VN').format(info.totalPrice)}₫
-                                      </span>
-                                    </div>
-                                    {!includeServiceFee && info.serviceFee > 0 && (
-                                      <div className="flex justify-between text-orange-600 text-xs mt-1">
-                                        <span>Tổng (gồm phí DV):</span>
-                                        <span>{new Intl.NumberFormat('vi-VN').format(info.totalPrice + info.serviceFee)}₫</span>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                                <div>
-                                  <p className="text-sm font-medium text-gray-700 mb-1">
-                                    Thông tin thêm
-                                  </p>
-                                  <div className="space-y-1 text-sm text-gray-600">
-                                    <p>Hạng vé: {getFareClassDisplayName(info.fareClass, info.airline)}</p>
-                                    <p>Mã đặt chỗ: {info.fareClass}</p>
-                                    {(selectedFlight || group.cheapest).segments.length > 1 && (
-                                      <p>Số chặng: {(selectedFlight || group.cheapest).segments.length}</p>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                              {(selectedFlight || group.cheapest).segments.length > 1 && (
-                                <div>
-                                  <p className="text-sm font-medium text-gray-700 mb-2">
-                                    Chi tiết hành trình
-                                  </p>
-                                  <div className="space-y-2">
-                                    {(selectedFlight || group.cheapest).segments.map((segment, idx) => (
-                                      <div key={idx} className="flex items-center gap-3 text-sm">
-                                        <Badge variant="outline" className="text-xs">
-                                          Chặng {idx + 1}
-                                        </Badge>
-                                        <span>
-                                          {segment.startPoint} → {segment.endPoint}
-                                        </span>
-                                        <span className="text-gray-600">
-                                          {segment.flightCode}
-                                        </span>
-                                        <span className="text-gray-600">
-                                          {format(new Date(segment.startDate), 'HH:mm')} -
-                                          {format(new Date(segment.endDate), 'HH:mm')}
-                                        </span>
-                                      </div>
-                                    ))}
-                                  </div>
-                               </div>
-                              )}
-                              <div className="flex gap-2 justify-end">
-                                <BookingRulesDialog
-                                  flight={selectedFlight || group.cheapest}
-                                  adults={adults}
-                                  childrenCount={children}
-                                  infants={infants}
-                                />
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )
-                })}
-                {visibleFlights < filteredAndSortedGroups.length && (
-                  <div className="text-center mt-6">
+                  <div className="flex gap-2 flex-wrap">
                     <Button
                       variant="outline"
-                      onClick={() => setVisibleFlights(prev => prev + 20)}
-                      className="px-8"
+                      size="sm"
+                      className="lg:hidden"
+                      onClick={() => setShowFilters(!showFilters)}
                     >
-                      <Loader2 className="h-4 w-4 mr-2" />
-                      Xem thêm ({filteredAndSortedGroups.length - visibleFlights} chuyến bay còn lại)
+                      <Filter className="h-4 w-4 mr-2" />
+                      Lọc
+                    </Button>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-sm font-medium transition-colors ${
+                        includeServiceFee ? 'text-green-700' : 'text-gray-500'
+                      }`}>
+                        Gồm thuế & phí
+                      </span>
+                      <Switch
+                        checked={includeServiceFee}
+                        onCheckedChange={setIncludeServiceFee}
+                        className="data-[state=checked]:bg-green-600"
+                      />
+                    </div>
+                    <Button
+                      variant={showPriceComparison ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setShowPriceComparison(!showPriceComparison)}
+                    >
+                      <BarChart3 className="h-4 w-4 mr-2" />
+                      So sánh
+                    </Button>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="sm" className="min-w-[140px] justify-between">
+                          <div className="flex items-center gap-2">
+                            <ArrowUpDown className="h-4 w-4" />
+                            <span className="text-sm">
+                              {sortBy === 'price' && 'Giá thấp nhất'}
+                              {sortBy === 'duration' && 'Thời gian ngắn'}
+                              {sortBy === 'departure' && 'Khởi hành sớm'}
+                            </span>
+                          </div>
+                          <ChevronDown className="h-3 w-3 opacity-50" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-56" align="end">
+                        <DropdownMenuItem
+                          onClick={() => setSortBy('price')}
+                          className={`cursor-pointer ${sortBy === 'price' ? 'bg-green-50 text-green-700' : ''}`}
+                        >
+                          <div className="flex items-center gap-3 w-full">
+                            <DollarSign className="h-4 w-4" />
+                            <span>Giá thấp nhất</span>
+                            {sortBy === 'price' && <CheckCircle className="h-4 w-4 ml-auto text-green-600" />}
+                          </div>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => setSortBy('duration')}
+                          className={`cursor-pointer ${sortBy === 'duration' ? 'bg-green-50 text-green-700' : ''}`}
+                        >
+                          <div className="flex items-center gap-3 w-full">
+                            <Clock className="h-4 w-4" />
+                            <span>Thời gian bay ngắn nhất</span>
+                            {sortBy === 'duration' && <CheckCircle className="h-4 w-4 ml-auto text-green-600" />}
+                          </div>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => setSortBy('departure')}
+                          className={`cursor-pointer ${sortBy === 'departure' ? 'bg-green-50 text-green-700' : ''}`}
+                        >
+                          <div className="flex items-center gap-3 w-full">
+                            <Sunrise className="h-4 w-4" />
+                            <span>Khởi hành sớm nhất</span>
+                            {sortBy === 'departure' && <CheckCircle className="h-4 w-4 ml-auto text-green-600" />}
+                          </div>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowDownloadModal(true)}
+                      disabled={isCapturingScreenshot}
+                    >
+                      {isCapturingScreenshot ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Download className="h-4 w-4" />
+                      )}
                     </Button>
                   </div>
-                )}
-              </div>
-              {selectedFlights.length > 0 && (
-                <TripSummary
-                  selectedFlights={selectedFlights}
+                </div>
+
+                {/* Price Trend Bar - Always show, let component handle validation */}
+                <PriceTrendBar
+                  currentDate={departDate || new Date().toISOString().split('T')[0]} // Fallback to today
+                  from={from || 'SGN'} // Fallback values
+                  to={to || 'HAN'}
                   adults={adults}
                   childrenCount={children}
                   infants={infants}
-                  onClose={() => setSelectedFlights([])}
+                  includeTaxFee={includeServiceFee}
+                  currentDatePrice={cheapestPriceFromResults}
+                  isSearching={props.progressive?.status === 'loading' || props.progressive?.status === 'partial'}
+                  noFlightsFound={
+                    props.progressive?.status === 'complete' &&
+                    (!results?.departure || results.departure.length === 0)
+                  }
+                  onDateSelect={(newDate) => {
+                    console.log('🔄 FlightResults onDateSelect:', { newDate, from, to })
+                    if (props.onDateSelect) {
+                      props.onDateSelect(newDate)
+                    } else {
+                      // Fallback: Navigate to search results with new date
+                      try {
+                        const currentUrl = new URL(window.location.href)
+                        currentUrl.searchParams.set('departDate', newDate)
+                        window.location.href = currentUrl.toString()
+                      } catch (error) {
+                        console.error('Error updating URL:', error)
+                      }
+                    }
+                  }}
                 />
-              )}
+
+                {showFilters && (
+                  <Card className="lg:hidden mb-4">
+                    <CardHeader className="pb-3">
+                      <div className="flex justify-between items-center">
+                        <h3 className="font-semibold">Lọc kết quả</h3>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setShowFilters(false)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <FlightFilters
+                        filters={filters}
+                        onFiltersChange={setFilters}
+                        airlines={uniqueAirlines.map(airline => {
+                          const airlineFlights = flightGroups.filter(g => getFlightInfo(g.cheapest).airline === airline)
+                          return {
+                            code: airline,
+                            name: getFlightInfo(airlineFlights[0]?.cheapest)?.airlineName || airline,
+                            count: airlineFlights.length,
+                            percentage: Math.round((airlineFlights.length / flightGroups.length) * 100)
+                          }
+                        })}
+                        priceMin={priceRange.min}
+                        priceMax={priceRange.max}
+                      />
+                    </CardContent>
+                  </Card>
+                )}
+                <AnimatePresence>
+                  {progressive && progressive.status !== 'complete' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="mb-4 relative overflow-hidden rounded-lg border border-green-100">
+                        {/* Shimmer effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-200/30 to-transparent transform -skew-x-12 animate-shimmer-slow"></div>
+
+                        <div className="relative flex items-center gap-3 p-3 bg-gradient-to-r from-green-50 to-cyan-50">
+                          <div className="flex items-center gap-2">
+                            <div className="relative">
+                              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 animate-spin opacity-20" />
+                              <Plane className="absolute inset-0 m-auto h-4 w-4 text-green-600" />
+                            </div>
+                            <p className="text-sm font-medium text-gray-700">
+                              Đang tìm thêm chuyến bay
+                            </p>
+                          </div>
+                          <div className="flex-1 flex items-center gap-2 justify-end">
+                          {progressive.searchStatuses.map((status) => (
+                          <span
+                            key={status.airline}
+                            className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                              status.status === 'success' ? 'bg-green-100 text-green-700' :
+                              status.status === 'loading' ? 'bg-cyan-100 text-cyan-700' :
+                              'bg-gray-100 text-gray-500'
+                            }`}
+                          >
+                            {status.airline}
+                          </span>
+                        ))}
+                          <span className="text-sm text-gray-500 ml-2">
+                            {progressive.completedAirlines}/{progressive.totalAirlines}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <div ref={flightsRef} className="space-y-4">
+                  {filteredAndSortedGroups.slice(0, visibleFlights).map((group) => {
+                    const getDefaultFlight = () => {
+                      if (filters.classTypes.length > 0) {
+                        const matchingFlight = group.flights.find(flight => {
+                          const category = getFareClassCategory(flight.fareClass, getFlightInfo(flight).airline)
+                          return filters.classTypes.includes(category)
+                        })
+                        if (matchingFlight) return matchingFlight
+                      }
+                      return group.cheapest
+                    }
+
+                    const selectedFlight = selectedClasses[group.key]
+                      ? group.flights.find(f => `${f.groupClass}-${f.fareClass}` === selectedClasses[group.key])
+                      : getDefaultFlight()
+
+                    const info = getFlightInfo(selectedFlight || group.cheapest)
+                    const isExpanded = expandedFlights.has(group.key)
+                    const departureDate = new Date(info.departureTime)
+                    const arrivalDate = new Date(info.arrivalTime)
+
+                    const flightToCheck = selectedFlight || group.cheapest
+                    const isSelected = selectedFlightId && (
+                      flightToCheck.flightNumber === selectedFlightId ||
+                      `${flightToCheck.flightNumber}-${flightToCheck.segments?.[0]?.startDate}` === selectedFlightId
+                    )
+
+                    return (
+                      <Card
+                        key={group.key}
+                        className={`overflow-hidden hover:shadow-lg transition-all duration-200 ${
+                          isSelected ? 'ring-2 ring-green-500 shadow-lg bg-green-50' : ''
+                        }`}
+                      >
+                        <CardContent className="p-0">
+                          <div className="p-4 sm:p-6">
+                            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                              <div className="flex-1">
+                                <div className="flex items-start gap-4">
+                                  <div className="hidden sm:block">
+                                    <AirlineLogo
+                                      airlineCode={info.airline}
+                                      className="w-12 h-12"
+                                    />
+                                  </div>
+                                  <div className="flex-1 space-y-3">
+                                    <div className="flex items-center gap-2">
+                                      <div className="sm:hidden">
+                                        <AirlineLogo
+                                          airlineCode={info.airline}
+                                          className="w-8 h-8"
+                                        />
+                                      </div>
+                                      <div className="flex-1">
+                                        <div className="flex items-center gap-2 flex-wrap">
+                                          {isSelected && (
+                                            <Badge className="bg-green-600 text-white text-xs px-2 py-1 font-bold">
+                                              ✓ Đã chọn
+                                            </Badge>
+                                          )}
+                                        </div>
+                                        <p className="text-sm text-gray-600">
+                                          {info.flightNumber} • {info.aircraft || getFareClassDisplayName(info.fareClass, info.airline, false)}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                      <div className="text-center">
+                                        <p className="text-xl font-bold">
+                                          {format(departureDate, 'HH:mm')}
+                                        </p>
+                                        <p className="text-sm text-gray-600">
+                                          {info.from}
+                                        </p>
+                                      </div>
+                                      <div className="flex-1 px-3">
+                                        <div className="relative">
+                                          <div className="border-t-2 border-gray-300 border-dashed"></div>
+                                          <Plane className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 bg-white" />
+                                        </div>
+                                        <p className="text-center text-sm text-gray-600 mt-1">
+                                          {info.duration}
+                                        </p>
+                                      </div>
+                                      <div className="text-center">
+                                        <p className="text-xl font-bold">
+                                          {format(arrivalDate, 'HH:mm')}
+                                        </p>
+                                        <p className="text-sm text-gray-600">
+                                          {info.to}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                      <Badge variant="secondary" className="text-xs">
+                                        {info.isConnecting ? 'Có dừng' : 'Bay thẳng'}
+                                      </Badge>
+                                      <Badge variant="outline" className="text-xs">
+                                        Còn {info.remainSeats} ghế
+                                      </Badge>
+                                      {group.flights.length > 1 && (
+                                        <Badge variant="default" className="text-xs bg-orange-500">
+                                          <Sparkles className="h-3 w-3 mr-1" />
+                                          {group.flights.length} hạng vé
+                                        </Badge>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex flex-col items-end gap-3">
+                                <div className="text-right">
+                                  <p className="text-2xl font-bold text-green-600">
+                                    {new Intl.NumberFormat('vi-VN').format(info.totalPrice)}₫
+                                  </p>
+                                  <p className="text-sm text-gray-600">
+                                    {adults} người
+                                  </p>
+                                  {includeServiceFee && info.taxAndFee > 0 && (
+                                    <p className="text-xs text-gray-500 mt-1">
+                                      Đã bao gồm thuế & phí
+                                    </p>
+                                  )}
+                                  {!includeServiceFee && info.taxAndFee > 0 && (
+                                    <p className="text-xs text-orange-600 mt-1">
+                                      + {new Intl.NumberFormat('vi-VN').format(info.taxAndFee)}₫ Thuế & phí
+                                    </p>
+                                  )}
+                                </div>
+                                <div className="flex gap-2">
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => toggleFlightExpanded(group.key)}
+                                  >
+                                    {isExpanded ? (
+                                      <ChevronUp className="h-4 w-4" />
+                                    ) : (
+                                      <ChevronDown className="h-4 w-4" />
+                                    )}
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => handleSelectFlight(selectedFlight || group.cheapest)}
+                                    className={isSelected ? "bg-green-700" : "bg-green-600 hover:bg-green-700"}
+                                    disabled={!!isSelected}
+                                  >
+                                    {isSelected ? (
+                                      <>
+                                        <CheckCircle className="h-4 w-4 mr-1" />
+                                        Đã chọn
+                                      </>
+                                    ) : (
+                                      'Chọn'
+                                    )}
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
+                            {isExpanded && (
+                              <div className="mt-4 pt-4 border-t space-y-3">
+                                <div>
+                                  <p className="text-sm font-medium text-gray-700 mb-2">
+                                    Chi tiết
+                                  </p>
+                                  <div className={`grid gap-2 ${group.flights.length > 4 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                                    {group.flights.map((flight) => {
+                                      const flightInfo = getFlightInfo(flight)
+                                      const isSelected = (selectedClasses[group.key] || `${group.cheapest.groupClass}-${group.cheapest.fareClass}`) === `${flight.groupClass}-${flight.fareClass}`
+
+                                      return (
+                                        <div
+                                          key={`${flight.groupClass}-${flight.fareClass}`}
+                                          className={`border rounded-lg p-3 cursor-pointer transition-all ${
+                                            isSelected ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'
+                                          }`}
+                                          onClick={() => {
+                                            setSelectedClasses(prev => ({
+                                              ...prev,
+                                              [group.key]: `${flight.groupClass}-${flight.fareClass}`
+                                            }))
+                                          }}
+                                        >
+                                          <div className="flex justify-between items-start">
+                                            <div>
+                                              <p className="font-medium text-sm">
+                                                {getFareClassDisplayName(flight.fareClass, flightInfo.airline)}
+                                              </p>
+                                              <p className="text-xs text-gray-600 mt-1">
+                                                Còn {flight.remainSeats} ghế
+                                              </p>
+                                            </div>
+                                            <div className="text-right">
+                                              <p className="font-semibold text-green-600">
+                                                {new Intl.NumberFormat('vi-VN').format(flightInfo.totalPrice)}₫
+                                              </p>
+                                              <p className="text-xs text-gray-500">
+                                                /người
+                                              </p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      )
+                                    })}
+                                  </div>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-700 mb-1">
+                                      Chi tiết giá vé
+                                    </p>
+                                    <div className="space-y-1 text-sm">
+                                      <div className="flex justify-between">
+                                        <span className="text-gray-600">Giá vé cơ bản:</span>
+                                        <span>{new Intl.NumberFormat('vi-VN').format(info.basePrice)}₫</span>
+                                      </div>
+                                      <div className="flex justify-between">
+                                        <span className="text-gray-600">Thuế & phí:</span>
+                                        <span>{new Intl.NumberFormat('vi-VN').format(info.tax)}₫</span>
+                                      </div>
+                                      {info.serviceFee > 0 && (
+                                        <div className="flex justify-between">
+                                          <span className="text-gray-600">Phí dịch vụ:</span>
+                                          <span className={includeServiceFee ? "" : "text-orange-600"}>
+                                            {new Intl.NumberFormat('vi-VN').format(info.serviceFee)}₫
+                                          </span>
+                                        </div>
+                                      )}
+                                      <Separator className="my-1" />
+                                      <div className="flex justify-between font-semibold">
+                                        <span>Tổng cộng:</span>
+                                        <span className="text-green-600">
+                                          {new Intl.NumberFormat('vi-VN').format(info.totalPrice)}₫
+                                        </span>
+                                      </div>
+                                      {!includeServiceFee && info.serviceFee > 0 && (
+                                        <div className="flex justify-between text-orange-600 text-xs mt-1">
+                                          <span>Tổng (gồm phí DV):</span>
+                                          <span>{new Intl.NumberFormat('vi-VN').format(info.totalPrice + info.serviceFee)}₫</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-700 mb-1">
+                                      Thông tin thêm
+                                    </p>
+                                    <div className="space-y-1 text-sm text-gray-600">
+                                      <p>Hạng vé: {getFareClassDisplayName(info.fareClass, info.airline)}</p>
+                                      <p>Mã đặt chỗ: {info.fareClass}</p>
+                                      {(selectedFlight || group.cheapest).segments.length > 1 && (
+                                        <p>Số chặng: {(selectedFlight || group.cheapest).segments.length}</p>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                                {(selectedFlight || group.cheapest).segments.length > 1 && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-700 mb-2">
+                                      Chi tiết hành trình
+                                    </p>
+                                    <div className="space-y-2">
+                                      {(selectedFlight || group.cheapest).segments.map((segment, idx) => (
+                                        <div key={idx} className="flex items-center gap-3 text-sm">
+                                          <Badge variant="outline" className="text-xs">
+                                            Chặng {idx + 1}
+                                          </Badge>
+                                          <span>
+                                            {segment.startPoint} → {segment.endPoint}
+                                          </span>
+                                          <span className="text-gray-600">
+                                            {segment.flightCode}
+                                          </span>
+                                          <span className="text-gray-600">
+                                            {format(new Date(segment.startDate), 'HH:mm')} -
+                                            {format(new Date(segment.endDate), 'HH:mm')}
+                                          </span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                 </div>
+                                )}
+                                <div className="flex gap-2 justify-end">
+                                  <BookingRulesDialog
+                                    flight={selectedFlight || group.cheapest}
+                                    adults={adults}
+                                    childrenCount={children}
+                                    infants={infants}
+                                  />
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )
+                  })}
+                  {visibleFlights < filteredAndSortedGroups.length && (
+                    <div className="text-center mt-6">
+                      <Button
+                        variant="outline"
+                        onClick={() => setVisibleFlights(prev => prev + 20)}
+                        className="px-8"
+                      >
+                        <Loader2 className="h-4 w-4 mr-2" />
+                        Xem thêm ({filteredAndSortedGroups.length - visibleFlights} chuyến bay còn lại)
+                      </Button>
+                    </div>
+                  )}
+                </div>
+                {selectedFlights.length > 0 && (
+                  <TripSummary
+                    selectedFlights={selectedFlights}
+                    adults={adults}
+                    childrenCount={children}
+                    infants={infants}
+                    onClose={() => setSelectedFlights([])}
+                  />
+                )}
+              </div>
             </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
