@@ -1,3 +1,4 @@
+typescript
 'use client'
 
 import React, { useState, useEffect, useMemo } from 'react'
@@ -349,6 +350,7 @@ export function PriceTrendBar({
       const cheapest = validPrices.reduce((min, current) =>
         current.price < min.price ? current : min
       )
+      ```typescript
       setCheapestPrice(cheapest)
     } else {
       setCheapestPrice(null)
@@ -428,7 +430,7 @@ export function PriceTrendBar({
           size="sm"
           onClick={() => navigateDates('prev')}
           disabled={isSearching}
-          className="flex-shrink-0 h-8 w-8 p-0 border-gray-300 hover:border-primary hover:bg-primary/10 transition-all disabled:opacity-50"
+          className="flex-shrink-0 h-8 w-8 p-0 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all disabled:opacity-50"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
@@ -527,7 +529,7 @@ export function PriceTrendBar({
           size="sm"
           onClick={() => navigateDates('next')}
           disabled={isSearching}
-          className="flex-shrink-0 h-8 w-8 p-0 border-gray-300 hover:border-primary hover:bg-primary/10 transition-all disabled:opacity-50"
+          className="flex-shrink-0 h-8 w-8 p-0 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all disabled:opacity-50"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>
