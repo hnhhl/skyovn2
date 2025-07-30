@@ -553,7 +553,7 @@ export function FlightResults(props: FlightResultsProps) {
   const getAirlineColor = (airlineCode: string): string => {
     switch (airlineCode) {
       case 'VJ': return 'bg-orange-400'
-      case 'VN': return 'bg-blue-400'
+      case 'VN': return 'bg-green-400'
       case 'QH': return 'bg-green-400'
       case 'VU': return 'bg-purple-400'
       default: return 'bg-gray-400'
@@ -1652,20 +1652,20 @@ ${text}
           className="space-y-6"
         >
           {/* Beautiful loading header */}
-          <div className="relative overflow-hidden bg-gradient-to-r from-blue-50 via-green-50 to-purple-50 rounded-lg p-4 border border-blue-100">
+          <div className="relative overflow-hidden bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 rounded-lg p-4 border border-green-100">
             {/* Shimmer effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 animate-shimmer"></div>
 
             <div className="relative flex items-center justify-center space-x-4">
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-spin opacity-30"></div>
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 animate-spin opacity-30"></div>
                 <Plane className="absolute inset-0 m-auto h-5 w-5 text-green-600" />
 
                 {/* Flying trail effect */}
                 <div className="absolute inset-0 w-10 h-10">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping absolute top-2 left-8 opacity-60" style={{ animationDelay: '0s' }}></div>
-                  <div className="w-1 h-1 bg-green-400 rounded-full animate-ping absolute top-4 left-6 opacity-40" style={{ animationDelay: '0.5s' }}></div>
-                  <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping absolute top-6 left-4 opacity-50" style={{ animationDelay: '1s' }}></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-ping absolute top-2 left-8 opacity-60" style={{ animationDelay: '0s' }}></div>
+                  <div className="w-1 h-1 bg-emerald-400 rounded-full animate-ping absolute top-4 left-6 opacity-40" style={{ animationDelay: '0.5s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping absolute top-6 left-4 opacity-50" style={{ animationDelay: '1s' }}></div>
                 </div>
               </div>
               <div className="text-center">
@@ -1681,12 +1681,12 @@ ${text}
                   key={status.airline}
                   className={`flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium transition-all duration-500 ${
                     status.status === 'success' ? 'bg-green-100 text-green-700' :
-                    status.status === 'loading' ? 'bg-blue-100 text-blue-700' :
+                    status.status === 'loading' ? 'bg-green-100 text-green-700' :
                     'bg-gray-100 text-gray-500'
                   }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  {status.status === 'loading' && <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>}
+                  {status.status === 'loading' && <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>}
                   {status.status === 'success' && <div className="w-2 h-2 bg-green-500 rounded-full"></div>}
                   <span>{status.airline}</span>
                 </div>
@@ -1695,10 +1695,10 @@ ${text}
               ['VN', 'VJ', 'QH', 'BL', 'VU'].map((airline, index) => (
                 <div
                   key={airline}
-                  className="flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 animate-pulse"
+                  className="flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 animate-pulse"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span>{airline}</span>
                 </div>
               ))}
@@ -1969,15 +1969,15 @@ ${text}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="mb-4 relative overflow-hidden rounded-lg border border-blue-100">
+                    <div className="mb-4 relative overflow-hidden rounded-lg border border-green-100">
                       {/* Shimmer effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200/30 to-transparent transform -skew-x-12 animate-shimmer-slow"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-200/30 to-transparent transform -skew-x-12 animate-shimmer-slow"></div>
 
-                      <div className="relative flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-purple-50">
+                      <div className="relative flex items-center gap-3 p-3 bg-gradient-to-r from-green-50 to-emerald-50">
                         <div className="flex items-center gap-2">
                           <div className="relative">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-spin opacity-20" />
-                            <Plane className="absolute inset-0 m-auto h-4 w-4 text-blue-600" />
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 animate-spin opacity-20" />
+                            <Plane className="absolute inset-0 m-auto h-4 w-4 text-green-600" />
                           </div>
                           <p className="text-sm font-medium text-gray-700">
                             Đang tìm thêm chuyến bay
@@ -1989,7 +1989,7 @@ ${text}
                             key={status.airline}
                             className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                               status.status === 'success' ? 'bg-green-100 text-green-600' :
-                              status.status === 'loading' ? 'bg-blue-100 text-blue-600' :
+                              status.status === 'loading' ? 'bg-green-100 text-green-600' :
                               'bg-gray-100 text-gray-400'
                             }`}
                           >
