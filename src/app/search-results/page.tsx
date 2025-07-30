@@ -265,7 +265,7 @@ function SearchResultsContent() {
       <Header />
 
       {isRoundTrip ? (
-        <div className="container mx-auto px-4 py-6 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+        <div className="container mx-auto px-4 py-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Left Column - Flight Tabs */}
             <div className={`${isRoundTrip && selectedOutbound && selectedReturn ? 'lg:col-span-8' : 'lg:col-span-12'} transition-all duration-300`}>
@@ -273,10 +273,10 @@ function SearchResultsContent() {
                 <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as 'outbound'|'return')} className="relative">
 
                   {/* Enhanced Tab Header with Progress Indicator */}
-                  <div className="relative bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 p-6 border-b border-gray-100">
+                  <div className="relative bg-gradient-to-r from-blue-50 via-sky-50 to-indigo-50 p-6 border-b border-gray-100">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-sky-600 rounded-xl flex items-center justify-center shadow-lg">
                           <Plane className="h-5 w-5 text-white" />
                         </div>
                         <div>
@@ -327,8 +327,8 @@ function SearchResultsContent() {
                         value="outbound"
                         className={`relative flex items-center justify-center gap-3 h-full rounded-lg transition-all duration-300 overflow-hidden group ${
                           activeTab === 'outbound'
-                            ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg transform scale-[1.02]'
-                            : 'text-gray-600 hover:text-gray-800 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50'
+                            ? 'bg-gradient-to-r from-blue-600 to-sky-700 text-white shadow-lg transform scale-[1.02]'
+                            : 'text-gray-600 hover:text-gray-800 hover:bg-gradient-to-r hover:from-blue-50 hover:to-sky-50'
                         }`}
                       >
                         {/* Animated background for inactive state */}
@@ -386,8 +386,8 @@ function SearchResultsContent() {
                         value="return"
                         className={`relative flex items-center justify-center gap-3 h-full rounded-lg transition-all duration-300 overflow-hidden group ${
                           activeTab === 'return'
-                            ? 'bg-gradient-to-r from-purple-600 to-pink-700 text-white shadow-lg transform scale-[1.02]'
-                            : 'text-gray-600 hover:text-gray-800 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50'
+                            ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg transform scale-[1.02]'
+                            : 'text-gray-600 hover:text-gray-800 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50'
                         }`}
                       >
                         {/* Animated background for inactive state */}
@@ -399,7 +399,7 @@ function SearchResultsContent() {
                         <div className="relative z-10 flex items-center gap-3">
                           <div className="relative">
                             <Plane className={`h-5 w-5 transform rotate-180 transition-all duration-300 ${
-                              activeTab === 'return' ? 'text-white' : 'text-purple-600 group-hover:text-purple-700'
+                              activeTab === 'return' ? 'text-white' : 'text-blue-600 group-hover:text-blue-700'
                             }`} />
                             {activeTab === 'return' && (
                               <div className="absolute inset-0 bg-white/30 rounded-full animate-ping"></div>
@@ -413,7 +413,7 @@ function SearchResultsContent() {
                               Chuyến về
                             </div>
                             <div className={`text-xs ${
-                              activeTab === 'return' ? 'text-purple-100' : 'text-gray-500'
+                              activeTab === 'return' ? 'text-blue-100' : 'text-gray-500'
                             }`}>
                               {to} → {from}
                             </div>
@@ -470,15 +470,15 @@ function SearchResultsContent() {
                         animate={{opacity:1,x:0, scale:1}}
                         exit={{opacity:0,x:24, scale:0.98}}
                         transition={{duration:0.3, type:"spring", bounce:0.2}}
-                        className="p-6 bg-gradient-to-br from-blue-50/30 to-indigo-50/30"
+                        className="p-6 bg-gradient-to-br from-blue-50/50 to-sky-50/50"
                       >
                         {loadingDeparture ? (
                           <div className="bg-white border rounded-lg p-4 mb-4">
                             <div className="flex items-center justify-between mb-3">
                               <div className="flex items-center gap-3">
                                 <div className="relative w-6 h-6">
-                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-500 to-blue-500 animate-spin opacity-30"></div>
-                                  <Plane className="absolute inset-0 m-auto h-3 w-3 text-green-600" />
+                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-sky-500 animate-spin opacity-30"></div>
+                                  <Plane className="absolute inset-0 m-auto h-3 w-3 text-blue-600" />
                                 </div>
                                 <div>
                                   <p className="text-sm font-medium text-gray-800">Đang tìm chuyến đi</p>
@@ -491,7 +491,7 @@ function SearchResultsContent() {
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-1.5 mb-3">
                               <div
-                                className="bg-gradient-to-r from-green-500 to-blue-500 h-1.5 rounded-full transition-all duration-300"
+                                className="bg-gradient-to-r from-blue-500 to-sky-500 h-1.5 rounded-full transition-all duration-300"
                                 style={{ width: `${((departureResults?.completedAirlines || 0) / 5) * 100}%` }}
                               ></div>
                             </div>
@@ -563,7 +563,7 @@ function SearchResultsContent() {
                         animate={{opacity:1,x:0, scale:1}}
                         exit={{opacity:0,x:-24, scale:0.98}}
                         transition={{duration:0.3, type:"spring", bounce:0.2}}
-                        className="p-6 bg-gradient-to-br from-purple-50/30 to-pink-50/30"
+                        className="p-6 bg-gradient-to-br from-blue-50/50 to-indigo-50/50"
                       >
                         {!selectedOutbound ? (
                           <div className="p-12 text-center">
@@ -764,8 +764,8 @@ function SearchResultsContent() {
                             <div className="flex items-center justify-between mb-3">
                               <div className="flex items-center gap-3">
                                 <div className="relative w-6 h-6">
-                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 animate-spin opacity-30"></div>
-                                  <Plane className="absolute inset-0 m-auto h-3 w-3 text-purple-600 transform rotate-180" />
+                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 animate-spin opacity-30"></div>
+                                  <Plane className="absolute inset-0 m-auto h-3 w-3 text-blue-600 transform rotate-180" />
                                 </div>
                                 <div>
                                   <p className="text-sm font-medium text-gray-800">Đang tìm chuyến về</p>
@@ -778,7 +778,7 @@ function SearchResultsContent() {
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-1.5 mb-3">
                               <div
-                                className="bg-gradient-to-r from-purple-500 to-pink-500 h-1.5 rounded-full transition-all duration-300"
+                                className="bg-gradient-to-r from-blue-500 to-indigo-500 h-1.5 rounded-full transition-all duration-300"
                                 style={{ width: `${((returnResults?.completedAirlines || 0) / 5) * 100}%` }}
                               ></div>
                             </div>
@@ -799,7 +799,7 @@ function SearchResultsContent() {
                                     key={airline.airline}
                                     className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-500 transform hover:scale-105 ${
                                       status.status === 'success' ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 shadow-sm' :
-                                      status.status === 'loading' ? 'bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 animate-pulse shadow-sm' :
+                                      status.status === 'loading' ? 'bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 animate-pulse shadow-sm' :
                                       status.status === 'error' ? 'bg-gradient-to-r from-red-100 to-pink-100 text-red-800' :
                                       'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600'
                                     }`}
@@ -811,8 +811,8 @@ function SearchResultsContent() {
                                     <div className="flex items-center gap-1.5">
                                       {status.status === 'loading' && (
                                         <div className="relative">
-                                          <div className="w-2 h-2 bg-purple-500 rounded-full animate-ping"></div>
-                                          <div className="absolute inset-0 w-2 h-2 bg-purple-600 rounded-full animate-pulse"></div>
+                                          <div className="w-2 h-2 bg-blue-500 rounded-full animate-ping"></div>
+                                          <div className="absolute inset-0 w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
                                         </div>
                                       )}
                                       {status.status === 'success' && (
