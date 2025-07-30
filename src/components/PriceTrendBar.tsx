@@ -353,7 +353,8 @@ export function PriceTrendBar({
     } else {
       setCheapestPrice(null)
     }
-  }, [processedDates, includeTaxFee])```typescript
+  }, [processedDates, includeTaxFee])
+
   // Navigate to previous/next dates - shift by 3 days to show new dates
   const navigateDates = (direction: 'prev' | 'next') => {
     setDateRange(prevRange => {
@@ -440,8 +441,6 @@ export function PriceTrendBar({
                 const isSelected = dateInfo.isSelected
                 const displayPrice = includeTaxFee ? dateInfo.price : dateInfo.basePrice
                 const isDisabled = dateInfo.isPast || isSearching
-                // isLowest becomes true when the date is the cheapest
-                const isLowest = cheapestPrice?.date === dateInfo.date
 
                 return (
                   <motion.div
@@ -450,14 +449,8 @@ export function PriceTrendBar({
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.2, delay: index * 0.05 }}
-                    className="flex-1 relative"
+                    className="flex-1"
                   >
-                    {/* Lowest Price Indicator */}
-                    <div
-                      className={`absolute -top-2 -right-1 w-3 h-3 rounded-full ${
-                        isLowest ? 'bg-primary' : 'bg-transparent'
-                      }`}
-                    />
                     <Button
                       variant={isSelected ? "default" : "outline"}
                       size="sm"
@@ -466,10 +459,10 @@ export function PriceTrendBar({
                       className={`
                         w-full h-auto p-2 flex-col gap-1 text-xs transition-all duration-200 relative overflow-hidden
                         ${isSelected
-                          ? 'bg-primary text-primary-foreground shadow-md transform scale-105'
+                          ? 'bg-green-600 text-white border-green-600 shadow-md transform scale-105'
                           : isDisabled
-                            ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed opacity-60'
-                            : 'border-gray-300 bg-white hover:border-green-500 hover:bg-green-50'
+                          ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed opacity-60'
+                          : 'border-gray-300 bg-white hover:border-green-500 hover:bg-green-50'
                         }
                       `}
                     >
@@ -484,7 +477,7 @@ export function PriceTrendBar({
                         {/* Weekday */}
                         <span className={`text-xs font-medium ${
                           isSelected ? 'text-white' :
-                            isDisabled ? 'text-gray-400' : 'text-gray-600'
+                          isDisabled ? 'text-gray-400' : 'text-gray-600'
                         }`}>
                           {dateInfo.weekday}
                         </span>
@@ -492,7 +485,7 @@ export function PriceTrendBar({
                         {/* Day with Month */}
                         <span className={`text-sm font-bold ${
                           isSelected ? 'text-white' :
-                            isDisabled ? 'text-gray-400' : 'text-gray-800'
+                          isDisabled ? 'text-gray-400' : 'text-gray-800'
                         }`}>
                           {dateInfo.dayOfMonth}/{dateInfo.displayMonth}
                         </span>

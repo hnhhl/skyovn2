@@ -787,7 +787,7 @@ export function FlightResults(props: FlightResultsProps) {
                                     ) : (
                                       <span className={`${
                                         baggageDisplay === 'Không có' ? 'text-red-500' :
-                                        baggageDisplay === '-' ? 'text-gray-400'                                         : 'text-green-600'
+                                        baggageDisplay === '-' ? 'text-gray-400' : 'text-green-600'
                                       }`}>
                                         {baggageDisplay}
                                       </span>
@@ -2121,7 +2121,7 @@ ${text}
                             </div>
                             <div className="flex flex-col items-end gap-3">
                               <div className="text-right">
-                                <p className="text-2xl font-bold text-primary">
+                                <p className="text-2xl font-bold text-green-600">
                                   {new Intl.NumberFormat('vi-VN').format(info.totalPrice)}₫
                                 </p>
                                 <p className="text-sm text-gray-600">
@@ -2153,7 +2153,7 @@ ${text}
                                 <Button
                                   size="sm"
                                   onClick={() => handleSelectFlight(selectedFlight || group.cheapest)}
-                                  className={isSelected ? "bg-green-700" : "bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg font-medium transition-colors"}
+                                  className={isSelected ? "bg-green-700" : "bg-green-600 hover:bg-green-700"}
                                   disabled={!!isSelected}
                                 >
                                   {isSelected ? (
@@ -2261,7 +2261,8 @@ ${text}
                                     <p>Mã đặt chỗ: {info.fareClass}</p>
                                     {(selectedFlight || group.cheapest).segments.length > 1 && (
                                       <p>Số chặng: {(selectedFlight || group.cheapest).segments.length}</p>
-                                    )}                                  </div>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
                               {(selectedFlight || group.cheapest).segments.length > 1 && (
