@@ -1578,7 +1578,7 @@ ${text}
                     alert('Lỗi khi tạo file ảnh.')
                   }
                 }, 'image/png')
-              } catch (error) {
+              } catch (error){
                 console.error('Screenshot error:', error)
                 alert(`Lỗi khi chụp ảnh: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`)
               } finally {
@@ -2037,8 +2037,8 @@ ${text}
                     <Card
                       key={group.key}
                       className={`overflow-hidden hover:shadow-lg transition-all duration-200 ${
-                        isSelected ? 'ring-2 ring-green-500 shadow-lg bg-green-50' : ''
-                      }`}
+        isSelected ? 'ring-2 ring-primary shadow-lg bg-primary/5' : ''
+      }`}
                     >
                       <CardContent className="p-0">
                         <div className="p-4 sm:p-6">
@@ -2265,7 +2265,7 @@ ${text}
                                   </div>
                                 </div>
                               </div>
-                              {(selectedFlight || group.cheapest).segments.length > 1 && (
+                              {(selectedFlight || group.cheapest).segments.length> 1 && (
                                 <div>
                                   <p className="text-sm font-medium text-gray-700 mb-2">
                                     Chi tiết hành trình

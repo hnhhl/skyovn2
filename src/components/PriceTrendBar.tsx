@@ -362,7 +362,7 @@ export function PriceTrendBar({
       const newStart = addDays(prevRange.start, shift)
       const newCenter = addDays(prevRange.center, shift)
 
-      console.log(`📅 Navigating ${direction}, new range:`, {
+      console.log('📅 Navigating ' + direction + ', new range:', {
         oldStart: safeFormat(prevRange.start, 'yyyy-MM-dd'),
         newStart: safeFormat(newStart, 'yyyy-MM-dd'),
         shift
