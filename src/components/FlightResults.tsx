@@ -1578,7 +1578,7 @@ ${text}
                     alert('Lỗi khi tạo file ảnh.')
                   }
                 }, 'image/png')
-              } catch (error){
+              } catch (error) {
                 console.error('Screenshot error:', error)
                 alert(`Lỗi khi chụp ảnh: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`)
               } finally {
@@ -2037,8 +2037,8 @@ ${text}
                     <Card
                       key={group.key}
                       className={`overflow-hidden hover:shadow-lg transition-all duration-200 ${
-        isSelected ? 'ring-2 ring-blue-500 shadow-lg bg-blue-50' : ''
-      }`}
+                        isSelected ? 'ring-2 ring-green-500 shadow-lg bg-green-50' : ''
+                      }`}
                     >
                       <CardContent className="p-0">
                         <div className="p-4 sm:p-6">
@@ -2065,7 +2065,7 @@ ${text}
                                           {info.airlineName}
                                         </p> */}
                                         {isSelected && (
-                                          <Badge className="bg-blue-600 text-white text-xs px-2 py-1 font-bold">
+                                          <Badge className="bg-green-600 text-white text-xs px-2 py-1 font-bold">
                                             ✓ Đã chọn
                                           </Badge>
                                         )}
@@ -2121,7 +2121,7 @@ ${text}
                             </div>
                             <div className="flex flex-col items-end gap-3">
                               <div className="text-right">
-                                <p className="text-2xl font-bold text-blue-600">
+                                <p className="text-2xl font-bold text-green-600">
                                   {new Intl.NumberFormat('vi-VN').format(info.totalPrice)}₫
                                 </p>
                                 <p className="text-sm text-gray-600">
@@ -2153,7 +2153,7 @@ ${text}
                                 <Button
                                   size="sm"
                                   onClick={() => handleSelectFlight(selectedFlight || group.cheapest)}
-                                  className={isSelected ? "bg-blue-700" : "bg-blue-600 hover:bg-blue-700"}
+                                  className={isSelected ? "bg-green-700" : "bg-green-600 hover:bg-green-700"}
                                   disabled={!!isSelected}
                                 >
                                   {isSelected ? (
@@ -2183,7 +2183,7 @@ ${text}
                                       <div
                                         key={`${flight.groupClass}-${flight.fareClass}`}
                                         className={`border rounded-lg p-3 cursor-pointer transition-all ${
-                                          isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                                          isSelected ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'
                                         }`}
                                         onClick={() => {
                                           setSelectedClasses(prev => ({
@@ -2202,7 +2202,7 @@ ${text}
                                             </p>
                                           </div>
                                           <div className="text-right">
-                                            <p className="font-semibold text-blue-600">
+                                            <p className="font-semibold text-green-600">
                                               {new Intl.NumberFormat('vi-VN').format(flightInfo.totalPrice)}₫
                                             </p>
                                             <p className="text-xs text-gray-500">
@@ -2240,7 +2240,7 @@ ${text}
                                     <Separator className="my-1" />
                                     <div className="flex justify-between font-semibold">
                                       <span>Tổng cộng:</span>
-                                      <span className="text-blue-600">
+                                      <span className="text-green-600">
                                         {new Intl.NumberFormat('vi-VN').format(info.totalPrice)}₫
                                       </span>
                                     </div>
@@ -2265,7 +2265,7 @@ ${text}
                                   </div>
                                 </div>
                               </div>
-                              {(selectedFlight || group.cheapest).segments.length> 1 && (
+                              {(selectedFlight || group.cheapest).segments.length > 1 && (
                                 <div>
                                   <p className="text-sm font-medium text-gray-700 mb-2">
                                     Chi tiết hành trình
