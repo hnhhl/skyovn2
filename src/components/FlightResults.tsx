@@ -1579,6 +1579,7 @@ ${text}
                   }
                 }, 'image/png')
               } catch (error){
+```python
                 console.error('Screenshot error:', error)
                 alert(`Lỗi khi chụp ảnh: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`)
               } finally {
@@ -1676,32 +1677,18 @@ ${text}
 
             {/* Airline status indicators */}
             <div className="flex justify-center space-x-3 mt-3">
-              {progressive?.searchStatuses?.map((status, index) => (
-                <div
-                  key={status.airline}
-                  className={`flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium transition-all duration-500 ${
-                    status.status === 'success' ? 'bg-green-100 text-green-700' :
-                    status.status === 'loading' ? 'bg-blue-100 text-blue-700' :
-                    'bg-gray-100 text-gray-500'
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  {status.status === 'loading' && <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>}
-                  {status.status === 'success' && <div className="w-2 h-2 bg-green-500 rounded-full"></div>}
-                  <span>{status.airline}</span>
-                </div>
-              )) ||
-              // Fallback when no searchStatuses yet
-              ['VN', 'VJ', 'QH', 'BL', 'VU'].map((airline, index) => (
-                <div
-                  key={airline}
-                  className="flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 animate-pulse"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                  <span>{airline}</span>
-                </div>
-              ))}
+              {progressive.searchStatuses.map((status) => (
+                        <span
+                          key={status.airline}
+                          className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                            status.status === 'success' ? 'bg-green-100 text-green-700' :
+                            status.status === 'loading' ? 'bg-blue-100 text-blue-700' :
+                            'bg-gray-100 text-gray-500'
+                          }`}
+                        >
+                          {status.airline}
+                        </span>
+                      ))}
             </div>
           </div>
 
@@ -1985,17 +1972,17 @@ ${text}
                         </div>
                         <div className="flex-1 flex items-center gap-2 justify-end">
                         {progressive.searchStatuses.map((status) => (
-                          <span
-                            key={status.airline}
-                            className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                              status.status === 'success' ? 'bg-green-100 text-green-600' :
-                              status.status === 'loading' ? 'bg-green-100 text-green-600' :
-                              'bg-gray-100 text-gray-400'
-                            }`}
-                          >
-                            {status.airline}
-                          </span>
-                        ))}
+                        <span
+                          key={status.airline}
+                          className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                            status.status === 'success' ? 'bg-green-100 text-green-700' :
+                            status.status === 'loading' ? 'bg-blue-100 text-blue-700' :
+                            'bg-gray-100 text-gray-500'
+                          }`}
+                        >
+                          {status.airline}
+                        </span>
+                      ))}
                         <span className="text-sm text-gray-500 ml-2">
                           {progressive.completedAirlines}/{progressive.totalAirlines}
                         </span>
@@ -2289,7 +2276,7 @@ ${text}
                                       </div>
                                     ))}
                                   </div>
-                                </div>
+                               </div>
                               )}
                               <div className="flex gap-2 justify-end">
                                 <BookingRulesDialog
