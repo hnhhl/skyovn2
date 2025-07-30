@@ -261,7 +261,7 @@ function SearchResultsContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-sky-50">
       <Header />
 
       {isRoundTrip ? (
@@ -611,7 +611,7 @@ function SearchResultsContent() {
 
                                     <ChevronRight className="h-5 w-5 text-blue-600 animate-pulse" />
 
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center justify-center gap-2">
                                       <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
                                       <span className="text-green-800 font-semibold">Chọn chuyến bay phù hợp</span>
                                     </div>
@@ -623,7 +623,7 @@ function SearchResultsContent() {
                                   whileHover={{ scale: 1.05 }}
                                   whileTap={{ scale: 0.95 }}
                                   onClick={() => setActiveTab('outbound')}
-                                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600to-purple-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
                                 >
                                   <Plane className="h-5 w-5" />
                                   Chọn chuyến đi ngay
@@ -988,7 +988,7 @@ function SearchResultsContent() {
 export default function SearchResultsPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-sky-50">
         <Header />
         <div className="container mx-auto px-4 py-4">
           <div className="bg-white rounded-lg shadow-sm border p-4">
