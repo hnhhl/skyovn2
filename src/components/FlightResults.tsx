@@ -781,8 +781,8 @@ export function FlightResults(props: FlightResultsProps) {
                                     <span>Hành lý:</span>
                                     {baggageLoading ? (
                                       <div className="flex items-center gap-1">
-                                        <Loader2 className="w-3 h-3 animate-spin text-blue-500" />
-                                        <span className="text-blue-600">Đang tải...</span>
+                                        <Loader2 className="w-3 h-3 animate-spin text-green-500" />
+                                        <span className="text-green-600">Đang tải...</span>
                                       </div>
                                     ) : (
                                       <span className={`${
@@ -816,10 +816,10 @@ export function FlightResults(props: FlightResultsProps) {
           </div>
 
           {/* Biểu đồ khung giờ dạng dọc */}
-          <div className="mt-8 p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border border-blue-100">
+          <div className="mt-8 p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-100">
             <div className="text-center mb-6">
               <h4 className="font-bold text-xl text-gray-800 mb-2 flex items-center justify-center gap-2">
-                <BarChart3 className="w-6 h-6 text-blue-600" />
+                <BarChart3 className="w-6 h-6 text-green-600" />
                 Biểu đồ giá theo khung giờ
               </h4>
               <p className="text-sm text-gray-600">So sánh giá vé rẻ nhất của từng hãng theo thời gian trong ngày</p>
@@ -929,10 +929,10 @@ export function FlightResults(props: FlightResultsProps) {
 
           {/* Cross-Airline Recommendations với copy text */}
           {crossAirlineRecommendations.length > 0 && (
-            <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mt-8 p-6 bg-green-50 border border-green-200 rounded-lg">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-semibold text-lg flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-blue-600" />
+                  <Sparkles className="w-5 h-5 text-green-600" />
                   Gợi ý đáng cân nhắc
                 </h4>
                 <Button
@@ -978,7 +978,7 @@ ${text}
               </div>
               <div className="space-y-4">
                 {crossAirlineRecommendations.map((rec, index) => (
-                  <div key={index} className="bg-white rounded-lg p-4 border border-blue-300">
+                  <div key={index} className="bg-white rounded-lg p-4 border border-green-300">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
                         <div className="flex items-center gap-4 mb-2">
@@ -996,8 +996,8 @@ ${text}
                           </div>
 
                           <div className="flex-1 text-center">
-                            <ArrowRight className="w-5 h-5 mx-auto text-blue-500 mb-1" />
-                            <div className="text-xs text-blue-600 font-medium">
+                            <ArrowRight className="w-5 h-5 mx-auto text-green-500 mb-1" />
+                            <div className="text-xs text-green-600 font-medium">
                               Chênh lệch +{new Intl.NumberFormat('vi-VN').format(rec.priceDiff)}₫
                             </div>
                           </div>
@@ -1018,14 +1018,14 @@ ${text}
                       </div>
                     </div>
 
-                    <div className="bg-blue-100 rounded-lg p-3">
-                      <p className="text-sm font-medium text-blue-800 mb-2">
+                    <div className="bg-green-100 rounded-lg p-3">
+                      <p className="text-sm font-medium text-green-800 mb-2">
                         💡 Trả thêm {new Intl.NumberFormat('vi-VN').format(rec.priceDiff)}₫ để được:
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                         {rec.benefits.map((benefit, idx) => (
-                          <div key={idx} className="text-sm text-blue-700 flex items-center gap-1">
-                            <CheckCircle className="w-3 h-3 text-blue-600" />
+                          <div key={idx} className="text-sm text-green-700 flex items-center gap-1">
+                            <CheckCircle className="w-3 h-3 text-green-600" />
                             {benefit}
                           </div>
                         ))}
@@ -1977,7 +1977,7 @@ ${text}
                         <div className="flex items-center gap-2">
                           <div className="relative">
                             <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 animate-spin opacity-20" />
-                            <Plane className="absolute inset-0 m-auto h-4 w-4 text-blue-600" />
+                            <Plane className="absolute inset-0 m-auto h-4 w-4 text-green-600" />
                           </div>
                           <p className="text-sm font-medium text-gray-700">
                             Đang tìm thêm chuyến bay
@@ -1989,7 +1989,7 @@ ${text}
                             key={status.airline}
                             className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                               status.status === 'success' ? 'bg-green-100 text-green-600' :
-                              status.status === 'loading' ? 'bg-blue-100 text-blue-600' :
+                              status.status === 'loading' ? 'bg-green-100 text-green-600' :
                               'bg-gray-100 text-gray-400'
                             }`}
                           >
