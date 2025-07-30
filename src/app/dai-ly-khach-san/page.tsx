@@ -79,12 +79,12 @@ import {
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Đối Tác Khách Sạn - Kết Nối 3M+ Accommodations Toàn Cầu | Skyo Vietnam",
-  description: "🏨 Trở thành đối tác kinh doanh khách sạn với Skyo. 3 triệu+ accommodations, giá cực ưu đãi, hoa hồng minh bạch, hỗ trợ toàn diện. Tham gia ngay!",
-  keywords: "đối tác khách sạn, partner program hotel, kinh doanh khách sạn online, hoa hồng booking khách sạn, hệ thống đặt phòng, travel agent vietnam, accommodation partner, hotel reseller program",
+  title: "Đối Tác Khách Sạn - Kết Nối 3M+ Khách Sạn Toàn Cầu | Skyo Vietnam",
+  description: "🏨 Trở thành đối tác kinh doanh khách sạn với Skyo. 3 triệu+ khách sạn, giá cực ưu đãi, hoa hồng minh bạch, hỗ trợ toàn diện. Tham gia ngay!",
+  keywords: "đối tác khách sạn, chương trình đối tác khách sạn, kinh doanh khách sạn online, hoa hồng booking khách sạn, hệ thống đặt phòng, đại lý du lịch vietnam, đối tác lưu trú, chương trình bán lại khách sạn",
   openGraph: {
-    title: "🏨 Đối Tác Khách Sạn - 3M+ Accommodations | Skyo Vietnam",
-    description: "✅ 3 triệu+ accommodations ✅ Giá ưu đãi ✅ Hoa hồng minh bạch ✅ Hỗ trợ 24/7. Tham gia Partner Program ngay!",
+    title: "🏨 Đối Tác Khách Sạn - 3M+ Khách Sạn | Skyo Vietnam",
+    description: "✅ 3 triệu+ khách sạn ✅ Giá ưu đãi ✅ Hoa hồng minh bạch ✅ Hỗ trợ 24/7. Tham gia chương trình đối tác ngay!",
     type: "website",
     locale: "vi_VN",
     siteName: "Skyo Vietnam"
@@ -95,15 +95,15 @@ export default function HotelPartnerPage() {
   const partnerBenefits = [
     {
       icon: Globe,
-      title: '3M+ Accommodations Toàn Cầu',
-      description: 'Kết nối với hơn 3 triệu khách sạn, resort, villa, homestay từ budget đến luxury trên 220+ quốc gia.',
+      title: '3 Triệu+ Khách Sạn Toàn Cầu',
+      description: 'Kết nối với hơn 3 triệu khách sạn, resort, villa, homestay từ bình dân đến sang trọng tại 220+ quốc gia.',
       highlight: true,
       color: 'from-blue-500 to-cyan-600'
     },
     {
       icon: TrendingDown,
       title: 'Giá Ưu Đãi Đặc Biệt',
-      description: 'Nhận giá tốt nhất thị trường nhờ hợp đồng trực tiếp với property owners và major chains.',
+      description: 'Nhận giá tốt nhất thị trường nhờ hợp đồng trực tiếp với chủ khách sạn và các chuỗi lớn.',
       highlight: true,
       color: 'from-green-500 to-emerald-600'
     },
@@ -116,29 +116,29 @@ export default function HotelPartnerPage() {
     },
     {
       icon: Rocket,
-      title: 'Technology Platform',
-      description: 'Hệ thống booking hiện đại với real-time inventory, instant confirmation, mobile optimization.',
+      title: 'Nền Tảng Công Nghệ',
+      description: 'Hệ thống đặt phòng hiện đại với cập nhật thời gian thực, xác nhận tức thì, tối ưu hóa di động.',
       highlight: false,
       color: 'from-orange-500 to-red-600'
     },
     {
       icon: Headphones,
-      title: 'Partner Support 24/7',
-      description: 'Đội ngũ Account Manager chuyên nghiệp, hỗ trợ tận tình từ onboarding đến operational.',
+      title: 'Hỗ Trợ Đối Tác 24/7',
+      description: 'Đội ngũ quản lý tài khoản chuyên nghiệp, hỗ trợ tận tình từ khâu thiết lập đến vận hành.',
       highlight: false,
       color: 'from-teal-500 to-cyan-600'
     },
     {
       icon: BookOpenCheck,
-      title: 'Training & Certification',
-      description: 'Chương trình đào tạo toàn diện về hospitality, sales techniques, và system usage.',
+      title: 'Đào Tạo & Chứng Chỉ',
+      description: 'Chương trình đào tạo toàn diện về khách sạn, kỹ thuật bán hàng và sử dụng hệ thống.',
       highlight: false,
       color: 'from-indigo-500 to-blue-600'
     },
     {
       icon: LineChart,
-      title: 'Business Analytics',
-      description: 'Dashboard chi tiết với insights về performance, customer behavior, revenue optimization.',
+      title: 'Phân Tích Kinh Doanh',
+      description: 'Bảng điều khiển chi tiết với thông tin chi tiết về hiệu suất, hành vi khách hàng, tối ưu hóa doanh thu.',
       highlight: false,
       color: 'from-yellow-500 to-orange-600'
     }
@@ -146,65 +146,65 @@ export default function HotelPartnerPage() {
 
   const platformFeatures = [
     {
-      title: 'Smart Search Engine',
-      description: 'AI-powered search với filters đa dạng: location, price, amenities, guest reviews',
+      title: 'Công Cụ Tìm Kiếm Thông Minh',
+      description: 'Tìm kiếm AI với bộ lọc đa dạng: vị trí, giá cả, tiện nghi, đánh giá khách hàng',
       icon: Search,
-      details: ['Natural language search', 'Voice search support', 'Visual search by photo', 'Predictive suggestions']
+      details: ['Tìm kiếm ngôn ngữ tự nhiên', 'Hỗ trợ tìm kiếm bằng giọng nói', 'Tìm kiếm trực quan bằng hình ảnh', 'Gợi ý dự đoán']
     },
     {
-      title: 'Real-time Availability',
-      description: 'Live inventory updates với rate synchronization từng giây',
+      title: 'Tình Trạng Phòng Thời Gian Thực',
+      description: 'Cập nhật tồn kho trực tiếp với đồng bộ hóa giá từng giây',
       icon: Timer,
-      details: ['Sub-second response time', 'Multi-channel sync', 'Overbooking protection', 'Dynamic pricing']
+      details: ['Thời gian phản hồi dưới 1 giây', 'Đồng bộ đa kênh', 'Bảo vệ tránh quá tải', 'Định giá động']
     },
     {
-      title: 'Instant Booking',
-      description: 'One-click booking với instant confirmation và voucher generation',
+      title: 'Đặt Phòng Tức Thì',
+      description: 'Đặt phòng một cú nhấp với xác nhận tức thì và tạo voucher',
       icon: Zap,
-      details: ['Express checkout', 'Saved payment methods', 'Auto-filled profiles', 'Mobile wallet support']
+      details: ['Thanh toán nhanh', 'Phương thức thanh toán đã lưu', 'Hồ sơ tự động điền', 'Hỗ trợ ví di động']
     },
     {
-      title: 'Multi-language Support',
-      description: 'Platform hỗ trợ 25+ ngôn ngữ với localized content',
+      title: 'Hỗ Trợ Đa Ngôn Ngữ',
+      description: 'Nền tảng hỗ trợ 25+ ngôn ngữ với nội dung được bản địa hóa',
       icon: Globe,
-      details: ['Vietnamese interface', 'Local currency display', 'Cultural customization', 'Region-specific features']
+      details: ['Giao diện tiếng Việt', 'Hiển thị tiền tệ địa phương', 'Tùy chỉnh văn hóa', 'Tính năng theo khu vực']
     }
   ]
 
   const accommodationTypes = [
     {
-      title: 'City Hotels',
-      description: 'Business & leisure hotels tại trung tâm thành phố',
+      title: 'Khách Sạn Thành Phố',
+      description: 'Khách sạn kinh doanh & nghỉ dưỡng tại trung tâm thành phố',
       icon: Building2,
       count: '1.2M+',
-      avgCommission: '3-5%',
+      avgCommission: '8-12%',
       topDestinations: ['Hà Nội', 'TP.HCM', 'Đà Nẵng', 'Cần Thơ'],
       color: 'from-blue-400 to-blue-600'
     },
     {
       title: 'Resort & Spa',
-      description: 'Nghỉ dưỡng cao cấp với full amenities',
+      description: 'Nghỉ dưỡng cao cấp với đầy đủ tiện nghi',
       icon: Waves,
       count: '800K+',
-      avgCommission: '4-6%',
+      avgCommission: '10-15%',
       topDestinations: ['Phú Quốc', 'Nha Trang', 'Hạ Long', 'Hội An'],
       color: 'from-green-400 to-green-600'
     },
     {
-      title: 'Boutique Properties',
-      description: 'Khách sạn boutique với character độc đáo',
+      title: 'Khách Sạn Boutique',
+      description: 'Khách sạn boutique với đặc trưng độc đáo',
       icon: Gem,
       count: '500K+',
-      avgCommission: '5-7%',
+      avgCommission: '12-18%',
       topDestinations: ['Sapa', 'Đà Lạt', 'Huế', 'Ninh Bình'],
       color: 'from-purple-400 to-purple-600'
     },
     {
-      title: 'Alternative Stays',
-      description: 'Homestay, villa, apartment cho trải nghiệm authentic',
+      title: 'Lưu Trú Thay Thế',
+      description: 'Homestay, villa, căn hộ cho trải nghiệm chân thực',
       icon: Key,
       count: '600K+',
-      avgCommission: '2-4%',
+      avgCommission: '5-10%',
       topDestinations: ['Mai Châu', 'Mộc Châu', 'Cát Bà', 'Côn Đảo'],
       color: 'from-orange-400 to-orange-600'
     }
@@ -212,63 +212,63 @@ export default function HotelPartnerPage() {
 
   const partnerProgram = [
     {
-      tier: 'Starter Partner',
+      tier: 'Đối Tác Khởi Đầu',
       description: 'Dành cho đối tác mới bắt đầu',
-      requirements: 'Không yêu cầu minimum',
+      requirements: 'Không yêu cầu tối thiểu',
       benefits: [
-        'Commission standard rates',
-        'Basic training program', 
-        'Email support',
-        'Monthly performance report'
+        'Tỷ lệ hoa hồng tiêu chuẩn',
+        'Chương trình đào tạo cơ bản', 
+        'Hỗ trợ qua email',
+        'Báo cáo hiệu suất hàng tháng'
       ],
-      commission: '2-4%',
+      commission: '5-8%',
       color: 'from-gray-400 to-gray-600',
       icon: Star
     },
     {
-      tier: 'Growth Partner',
+      tier: 'Đối Tác Phát Triển',
       description: 'Cho đối tác có tăng trưởng ổn định',
-      requirements: '50+ bookings/tháng',
+      requirements: '50+ đặt phòng/tháng',
       benefits: [
-        'Enhanced commission rates',
-        'Advanced training modules',
-        'Priority phone support',
-        'Weekly performance insights',
-        'Marketing co-op funds'
+        'Tỷ lệ hoa hồng nâng cao',
+        'Mô-đun đào tạo nâng cao',
+        'Hỗ trợ điện thoại ưu tiên',
+        'Thông tin chi tiết hiệu suất hàng tuần',
+        'Quỹ tiếp thị hợp tác'
       ],
-      commission: '3-5%',
+      commission: '8-12%',
       color: 'from-blue-400 to-blue-600',
       icon: TrendingUp
     },
     {
-      tier: 'Prime Partner',
-      description: 'Dành cho đối tác high-volume',
-      requirements: '200+ bookings/tháng',
+      tier: 'Đối Tác Cao Cấp',
+      description: 'Dành cho đối tác khối lượng lớn',
+      requirements: '200+ đặt phòng/tháng',
       benefits: [
-        'Premium commission structure',
-        'Dedicated account manager',
-        '24/7 priority support',
-        'Custom marketing materials',
-        'Exclusive inventory access',
-        'Revenue optimization consulting'
+        'Cơ cấu hoa hồng cao cấp',
+        'Quản lý tài khoản chuyên dụng',
+        'Hỗ trợ ưu tiên 24/7',
+        'Tài liệu tiếp thị tùy chỉnh',
+        'Truy cập kho hàng độc quyền',
+        'Tư vấn tối ưu hóa doanh thu'
       ],
-      commission: '4-6%',
+      commission: '10-15%',
       color: 'from-purple-400 to-purple-600',
       icon: Crown
     },
     {
-      tier: 'Elite Partner',
-      description: 'Chương trình đặc biệt cho top performers',
-      requirements: 'Invitation only',
+      tier: 'Đối Tác Ưu Tú',
+      description: 'Chương trình đặc biệt cho người thành tích cao',
+      requirements: 'Chỉ theo lời mời',
       benefits: [
-        'Maximum commission rates',
-        'Strategic partnership benefits',
-        'VIP support channel',
-        'Co-branded opportunities',
-        'Product development input',
-        'Executive relationship management'
+        'Tỷ lệ hoa hồng tối đa',
+        'Lợi ích đối tác chiến lược',
+        'Kênh hỗ trợ VIP',
+        'Cơ hội thương hiệu chung',
+        'Đầu vào phát triển sản phẩm',
+        'Quản lý mối quan hệ điều hành'
       ],
-      commission: '5-8%',
+      commission: '12-20%',
       color: 'from-yellow-400 to-yellow-600',
       icon: Award
     }
@@ -277,29 +277,29 @@ export default function HotelPartnerPage() {
   const onboardingSteps = [
     {
       step: 1,
-      title: 'Partner Application',
-      description: 'Điền form đăng ký với business information và documents',
+      title: 'Đăng Ký Đối Tác',
+      description: 'Điền form đăng ký với thông tin doanh nghiệp và tài liệu',
       duration: '5 phút',
       icon: FileText
     },
     {
       step: 2,
-      title: 'Business Verification',
-      description: 'Team partnerships review hồ sơ và verify credentials',
+      title: 'Xác Minh Doanh Nghiệp',
+      description: 'Nhóm đối tác xem xét hồ sơ và xác minh thông tin đăng nhập',
       duration: '1-2 ngày',
       icon: Shield
     },
     {
       step: 3,
-      title: 'Onboarding Session',
-      description: 'Training về platform, tools, best practices với Account Manager',
+      title: 'Phiên Định Hướng',
+      description: 'Đào tạo về nền tảng, công cụ, thực hành tốt nhất với Quản lý Tài khoản',
       duration: '1 tuần',
       icon: GraduationCap
     },
     {
       step: 4,
-      title: 'Go Live',
-      description: 'Kích hoạt tài khoản và bắt đầu kinh doanh với full support',
+      title: 'Đi Vào Hoạt Động',
+      description: 'Kích hoạt tài khoản và bắt đầu kinh doanh với hỗ trợ đầy đủ',
       duration: 'Tức thì',
       icon: Rocket
     }
@@ -307,62 +307,62 @@ export default function HotelPartnerPage() {
 
   const supportServices = [
     {
-      title: 'Account Management',
-      description: 'Dedicated Account Manager cho relationship building và growth strategy',
+      title: 'Quản Lý Tài Khoản',
+      description: 'Quản lý Tài khoản chuyên dụng cho xây dựng mối quan hệ và chiến lược tăng trưởng',
       icon: Users2,
-      features: ['Regular business reviews', 'Performance optimization', 'Strategic planning', 'Issue escalation']
+      features: ['Đánh giá kinh doanh thường xuyên', 'Tối ưu hóa hiệu suất', 'Lập kế hoạch chiến lược', 'Báo cáo vấn đề']
     },
     {
-      title: 'Technical Support',
-      description: 'Expert team hỗ trợ integration, API, và technical troubleshooting',
+      title: 'Hỗ Trợ Kỹ Thuật',
+      description: 'Nhóm chuyên gia hỗ trợ tích hợp, API và khắc phục sự cố kỹ thuật',
       icon: Settings,
-      features: ['API documentation', 'Integration support', 'Bug resolution', 'System updates']
+      features: ['Tài liệu API', 'Hỗ trợ tích hợp', 'Giải quyết lỗi', 'Cập nhật hệ thống']
     },
     {
-      title: 'Marketing Support',
-      description: 'Materials, campaigns, và co-marketing opportunities',
+      title: 'Hỗ Trợ Tiếp Thị',
+      description: 'Tài liệu, chiến dịch và cơ hội tiếp thị chung',
       icon: Target,
-      features: ['Brand guidelines', 'Marketing assets', 'Campaign templates', 'Co-op advertising']
+      features: ['Hướng dẫn thương hiệu', 'Tài sản tiếp thị', 'Mẫu chiến dịch', 'Quảng cáo hợp tác']
     },
     {
-      title: 'Training & Development',
-      description: 'Continuous learning programs để enhance skills và knowledge',
+      title: 'Đào Tạo & Phát Triển',
+      description: 'Chương trình học tập liên tục để nâng cao kỹ năng và kiến thức',
       icon: BookOpen,
-      features: ['Product training', 'Sales techniques', 'Industry insights', 'Certification programs']
+      features: ['Đào tạo sản phẩm', 'Kỹ thuật bán hàng', 'Thông tin chi tiết ngành', 'Chương trình chứng chỉ']
     }
   ]
 
   const stats = [
-    { number: '3M+', label: 'Global Accommodations', icon: Hotel },
-    { number: '220+', label: 'Countries & Territories', icon: MapPinned },
-    { number: '50K+', label: 'Active Partners', icon: Handshake },
-    { number: '99.8%', label: 'Booking Success Rate', icon: CheckCircle }
+    { number: '3M+', label: 'Khách Sạn Toàn Cầu', icon: Hotel },
+    { number: '220+', label: 'Quốc Gia & Vùng Lãnh Thổ', icon: MapPinned },
+    { number: '50K+', label: 'Đối Tác Hoạt Động', icon: Handshake },
+    { number: '99.8%', label: 'Tỷ Lệ Đặt Phòng Thành Công', icon: CheckCircle }
   ]
 
   const faqData = [
     {
-      question: 'Làm thế nào để trở thành Partner của Skyo?',
-      answer: 'Quy trình rất đơn giản: (1) Điền form application online, (2) Business verification, (3) Onboarding training, (4) Go live. Toàn bộ process chỉ mất 3-5 ngày làm việc.'
+      question: 'Làm thế nào để trở thành Đối tác của Skyo?',
+      answer: 'Quy trình rất đơn giản: (1) Điền đơn đăng ký trực tuyến, (2) Xác minh doanh nghiệp, (3) Đào tạo định hướng, (4) Đi vào hoạt động. Toàn bộ quá trình chỉ mất 3-5 ngày làm việc.'
     },
     {
-      question: 'Commission được tính và thanh toán như thế nào?',
-      answer: 'Commission từ 2-8% tùy partner tier và accommodation type. Thanh toán hàng tuần vào tài khoản, với detailed breakdown cho mỗi booking. Hoàn toàn minh bạch và trackable.'
+      question: 'Hoa hồng được tính và thanh toán như thế nào?',
+      answer: 'Hoa hồng từ 5-20% tùy thuộc vào cấp đối tác và loại chỗ ở. Thanh toán hàng tuần vào tài khoản, với bảng phân tích chi tiết cho mỗi lần đặt phòng. Hoàn toàn minh bạch và có thể theo dõi.'
     },
     {
-      question: 'Có minimum booking requirements không?',
-      answer: 'KHÔNG có minimum requirements để join program. Tuy nhiên có target để maintain tier benefits. Starter Partner không có yêu cầu, Growth Partner 50+ bookings/tháng.'
+      question: 'Có yêu cầu đặt phòng tối thiểu không?',
+      answer: 'KHÔNG có yêu cầu tối thiểu để tham gia chương trình. Tuy nhiên có mục tiêu để duy trì lợi ích cấp. Đối tác Khởi đầu không có yêu cầu, Đối tác Phát triển 50+ đặt phòng/tháng.'
     },
     {
-      question: 'Platform có hỗ trợ mobile không?',
-      answer: 'CÓ. Full mobile optimization với responsive design. Partner có thể quản lý bookings, check inventory, và serve customers từ smartphone/tablet anywhere, anytime.'
+      question: 'Nền tảng có hỗ trợ di động không?',
+      answer: 'CÓ. Tối ưu hóa di động đầy đủ với thiết kế đáp ứng. Đối tác có thể quản lý đặt phòng, kiểm tra tồn kho và phục vụ khách hàng từ điện thoại thông minh/máy tính bảng ở bất cứ đâu, bất cứ lúc nào.'
     },
     {
-      question: 'Training và support như thế nào?',
-      answer: 'Comprehensive training program bao gồm: platform usage, sales techniques, hospitality knowledge. Ongoing support qua dedicated Account Manager, 24/7 helpdesk, knowledge base, và regular webinars.'
+      question: 'Đào tạo và hỗ trợ như thế nào?',
+      answer: 'Chương trình đào tạo toàn diện bao gồm: sử dụng nền tảng, kỹ thuật bán hàng, kiến thức khách sạn. Hỗ trợ liên tục qua Quản lý Tài khoản chuyên dụng, bộ phận trợ giúp 24/7, cơ sở kiến thức và hội thảo trực tuyến thường xuyên.'
     },
     {
-      question: 'Có được customize branding không?',
-      answer: 'CÓ. Partners có thể white-label platform với own branding cho Prime tier trở lên. Bao gồm custom domain, logo, color scheme, và co-branded marketing materials.'
+      question: 'Có được tùy chỉnh thương hiệu không?',
+      answer: 'CÓ. Đối tác có thể white-label nền tảng với thương hiệu riêng cho cấp Cao cấp trở lên. Bao gồm tên miền tùy chỉnh, logo, bảng màu và tài liệu tiếp thị đồng thương hiệu.'
     }
   ]
 
@@ -383,17 +383,17 @@ export default function HotelPartnerPage() {
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-8 py-4 mb-8">
               <Hotel className="w-6 h-6 text-white" />
-              <span className="text-white font-bold text-lg">Partnership Program</span>
+              <span className="text-white font-bold text-lg">Chương Trình Đối Tác</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
               Trở Thành <span className="text-green-400">Đối Tác</span>
               <br />
-              Hospitality Hàng Đầu
+              Khách Sạn Hàng Đầu
             </h1>
 
             <p className="text-2xl md:text-3xl text-white/90 mb-10 leading-relaxed max-w-4xl mx-auto">
-              Kết nối với 3M+ accommodations toàn cầu, technology tiên tiến, và hoa hồng minh bạch
+              Kết nối với 3 triệu+ khách sạn toàn cầu, công nghệ tiên tiến và hoa hồng minh bạch
             </p>
 
             {/* Key Highlights */}
@@ -401,25 +401,25 @@ export default function HotelPartnerPage() {
               <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30">
                 <div className="flex items-center justify-center gap-2 text-white">
                   <Globe className="w-6 h-6 text-blue-400" />
-                  <span className="font-bold">3M+ Properties</span>
+                  <span className="font-bold">3M+ Khách Sạn</span>
                 </div>
               </div>
               <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30">
                 <div className="flex items-center justify-center gap-2 text-white">
                   <TrendingDown className="w-6 h-6 text-green-400" />
-                  <span className="font-bold">Best Rates</span>
+                  <span className="font-bold">Giá Tốt Nhất</span>
                 </div>
               </div>
               <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30">
                 <div className="flex items-center justify-center gap-2 text-white">
                   <BadgeCheck className="w-6 h-6 text-purple-400" />
-                  <span className="font-bold">Commission 2-8%</span>
+                  <span className="font-bold">Hoa Hồng 5-20%</span>
                 </div>
               </div>
               <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30">
                 <div className="flex items-center justify-center gap-2 text-white">
                   <Rocket className="w-6 h-6 text-yellow-400" />
-                  <span className="font-bold">AI Technology</span>
+                  <span className="font-bold">Công Nghệ AI</span>
                 </div>
               </div>
             </div>
@@ -428,13 +428,13 @@ export default function HotelPartnerPage() {
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 font-bold px-12 py-4 text-xl" asChild>
                 <a href="/lien-he">
                   <UserCheck className="w-6 h-6 mr-3" />
-                  Đăng Ký Partner
+                  Đăng Ký Đối Tác
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold px-12 py-4 text-xl" asChild>
                 <a href="#partnership-info">
                   <PlayCircle className="w-6 h-6 mr-3" />
-                  Xem Demo Platform
+                  Xem Demo Nền Tảng
                 </a>
               </Button>
             </div>
@@ -466,13 +466,13 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <Badge className="bg-blue-600 text-white px-6 py-3 text-base font-bold mb-6">
-              PARTNER BENEFITS
+              LỢI ÍCH ĐỐI TÁC
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-8">
               Những Lợi Ích Vượt Trội
             </h2>
             <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
-              Chương trình Partnership toàn diện với benefits tối ưu cho sustainable growth
+              Chương trình đối tác toàn diện với lợi ích tối ưu cho tăng trưởng bền vững
             </p>
           </div>
 
@@ -482,7 +482,7 @@ export default function HotelPartnerPage() {
                 {benefit.highlight && (
                   <div className="absolute top-6 right-6">
                     <Badge className="bg-blue-500 text-white text-sm px-3 py-2 font-bold animate-pulse">
-                      FEATURED
+                      NỔI BẬT
                     </Badge>
                   </div>
                 )}
@@ -504,13 +504,13 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <Badge className="bg-green-600 text-white px-6 py-3 text-base font-bold mb-6">
-              TECHNOLOGY PLATFORM
+              NỀN TẢNG CÔNG NGHỆ
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-8">
-              AI-Powered Booking Engine
+              Hệ Thống Đặt Phòng AI
             </h2>
             <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
-              Nền tảng technology hàng đầu được thiết kế cho partner success
+              Nền tảng công nghệ hàng đầu được thiết kế cho thành công của đối tác
             </p>
           </div>
 
@@ -547,13 +547,13 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <Badge className="bg-purple-600 text-white px-6 py-3 text-base font-bold mb-6">
-              ACCOMMODATION PORTFOLIO
+              DANH MỤC LƯU TRÚ
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-8">
-              3M+ Properties Đa Dạng
+              3 Triệu+ Khách Sạn Đa Dạng
             </h2>
             <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
-              Từ budget stays đến luxury resorts, phục vụ mọi segment khách hàng
+              Từ lưu trú bình dân đến resort sang trọng, phục vụ mọi phân khúc khách hàng
             </p>
           </div>
 
@@ -570,17 +570,17 @@ export default function HotelPartnerPage() {
                   
                   <div className="space-y-3 mb-6">
                     <div className="flex justify-between text-base">
-                      <span className="text-gray-600">Inventory:</span>
+                      <span className="text-gray-600">Số lượng:</span>
                       <span className="font-bold text-blue-600">{type.count}</span>
                     </div>
                     <div className="flex justify-between text-base">
-                      <span className="text-gray-600">Avg Commission:</span>
+                      <span className="text-gray-600">Hoa hồng TB:</span>
                       <span className="font-bold text-green-600">{type.avgCommission}</span>
                     </div>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-semibold text-gray-700 mb-3">Top Destinations:</h4>
+                    <h4 className="text-sm font-semibold text-gray-700 mb-3">Điểm đến hàng đầu:</h4>
                     <div className="flex flex-wrap gap-2 justify-center">
                       {type.topDestinations.map((destination, idx) => (
                         <Badge key={idx} variant="outline" className="text-xs">
@@ -601,13 +601,13 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <Badge className="bg-orange-600 text-white px-6 py-3 text-base font-bold mb-6">
-              PARTNER PROGRAM TIERS
+              CẤP ĐỘ CHƯƠNG TRÌNH ĐỐI TÁC
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-8">
-              Grow Your Way To Success
+              Phát Triển Theo Cách Của Bạn
             </h2>
             <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
-              4 tier levels với benefits và commission rates tăng dần theo performance
+              4 cấp độ với lợi ích và tỷ lệ hoa hồng tăng dần theo hiệu suất
             </p>
           </div>
 
@@ -628,12 +628,12 @@ export default function HotelPartnerPage() {
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-gray-700 mb-2">Requirements:</h4>
+                    <h4 className="text-sm font-semibold text-gray-700 mb-2">Yêu cầu:</h4>
                     <p className="text-gray-600 text-sm">{program.requirements}</p>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-semibold text-gray-700 mb-3">Benefits:</h4>
+                    <h4 className="text-sm font-semibold text-gray-700 mb-3">Lợi ích:</h4>
                     <div className="space-y-2">
                       {program.benefits.map((benefit, idx) => (
                         <div key={idx} className="flex items-start gap-2">
@@ -655,13 +655,13 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <Badge className="bg-teal-600 text-white px-6 py-3 text-base font-bold mb-6">
-              PARTNER SUPPORT
+              HỖ TRỢ ĐỐI TÁC
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-8">
-              Support Toàn Diện 24/7
+              Hỗ Trợ Toàn Diện 24/7
             </h2>
             <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
-              Đội ngũ chuyên gia hỗ trợ partners thành công trong mọi khía cạnh
+              Đội ngũ chuyên gia hỗ trợ đối tác thành công trong mọi khía cạnh
             </p>
           </div>
 
@@ -698,13 +698,13 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <Badge className="bg-green-600 text-white px-6 py-3 text-base font-bold mb-6">
-              ONBOARDING PROCESS
+              QUY TRÌNH ĐỊNH HƯỚNG
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-8">
-              4 Bước Thành Partner
+              4 Bước Thành Đối Tác
             </h2>
             <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
-              Quy trình onboarding nhanh chóng, đơn giản và hiệu quả
+              Quy trình định hướng nhanh chóng, đơn giản và hiệu quả
             </p>
           </div>
 
@@ -747,10 +747,10 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <Badge className="bg-indigo-600 text-white px-6 py-3 text-base font-bold mb-6">
-              FREQUENTLY ASKED QUESTIONS
+              CÂU HỎI THƯỜNG GẶP
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-8">
-              FAQ Partnership Program
+              FAQ Chương Trình Đối Tác
             </h2>
             <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
               Câu trả lời cho những thắc mắc phổ biến về chương trình đối tác
@@ -779,13 +779,13 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="bg-indigo-600 text-white px-6 py-3 text-base font-bold mb-6">
-              EXPAND YOUR BUSINESS
+              MỞ RỘNG KINH DOANH
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8">
-              Hotel + Flight Partnership Combo
+              Combo Đối Tác Khách Sạn + Vé Máy Bay
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
-              Tối đa hóa revenue với dual partnership program
+              Tối đa hóa doanh thu với chương trình đối tác kép
             </p>
           </div>
 
@@ -794,58 +794,58 @@ export default function HotelPartnerPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h3 className="text-3xl font-bold text-gray-800 mb-6">
-                    💎 Dual Partnership Benefits
+                    💎 Lợi Ích Đối Tác Kép
                   </h3>
                   <div className="space-y-4 mb-8">
                     <div className="flex items-center gap-4">
                       <CheckCircle className="w-6 h-6 text-green-600" />
-                      <span className="text-gray-700 text-lg">Commission từ cả 2 verticals: hotel + flight</span>
+                      <span className="text-gray-700 text-lg">Hoa hồng từ cả 2 mảng: khách sạn + vé máy bay</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <CheckCircle className="w-6 h-6 text-green-600" />
-                      <span className="text-gray-700 text-lg">Cross-selling opportunities tăng customer value</span>
+                      <span className="text-gray-700 text-lg">Cơ hội bán chéo tăng giá trị khách hàng</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <CheckCircle className="w-6 h-6 text-green-600" />
-                      <span className="text-gray-700 text-lg">Unified dashboard quản lý tất cả bookings</span>
+                      <span className="text-gray-700 text-lg">Bảng điều khiển thống nhất quản lý tất cả đặt chỗ</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <CheckCircle className="w-6 h-6 text-green-600" />
-                      <span className="text-gray-700 text-lg">Package deals & vacation planning services</span>
+                      <span className="text-gray-700 text-lg">Gói ưu đãi & dịch vụ lập kế hoạch kỳ nghỉ</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <CheckCircle className="w-6 h-6 text-green-600" />
-                      <span className="text-gray-700 text-lg">Higher tier benefits across both programs</span>
+                      <span className="text-gray-700 text-lg">Lợi ích cấp cao hơn trên cả hai chương trình</span>
                     </div>
                   </div>
                   <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg" asChild>
                     <a href="/dai-ly-ve-may-bay">
                       <Plane className="w-5 h-5 mr-3" />
-                      Tìm hiểu Flight Partnership
+                      Tìm hiểu Đối tác Vé Máy Bay
                       <ArrowRight className="w-5 h-5 ml-3" />
                     </a>
                   </Button>
                 </div>
                 <div className="text-center">
                   <div className="bg-white rounded-2xl p-8 shadow-2xl">
-                    <h4 className="text-2xl font-bold text-gray-800 mb-6">Revenue Potential:</h4>
+                    <h4 className="text-2xl font-bold text-gray-800 mb-6">Tiềm năng doanh thu:</h4>
                     <div className="space-y-4">
                       <div className="flex justify-between text-lg">
-                        <span className="text-gray-600">Hotel commission:</span>
-                        <span className="font-bold text-green-600">25-80M/tháng</span>
+                        <span className="text-gray-600">Hoa hồng khách sạn:</span>
+                        <span className="font-bold text-green-600">30-100M/tháng</span>
                       </div>
                       <div className="flex justify-between text-lg">
-                        <span className="text-gray-600">Flight commission:</span>
-                        <span className="font-bold text-blue-600">20-60M/tháng</span>
+                        <span className="text-gray-600">Hoa hồng vé máy bay:</span>
+                        <span className="font-bold text-blue-600">25-80M/tháng</span>
                       </div>
                       <div className="flex justify-between text-lg">
-                        <span className="text-gray-600">Package bonuses:</span>
-                        <span className="font-bold text-purple-600">10-30M/tháng</span>
+                        <span className="text-gray-600">Bonus gói combo:</span>
+                        <span className="font-bold text-purple-600">15-40M/tháng</span>
                       </div>
                       <hr className="my-4" />
                       <div className="flex justify-between text-2xl">
-                        <span className="font-bold text-gray-800">Total potential:</span>
-                        <span className="font-bold text-indigo-600">55-170M/tháng</span>
+                        <span className="font-bold text-gray-800">Tổng tiềm năng:</span>
+                        <span className="font-bold text-indigo-600">70-220M/tháng</span>
                       </div>
                     </div>
                   </div>
@@ -861,17 +861,17 @@ export default function HotelPartnerPage() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-5xl mx-auto">
             <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
-              Ready To Become Our Partner?
+              Sẵn Sàng Trở Thành Đối Tác?
             </h2>
             <p className="text-2xl text-blue-100 mb-12 leading-relaxed">
-              Join thousands of successful partners building profitable hospitality businesses with Skyo
+              Tham gia hàng nghìn đối tác thành công xây dựng doanh nghiệp khách sạn có lợi nhuận với Skyo
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               <Card className="bg-white/15 backdrop-blur-sm border-white/30 text-center">
                 <CardContent className="p-8">
                   <PhoneCall className="w-16 h-16 text-white mx-auto mb-6" />
-                  <h3 className="text-xl font-bold text-white mb-3">Partnership Hotline</h3>
+                  <h3 className="text-xl font-bold text-white mb-3">Hotline Đối Tác</h3>
                   <p className="text-blue-100 font-bold text-lg">1900 5678</p>
                 </CardContent>
               </Card>
@@ -879,7 +879,7 @@ export default function HotelPartnerPage() {
               <Card className="bg-white/15 backdrop-blur-sm border-white/30 text-center">
                 <CardContent className="p-8">
                   <Mail className="w-16 h-16 text-white mx-auto mb-6" />
-                  <h3 className="text-xl font-bold text-white mb-3">Partnership Email</h3>
+                  <h3 className="text-xl font-bold text-white mb-3">Email Đối Tác</h3>
                   <p className="text-blue-100 font-bold text-lg">partners@skyo.vn</p>
                 </CardContent>
               </Card>
@@ -887,7 +887,7 @@ export default function HotelPartnerPage() {
               <Card className="bg-white/15 backdrop-blur-sm border-white/30 text-center">
                 <CardContent className="p-8">
                   <MapPin className="w-16 h-16 text-white mx-auto mb-6" />
-                  <h3 className="text-xl font-bold text-white mb-3">Partner Centers</h3>
+                  <h3 className="text-xl font-bold text-white mb-3">Trung Tâm Đối Tác</h3>
                   <p className="text-blue-100 font-bold text-lg">HN • HCM • DN</p>
                 </CardContent>
               </Card>
@@ -897,20 +897,20 @@ export default function HotelPartnerPage() {
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 font-bold px-16 py-6 text-2xl" asChild>
                 <a href="/lien-he">
                   <UserCheck className="w-8 h-8 mr-4" />
-                  Apply For Partnership
+                  Đăng Ký Đối Tác
                   <ArrowRight className="w-8 h-8 ml-4" />
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold px-16 py-6 text-2xl" asChild>
                 <a href="/tai-lieu-nghiep-vu">
                   <BookOpen className="w-8 h-8 mr-4" />
-                  Partnership Guide
+                  Hướng Dẫn Đối Tác
                 </a>
               </Button>
             </div>
 
             <p className="text-base text-blue-200 mt-8">
-              * No upfront fees • Transparent commission structure • Full support included
+              * Không phí trước • Cơ cấu hoa hồng minh bạch • Hỗ trợ đầy đủ đi kèm
             </p>
           </div>
         </div>
