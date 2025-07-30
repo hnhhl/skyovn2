@@ -1578,7 +1578,7 @@ ${text}
                     alert('Lỗi khi tạo file ảnh.')
                   }
                 }, 'image/png')
-              } catch (error) {
+              } catch (error){
                 console.error('Screenshot error:', error)
                 alert(`Lỗi khi chụp ảnh: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`)
               } finally {
@@ -1658,14 +1658,14 @@ ${text}
 
             <div className="relative flex items-center justify-center space-x-4">
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-spin opacity-30"></div>
-                <Plane className="absolute inset-0 m-auto h-5 w-5 text-green-600" />
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 animate-spin opacity-20" />
+                            <Plane className="absolute inset-0 m-auto h-5 w-5 text-green-600" />
 
                 {/* Flying trail effect */}
                 <div className="absolute inset-0 w-10 h-10">
-                  <div className={`w-2 h-2 bg-green-400 rounded-full animate-ping absolute top-2 left-8 opacity-60`} style={{ animationDelay: '0s' }}></div>
-                  <div className={`w-1 h-1 bg-blue-400 rounded-full animate-ping absolute top-4 left-6 opacity-40`} style={{ animationDelay: '0.5s' }}></div>
-                  <div className={`w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping absolute top-6 left-4 opacity-50`} style={{ animationDelay: '1s' }}></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-ping absolute top-2 left-8 opacity-60" style={{ animationDelay: '0s' }}></div>
+                  <div className="w-1 h-1 bg-blue-400 rounded-full animate-ping absolute top-4 left-6 opacity-40" style={{ animationDelay: '0.5s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping absolute top-6 left-4 opacity-50" style={{ animationDelay: '1s' }}></div>
                 </div>
               </div>
               <div className="text-center">
@@ -1976,7 +1976,7 @@ ${text}
                       <div className="relative flex items-center gap-3 p-3 bg-gradient-to-r from-green-50 to-blue-50">
                         <div className="flex items-center gap-2">
                           <div className="relative">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-spin opacity-20" />
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 animate-spin opacity-20" />
                             <Plane className="absolute inset-0 m-auto h-4 w-4 text-blue-600" />
                           </div>
                           <p className="text-sm font-medium text-gray-700">
