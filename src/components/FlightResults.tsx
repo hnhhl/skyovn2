@@ -951,7 +951,7 @@ ${better.flightNumber} (${format(new Date(better.departureTime), 'HH:mm')}) - ${
 ${rec.benefits.map(b => `• ${b}`).join('\n')}`
                     }).join('\n\n---\n\n')
 
-                    const fullText = `BẢNG SO SÁNH GIÁ VÉ MÁY BAY
+                    const fullText = \`BẢNG SO SÁNH GIÁ VÉ MÁY BAY
 ${from} → ${to} ngày ${format(new Date(departDate), 'dd/MM/yyyy')}
 
 ${text}
@@ -977,7 +977,7 @@ ${text}
                 </Button>
               </div>
               <div className="space-y-4">
-                  <div key={`recommendation-${rec.type}-${recIndex}`} className="p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border border-blue-200">
+                  <div key={\`recommendation-${rec.type}-${recIndex}`} className="p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border border-blue-200">
                   <div key={index} className="bg-white rounded-lg p-4 border border-blue-300">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
@@ -1001,7 +1001,7 @@ ${text}
                               Chênh lệch +{new Intl.NumberFormat('vi-VN').format(rec.priceDiff)}₫
                             </div>
                           </div>
-                  <div key={`time-period-${periodIndex}-${period.label}`} className="text-center">
+                  <div key={\`time-period-${periodIndex}-${period.label}`} className="text-center">
                           <div className="text-center">
                             <AirlineLogo airlineCode={rec.betterValueFlight.info.airline} className="w-10 h-8 mx-auto mb-1" />
                             <div className="text-sm">
@@ -1010,7 +1010,7 @@ ${text}
                                 {format(new Date(rec.betterValueFlight.info.departureTime), 'HH:mm')}
                       {period.flights.slice(0, 2).map((flight, idx) => (
                           {rec.benefits.map((benefit, benefitIndex) => (
-                            <span key={`benefit-${rec.type}-${benefitIndex}-${benefit.slice(0, 10)}`} className="text-xs bg-white px-2 py-1 rounded-full border border-blue-200 text-blue-700">
+                            <span key={\`benefit-${rec.type}-${benefitIndex}-${benefit.slice(0, 10)}`} className="text-xs bg-white px-2 py-1 rounded-full border border-blue-200 text-blue-700">
                               </div>
                             </div>
                           </div>
@@ -1024,7 +1024,7 @@ ${text}
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                         {rec.benefits.map((benefit, idx) => (
-                  <div key={`airline-stat-${stat.airline}-${statIndex}`} className="text-center p-3 bg-white rounded-lg border border-gray-200">
+                  <div key={\`airline-stat-${stat.airline}-${statIndex}`} className="text-center p-3 bg-white rounded-lg border border-gray-200">
                             <CheckCircle className="w-3 h-3 text-blue-600" />
                             {benefit}
                           </div>
@@ -1047,7 +1047,7 @@ ${text}
 
     allFlights.forEach((flight: Flight) => {
       const info = getFlightInfo(flight)
-      const key = `${info.airline}-${info.flightNumber}-${info.from}-${info.to}-${info.departureTime}`
+      const key = \`${info.airline}-${info.flightNumber}-${info.from}-${info.to}-${info.departureTime}`
 
       if (!groups.has(key)) {
         groups.set(key, [])
@@ -1285,7 +1285,7 @@ ${text}
           const to = searchInfo?.to || ''
           const a = document.createElement('a')
           a.href = url
-          a.download = `bang-gia-ve-${from}-${to}-${format(new Date(), 'yyyy-MM-dd')}.png`
+          a.download = \`bang-gia-ve-${from}-${to}-${format(new Date(), 'yyyy-MM-dd')}.png`
           document.body.appendChild(a)
           a.click()
           document.body.removeChild(a)
@@ -1326,7 +1326,7 @@ ${text}
           const to = searchInfo?.to || ''
           const a = document.createElement('a')
           a.href = url
-          a.download = `flights-${from}-${to}-${format(new Date(), 'yyyy-MM-dd')}.png`
+          a.download = \`flights-${from}-${to}-${format(new Date(), 'yyyy-MM-dd')}.png`
           document.body.appendChild(a)
           a.click()
           document.body.removeChild(a)
@@ -1338,7 +1338,7 @@ ${text}
     } catch (error) {
       console.error('Screenshot error:', error)
       const errorMessage = error instanceof Error ? error.message : 'Lỗi không xác định'
-      alert(`Lỗi khi chụp ảnh: ${errorMessage}`)
+      alert(\`Lỗi khi chụp ảnh: ${errorMessage}`)
     } finally {
       setIsCapturingScreenshot(false)
       setShowScreenshotDialog(false)
@@ -1384,7 +1384,7 @@ ${text}
 
     return (
       <div ref={screenshotRef}
-        className={`bg-white ${downloadMode==="mobile"? "w-[480px]" : "w-[1200px]"} rounded-xl shadow p-3 md:p-4`}
+        className={\`bg-white ${downloadMode==="mobile"? "w-[480px]" : "w-[1200px]"} rounded-xl shadow p-3 md:p-4`}
         style={{maxHeight:downloadMode==="desktop"?850:1200, overflowY:'auto'}}
       >
         <div className="mb-3 text-center">
@@ -1399,7 +1399,7 @@ ${text}
               const iconColor = getTimeColorIcon(info.departureTime)
 
               return (
-                <div key={group.key || `flight-${index}`}
+                <div key={group.key || \`flight-${index}`}
                   className="flex items-center justify-between gap-2 px-3 py-2 bg-white hover:bg-gray-50 border-b border-gray-100"
                   style={downloadMode==='mobile'?{fontSize:'11px',minHeight:'40px'}:{fontSize:'13px',minHeight:'50px'}}
                 >
@@ -1423,14 +1423,14 @@ ${text}
                   <div className="flex items-center gap-2 text-xs flex-shrink-0">
                     {(() => {
                       // Get real baggage info from API
-                      const baggageKey = `${info.airline}|${group.cheapest.groupClass}|${group.cheapest.fareClass}`
+                      const baggageKey = \`${info.airline}|${group.cheapest.groupClass}|${group.cheapest.fareClass}`
                       const bagInfo = baggageInfoMap[baggageKey]
 
                       // Parse baggage info
                       const parseBaggage = (baggageStr?: string) => {
                         if (!baggageStr || baggageStr === 'Không có' || baggageStr === '-') return null
                         const match = baggageStr.match(/(\d+)/)
-                        return match ? `${match[1]}kg` : null
+                        return match ? \`${match[1]}kg` : null
                       }
 
                       let handBaggage = parseBaggage(bagInfo?.handBaggage)
@@ -1568,7 +1568,7 @@ ${text}
                     const url = URL.createObjectURL(blob)
                     const a = document.createElement('a')
                     a.href = url
-                    a.download = `bang-gia-ve-${from}-${to}-${format(new Date(), 'yyyy-MM-dd')}-trang${downloadPage}.png`
+                    a.download = \`bang-gia-ve-${from}-${to}-${format(new Date(), 'yyyy-MM-dd')}-trang${downloadPage}.png`
                     document.body.appendChild(a)
                     a.click()
                     document.body.removeChild(a)
@@ -1580,7 +1580,7 @@ ${text}
                 }, 'image/png')
               } catch (error) {
                 console.error('Screenshot error:', error)
-                alert(`Lỗi khi chụp ảnh: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`)
+                alert(\`Lỗi khi chụp ảnh: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`)
               } finally {
                 setIsCapturingScreenshot(false)
               }
@@ -1679,12 +1679,12 @@ ${text}
               {progressive?.searchStatuses?.map((status, index) => (
                 <div
                   key={status.airline}
-                  className={`flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium transition-all duration-500 ${
+                  className={\`flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium transition-all duration-500 ${
                     status.status === 'success' ? 'bg-green-100 text-green-700' :
                     status.status === 'loading' ? 'bg-green-100 text-green-700' :
                     'bg-gray-100 text-gray-500'
                   }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  style={{ animationDelay: \`${index * 100}ms` }}
                 >
                   {status.status === 'loading' && <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>}
                   {status.status === 'success' && <div className="w-2 h-2 bg-green-500 rounded-full"></div>}
@@ -1696,7 +1696,7 @@ ${text}
                 <div
                   key={airline}
                   className="flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 animate-pulse"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  style={{ animationDelay: \`${index * 100}ms` }}
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span>{airline}</span>
@@ -1711,14 +1711,14 @@ ${text}
                 <div className="h-5 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-24 mb-4 animate-pulse"></div>
                 <div className="space-y-3">
                   {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="h-8 bg-gradient-to-r from-gray-100 to-gray-200 rounded animate-pulse" style={{ animationDelay: `${i * 100}ms` }}></div>
+                    <div key={i} className="h-8 bg-gradient-to-r from-gray-100 to-gray-200 rounded animate-pulse" style={{ animationDelay: \`${i * 100}ms` }}></div>
                   ))}
                 </div>
               </div>
             </div>
             <div className="lg:col-span-3 space-y-4">
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="bg-white rounded-lg shadow p-6 animate-pulse" style={{ animationDelay: `${i * 150}ms` }}>
+                <div key={i} className="bg-white rounded-lg shadow p-6 animate-pulse" style={{ animationDelay: \`${i * 150}ms` }}>
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-green-200 rounded animate-pulse"></div>
                     <div className="flex-1">
@@ -1815,7 +1815,7 @@ ${text}
                     Lọc
                   </Button>
                   <div className="flex items-center gap-2">
-                    <span className={`text-sm font-medium transition-colors ${
+                    <span className={\`text-sm font-medium transition-colors ${
                       includeServiceFee ? 'text-green-700' : 'text-gray-500'
                     }`}>
                       Gồm thuế & phí
@@ -1851,7 +1851,7 @@ ${text}
                     <DropdownMenuContent className="w-56" align="end">
                       <DropdownMenuItem
                         onClick={() => setSortBy('price')}
-                        className={`cursor-pointer ${sortBy === 'price' ? 'bg-green-50 text-green-700' : ''}`}
+                        className={\`cursor-pointer ${sortBy === 'price' ? 'bg-green-50 text-green-700' : ''}`}
                       >
                         <div className="flex items-center gap-3 w-full">
                           <DollarSign className="h-4 w-4" />
@@ -1861,7 +1861,7 @@ ${text}
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => setSortBy('duration')}
-                        className={`cursor-pointer ${sortBy === 'duration' ? 'bg-green-50 text-green-700' : ''}`}
+                        className={\`cursor-pointer ${sortBy === 'duration' ? 'bg-green-50 text-green-700' : ''}`}
                       >
                         <div className="flex items-center gap-3 w-full">
                           <Clock className="h-4 w-4" />
@@ -1871,7 +1871,7 @@ ${text}
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => setSortBy('departure')}
-                        className={`cursor-pointer ${sortBy === 'departure' ? 'bg-green-50 text-green-700' : ''}`}
+                        className={\`cursor-pointer ${sortBy === 'departure' ? 'bg-green-50 text-green-700' : ''}`}
                       >
                         <div className="flex items-center gap-3 w-full">
                           <Sunrise className="h-4 w-4" />
@@ -1987,7 +1987,7 @@ ${text}
                         {progressive.searchStatuses.map((status) => (
                           <span
                             key={status.airline}
-                            className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                            className={\`text-xs px-2 py-0.5 rounded-full font-medium ${
                               status.status === 'success' ? 'bg-green-100 text-green-600' :
                               status.status === 'loading' ? 'bg-green-100 text-green-600' :
                               'bg-gray-100 text-gray-400'
@@ -2019,7 +2019,7 @@ ${text}
                   }
 
                   const selectedFlight = selectedClasses[group.key]
-                    ? group.flights.find(f => `${f.groupClass}-${f.fareClass}` === selectedClasses[group.key])
+                    ? group.flights.find(f => \`${f.groupClass}-${f.fareClass}` === selectedClasses[group.key])
                     : getDefaultFlight()
 
                   const info = getFlightInfo(selectedFlight || group.cheapest)
@@ -2030,13 +2030,13 @@ ${text}
                   const flightToCheck = selectedFlight || group.cheapest
                   const isSelected = selectedFlightId && (
                     flightToCheck.flightNumber === selectedFlightId ||
-                    `${flightToCheck.flightNumber}-${flightToCheck.segments?.[0]?.startDate}` === selectedFlightId
+                    \`${flightToCheck.flightNumber}-${flightToCheck.segments?.[0]?.startDate}` === selectedFlightId
                   )
 
                   return (
                     <Card
                       key={group.key}
-                      className={`overflow-hidden hover:shadow-lg transition-all duration-200 ${
+                      className={\`overflow-hidden hover:shadow-lg transition-all duration-200 ${
                         isSelected ? 'ring-2 ring-green-500 shadow-lg bg-green-50' : ''
                       }`}
                     >
@@ -2174,21 +2174,21 @@ ${text}
                                 <p className="text-sm font-medium text-gray-700 mb-2">
                                   Chi tiết
                                 </p>
-                                <div className={`grid gap-2 ${group.flights.length > 4 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                                <div className={\`grid gap-2 ${group.flights.length > 4 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
                                   {group.flights.map((flight) => {
                                     const flightInfo = getFlightInfo(flight)
-                                    const isSelected = (selectedClasses[group.key] || `${group.cheapest.groupClass}-${group.cheapest.fareClass}`) === `${flight.groupClass}-${flight.fareClass}`
+                                    const isSelected = (selectedClasses[group.key] || \`${group.cheapest.groupClass}-${group.cheapest.fareClass}`) === \`${flight.groupClass}-${flight.fareClass}`
 
                                     return (
                                       <div
-                                        key={`${flight.groupClass}-${flight.fareClass}`}
-                                        className={`border rounded-lg p-3 cursor-pointer transition-all ${
+                                        key={\`${flight.groupClass}-${flight.fareClass}`}
+                                        className={\`border rounded-lg p-3 cursor-pointer transition-all ${
                                           isSelected ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'
                                         }`}
                                         onClick={() => {
                                           setSelectedClasses(prev => ({
                                             ...prev,
-                                            [group.key]: `${flight.groupClass}-${flight.fareClass}`
+                                            [group.key]: \`${flight.groupClass}-${flight.fareClass}`
                                           }))
                                         }}
                                       >
