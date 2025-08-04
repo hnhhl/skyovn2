@@ -1,0 +1,14 @@
+# Next.js App Router redirects for Netlify
+
+# API routes
+/api/*  /.netlify/functions/:splat  200
+
+# Auth callbacks
+/auth/callback  /auth/callback  200
+/agent/auth/callback  /agent/auth/callback  200
+
+# Agent routes
+/agent/*  /agent/:splat  200
+
+# Fallback for all routes - Next.js will handle 404s
+/*    /index.html   200
